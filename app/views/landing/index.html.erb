@@ -1,11 +1,27 @@
-<%= stylesheet_link_tag "landing", media: "all" %>
-<%= image_tag asset_path("jimmy_logo.jpg"), class: "landing-logo", alt: "Jimmy Logo" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jimmy</title>
+</head>
+<body>
+  <!-- logo -->
+  <%= image_tag asset_path("jimmy_logo.jpg"), class: "landing-logo", alt: "Jimmy Logo" %>
 
-<div class="landing-title">
-  <h1>Jimmy</h1>
-  <p>The TAMU Gym Buddy Matching App</p>
-</div>
-<br/>
+
+  <!-- intro -->
+  <div class="landing-title">
+      <h1>Jimmy</h1>
+      <p>The TAMU Gym Buddy Matching App</p>
+  </div>
+  <br/>
+
+  <!-- below could be links too -->
+  <!-- the onclick part should be a function in the controller to determine
+  where the user is taken to after log in -->
   
-<%# This button should invoke the Google OAuth%>
-<%= button_to("Log in / Sign up", {action: 'new'}, method: :get)%>
+  <%= button_to("Log in / Sign up", {action: 'new'}, method: :get)%>
+  <%= render 'footer' %>
+</body>
+</html>

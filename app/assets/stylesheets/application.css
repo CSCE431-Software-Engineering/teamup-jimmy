@@ -18,53 +18,6 @@
 /* Footer styling */
 /* Reset the margin and padding for body and all elements */
 /* Reset the margin and padding for body and all elements */
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  top:0;
-}
-
-body {
-  font-family: Arial, sans-serif; /* Consistent font family */
-  /* Rest of your body styles, if you have any */
-}
-
-/* Navigation Bar Styles */
-.navbar {
-  background-color: #fff; /* Or any other color */
-  padding: 10px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: sticky; /* This makes the navbar sticky */
-  top: 0; /* This defines the distance from the top of the viewport */
-  z-index: 1000; /* This ensures that the navbar stays on top of other content */
-}
-
-.navbar-logo img {
-  height: 50px; /* Adjust according to your preference */
-}
-
-.navbar-links {
-  display: flex;
-  align-items: center;
-}
-
-.navbar-link {
-  text-decoration: none;
-  color: #333; /* Adjust the color as needed */
-  font-size: 18px; /* Adjust the size as needed */
-  padding: 0 15px; /* Adjust the padding as needed */
-}
-
-.navbar-link:hover {
-  color: #000; /* Color on hover */
-  text-decoration: underline; /* Underline on hover for better user experience */
-}
-
 /* Footer Styles */
 .footer {
   background-color: #f3dbae; /* Choose a background color that fits your design */
