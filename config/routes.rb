@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :landing
   resources :students, except: :show;
   get 'students/basic'
+  get 'pages/home'
+  get 'pages/match'
 
   # resources :landing do
   #   member do

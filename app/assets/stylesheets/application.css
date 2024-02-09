@@ -25,7 +25,6 @@
     padding-top: 5%;
   }
 /* Footer styling */
-
   .footer {
     background-color: #f3dbae; /* Choose a background color that fits your design */
     text-align: center;
@@ -111,4 +110,3 @@
       left: 50%;
       transform: translate(-50%)
     }
-  
