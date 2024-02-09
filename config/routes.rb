@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+  get 'pages/home'
+  get 'pages/match'
   root "landing#index"
 
   get 'landing/index'
   get 'landing/new'
+  get 'landing/home'
 
   # resources :landing do
   #   member do
