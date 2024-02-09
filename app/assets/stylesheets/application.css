@@ -13,3 +13,35 @@
  *= require_tree .
  *= require_self
  */
+
+ /* add this to your CSS file, e.g., app/assets/stylesheets/application.css */
+/* Footer styling */
+.footer {
+    background-color: #f3dbae; /* Choose a background color that fits your design */
+    text-align: center;
+    padding: 20px 0; /* Increase padding to give more space */
+    position: absolute; /* Change to 'fixed' if you want it to stay at the bottom of the screen */
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* This is a common and clean font choice */
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1); /* Optional: Adds a shadow to the top of the footer */
+  }
+  
+  .footer-content p {
+    margin: 0; /* Removes default margin */
+    font-size: 1.0rem; /* Increases the font size */
+    line-height: 1.6; /* Adjusts the space between lines */
+    color: rgb(113, 109, 109); /* Sets the text color */
+  }
+  
+  /* Link styling */
+  .footer a {
+    color: #0066cc; /* Color for the link */
+    text-decoration: none; /* No underline */
+  }
+  
+  .footer a:hover {
+    text-decoration: underline; /* Underline on hover for better user experience */
+  }
+  
