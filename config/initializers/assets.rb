@@ -4,6 +4,7 @@
 Rails.application.config.assets.version = "1.0"
 Rails.application.config.assets.precompile += %w( jimmy_logo.jpg )
 Rails.application.config.assets.precompile += %w( landing.css )
+Rails.application.config.assets.precompile += %w( students.css )
 
 
 # Add additional assets to the asset load path.

@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create An Account</title>
-  <%= stylesheet_link_tag "landing", media: "all" %>
-</head>
-<body>
-  <h1 class="new-account-message">Seems like you're new to Jimmy...</h1>
-  <button>Create A Profile</button>
-    
-</body>
-</html>
+<%= stylesheet_link_tag "landing", media: "all" %>
+<h1 class="new-account-message">Seems like you're new to Jimmy...</h1>
+
+<%# This button leads to the profile creation process%>
+<%= button_to("Create A Profile", {controller: 'students', action: 'new'}, method: :get)%>

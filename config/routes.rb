@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   root "landing#index"
 
-  get 'landing/index'
-  get 'landing/new'
+  resources :landing
+  resources :students
+  get 'students/basic'
 
   # resources :landing do
   #   member do
