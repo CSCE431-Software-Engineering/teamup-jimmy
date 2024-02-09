@@ -15,34 +15,100 @@
  */
 
  /* add this to your CSS file, e.g., app/assets/stylesheets/application.css */
+
+/* shared */
+  body{
+    background-color: #F7E9CE;
+  }
+
+  .top-pad{
+    padding-top: 5%;
+  }
 /* Footer styling */
-/* Reset the margin and padding for body and all elements */
-/* Reset the margin and padding for body and all elements */
-/* Footer Styles */
-.footer {
-  background-color: #f3dbae; /* Choose a background color that fits your design */
-  text-align: center;
-  padding: 0px 0; /* Increase padding to give more space */
-  position: fixed; /* Stays at the bottom of the screen */
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* This is a common and clean font choice */
-  box-shadow: 0 -2px 5px rgba(0,0,0,0.1); /* Optional: Adds a shadow to the top of the footer */
-}
 
-.footer-content p {
-  font-size: 1.0rem; /* Increases the font size */
-  line-height: 1.6; /* Adjusts the space between lines */
-  color: rgb(113, 109, 109); /* Sets the text color */
-}
+  .footer {
+    background-color: #f3dbae; /* Choose a background color that fits your design */
+    text-align: center;
+    padding: 20px 0; /* Increase padding to give more space */
+    position: absolute; /* Change to 'fixed' if you want it to stay at the bottom of the screen */
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* This is a common and clean font choice */
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1); /* Optional: Adds a shadow to the top of the footer */
+  }
+  
+  .footer-content p {
+    margin: 0; /* Removes default margin */
+    font-size: 1.0rem; /* Increases the font size */
+    line-height: 1.6; /* Adjusts the space between lines */
+    color: rgb(113, 109, 109); /* Sets the text color */
+  }
+  
+  /* Link styling */
+  .footer a {
+    color: #0066cc; /* Color for the link */
+    text-decoration: none; /* No underline */
+  }
+  
+  .footer a:hover {
+    text-decoration: underline; /* Underline on hover for better user experience */
+  }
 
-/* Link styling in Footer */
-.footer a {
-  color: #0066cc; /* Color for the link */
-  text-decoration: none; /* No underline */
-}
+  /* landing */
+  .landing-title{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    color:tan;
+  }
+  
+  .landing-logo{
+    height: 12rem ;
+    border-radius: 5px;
+    position: relative;
+    left:50%;
+    transform: translate(-50%)
+  }
+  
+  .new-account-message{
+    padding-top: 15%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    color:tan;
+  }
+  
+  .landing-button{
+    height: 2rem;
+    margin-top: 1rem;
+    border-color: tan;
+    color:tan;
+    background-color: antiquewhite;
+    border-radius: 5px;
+    display: block;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%)
+  }
 
-.footer a:hover {
-  text-decoration: underline; /* Underline on hover for better user experience */
-}
+  /* student */
+
+  .students-text{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    color:tan;
+  }
+  
+  .students-button{
+      font-size: medium;
+      height: 2rem;
+      margin-top: 1rem;
+      border-color: tan;
+      color:tan;
+      background-color: antiquewhite;
+      border-radius: 5px;
+      display: block;
+      position: relative;
+      left: 50%;
+      transform: translate(-50%)
+    }
+  
