@@ -22,7 +22,7 @@
 .footer {
   background-color: #f3dbae; /* Choose a background color that fits your design */
   text-align: center;
-  padding: 20px 0; /* Increase padding to give more space */
+  padding: 0px 0; /* Increase padding to give more space */
   position: fixed; /* Stays at the bottom of the screen */
   left: 0;
   bottom: 0;
