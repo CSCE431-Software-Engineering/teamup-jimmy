@@ -1,31 +1,38 @@
 body{
-    background-color:#F7E9CE;
-    padding-top: 5%;
+  background-color:#F7E9CE;
+  padding-top: 5%;
 }
 
-.landing_title{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    text-align: center;
-    color:tan;
+.landing-title{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+  color:tan;
 }
 
-.landing_logo{
-    height: 12rem ;
-    border-radius: 5px;
-    position: relative;
-    left:50%;
-    transform: translate(-50%)
+.landing-logo{
+  height: 12rem ;
+  border-radius: 5px;
+  position: relative;
+  left:50%;
+  transform: translate(-50%)
+}
+
+.new-account-message{
+  padding-top: 15%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+  color:tan;
 }
 
 button{
-    height: 2rem;
-    margin-top: 1rem;
-    border-color: tan;
-    color:tan;
-    background-color: antiquewhite;
-    border-radius: 5px;
-    display: block;
-    position: relative;
-    left: 50%;
-    transform: translate(-50%)
+  height: 2rem;
+  margin-top: 1rem;
+  border-color: tan;
+  color:tan;
+  background-color: antiquewhite;
+  border-radius: 5px;
+  display: block;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%)
 }
