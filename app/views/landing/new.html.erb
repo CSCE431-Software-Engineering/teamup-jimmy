@@ -1,5 +1,6 @@
-<%= stylesheet_link_tag "landing", media: "all" %>
-<h1 class="new-account-message">Seems like you're new to Jimmy...</h1>
+<body class="top-pad">
+  <h1 class="new-account-message">Seems like you're new to Jimmy...</h1>
 
-<%# This button leads to the profile creation process%>
-<%= button_to("Create A Profile", {controller: 'students', action: 'new'}, method: :get)%>
+  <%# This button leads to the profile creation process%>
+  <%= button_to("Create A Profile", {controller: 'students', action: 'new'}, method: :get, class: "landing-button")%>
+</body>
