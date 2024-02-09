@@ -2,6 +2,6 @@ class LandingController < ApplicationController
   def index
   end
 
-  def signup
+  def new
   end
 end
