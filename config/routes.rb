@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root "landing#index"
 
   resources :landing
-  resources :students
+  resources :students, except: :show;
   get 'students/basic'
   get 'pages/home'
   get 'pages/match'
