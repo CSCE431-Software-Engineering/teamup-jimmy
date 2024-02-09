@@ -7,4 +7,5 @@ class StudentsController < ApplicationController
 
   def basic
   end
+
 end

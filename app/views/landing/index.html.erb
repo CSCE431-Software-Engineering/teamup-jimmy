@@ -1,11 +1,12 @@
-<%= stylesheet_link_tag "landing", media: "all" %>
 <%= image_tag asset_path("jimmy_logo.jpg"), class: "landing-logo", alt: "Jimmy Logo" %>
 
-<div class="landing-title">
-  <h1>Jimmy</h1>
-  <p>The TAMU Gym Buddy Matching App</p>
-</div>
-<br/>
+<body class="top-pad">
+  <div class="landing-title landing-bg" >
+    <h1>Jimmy</h1>
+    <p>The TAMU Gym Buddy Matching App</p>
+  </div>
+  <br/>
   
-<%# This button should invoke the Google OAuth%>
-<%= button_to("Log in / Sign up", {action: 'new'}, method: :get)%>
+  <%# This button should invoke the Google OAuth%>
+  <%= button_to("Log in / Sign up", {action: 'new'}, method: :get, class: 'landing-button')%>
+</body>

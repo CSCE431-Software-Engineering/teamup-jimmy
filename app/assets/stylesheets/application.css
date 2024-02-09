@@ -15,8 +15,18 @@
  */
 
  /* add this to your CSS file, e.g., app/assets/stylesheets/application.css */
+
+/* shared */
+  body{
+    background-color: #F7E9CE;
+  }
+
+  .top-pad{
+    padding-top: 5%;
+  }
 /* Footer styling */
-.footer {
+
+  .footer {
     background-color: #f3dbae; /* Choose a background color that fits your design */
     text-align: center;
     padding: 20px 0; /* Increase padding to give more space */
@@ -44,4 +54,61 @@
   .footer a:hover {
     text-decoration: underline; /* Underline on hover for better user experience */
   }
+
+  /* landing */
+  .landing-title{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    color:tan;
+  }
+  
+  .landing-logo{
+    height: 12rem ;
+    border-radius: 5px;
+    position: relative;
+    left:50%;
+    transform: translate(-50%)
+  }
+  
+  .new-account-message{
+    padding-top: 15%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    color:tan;
+  }
+  
+  .landing-button{
+    height: 2rem;
+    margin-top: 1rem;
+    border-color: tan;
+    color:tan;
+    background-color: antiquewhite;
+    border-radius: 5px;
+    display: block;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%)
+  }
+
+  /* student */
+
+  .students-text{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    color:tan;
+  }
+  
+  .students-button{
+      font-size: medium;
+      height: 2rem;
+      margin-top: 1rem;
+      border-color: tan;
+      color:tan;
+      background-color: antiquewhite;
+      border-radius: 5px;
+      display: block;
+      position: relative;
+      left: 50%;
+      transform: translate(-50%)
+    }
   
