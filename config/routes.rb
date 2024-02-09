@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root "landing#index"
 
   get 'landing/index'
-  get 'landing/signup'
+  get 'landing/new'
 
   # resources :landing do
   #   member do
