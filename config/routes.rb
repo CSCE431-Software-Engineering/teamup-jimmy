@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get 'students/basic'
   get 'pages/home'
   get 'pages/match'
+  get 'pages/profile'
+
 
   # resources :landing do
   #   member do
