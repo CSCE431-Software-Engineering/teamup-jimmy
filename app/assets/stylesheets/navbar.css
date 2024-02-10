@@ -5,21 +5,22 @@
   align-items: center;
   justify-content: center; /* Center the items horizontally */
   position: sticky;
-  top: 0;
+  bottom: 0; /* Stick to the bottom of the viewport */
   z-index: 1000;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Added subtle shadow for depth */
+  box-shadow: 0 -2px 4px rgba(0,0,0,0.1); /* Shadow adjusted to appear on the top edge */
   font-family: 'Arial', sans-serif; /* Modern, readable font */
 }
 
-/* If there is a logo, you might want to handle it separately */
+/* Adjust the logo to be placed appropriately */
 .navbar-logo {
   position: absolute;
   left: 20px; /* Or your preferred spacing */
+  bottom: 20px; /* Position from the bottom */
 }
 
 .navbar-links {
   display: flex;
-  justify-content: center; /* This centers the links when there is extra space */
+  justify-content: center; /* Centers the links when there is extra space */
   align-items: center;
   width: 100%; /* Take up full width to center content within */
 }

@@ -121,3 +121,43 @@
       color:tan;
       padding-top: 20%;
     }
+
+    
+    .social-links {
+      margin-top: 8px;
+    }
+    .social-links a {
+      color: tan; /* Sets the icon color to red */
+      margin-right: 15px; /* Spacing between icons */
+      text-decoration: none; /* Removes the underline from links */
+    }
+    
+    .social-links a:hover {
+      opacity: 0.8; /* Adds a hover effect */
+    }
+    
+    .social-links i {
+      font-size: 1.5em; /* Icon size */
+    }
+    
+    /* Tooltip styling */
+    .social-links a[title]:hover:after {
+      content: attr(title);
+      position: absolute;
+      left: 100%; /* Adjust the position as needed */
+      top: 60%;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
+      z-index: 20;
+      background-color: #222; /* Tooltip background */
+      color: #fff; /* Tooltip text color */
+      padding: 5px 8px;
+      border-radius: 4px;
+      font-size: 0.75em;
+      line-height: 1;
+    }
+    
+    .social-links a[title] {
+      position: relative; /* Required for absolute positioning of the tooltip */
+    }
+    
