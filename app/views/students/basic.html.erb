@@ -1,3 +1,4 @@
+<h1>Account Creation</h1>
 <body class="students-text top-pad"> 
   <%= form_for(@student) do |s| %>
     <table class="students-info-table">
@@ -12,8 +13,10 @@
       </tr>
 
       <tr>
-      <th>What gender do you identify as?</th>
-      <td><%= s.text_field(:gender) %></td>
+        <th>What gender do you identify as?</th>
+        <td>
+          <%= s.select :gender, ['Male', 'Female', 'Other'], {}, { required: true } %>
+        </td>
       </tr>
 
       <tr>
@@ -22,8 +25,8 @@
       </tr>
 
     </table>
-    <div class="students-button">
-      <%= s.submit("Create Profile") %>
+    <div>
+      <%= s.submit "Create Profile", class: "btn btn-primary" %>
     </div>
   <%end%>
 

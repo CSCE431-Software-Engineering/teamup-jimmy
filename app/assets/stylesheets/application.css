@@ -174,3 +174,46 @@
     margin:0 auto;
   }
   
+  
+  
+  .students-info-table th {
+    text-align: left;
+    padding: 8px;
+    background-color: #f2f2f2;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .students-info-table td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .students-button {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .btn-primary {
+    color: rgb(49, 44, 44);
+    background-color: #f3dbae;
+    border-color: #3d4145;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 20px;
+  }
+  
+  .btn-primary:hover {
+    background-color: #c8af80;
+    border-color: #004085;
+  }
+  
+  /* Add responsiveness to the table */
+  @media (max-width: 768px) {
+    .students-info-table {
+      width: 100%;
+    }
+  }
+  
