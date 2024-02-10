@@ -117,7 +117,7 @@
   
   .students-button{
     cursor: pointer;
-    font-size: medium;
+    font-size: 1.25rem;
     height: 3rem;
     margin-top: 1.5rem;
     border-color: tan;
@@ -193,7 +193,7 @@
     position: relative; /* Required for absolute positioning of the tooltip */
   }
   
-  .btn-primary {
+  /* .btn-primary {
     color: rgb(49, 44, 44);
     background-color: #f3dbae;
     border-color: #3d4145;
@@ -203,11 +203,14 @@
     cursor: pointer;
     text-decoration: none;
     margin-top: 20px;
-  }
+  } */
   
-  .btn-primary:hover {
-    background-color: #c8af80;
-    border-color: #004085;
+  .landing-button:hover,
+  .back-btn:hover,
+  .students-button:hover {
+    background-color: tan;
+    color:antiquewhite;
+    border-color:#F7E9CE
   }
   
   /* Add responsiveness to the table */
