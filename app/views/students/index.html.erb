@@ -1,5 +1,5 @@
 <h1 class='students-text'>Let's get you started! Do you want to...</h1>
-<%= button_to("Fill out only the basic information", {controller: 'students', action: 'new'}, method: :get, class: "students-button")%>
+<%= button_to("Fill out only the basic information", new_students_path, method: :get, class: "students-button")%>
 <h1 class='students-text'> or... </h1>
 
 <%# TODO implement the extensive profile option %>

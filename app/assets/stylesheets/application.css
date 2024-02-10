@@ -170,3 +170,7 @@
       position: relative; /* Required for absolute positioning of the tooltip */
     }
     
+  .students-info-table{
+    margin:0 auto;
+  }
+  
