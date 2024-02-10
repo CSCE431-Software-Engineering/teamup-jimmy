@@ -77,17 +77,21 @@
   }
   
   .landing-button{
-    height: 2rem;
-    margin-top: 1rem;
+    height: 3rem; /* Increased from 2rem to 3rem */
+    margin-top: 1.5rem; /* Increased from 1rem to 1.5rem */
     border-color: tan;
-    color:tan;
+    color: tan;
     background-color: antiquewhite;
-    border-radius: 5px;
+    border-radius: 8px; /* Slightly larger than before to maintain the rounded effect */
+    font-size: 1.25rem; /* Increase font size for better readability */
     display: block;
     position: relative;
     left: 50%;
-    transform: translate(-50%)
-  }
+    transform: translate(-50%);
+    padding: 0.5rem 1rem; /* Added padding for better text spacing within the button */
+    border-width: 2px; /* Optionally increase border width for a more pronounced border */
+}
+
 
   /* student */
 
@@ -109,4 +113,11 @@
       position: relative;
       left: 50%;
       transform: translate(-50%)
+    }
+
+    .home-title{
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      text-align: center;
+      color:tan;
+      padding-top: 20%;
     }

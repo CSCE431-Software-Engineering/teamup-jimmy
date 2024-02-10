@@ -1,9 +1,9 @@
 <!-- app/views/pages/_navbar.html.erb -->
 
 <nav class="navbar">
-  <%= link_to image_tag(asset_path("jimmy_logo.jpg"), alt: "Jimmy logo"), pages_home_path, class: "navbar-logo" %>
   <div class="navbar-links">
-    <%= link_to 'Match', pages_match_path, class: "navbar-link" %>
     <%= link_to 'Home', pages_home_path, class: "navbar-link" %>
+    <%= link_to 'Match', pages_match_path, class: "navbar-link" %>
+    <%= link_to 'Logout', root_path, class: "navbar-link" %>
   </div>
 </nav>
