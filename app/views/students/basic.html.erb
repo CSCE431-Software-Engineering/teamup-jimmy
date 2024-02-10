@@ -1,5 +1,7 @@
+<%= render(partial:'back', locals:{c: "students", a: "new"})%>
+
 <h1>Account Creation</h1>
-<body class="students-text top-pad"> 
+<body class="students-text"> 
   <%= form_for(@student) do |s| %>
     <table class="students-info-table">
       <tr>
