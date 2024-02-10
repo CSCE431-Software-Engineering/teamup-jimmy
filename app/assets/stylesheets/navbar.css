@@ -1,5 +1,5 @@
 .navbar {
-  background-color: #ddba79; /* Slightly darker shade for contrast */
+  background-color: #f3dbae; /* Slightly darker shade for contrast */
   padding: 20px 30px; /* Increased padding for more space */
   display: flex;
   align-items: center;
@@ -8,7 +8,7 @@
   bottom: 0; /* Stick to the bottom of the viewport */
   z-index: 1000;
   box-shadow: 0 -2px 4px rgba(0,0,0,0.1); /* Shadow adjusted to appear on the top edge */
-  font-family: 'Arial', sans-serif; /* Modern, readable font */
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
 }
 
 /* Adjust the logo to be placed appropriately */
