@@ -1,2 +1,30 @@
-<h1>this is where student's will fill out their info</h1>
-<%= link_to 'Click here for Logged in view (temporary)', pages_home_path, class: "navbar-link" %>
+<body class="students-text top-pad"> 
+  <%= form_for(@student) do |s| %>
+    <table class="students-info-table">
+      <tr>
+      <th>What's your TAMU email? (example@tamu.edu)</th>
+      <td><%= s.text_field(:email) %></td>
+      </tr>
+
+      <tr>
+      <th>What's your name? (First Last)</th>
+      <td><%= s.text_field(:name) %></td>
+      </tr>
+
+      <tr>
+      <th>What gender do you identify as?</th>
+      <td><%= s.text_field(:gender) %></td>
+      </tr>
+
+      <tr>
+      <th>When's your birthday</th>
+      <td><%= s.date_field(:birthday) %></td>
+      </tr>
+
+    </table>
+    <div class="students-button">
+      <%= s.submit("Create Profile") %>
+    </div>
+  <%end%>
+
+</body>

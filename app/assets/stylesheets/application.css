@@ -24,6 +24,15 @@
   .top-pad{
     padding-top: 5%;
   }
+
+/* shared */
+  body{
+    background-color: #F7E9CE;
+  }
+
+  .top-pad{
+    padding-top: 5%;
+  }
 /* Footer styling */
   .footer {
     background-color: #f3dbae; /* Choose a background color that fits your design */
@@ -161,3 +170,7 @@
       position: relative; /* Required for absolute positioning of the tooltip */
     }
     
+  .students-info-table{
+    margin:0 auto;
+  }
+  
