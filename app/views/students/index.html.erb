@@ -1,6 +1,22 @@
-<h1 class='students-text'>Let's get you started! Do you want to...</h1>
-<%= button_to("Fill out only the basic information", new_students_path, method: :get, class: "students-button")%>
-<h1 class='students-text'> or... </h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag 'navbar', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <title>Jimmy</title>
+</head>
+<body>
+  <%= render 'pages/navbar' %>
+  <!-- logo -->
+  <!-- intro -->
+  <div class="home-title">
+      <p>Here is my profile</p>
+  </div>
+  <br/>
 
-<%# TODO implement the extensive profile option %>
-<%= button_to("Complete the whole profile!", {controller: 'students', action: 'new'}, method: :get, class: "students-button")%>
+  <!-- below could be links too -->
+  <!-- the onclick part should be a function in the controller to determine
+  where the user is taken to after log in -->
+</body>
+</html>
