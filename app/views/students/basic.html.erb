@@ -1,35 +1,46 @@
-<%= render(partial:'back', locals:{c: "students", a: "new"})%>
+<%= render(partial:'back', locals:{c: "students", a: "new"}) %>
 
 <h1>Account Creation</h1>
 <body class="students-text"> 
   <%= form_for(@student) do |s| %>
     <table class="students-info-table">
       <tr>
-      <th>What's your TAMU email? (example@tamu.edu)</th>
-      <td><%= s.text_field(:email) %></td>
+        <th>
+          Name
+          <%= s.text_field(:name, placeholder: 'First Last', class: 'styled-input') %>
+        </th>
       </tr>
 
       <tr>
-      <th>What's your name? (First Last)</th>
-      <td><%= s.text_field(:name) %></td>
+        <th>
+          Email
+          <%= s.text_field(:email, placeholder: 'example@tamu.edu', class: 'styled-input') %>
+        </th>
       </tr>
 
       <tr>
-        <th>What gender do you identify as?</th>
-        <td>
-          <%= s.select :gender, ['Male', 'Female', 'Other'], {}, { required: true } %>
-        </td>
+        <th>
+          Gender Identification Preference
+          <%= s.select :gender, [
+            ['Please select gender', ''],
+            ['Male', 'Male'],
+            ['Female', 'Female'],
+            ['Other', 'Other']
+            ], {}, { class: 'styled-select', required: true }
+          %>
+        </th>
       </tr>
 
       <tr>
-      <th>When's your birthday?</th>
-      <td><%= s.date_field(:birthday) %></td>
+        <th>
+          Select Your Birthday
+          <%= s.date_field(:birthday, placeholder: 'Select your birthday', class: 'styled-input') %>
+        </th>
       </tr>
 
     </table>
     <div>
       <%= s.submit "Create Profile", class: "students-button" %>
     </div>
-  <%end%>
-
+  <% end %>
 </body>
