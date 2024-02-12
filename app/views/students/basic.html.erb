@@ -5,31 +5,38 @@
   <%= form_for(@student) do |s| %>
     <table class="students-info-table">
       <tr>
-      <th>What's your TAMU email? (example@tamu.edu)</th>
-      <td><%= s.text_field(:email) %></td>
+        <th>
+          <%= s.text_field(:name, placeholder: 'Name', class: 'styled-input') %>
+        </th>
       </tr>
 
       <tr>
-      <th>What's your name? (First Last)</th>
-      <td><%= s.text_field(:name) %></td>
+        <th>
+          <%= s.text_field(:email, placeholder: 'Email@tamu.edu', class: 'styled-input') %>
+        </th>
       </tr>
 
       <tr>
-        <th>What gender do you identify as?</th>
-        <td>
-          <%= s.select :gender, ['Male', 'Female', 'Other'], {}, { required: true } %>
-        </td>
+        <th>
+          <%= s.select :gender, [
+            ['Please select gender', ''],
+            ['Male', 'Male'],
+            ['Female', 'Female'],
+            ['Other', 'Other']
+            ], {}, { class: 'styled-select', required: true }
+          %>
+        </th>
       </tr>
 
       <tr>
-      <th>When's your birthday?</th>
-      <td><%= s.date_field(:birthday) %></td>
+        <th>
+          <%= s.date_field(:birthday, placeholder: 'Select your birthday', class: 'styled-input') %>
+        </th>
       </tr>
 
     </table>
     <div>
       <%= s.submit "Create Profile", class: "students-button" %>
     </div>
-  <%end%>
-
+  <% end %>
 </body>
