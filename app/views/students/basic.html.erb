@@ -6,18 +6,21 @@
     <table class="students-info-table">
       <tr>
         <th>
-          <%= s.text_field(:name, placeholder: 'Name', class: 'styled-input') %>
+          Name
+          <%= s.text_field(:name, placeholder: 'First Last', class: 'styled-input') %>
         </th>
       </tr>
 
       <tr>
         <th>
-          <%= s.text_field(:email, placeholder: 'Email@tamu.edu', class: 'styled-input') %>
+          Email
+          <%= s.text_field(:email, placeholder: 'example@tamu.edu', class: 'styled-input') %>
         </th>
       </tr>
 
       <tr>
         <th>
+          Gender Identification Preference
           <%= s.select :gender, [
             ['Please select gender', ''],
             ['Male', 'Male'],
@@ -30,6 +33,7 @@
 
       <tr>
         <th>
+          Select Your Birthday
           <%= s.date_field(:birthday, placeholder: 'Select your birthday', class: 'styled-input') %>
         </th>
       </tr>
