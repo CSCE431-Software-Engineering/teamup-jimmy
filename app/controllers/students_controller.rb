@@ -13,10 +13,7 @@ class StudentsController < ApplicationController
   def create
     @student = Student.new(student_params)
     
-    # if @student.name.blank? || @student.email.blank? || @student.gender.blank? || @student.birthday.blank?
-    #   flash[:notice] = 'Input cannot be blank'
-    #   render('new')
-    if @student.save
+    if Student.find_by(email: @student.email) || @student.save
       redirect_to controller: 'pages', action: 'home'
     else
       # The 'new' action is not being called here
