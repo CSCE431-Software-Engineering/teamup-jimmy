@@ -151,6 +151,16 @@ body {
   box-sizing: border-box;
 }
 
+/* Flash alert for input warnings */
+.modal {
+  background-color: #f44336;
+  color: white;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  width: 40%;
+  border-radius: 50px;
+}
+
 /* home */
 .home-title {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
