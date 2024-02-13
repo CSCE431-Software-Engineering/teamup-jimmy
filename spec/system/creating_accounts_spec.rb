@@ -46,7 +46,7 @@ RSpec.describe "CreatingAccounts", type: :system do
     fill_in 'Name', with: 'Aerith Gainsborough'
     fill_in 'Email', with: 'aerithgainsborough@tamu.edu'
     select 'Please select gender', with: 'Gender Identification Preference'
-    fill_in 'Select Your Birthday', with: DateTime.new(1985, 02, 07)
+    fill_in 'Select Your Birthday', with: DateTime.new(1985, 2, 7)
     click_on 'Create Profile'
 
     expect(page).to have_content('Input cannot be blank')
@@ -75,7 +75,7 @@ RSpec.describe "CreatingAccounts", type: :system do
     fill_in 'Name', with: 'Cloud Strife'
     fill_in 'Email', with: 'cloudstrife@tamu.edu'
     select 'Male', from: 'Gender Identification Preference'
-    fill_in 'Select Your Birthday', with: DateTime.new(1986, 08, 11)
+    fill_in 'Select Your Birthday', with: DateTime.new(1986, 8, 11)
     click_on 'Create Profile'
 
     expect(page).to have_content('You\'re signed in!')
