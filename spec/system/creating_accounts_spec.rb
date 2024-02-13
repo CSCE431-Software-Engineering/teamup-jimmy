@@ -23,7 +23,7 @@ RSpec.describe "CreatingAccounts", type: :system do
     fill_in 'Name', with: ''
     fill_in 'Email', with: 'vincentvalentine@tamu.edu'
     select 'Male', from: 'Gender Identification Preference'
-    fill_in 'Select Your Birthday', with '10/13/1950'
+    fill_in 'Select Your Birthday', with new date('10-13-1950')
     click_on 'Create Profile'
 
     expect(page).to have_content('Input cannot be blank')
@@ -34,7 +34,7 @@ RSpec.describe "CreatingAccounts", type: :system do
     fill_in 'Name', with: 'Barret Wallace'
     fill_in 'Email', with: ''
     select 'Male', with: 'Gender Identification Preference'
-    fill_in 'Select Your Birthday', with '12/15/1972'
+    fill_in 'Select Your Birthday', with new date('12-15-1972')
     click_on 'Create Profile'
 
     expect(page).to have_content('Input cannot be blank')
@@ -45,7 +45,7 @@ RSpec.describe "CreatingAccounts", type: :system do
     fill_in 'Name', with: 'Aerith Gainsborough'
     fill_in 'Email', with: 'aerithgainsborough@tamu.edu'
     select 'Please select gender', with: 'Gender Identification Preference'
-    fill_in 'Select Your Birthday', with '02/07/1985'
+    fill_in 'Select Your Birthday', with new date('02-07-1985')
     click_on 'Create Profile'
 
     expect(page).to have_content('Input cannot be blank')
@@ -56,7 +56,7 @@ RSpec.describe "CreatingAccounts", type: :system do
     fill_in 'Name', with: 'Tifa Lockhart'
     fill_in 'Email', with: 'tifalockhard@tamu.edu'
     select 'Female', with: 'Gender Identification Preference'
-    fill_in 'Select Your Birthday', with ''
+    fill_in 'Select Your Birthday', with new date()
     click_on 'Create Profile'
 
     expect(page).to have_content('Input cannot be blank')
@@ -74,7 +74,7 @@ RSpec.describe "CreatingAccounts", type: :system do
     fill_in 'Name', with: 'Cloud Strife'
     fill_in 'Email', with: 'cloudstrife@tamu.edu'
     select 'Male', from: 'Gender Identification Preference'
-    fill_in 'Select Your Birthday', with: '08/11/1986'
+    fill_in 'Select Your Birthday', with: new date('08-11-1986')
     click_on 'Create Profile'
 
     expect(page).to have_content('You\'re signed in!')
