@@ -13,6 +13,7 @@ class StudentsController < ApplicationController
   def create
     @student = Student.new(student_params)
     
+    # Delete the first condition after OAuth is implemented
     if Student.find_by(email: @student.email) || @student.save
       redirect_to controller: 'pages', action: 'home'
     else
