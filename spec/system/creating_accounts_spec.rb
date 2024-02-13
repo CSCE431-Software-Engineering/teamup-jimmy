@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'date'
 
 RSpec.describe "CreatingAccounts", type: :system do
   before do
@@ -23,7 +24,7 @@ RSpec.describe "CreatingAccounts", type: :system do
     fill_in 'Name', with: ''
     fill_in 'Email', with: 'vincentvalentine@tamu.edu'
     select 'Male', from: 'Gender Identification Preference'
-    fill_in 'Select Your Birthday', with new date('10-13-1950')
+    fill_in 'Select Your Birthday', with: DateTime.new(1950, 10, 13)
     click_on 'Create Profile'
 
     expect(page).to have_content('Input cannot be blank')
@@ -34,7 +35,7 @@ RSpec.describe "CreatingAccounts", type: :system do
     fill_in 'Name', with: 'Barret Wallace'
     fill_in 'Email', with: ''
     select 'Male', with: 'Gender Identification Preference'
-    fill_in 'Select Your Birthday', with new date('12-15-1972')
+    fill_in 'Select Your Birthday', with: DateTime.new(1972, 12, 15)
     click_on 'Create Profile'
 
     expect(page).to have_content('Input cannot be blank')
@@ -45,7 +46,7 @@ RSpec.describe "CreatingAccounts", type: :system do
     fill_in 'Name', with: 'Aerith Gainsborough'
     fill_in 'Email', with: 'aerithgainsborough@tamu.edu'
     select 'Please select gender', with: 'Gender Identification Preference'
-    fill_in 'Select Your Birthday', with new date('02-07-1985')
+    fill_in 'Select Your Birthday', with: DateTime.new(1985, 02, 07)
     click_on 'Create Profile'
 
     expect(page).to have_content('Input cannot be blank')
@@ -56,7 +57,7 @@ RSpec.describe "CreatingAccounts", type: :system do
     fill_in 'Name', with: 'Tifa Lockhart'
     fill_in 'Email', with: 'tifalockhard@tamu.edu'
     select 'Female', with: 'Gender Identification Preference'
-    fill_in 'Select Your Birthday', with new date()
+    fill_in 'Select Your Birthday', with: DateTime.new();
     click_on 'Create Profile'
 
     expect(page).to have_content('Input cannot be blank')
@@ -74,7 +75,7 @@ RSpec.describe "CreatingAccounts", type: :system do
     fill_in 'Name', with: 'Cloud Strife'
     fill_in 'Email', with: 'cloudstrife@tamu.edu'
     select 'Male', from: 'Gender Identification Preference'
-    fill_in 'Select Your Birthday', with: new date('08-11-1986')
+    fill_in 'Select Your Birthday', with: DateTime.new(1986, 08, 11)
     click_on 'Create Profile'
 
     expect(page).to have_content('You\'re signed in!')
