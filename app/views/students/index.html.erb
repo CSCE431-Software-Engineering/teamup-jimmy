@@ -10,10 +10,23 @@
   <%= render 'pages/navbar' %>
   <!-- logo -->
   <!-- intro -->
-  <div class="home-title">
-      <p>Here is my profile</p>
+  <div class="profile-header">
+    <div class="profile-header-bar">
+      <h1>Profile</h1>
+      
+      
+    </div>
+      <div class="profile-picture">
+        <img src="https://i.pinimg.com/736x/d7/1d/1a/d71d1a41b69bbbf2ca2d94b918d86faf.jpg">
+      </div>
+    <div class="profile-info">
+      <p>Name: <%= @current_student.name %></p>
+      <p>Email: <%= @current_student.email %></p
   </div>
-  <br/>
+  
+
+  
+
 
   <!-- below could be links too -->
   <!-- the onclick part should be a function in the controller to determine

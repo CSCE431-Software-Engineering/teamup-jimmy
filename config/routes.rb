@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get 'pages/home'
   get 'pages/match'
   get 'pages/profile'
+  get 'students/:id', to: 'students#show', constraints: { id: /[^\/]+/ }
+
 
 
   # resources :landing do

@@ -1,0 +1,7 @@
+.profile-header{
+  background-color: rgb(253, 255, 226);
+  height:400px;
+  display: flex;          /* Use flexbox layout */
+  justify-content: center; /* Center children horizontally */
+  align-items: center;     /* Center children vertically if you also want vertical centering */
+}

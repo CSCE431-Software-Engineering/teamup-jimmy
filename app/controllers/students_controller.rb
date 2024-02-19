@@ -1,5 +1,10 @@
 class StudentsController < ApplicationController
   def index
+    
+    @current_student = Student.find_by(email: session[:student_id])
+    unless @current_student
+      flash[:alert] = "You must be logged in to access this page."
+    end
   end
 
   def new
@@ -19,9 +24,10 @@ class StudentsController < ApplicationController
     # Verify the email format
     if tamu_email_regex.match?(@student.email)
       # If the email format is correct, split before the '@' sign if needed
+      
       @student.email = @student.email.split('@').first
-  
       if Student.find_by(email: @student.email) || @student.save
+        session[:student_id] = @student.email
         redirect_to controller: 'pages', action: 'home'
       else
         flash[:notice] = 'There was a problem with your input. Please make sure to fill out every field.'
@@ -32,10 +38,16 @@ class StudentsController < ApplicationController
       redirect_to(action: 'basic')
     end
   end
+  
+  def show
+    @student = Student.find(params[:id])
+  end
 
   private
   # need to add more fields
   def student_params
     params.require(:student).permit(:name, :email, :gender, :birthday)
   end
+
+  
 end
