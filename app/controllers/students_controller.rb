@@ -12,14 +12,23 @@ class StudentsController < ApplicationController
 
   def create
     @student = Student.new(student_params)
-    
-    # Delete the first condition after OAuth is implemented
-    if Student.find_by(email: @student.email) || @student.save
-      redirect_to controller: 'pages', action: 'home'
+  
+    # Regex pattern to check for a valid TAMU email
+    tamu_email_regex = /\A[^@]+@(\w+\.)?tamu\.edu\z/
+  
+    # Verify the email format
+    if tamu_email_regex.match?(@student.email)
+      # If the email format is correct, split before the '@' sign if needed
+      @student.email = @student.email.split('@').first
+  
+      if Student.find_by(email: @student.email) || @student.save
+        redirect_to controller: 'pages', action: 'home'
+      else
+        flash[:notice] = 'There was a problem with your input. Please make sure to fill out every field.'
+        redirect_to(action: 'basic')
+      end
     else
-      # The 'new' action is not being called here
-      # Assign any instance variables needed
-      flash[:notice] = 'Input cannot be blank'
+      flash[:notice] = 'Email is not a valid TAMU email address.'
       redirect_to(action: 'basic')
     end
   end
