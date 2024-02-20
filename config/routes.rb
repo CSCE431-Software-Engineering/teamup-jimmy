@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  root "landing#index"
+  root 'landing#index'
 
   resources :landing, except: :show
-  resources :students, except: :show;
+  resources :students, except: :show
   get 'students/basic'
   get 'students/index'
   get 'students/update'
@@ -16,9 +18,7 @@ Rails.application.routes.draw do
   get 'customization/socialMedia'
   get 'customization/workoutPref'
 
-  get 'students/:id', to: 'students#show', constraints: { id: /[^\/]+/ }
-
-
+  get 'students/:id', to: 'students#show', constraints: { id: %r{[^/]+} }
 
   # resources :landing do
   #   member do

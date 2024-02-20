@@ -1,16 +1,13 @@
+# frozen_string_literal: true
+
 class CustomizationController < ApplicationController
-  def index
-  end
+  def index; end
 
-  def personalInfo
-  end
+  def personalInfo; end
 
-  def personalPref
-  end
+  def personalPref; end
 
-  def workoutPref
-  end
+  def workoutPref; end
 
-  def socialMedia
-  end
+  def socialMedia; end
 end

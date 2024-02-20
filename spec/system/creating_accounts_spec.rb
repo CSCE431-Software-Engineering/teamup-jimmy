@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 require 'date'
 
-RSpec.describe "CreatingAccounts", type: :system do
+RSpec.describe 'CreatingAccounts', type: :system do
   before do
     driven_by(:rack_test)
   end
