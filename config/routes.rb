@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :students, except: :show;
   get 'students/basic'
   get 'students/index'
+  get 'students/update'
   get 'pages/home'
   get 'pages/match'
   get 'pages/profile'

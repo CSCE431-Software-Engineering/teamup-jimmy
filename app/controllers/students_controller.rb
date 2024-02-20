@@ -43,6 +43,14 @@ class StudentsController < ApplicationController
     @student = Student.find(params[:id])
   end
 
+  def update
+    puts session[:student_id]
+    @current_student = Student.find_by(email: session[:student_id])
+    unless @current_student
+      flash[:alert] = "You must be logged in to access this page."
+    end
+  end
+
   private
   # need to add more fields
   def student_params

@@ -1,0 +1,65 @@
+.edit-profile-picture{
+    margin-top: 2rem;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 5px solid #FAFAFA;
+    box-shadow: 0 0 0 5px #e2e2e2;
+}
+
+.profile-picture-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.edit-profile-main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: roboto, sans-serif;
+    flex-direction: column;
+}
+
+.edit-profile-form{
+    width: 50%
+}
+
+.students-edit-info-form{
+    text-align: left;
+    border-spacing: 1rem;
+    width: 600px;
+}
+
+.students-edit-info-form-row{
+    padding: 5rem!important;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.custom-styled-input{
+    width: 100%;
+    padding: 1rem;
+    border-radius: 5px;
+    border: 1px solid #e2e2e2;
+    margin-top: 1rem;
+}
+
+.students-listed-info-table{
+    width:600px;
+    /* align-text: left; */
+}
+
+.info-table-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-weight:100;
+}
+
+.info-row-title{
+    font-weight:bold!important;
+
+}
