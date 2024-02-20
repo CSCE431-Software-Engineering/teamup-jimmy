@@ -6,9 +6,16 @@ Rails.application.routes.draw do
   get 'students/basic'
   get 'students/index'
   get 'students/update'
+
   get 'pages/home'
   get 'pages/match'
   get 'pages/profile'
+
+  get 'customization/personalInfo'
+  get 'customization/personalPref'
+  get 'customization/socialMedia'
+  get 'customization/workoutPref'
+
   get 'students/:id', to: 'students#show', constraints: { id: /[^\/]+/ }
 
 
