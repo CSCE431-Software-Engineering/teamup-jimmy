@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag 'navbar', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <title>Jimmy</title>
+</head>
+<body>
+  <%= render 'pages/navbar' %>
+  <!-- logo -->
+  <!-- intro -->
+  <div class="edit-profile-main">
+    <div class = "profile-header-inner">
+      <div class="profile-picture-div">
+        <img class="edit-profile-picture" src="https://i.pinimg.com/736x/d7/1d/1a/d71d1a41b69bbbf2ca2d94b918d86faf.jpg">
+        <p>Edit picture</p>
+        </div>
+      </div>
+      <div class="edit-profile-info">
+
+    <% if flash[:notice].present? %>
+      <div id="flash-notice" class="flash-notice">
+        <div class="flash-notice-content">
+          <p><%= flash[:notice] %></p>
+        </div>
+      </div>
+      <script>
+        var flash_notice = document.getElementById("flash-notice");
+        var span = document.getElementsByClassName("close")[0];
+
+        span.onclick = function() {
+          flash_notice.style.display = "none";
+        };
+
+        window.onclick = function(event) {
+          if (event.target == flash_notice) {
+            flash_notice.style.display = "none";
+          }
+        };
+
+        flash_notice.style.display = "inline-block";
+      </script>
+    <% end %>
+        
+    <table class="students-listed-info-table">
+      <tr>
+        <th>
+          <p class = "info-row-title">Display Name</p>
+        </th>
+        <td>
+          <%= @current_student.name %>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <p class = "info-row-title">Gender</p>
+        </th>
+        <td>
+          <%= @current_student.gender %>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <p class = "info-row-title">Birthday</p>
+        </th>
+        <td>
+          <%= @current_student.birthday %>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <p class = "info-row-title">Phone Number</p>
+        </th>
+        <td>
+          <%= @current_student.phone_number %>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <p class = "info-row-title">Major</p>
+        </th>
+        <td>
+          <%= @current_student.major %>
+        </td>
+      </tr>
+    </table>
+
+
+
+    <div class="edit-profile-form">
+        <%= form_for(@current_student) do |s| %> 
+            <table class="students-edit-info-form">
+                <tr class="students-edit-info-form-row">
+                    <th>
+                        <div class="edit-form-label">
+                            <p>Display Name</p>
+                            <%= s.text_field(:name, placeholder: 'First Last', class: 'custom-styled-input') %>
+                        </div>
+                    </th>
+                </tr>
+                <tr class="students-edit-info-form-row">
+                    <th>
+                        <div class="edit-form-label">
+                            <p>Gender</p>
+                            <%= s.text_field(:gender, placeholder: 'M/F/Other', class: 'custom-styled-input') %>
+                        </div>
+                    </th>
+                </tr>
+                <tr class="students-edit-info-form-row">
+                    <th>
+                        <div class="edit-form-label">
+                            <p>Birthday</p>
+                            <%= s.date_field(:birthday, class: 'custom-styled-input') %>
+                        </div>
+                    </th>
+                </tr>
+                <tr class="students-edit-info-form-row">
+                    <th>
+                        <div class="edit-form-label">
+                            <p>Phone Number</p>
+                            <%= s.telephone_field(:phone_number, placeholder: '123-456-7890', class: 'custom-styled-input') %>
+                        </div>
+                    </th>
+                </tr>
+                <tr class="students-edit-info-form-row">
+                    <th>
+                        <div class="edit-form-label">
+                            <p>Major</p>
+                            <%= s.text_field(:major, placeholder: 'Your Major', class: 'custom-styled-input') %>
+                        </div>
+                    </th>
+                </tr>
+                <tr class="students-edit-info-form-row">
+                    <th>
+                        <div class="edit-form-label">
+                            <p>Graduation Year</p>
+                            <%= s.number_field(:grad_year, placeholder: 'YYYY', class: 'custom-styled-input') %>
+                        </div>
+                    </th>
+                </tr>
+                <tr class="students-edit-info-form-row">
+                    <th>
+                        <div class="edit-form-label">
+                            <p>Instagram URL</p>
+                            <%= s.url_field(:instagram_url, placeholder: 'https://', class: 'custom-styled-input') %>
+                        </div>
+                    </th>
+                </tr>
+                <tr class="students-edit-info-form-row">
+                    <th>
+                        <div class="edit-form-label">
+                            <p>X (Twitter) URL</p>
+                            <%= s.url_field(:x_url, placeholder: 'https://', class: 'custom-styled-input') %>
+                        </div>
+                    </th>
+                </tr>
+                <tr class="students-edit-info-form-row">
+                    <th>
+                        <div class="edit-form-label">
+                            <p>Snapchat URL</p>
+                            <%= s.url_field(:snap_url, placeholder: 'https://', class: 'custom-styled-input') %>
+                        </div>
+                    </th>
+                </tr>
+            </table>  
+        <% end %>
+    </div>
+  </div>
+  
+
+
+  <!-- below could be links too -->
+  <!-- the onclick part should be a function in the controller to determine
+  where the user is taken to after log in -->
+</body>
+</html>

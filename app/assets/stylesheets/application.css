@@ -20,6 +20,7 @@
 
 body {
   background-color: #F7E9CE;
+  margin:0px;
 }
 
 .top-pad {
@@ -34,7 +35,7 @@ body {
   border-color: tan;
   color: tan;
   background-color: antiquewhite;
-  border-radius: 8px;
+  border-radius: 0.25rem;
   display: block;
   position: relative;
   left: 1%;
@@ -72,14 +73,15 @@ body {
 
 /* landing */
 .landing-title {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
   text-align: center;
   color: tan;
 }
 
 .landing-logo {
   height: 12rem ;
-  border-radius: 5px;
+  border-radius: 0.25rem;
   position: relative;
   left: 50%;
   transform: translate(-50%);
@@ -87,7 +89,8 @@ body {
 
 .new-account-message {
   padding-top: 10%;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
   text-align: center;
   color: tan;
 }
@@ -98,7 +101,7 @@ body {
   border-color: tan;
   color: tan;
   background-color: antiquewhite;
-  border-radius: 8px; /* Slightly larger than before to maintain the rounded effect */
+  border-radius: 0.25rem;
   font-size: 1.25rem; /* Increase font size for better readability */
   display: block;
   position: relative;
@@ -110,7 +113,8 @@ body {
 
 /* students */
 .students-text {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
   text-align: center;
   color: tan;
 }
@@ -123,7 +127,7 @@ body {
   border-color: tan;
   color: tan;
   background-color: antiquewhite;
-  border-radius: 8px;
+  border-radius: 0.25rem;
   display: block;
   position: relative;
   left: 50%;
@@ -144,26 +148,37 @@ body {
 
 .styled-input,
 .styled-select {
+  font-family: "Roboto", sans-serif;
   width: calc(100% - 18px);
   padding: 8px;
   border: 1px solid #ddd;
-  border-radius: 8px;
+  border-radius: 0.25rem;
   box-sizing: border-box;
 }
 
 /* Flash alert for input warnings */
-.modal {
-  background-color: #f44336;
-  color: white;
-  padding: 15px 20px;
-  margin-bottom: 15px;
-  width: 40%;
-  border-radius: 50px;
+.flash-notice {
+  display: flex;          /* Use flexbox layout */
+  justify-content: center; /* Center children horizontally */
+  align-items: center;     /* Center children vertically if you also want vertical centering */
+  padding: 16px 0px;       /* Adjust padding as needed */
+  margin-bottom: 0px;
+  width: 100%;
+}
+
+.flash-notice-content{
+  width: 430px;;
+  margin-left: 5%;
+  margin-right: 5%;
+  background-color: rgb(255, 188, 188);
+  color: rgb(196, 0, 0);
+  border-radius: 8px;
 }
 
 /* home */
 .home-title {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
   text-align: center;
   color: tan;
   padding-top: 20%;
@@ -199,7 +214,7 @@ body {
   background-color: #222; /* Tooltip background */
   color: #fff; /* Tooltip text color */
   padding: 5px 8px;
-  border-radius: 4px;
+  border-radius: 0.25rem;
   font-size: 0.75em;
   line-height: 1;
 }
@@ -225,12 +240,20 @@ body {
 .students-button:hover {
   background-color: tan;
   color: antiquewhite;
-  border-color: #F7E9CE
+  border-color: #F7E9CE;
+  cursor:pointer;
+  box-shadow: (0, 0,25rem, 0.5rem, rgba(0,0,0,0.26));
 }
 
 /* Add responsiveness to the table */
 @media (max-width: 768px) {
   .students-info-table {
     width: 100%;
+  }
+
+  .flash-notice-content {
+    width: 100%;
+    margin-left: 2%;
+    margin-right: 2%;
   }
 }

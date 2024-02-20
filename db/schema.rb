@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_08_234431) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_20_005959) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -84,6 +84,17 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_08_234431) do
     t.date "birthday"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "gender_pref"
+    t.integer "age_start_pref"
+    t.integer "age_end_pref"
+    t.string "phone_number"
+    t.string "major"
+    t.integer "grad_year"
+    t.boolean "is_private"
+    t.string "instagram_url"
+    t.string "x_url"
+    t.string "snap_url"
+    t.string "profile_picture_url"
   end
 
   create_table "time_preferences", force: :cascade do |t|

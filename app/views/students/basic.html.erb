@@ -3,27 +3,26 @@
 <h1>Account Creation</h1>
 <body class="students-text">
   <% if flash[:notice].present? %>
-    <div id="myModal" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
+    <div id="flash-notice" class="flash-notice">
+      <div class="flash-notice-content">
         <p><%= flash[:notice] %></p>
       </div>
     </div>
     <script>
-      var modal = document.getElementById("myModal");
+      var flash_notice = document.getElementById("flash-notice");
       var span = document.getElementsByClassName("close")[0];
 
       span.onclick = function() {
-        modal.style.display = "none";
+        flash_notice.style.display = "none";
       };
 
       window.onclick = function(event) {
-        if (event.target == modal) {
-          modal.style.display = "none";
+        if (event.target == flash_notice) {
+          flash_notice.style.display = "none";
         }
       };
 
-      modal.style.display = "inline-block";
+      flash_notice.style.display = "inline-block";
     </script>
   <% end %>
 
