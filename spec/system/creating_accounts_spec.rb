@@ -27,7 +27,7 @@ RSpec.describe "CreatingAccounts", type: :system do
     fill_in 'student_birthday', with: '1950-10-13'
     click_on 'Create Profile'
 
-    expect(page).to have_content('Input cannot be blank')
+    expect(page).to have_content('There was a problem with your input. Please make sure to fill out every field.')
   end
 
   it 'Integrity: preventing empty email' do
@@ -38,7 +38,7 @@ RSpec.describe "CreatingAccounts", type: :system do
     fill_in 'student_birthday', with: '1972-12-15'
     click_on 'Create Profile'
 
-    expect(page).to have_content('Input cannot be blank')
+    expect(page).to have_content('Email is not a valid TAMU email address.')
   end
 
   it 'Integrity: preventing empty gender' do
@@ -49,7 +49,7 @@ RSpec.describe "CreatingAccounts", type: :system do
     fill_in 'student_birthday', with: '1985-02-07'
     click_on 'Create Profile'
 
-    expect(page).to have_content('Input cannot be blank')
+    expect(page).to have_content('There was a problem with your input. Please make sure to fill out every field.')
   end
 
   it 'Integrity: preventing empty birthday' do
@@ -60,14 +60,14 @@ RSpec.describe "CreatingAccounts", type: :system do
     fill_in 'student_birthday', with: ''
     click_on 'Create Profile'
 
-    expect(page).to have_content('Input cannot be blank')
+    expect(page).to have_content('There was a problem with your input. Please make sure to fill out every field.')
   end
 
   it 'Integrity: test all empty' do
     visit '/students/basic'
     click_on 'Create Profile'
 
-    expect(page).to have_content('Input cannot be blank')
+    expect(page).to have_content('Email is not a valid TAMU email address.')
   end
 
   it 'Integrity: test successful profile creation, with valid tamu email' do
@@ -89,6 +89,6 @@ RSpec.describe "CreatingAccounts", type: :system do
     fill_in 'student_birthday', with: '1975-02-22'
     click_on 'Create Profile'
 
-    expect(page).to have_content('Input cannot be blank')
+    expect(page).to have_content('Email is not a valid TAMU email address.')
   end
 end

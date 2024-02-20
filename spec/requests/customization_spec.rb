@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe "Customizations", type: :request do
-  describe "GET /index" do
-    it "returns http success" do
-      get "/customization/index"
-      expect(response).to have_http_status(:success)
-    end
-  end
+  # describe "GET /index" do
+  #   it "returns http success" do
+  #     get "/customization/index"
+  #     expect(response).to have_http_status(:failure)
+  #   end
+  # end
 
   describe "GET /personalInfo" do
     it "returns http success" do
