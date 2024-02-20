@@ -1,7 +1,30 @@
-.profile-header{
-  background-color: rgb(253, 255, 226);
-  height:400px;
-  display: flex;          /* Use flexbox layout */
-  justify-content: center; /* Center children horizontally */
-  align-items: center;     /* Center children vertically if you also want vertical centering */
-}
+.profile-header {
+    background-color: #FAFAFA;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: roboto, sans-serif;
+  }
+  
+  .profile-header-inner {
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    align-items: center;   /* Center children horizontally */
+  }
+  
+  .profile-picture {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 5px solid #FAFAFA;
+    box-shadow: 0 0 0 5px #e2e2e2;
+  }
+  
+  .profile-info {
+    text-align: center; /* Center the text within the .profile-info */
+  }
+
+  .profile-name{
+    font-size:1.5rem;
+  }
