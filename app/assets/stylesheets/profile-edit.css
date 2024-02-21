@@ -1,3 +1,18 @@
+.edit-back-btn {
+  cursor: pointer;
+  font-size: medium;
+  height: 3rem;
+  margin-top: 1.5rem;
+  border-color: black;
+  color: black;
+  background-color: rgb(243, 219, 174);
+  border-radius: 0.25rem;
+  display: block;
+  position: relative;
+  left: 1%;
+}
+
+
 .edit-profile-picture{
     margin-top: 2rem;
     width: 150px;
@@ -76,7 +91,7 @@
 }
 
 .info-row-top-padding {
-    padding-top: 15%;
+    padding-top: 12%;
 }
 
 .forward-arrow{
@@ -84,3 +99,4 @@
     max-width: 2rem;
     margin-right: 1rem;
 }
+
