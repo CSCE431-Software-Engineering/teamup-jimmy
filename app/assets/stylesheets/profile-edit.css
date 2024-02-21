@@ -29,7 +29,7 @@
 .students-edit-info-form{
     text-align: left;
     border-spacing: 1rem;
-    width: 600px;
+    width: 400px;
 }
 
 .students-edit-info-form-row{
@@ -46,20 +46,37 @@
     margin-top: 1rem;
 }
 
-.students-listed-info-table{
-    width:600px;
-    /* align-text: left; */
+.students-listed-info-div {
+    width: 500px;
+    font-family: roboto, sans-serif;
 }
-
-.info-table-row{
+  
+.info-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
-    font-weight:100;
+    background-color: rgb(243, 219, 174); /* Example color */
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+  
+.info-row-title {
+    font-weight: bold;
+    padding: 1rem;
+    flex-basis: 20%; /* Adjust as needed to control the width of the title */
+    text-align: left;
+    white-space: nowrap;
+    min-width: 7rem;
+}
+  
+.info-row-content {
+    padding: 1rem;
+    flex-basis: 60%; /* Adjust as needed to control the width of the content */
+    text-align: left;
 }
 
-.info-row-title{
-    font-weight:bold!important;
-
+.forward-arrow{
+    max-height: 2rem;
+    max-width: 2rem;
+    margin-right: 1rem;
 }
