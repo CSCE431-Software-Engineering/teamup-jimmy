@@ -75,6 +75,10 @@
     text-align: left;
 }
 
+.info-row-top-padding {
+    padding-top: 15%;
+}
+
 .forward-arrow{
     max-height: 2rem;
     max-width: 2rem;
