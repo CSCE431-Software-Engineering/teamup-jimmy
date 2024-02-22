@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   get 'pages/match'
   get 'pages/profile'
 
+  get 'activities/index'
+
   get 'students/:id', to: 'students#show', constraints: { id: %r{[^/]+} }
 
   # resources :landing do

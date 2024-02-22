@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag 'navbar', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <title>Jimmy</title>
+</head>
+
+<body>
+  <h1 class="landing-title"> Add some activities you are interested in ... </h1>
+  <table summary="Added activities" class="edit-workoutpref-table">
+    <tr>
+      <th>Name</th>
+      <th>Experience</th>
+    </tr>
+    <% @activities.each do |activity| %>
+    <%end%>
+    <tr>
+      <td> ineedalongteststring </td>
+      <td> Novice </td>
+      <td> <button class="edit-workoutpref-add-btn">+ </button>
+  </table>
+</body>
