@@ -12,6 +12,18 @@
   left: 1%;
 }
 
+.edit-save-btn{
+  cursor: pointer;
+  font-size: medium;
+  height: 3rem;
+  margin-top: 1.5rem;
+  border-color: black;
+  color: black;
+  background-color: rgb(243, 219, 174);
+  border-radius: 0.25rem;
+  display: block;
+  position: relative;
+}
 
 .edit-profile-picture{
     margin-top: 2rem;

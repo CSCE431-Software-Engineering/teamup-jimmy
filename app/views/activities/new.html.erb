@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag 'navbar', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <title>Jimmy</title>
+</head>
+
+<body>
+  <%= render(partial:'back', locals:{c: "activities", a: "index", s: "edit-back-btn"}) %>
+
+  <h1 class="activity-landing-title"> Select your experience level... </h1>
+  <div class="experience-select-div">
+    <%= form_with model: @model do |form| %>
+       <p>Activity search selection thing goes here</p>
+    <%= form.submit 'Next', class: 'edit-save-btn' %>
+    <%end%>
+</div>
+
+</body>

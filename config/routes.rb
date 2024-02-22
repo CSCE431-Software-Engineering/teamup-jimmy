@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   get 'pages/profile'
 
   get 'activities/index'
+  get 'activities/edit'
+  get 'activities/new'
 
   get 'students/:id', to: 'students#show', constraints: { id: %r{[^/]+} }
 

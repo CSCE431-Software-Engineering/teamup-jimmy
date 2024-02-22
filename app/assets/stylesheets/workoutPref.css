@@ -1,3 +1,9 @@
+.activity-landing-title {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  text-align: center;
+}
+
 .edit-workoutpref-table{
   background-color: rgb(243, 219, 174);
   padding: 0.5rem;
@@ -17,4 +23,19 @@
   font-size: large;
   font-weight: 500;
   cursor: pointer;
+}
+
+.experience-select-div{
+  display: flex;
+  justify-content: center;
+  font-family: "Roboto", sans-serif;
+  font-size: medium;
+}
+
+label.radio-label {
+  margin-bottom: 0.75rem; /* Adjust the margin as needed */
+}
+
+input[type="radio"] {
+  margin-bottom: 0.75rem; /* Adjust the margin as needed */
 }
