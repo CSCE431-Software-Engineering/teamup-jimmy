@@ -1,6 +1,6 @@
 class Accounts::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def google_oauth2
-    account = account.from_google(from_google_params)
+    account = account.from_google(**from_google_params)
 
     if account.present?
       sign_out_all_scopes
