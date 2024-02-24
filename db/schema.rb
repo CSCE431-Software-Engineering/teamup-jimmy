@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_23_203413) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_24_224706) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -74,11 +74,13 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_23_203413) do
 
   create_table "time_preferences", force: :cascade do |t|
     t.string "student_email", null: false
-    t.time "time_start"
-    t.time "time_end"
-    t.string "day"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "morning"
+    t.string "afternoon"
+    t.string "evening"
+    t.string "night"
+    t.string "days_of_the_week"
   end
 
   add_foreign_key "activity_preferences", "activities"
