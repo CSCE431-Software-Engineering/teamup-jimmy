@@ -15,7 +15,7 @@
     <%= form_with model: @model do |form| %>
       <% @levels.each do |level| %>
       <div class="experience-select-btn">
-        <%= form.radio_button :level, level; %>
+        <%= form.radio_button :experience_level, level; %>
         <%# the first level is attribute name %>
         <%= form.label level, level %><br>
       </div>

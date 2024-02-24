@@ -15,7 +15,7 @@
       <th>Name</th>
       <th>Experience</th>
     </tr>
-    <% @activities.zip(@exp_levels).each do |activity, exp| %>
+    <% @current_activities.zip(@exp_levels).each do |activity, exp| %>
     <tr>
       <td><%= activity%></td>
       <td><%= exp %></td>
