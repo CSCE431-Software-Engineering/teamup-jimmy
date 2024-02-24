@@ -9,16 +9,23 @@
 
 <body>
   <h1 class="activity-landing-title"> Add some activities you are interested in ... </h1>
+  <div class="edit-workoutpref-div">
   <table summary="Added activities" class="edit-workoutpref-table">
     <tr>
       <th>Name</th>
       <th>Experience</th>
     </tr>
-    <% @activities.each do |activity| %>
-    <%end%>
+    <% @activities.zip(@exp_levels).each do |activity, exp| %>
     <tr>
-      <td> ineedalongteststring </td>
-      <td> Novice </td>
-      <td> <button class="edit-workoutpref-add-btn">+ </button>
+      <td><%= activity%></td>
+      <td><%= exp %></td>
+    </tr>
+    <% end %>
+
+    <tr>
+      <td> Add Activity </td>
+      <td> </td>
+      <td> <%= render(partial:'add', locals:{c: "activities", a: "new"}) %> </button>
   </table>
+  </div>
 </body>

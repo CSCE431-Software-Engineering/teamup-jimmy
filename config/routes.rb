@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   resources :landing, except: :show
   resources :students, except: :show
+  resources :activities, except: :show
+
   get 'students/basic'
   get 'students/index'
   get 'students/settings'

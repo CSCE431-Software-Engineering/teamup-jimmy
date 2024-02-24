@@ -4,18 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= stylesheet_link_tag 'navbar', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <title>Jimmy</title>
 </head>
 
 <body>
   <%= render(partial:'back', locals:{c: "activities", a: "index", s: "edit-back-btn"}) %>
 
-  <h1 class="activity-landing-title"> Select your experience level... </h1>
+  <h1 class="activity-landing-title"> Select activity... </h1>
   <div class="experience-select-div">
-    <%= form_with model: @model do |form| %>
-       <p>Activity search selection thing goes here</p>
-    <%= form.submit 'Next', class: 'edit-save-btn' %>
+
+  <div class="edit-workoutpref-div">
+  <table summary="Added activities" class="edit-workoutpref-table">
+    <% @activities.each do |activity|%>
+      <tr>
+        <th><%=activity.activity_name%></th>
+        <td> 
+          <%= button_to(edit_activity_path(activity), method: :get, class: "material-symbols-outlined edit-workoutpref-add-btn") do %>
+            <span class="material-symbols-outlined">add</span>
+          <% end %>
+        <td>
+      </tr>
     <%end%>
+  </table>
+  </div>
 </div>
 
 </body>
