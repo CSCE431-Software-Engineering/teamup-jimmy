@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag 'navbar', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <title>Jimmy</title>
+</head>
+
+<body>
+    <h1 class="workoutpref-landing-title"> Set your avalible times for workouts ... </h1>
+    <table summary="Added activities" class="edit-workoutpref-table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        <th>Friday</th>
+        <th>Saturday</th>
+        <th>Sunday</th>
+      </tr>
+    </thead>
+    <tr>
+      <th> Morning </th>
+      <td> </td>
+      <td> <%= render(partial:'add', locals:{c: "activity_preferences", a: "new"}) %> </td>
+    </tr>
+  </table>
+</body>
