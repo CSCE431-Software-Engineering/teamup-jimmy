@@ -16,9 +16,22 @@ Rails.application.routes.draw do
   get 'pages/match'
   get 'pages/profile'
 
-  get 'activities/index'
-  get 'activities/edit'
-  get 'activities/new'
+
+
+  get 'activity_preferences/index'
+  get 'activity_preferences/new'
+  get 'activity_preferences/create'
+  resources :activity_preferences do
+    get 'experience', on: :member
+    post 'experience', on: :member
+  end
+  
+  # resources :activity_preferences do
+  #   get 'experience', on: :member
+  # end
+  
+
+
 
   get 'students/:id', to: 'students#show', constraints: { id: %r{[^/]+} }
 
