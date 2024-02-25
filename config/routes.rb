@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :landing, except: :show
   resources :students, except: :show
   resources :activities, except: :show
+ 
 
   get 'students/basic'
   get 'students/index'
@@ -20,7 +21,7 @@ Rails.application.routes.draw do
 
   get 'activity_preferences/index'
   get 'activity_preferences/new'
-  get 'activity_preferences/create'
+
   resources :activity_preferences do
     get 'experience', on: :member
     post 'experience', on: :member
