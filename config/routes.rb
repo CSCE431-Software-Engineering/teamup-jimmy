@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :landing, except: :show
   resources :students, except: :show
   resources :activities, except: :show
+  resources :activity_preferences, only: [:index, :destroy, :new]
  
 
   get 'students/basic'
@@ -16,11 +17,6 @@ Rails.application.routes.draw do
   get 'pages/home'
   get 'pages/match'
   get 'pages/profile'
-
-
-
-  get 'activity_preferences/index'
-  get 'activity_preferences/new'
 
   resources :activity_preferences do
     get 'experience', on: :member

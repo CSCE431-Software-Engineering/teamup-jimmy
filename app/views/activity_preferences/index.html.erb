@@ -15,17 +15,23 @@
       <th>Name</th>
       <th>Experience</th>
     </tr>
-    <% @current_activities.zip(@exp_levels).each do |activity, exp| %>
+    <% @current_activities.zip(@exp_levels).each do |activity_name, exp| %>
     <tr>
-      <td><%= activity%></td>
+      <td><%= activity_name%></td>
       <td><%= exp %></td>
+      <td> 
+        <% activity = ActivityPreference.find_by(student_email: @current_student.email, activity_id: (Activity.find_by(activity_name: activity_name)).id)%>
+        <%= form_with(model: activity, url: activity_preference_path(activity), method: :delete) do |form| %>
+          <%= form.submit 'Delete', class: "material-symbols-outlined edit-workoutpref-add-btn" %>
+        <% end %>
+      </td>
     </tr>
     <% end %>
 
     <tr>
       <td> Add Activity </td>
       <td> </td>
-      <td> <%= render(partial:'add', locals:{c: "activity_preferences", a: "new"}) %> </button>
+      <td> <%= render(partial:'add', locals:{c: "activity_preferences", a: "new"}) %> </td>
   </table>
   </div>
 </body>
