@@ -1,5 +1,27 @@
 class TimePreferencesController < ApplicationController
+  before_action :time_table, only: [:index, :edit]
   def index
+    @current_student = Student.find_by(email: session[:student_id])
+    @time_preference = TimePreference.find_by(student_email: @current_student.email)
+  end
+
+  def new
+  end
+
+  def edit
+  end
+
+  private
+
+  def iterate_over_times(times_string)
+    times_string.chars.map { |char| char == '1' ? 'done' : '' }
+  end
+
+  def iterate_over_days(days_string)
+    days_string.chars.map { |char| char == '1' ? 'done' : '' }
+  end
+
+  def time_table
     @current_student = Student.find_by(email: session[:student_id])
     @time_preference = TimePreference.find_by(student_email: @current_student.email)
 
@@ -9,10 +31,8 @@ class TimePreferencesController < ApplicationController
       @evening_iter = iterate_over_times(@time_preference.evening)
       @night_iter = iterate_over_times(@time_preference.night)
 
-      # not used ?
-      @days_iter = iterate_over_days(@time_preference.days_of_the_week)
     else
-      @morning_iter, @afternoon_iter, @evening_iter, @night_iter, @days_iter = "", "", "", ""
+      @morning_iter, @afternoon_iter, @evening_iter, @night_iter = "", "", "", ""
     end
 
     # @mon = [@morning_iter[0]] + [@afternoon_iter[0]] + [@evening_iter[0]] + [@night_iter[0]]
@@ -36,19 +56,4 @@ class TimePreferencesController < ApplicationController
     end
   end
 
-  def new
-  end
-
-  def edit
-  end
-
-  private
-
-  def iterate_over_times(times_string)
-    times_string.chars.map { |char| char == '1' ? 'done' : '' }
-  end
-
-  def iterate_over_days(days_string)
-    days_string.chars.map { |char| char == '1' ? 'done' : '' }
-  end
 end

@@ -43,6 +43,12 @@
 
 .edit-time-table td{
   text-align: center;
+  border-bottom: 1px solid black;
+  height: 2rem;
+}
+
+.edit-time-table tr{
+  border-bottom: 1px solid black
 }
 
 .edit-time-table-div{
