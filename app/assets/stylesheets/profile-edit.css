@@ -12,6 +12,12 @@
   left: 1%;
 }
 
+.edit-edit-btn{
+  position: inherit;
+  float: right;
+  margin-top: 1rem;
+}
+
 .edit-save-btn{
   cursor: pointer;
   font-size: medium;

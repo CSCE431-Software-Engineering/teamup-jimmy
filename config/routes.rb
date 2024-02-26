@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :students, except: :show
   resources :activities, except: :show
   resources :activity_preferences, only: [:index, :destroy, :new]
+  resources :time_preferences, only: [:index, :edit, :new]
  
 
   get 'students/basic'
@@ -18,6 +19,8 @@ Rails.application.routes.draw do
   get 'pages/match'
   get 'pages/profile'
 
+  get 'time_preferences/edit'
+
   resources :activity_preferences do
     get 'experience', on: :member
     post 'experience', on: :member
@@ -27,9 +30,6 @@ Rails.application.routes.draw do
   #   get 'experience', on: :member
   # end
   
-
-
-
   get 'students/:id', to: 'students#show', constraints: { id: %r{[^/]+} }
 
   # resources :landing do

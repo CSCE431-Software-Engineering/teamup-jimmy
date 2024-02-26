@@ -1,54 +1,54 @@
 class TimePreferencesController < ApplicationController
   def index
     @current_student = Student.find_by(email: session[:student_id])
-    @times = TimePreferencesController.find_by(student_email: current_student.email)
-    @mornings = times.morning
-    @afternoons = times.afternoon
-    @evenings = times.evening
-    @nights = times.night
-    @days = times.days_of_the_week
-    
-    @morning_iter, @afternoon_iter, @evening_iter, @night_iter, @days_iter = [], [], [], [], []
+    @time_preference = TimePreference.find_by(student_email: @current_student.email)
 
-    @mornings.each_char do |char|
-      if char == '1'
-        @morning_iter << "done"
-      else 
-        @morning_iter << ""
+    if @time_preference
+      @morning_iter = iterate_over_times(@time_preference.morning)
+      @afternoon_iter = iterate_over_times(@time_preference.afternoon)
+      @evening_iter = iterate_over_times(@time_preference.evening)
+      @night_iter = iterate_over_times(@time_preference.night)
+
+      # not used ?
+      @days_iter = iterate_over_days(@time_preference.days_of_the_week)
+    else
+      @morning_iter, @afternoon_iter, @evening_iter, @night_iter, @days_iter = "", "", "", ""
     end
 
-    @afternoons.each_char do |char|
-      if char == '1'
-        @afternoon_iter << "done"
-      else 
-        @afternoon_iter << ""
+    # @mon = [@morning_iter[0]] + [@afternoon_iter[0]] + [@evening_iter[0]] + [@night_iter[0]]
+    days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+
+    # Initialize an empty array to store the results
+    @time_table = []
+
+    # Iterate over the days of the week
+    days_of_week.each_with_index do |day, index|
+      # Build an array with data for each day
+      data_for_day = [
+        @morning_iter[index], 
+        @afternoon_iter[index], 
+        @evening_iter[index], 
+        @night_iter[index]
+      ]
+      
+      # Add the data for the day to the results array
+      @time_table << [day, data_for_day]
     end
-
-    @evenings.each_char do |char|
-      if char == '1'
-        @evening_iter << "done"
-      else 
-        @evening_iter << ""
-    end 
-
-    @nights.each_char do |char|
-      if char == '1'
-        @night_iter << "done"
-      else 
-        @night_iter << ""
-    end 
-
-    @days.each_char do |char|
-      if char == '1'
-        @days_iter << "done"
-      else 
-        @days_iter << ""
-    end 
   end
 
   def new
   end
 
   def edit
+  end
+
+  private
+
+  def iterate_over_times(times_string)
+    times_string.chars.map { |char| char == '1' ? 'done' : '' }
+  end
+
+  def iterate_over_days(days_string)
+    days_string.chars.map { |char| char == '1' ? 'done' : '' }
   end
 end
