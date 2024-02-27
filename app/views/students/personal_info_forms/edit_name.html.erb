@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag 'navbar', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <title>Jimmy</title>
+</head>
+<body>
+  <%= render 'pages/navbar' %>
+  <!-- logo -->
+  <!-- intro -->
+  <div class="edit-profile-main">
+    <div class = "profile-header-inner">
+      <div class="edit-profile-info">
+        <% if flash[:notice].present? %>
+        <div id="flash-notice" class="flash-notice">
+          <div class="flash-notice-content">
+          <p><%= flash[:notice] %></p>
+          </div>
+        </div>
+          <script>
+            var flash_notice = document.getElementById("flash-notice");
+            var span = document.getElementsByClassName("close")[0];
+
+            span.onclick = function() {
+            flash_notice.style.display = "none";
+            };
+
+            window.onclick = function(event) {
+            if (event.target == flash_notice) {
+                flash_notice.style.display = "none";
+            }
+            };
+
+            flash_notice.style.display = "inline-block";
+          </script>
+        <% end %>
+        
+        <%= form_with(url: update2_name_student_url, method: :patch, local: true) do |form| %>
+
+
+          <table class = "students-edit-info-form">
+          <tr class="students-edit-info-form-row">
+            <th>
+              <div class="edit-form-label">
+                  <p>Display Name</p>
+                  <%= form.text_field(:name, placeholder: 'First Last', class: 'custom-styled-input') %>
+              </div>
+            </th>
+          </tr>
+          </table>
+          <%= form.submit "Save" %>
+        <% end %>
+      
+      
+      
+      
+      
+      
+        </div>
+      
+  <!-- below could be links too -->
+  <!-- the onclick part should be a function in the controller to determine
+  where the user is taken to after log in -->
+</body>
+</html>

@@ -13,7 +13,26 @@ Rails.application.routes.draw do
   get 'students/basic'
   get 'students/index'
   get 'students/settings'
+
+  get 'students/personal_info'
+  get 'students/edit_name'
+  get 'students/edit_gender'
+  get 'students/edit_birthday'
+  get 'students/edit_phone_number'
+  get 'students/edit_major'
+  get 'students/edit_grad_year'
+  get 'students/edit_is_private'
+
+  patch 'students/update2_name', to: 'students#update2_name', as: 'update2_name_student'
+
+
+
+  get 'students/connect_socials'
   get 'students/workoutPref'
+
+  get 'customization/personalPref'
+  get 'customization/socialMedia'
+  get 'customization/workoutPref'
 
   get 'pages/home'
   get 'pages/match'

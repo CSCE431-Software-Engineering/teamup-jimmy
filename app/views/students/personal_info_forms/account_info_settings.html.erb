@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag 'navbar', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <title>Jimmy</title>
+</head>
+<body>
+  <%= render 'pages/navbar' %>
+  <!-- logo -->
+  <!-- intro -->
+  <div class="edit-profile-main">
+    <div class = "profile-header-inner">
+      <div class="edit-profile-info">
+
+        <% if flash[:notice].present? %>
+          <div id="flash-notice" class="flash-notice">
+            <div class="flash-notice-content">
+            <p><%= flash[:notice] %></p>
+            </div>
+          </div>
+          <script>
+            var flash_notice = document.getElementById("flash-notice");
+            var span = document.getElementsByClassName("close")[0];
+
+            span.onclick = function() {
+            flash_notice.style.display = "none";
+            };
+
+            window.onclick = function(event) {
+            if (event.target == flash_notice) {
+                flash_notice.style.display = "none";
+            }
+            };
+
+            flash_notice.style.display = "inline-block";
+          </script>
+        <% end %>
+        
+        <div class = "personal_info_main">
+          <div class="students-listed-info-div">
+            <%= link_to '/students/edit_name', class: 'info-row' do %>
+              <div class="info-row-title">Name</div>
+              <div class="info-row-content"><%= @current_student.name %></div>
+              <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Instagram Link" %>
+            <% end %>
+            <div class="info-row">
+              <div class="info-row-title">Gender</div>
+              <div class="info-row-content"><%= @current_student.gender %></div>
+              <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Instagram Link" %>
+            </div>
+            <div class="info-row">
+              <div class="info-row-title">Birthday</div>
+              <div class="info-row-content"><%= @current_student.birthday %></div>
+              <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Instagram Link" %>
+            </div>
+            <div class="info-row">
+              <div class="info-row-title">Phone Number</div>
+              <div class="info-row-content"><%= @current_student.phone_number %></div>
+              <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Instagram Link" %>
+            </div>
+            <div class="info-row">
+              <div class="info-row-title">Major</div>
+              <div class="info-row-content"><%= @current_student.major %></div>
+              <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Instagram Link" %>
+            </div>
+            <div class="info-row">
+              <div class="info-row-title">Graduation Year</div>
+              <div class="info-row-content"><%= @current_student.grad_year %></div>
+              <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Instagram Link" %>
+            </div>
+            <div class="info-row">
+              <div class="info-row-title">Privacy</div>
+              <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Instagram Link" %>
+            </div>
+        </div>
+      </div>
+  <!-- below could be links too -->
+  <!-- the onclick part should be a function in the controller to determine
+  where the user is taken to after log in -->
+</body>
+</html>

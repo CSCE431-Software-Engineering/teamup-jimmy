@@ -44,26 +44,26 @@
         <% end %>
         
         <div class="students-listed-info-div">
-          <div class="info-row">
+          <%= link_to '/students/personal_info', class: 'info-row' do %>
             <div class="info-row-title">Update Personal Info</div>
-            <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Instagram Link" %>
-          </div>
+            <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Forward Arrow" %>
+          <% end %>
           <div class="info-row">
             <div class="info-row-title">Update Matching Preferences</div>
-            <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Instagram Link" %>
+            <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Forward Arrow" %>
           </div>
           <div class="info-row">
             <div class="info-row-title">Update Workout Preferences</div>
-            <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Instagram Link" %>
+            <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Forward Arrow" %>
           </div>
           <div class="info-row">
             <div class="info-row-title">Connect Socials</div>
-            <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Instagram Link" %>
+            <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Forward Arrow" %>
           </div>
         </div>
 
 
-<!--
+    <!--
     <div class="edit-profile-form">
         <%= form_for(@current_student) do |s| %> 
             <table class="students-edit-info-form">
@@ -144,6 +144,7 @@
     </div>
   </div>
   -->
+
 
   <!-- below could be links too -->
   <!-- the onclick part should be a function in the controller to determine

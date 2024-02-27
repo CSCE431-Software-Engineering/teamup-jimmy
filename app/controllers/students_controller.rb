@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
 class StudentsController < ApplicationController
-  def index
-    @current_student = Student.find_by(email: session[:student_id])
-    return if @current_student
 
-    flash[:alert] = 'You must be logged in to access this page.'
+  before_action :set_current_student, only: [:index, :personal_info, :edit_name, :edit_birthday, :edit_gender, :edit_grad_year]
+  def index
   end
 
   def new
@@ -52,10 +50,59 @@ class StudentsController < ApplicationController
     flash[:alert] = 'You must be logged in to access this page.'
   end
 
+  def personal_info
+    render 'students/personal_info_forms/account_info_settings'
+  end
+
+  def edit_name
+    render 'students/personal_info_forms/edit_name'
+  end
+
+  def update2_name
+    Rails.logger.debug "Update Name action called"
+    flash[:notice] = "Update Name action was successfully called."
+    redirect_to root_path
+  end
+
+  def update
+     puts "test update"
+  end
+
+  def edit_birthday
+    render 'students/personal_info_forms/edit_birthday'
+  end
+
+  def edit_gender
+    render 'students/personal_info_forms/edit_gender'
+  end
+  def edit_grad_year
+    render 'students/personal_info_forms/edit_grad_year'
+  end
+
+  def edit_name
+    render 'students/personal_info_forms/edit_name'
+  end
+  def edit_phone_number
+    render 'students/personal_info_forms/edit_phone_number'
+  end
+
+
+
   private
 
+  def set_current_student
+    @current_student = Student.find_by(email: session[:student_id])
+    unless @current_student
+      flash[:alert] = 'You must be logged in to access this page.'
+    end
+  end
+  
   # need to add more fields
   def student_params
     params.require(:student).permit(:name, :email, :gender, :birthday)
+  end
+
+  def name_params
+    params.require(:student).permit(:name)
   end
 end
