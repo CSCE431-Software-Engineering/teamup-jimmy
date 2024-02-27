@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :activities, except: :show
   resources :activity_preferences, only: [:index, :destroy, :new]
   resources :time_preferences, only: [:index, :edit, :new]
- 
+  resources :gym_preferences, only: [:index, :edit]
 
   get 'students/basic'
   get 'students/index'
@@ -19,7 +19,11 @@ Rails.application.routes.draw do
   get 'pages/match'
   get 'pages/profile'
 
+  get 'time_preferences/index'
   get 'time_preferences/edit'
+
+  get 'gym_preferences/edit'
+
 
   resources :activity_preferences do
     get 'experience', on: :member
