@@ -15,6 +15,37 @@ class TimePreferencesController < ApplicationController
       @morning_iter, @afternoon_iter, @evening_iter, @night_iter, @days_iter = "", "", "", ""
     end
 
+    time_table()
+  end
+
+  def new
+  end
+
+  def edit
+    @current_student = Student.find_by(email: session[:student_id])
+    @time_preference = TimePreference.find_by(student_email: @current_student.email)
+
+    if @time_preference
+      @morning_iter = @time_preference.morning
+      @afternoon_iter = @time_preference.afternoon
+      @evening_iter = @time_preference.evening
+      @night_iter = @time_preference.night
+
+    else
+      @morning_iter, @afternoon_iter, @evening_iter, @night_iter = "", "", "", ""
+    end
+
+    time_table()
+  end
+
+  private
+
+  def iterate_over_times(times_string)
+    times_string.chars.map { |char| char == '1' ? 'done' : '' }
+  end
+
+  def time_table()
+
     # @mon = [@morning_iter[0]] + [@afternoon_iter[0]] + [@evening_iter[0]] + [@night_iter[0]]
     days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 

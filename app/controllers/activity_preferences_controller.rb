@@ -3,8 +3,12 @@ class ActivityPreferencesController < ApplicationController
       @current_student = Student.find_by(email: session[:student_id])
   
       @activity_ids = ActivityPreference.where(student_email: @current_student.email).pluck(:activity_id)
-      @exp_levels = ActivityPreference.where(student_email: @current_student.email).pluck(:experience_level)
-      @current_activities = Activity.where(id: @activity_ids).pluck(:activity_name)
+      @current_activities = Activity.where(id: @activity_ids).pluck(:activity_name).to_a
+      
+      @exp_levels = []
+      @current_activities.each do |name|
+        @exp_levels << ActivityPreference.find_by(student_email: @current_student.email, activity_id: Activity.where(activity_name: name).pluck(:id)).experience_level
+      end
     end
   
     def new
