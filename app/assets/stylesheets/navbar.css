@@ -27,7 +27,7 @@
 
 .navbar-link {
   text-decoration: none;
-  color: #554838; /* Darker color for better readability */
+  color: var(--primary-text-color); /* Darker color for better readability */
   font-size: 20px; /* Increased font size */
   font-weight: 500; /* Medium weight for a bolder look */
   padding: 0 20px; /* Increased padding for more space */

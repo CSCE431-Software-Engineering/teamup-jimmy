@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   root 'landing#index'
 
   resources :landing, except: :show
-  resources :students, except: :show
+  resources :students, except: :show, constraints: { id: /[^\/]+/ }
+
+
   resources :activities, except: :show
   resources :activity_preferences, only: [:index, :destroy, :new]
   resources :time_preferences, only: [:index, :edit, :new]
@@ -22,10 +24,6 @@ Rails.application.routes.draw do
   get 'students/edit_major'
   get 'students/edit_grad_year'
   get 'students/edit_is_private'
-
-  patch 'students/update2_name', to: 'students#update2_name', as: 'update2_name_student'
-
-
 
   get 'students/connect_socials'
   get 'students/workoutPref'

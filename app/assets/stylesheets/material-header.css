@@ -1,0 +1,51 @@
+
+
+.material-banner {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 500px;
+}
+
+.material-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F3DBAE; /* Example: Material Design primary color */
+    color: var(--primary-text-color);
+    padding: 0 0px; /* Material Design spacing */
+  }
+  
+  .material-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 500px; /* Adjust based on your design */
+  }
+  
+  .navbar-link.material-back-button {
+    color: var(--primary-text-color);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 0px 0px!important;
+  }
+
+  .back-arrow-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px; /* Adjusts space between the icon and the text */
+  }
+  
+  .material-title {
+    text-align: center;
+    flex-grow: 1;
+    margin: 0; 
+  }
+  
+  .material-spacer {
+    width: 48px; 
+    height: 48px;
+  }

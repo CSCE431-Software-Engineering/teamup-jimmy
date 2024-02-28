@@ -18,9 +18,15 @@
 
 /* shared */
 
+:root {
+  --primary-text-color: #554838;
+}
+
 body {
   background-color: #F7E9CE;
   margin:0px;
+  font-family: 'Roboto', sans-serif;
+
 }
 
 .top-pad {

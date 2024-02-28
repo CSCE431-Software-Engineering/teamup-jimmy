@@ -58,14 +58,20 @@ class StudentsController < ApplicationController
     render 'students/personal_info_forms/edit_name'
   end
 
-  def update2_name
-    Rails.logger.debug "Update Name action called"
-    flash[:notice] = "Update Name action was successfully called."
-    redirect_to root_path
-  end
-
   def update
-     puts "test update"
+    # Find the student by ID from the parameters
+    @student = Student.find(params[:id])
+    if @student.nil?
+      flash[:notice] = "Student not found."
+      redirect_back fallback_location: root_path and return
+    end
+    if @student.update(student_params)
+      flash[:notice] = "Your account was successfully updated."
+      redirect_to request.referer || default_path
+    else
+      flash.now[:notice] = "There was a problem updating your account."
+      redirect_to request.referer || default_path
+    end
   end
 
   def edit_birthday
@@ -80,6 +86,7 @@ class StudentsController < ApplicationController
   end
 
   def edit_name
+    set_current_student 
     render 'students/personal_info_forms/edit_name'
   end
   def edit_phone_number
