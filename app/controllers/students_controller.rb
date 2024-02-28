@@ -29,11 +29,11 @@ class StudentsController < ApplicationController
         session[:student_id] = @student.email
         redirect_to controller: 'pages', action: 'home'
       else
-        flash[:notice] = 'There was a problem with your input. Please make sure to fill out every field.'
+        flash[:alert] = 'There was a problem with your input. Please make sure to fill out every field.'
         redirect_to(action: 'basic')
       end
     else
-      flash[:notice] = 'Email is not a valid TAMU email address.'
+      flash[:alert] = 'Email is not a valid TAMU email address.'
       redirect_to(action: 'basic')
     end
   end
@@ -62,14 +62,14 @@ class StudentsController < ApplicationController
     # Find the student by ID from the parameters
     @student = Student.find(params[:id])
     if @student.nil?
-      flash[:notice] = "Student not found."
+      flash[:alert] = "Student not found."
       redirect_back fallback_location: root_path and return
     end
     if @student.update(student_params)
       flash[:notice] = "Your account was successfully updated."
       redirect_to request.referer || default_path
     else
-      flash.now[:notice] = "There was a problem updating your account."
+      flash.now[:alert] = "There was a problem updating your account."
       redirect_to request.referer || default_path
     end
   end

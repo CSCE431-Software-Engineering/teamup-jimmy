@@ -13,31 +13,7 @@
   <div class="edit-profile-main">
     <div class = "profile-header-inner">
       <div class="edit-profile-info">
-
-        <% if flash[:notice].present? %>
-          <div id="flash-notice" class="flash-notice">
-            <div class="flash-notice-content">
-            <p><%= flash[:notice] %></p>
-            </div>
-          </div>
-          <script>
-            var flash_notice = document.getElementById("flash-notice");
-            var span = document.getElementsByClassName("close")[0];
-
-            span.onclick = function() {
-            flash_notice.style.display = "none";
-            };
-
-            window.onclick = function(event) {
-            if (event.target == flash_notice) {
-                flash_notice.style.display = "none";
-            }
-            };
-
-            flash_notice.style.display = "inline-block";
-          </script>
-        <% end %>
-        
+        <%= render 'pages/flash' %>
         <div class = "personal_info_main">
           <div class="students-listed-info-div">
             <%= link_to '/students/edit_name', class: 'info-row' do %>
@@ -45,11 +21,11 @@
               <div class="info-row-content"><%= @current_student.name %></div>
               <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Instagram Link" %>
             <% end %>
-            <div class="info-row">
+            <%= link_to '/students/edit_gender', class: 'info-row' do %>
               <div class="info-row-title">Gender</div>
               <div class="info-row-content"><%= @current_student.gender %></div>
               <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Instagram Link" %>
-            </div>
+              <% end %>
             <div class="info-row">
               <div class="info-row-title">Birthday</div>
               <div class="info-row-content"><%= @current_student.birthday %></div>

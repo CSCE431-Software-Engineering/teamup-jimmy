@@ -1,0 +1,41 @@
+<% if flash[:alert].present? %>
+  <div id="flash-alert" class="flash-alert">
+    <div class="flash-alert-content">
+      <p><%= flash[:alert] %></p>
+    </div>
+  </div>
+  <script>
+    var flash_alert = document.getElementById("flash-alert");
+    var span = document.getElementsByClassName("close")[0];
+
+    span.onclick = function() {flash_alert.style.display = "none";};
+
+    window.onclick = function(event) {
+      if (event.target == flash_alert) {
+        flash_alert.style.display = "none";
+      }
+    };
+    flash_alert.style.display = "inline-block";
+  </script>
+<% end %>
+
+<% if flash[:notice].present? %>
+  <div id="flash-notice" class="flash-notice">
+    <div class="flash-notice-content">
+      <p><%= flash[:notice] %></p>
+    </div>
+  </div>
+  <script>
+    var flash_notice = document.getElementById("flash-notice");
+    var span = document.getElementsByClassName("close")[0];
+
+    span.onclick = function() {flash_notice.style.display = "none";};
+
+    window.onclick = function(event) {
+      if (event.target == flash_notice) {
+        flash_notice.style.display = "none";
+      }
+    };
+    flash_notice.style.display = "inline-block";
+  </script>
+<% end %>
