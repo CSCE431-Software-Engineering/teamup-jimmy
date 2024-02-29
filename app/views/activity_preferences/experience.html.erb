@@ -15,17 +15,17 @@
   <div class="experience-select-div">
 
     <%= form_for @new_pref do |form| %>
-        <div class="experience-select-btn">
-          <% @levels.each do |level| %>
-            <%= form.radio_button :experience_level, level %>
-            <%= form.label level, level %><br>
-          <% end %>
-        </div>
+      <div class="experience-select-btn">
+        <% @levels.each do |level| %>
+          <%= form.radio_button :experience_level, level %>
+          <%= form.label level, level %><br>
+        <% end %>
+      </div>
       
-        <%= form.hidden_field :activity_id, value: @activity.id %> <!-- Add this line -->
+      <%= form.hidden_field :activity_id, value: @activity.id %> 
       
-        <%= form.submit 'Save', class: 'edit-save-btn' %>
-      <% end %>
+      <%= form.submit 'Save', class: 'edit-save-btn' %>
+    <% end %>
 
   
 

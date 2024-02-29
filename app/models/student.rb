@@ -12,4 +12,8 @@ class Student < ApplicationRecord
   validates :name, presence: true
   validates :gender, presence: true, inclusion: { in: %w[Male Female Other] }
   validates :birthday, presence: true
+  validates :phone_number, presence: false
+  validates :major, presence: false
+  validates :is_private, presence: false
+  validates :grad_year, presence: false
 end

@@ -2,7 +2,7 @@
 
 class StudentsController < ApplicationController
 
-  before_action :set_current_student, only: [:index, :personal_info, :edit_name, :edit_birthday, :edit_gender, :edit_grad_year]
+  before_action :set_current_student, only: [:index, :personal_info, :edit_name, :edit_birthday, :edit_gender, :edit_grad_year, :edit_is_private, :edit_phone_number, :edit_major]
   def index
   end
 
@@ -51,24 +51,33 @@ class StudentsController < ApplicationController
   end
 
   def personal_info
-    render 'students/personal_info_forms/account_info_settings'
-  end
+    if @current_student.is_private.nil?
+      @account_publicity = "Account publicity not set"
+    elsif @current_student.is_private
+      @account_publicity = "Private account"
+    else
+      @account_publicity = "Public account"
+    end
 
-  def edit_name
-    render 'students/personal_info_forms/edit_name'
+    render 'students/personal_info_forms/account_info_settings'
   end
 
   def update
     # Find the student by ID from the parameters
+    puts "test1"
     @student = Student.find(params[:id])
+    puts "test2"
     if @student.nil?
+      puts "test3"
       flash[:alert] = "Student not found."
       redirect_back fallback_location: root_path and return
     end
     if @student.update(student_params)
+      puts "test4"
       flash[:notice] = "Your account was successfully updated."
       redirect_to request.referer || default_path
     else
+      puts "test5"
       flash.now[:alert] = "There was a problem updating your account."
       redirect_to request.referer || default_path
     end
@@ -81,16 +90,25 @@ class StudentsController < ApplicationController
   def edit_gender
     render 'students/personal_info_forms/edit_gender'
   end
+
   def edit_grad_year
     render 'students/personal_info_forms/edit_grad_year'
   end
 
   def edit_name
-    set_current_student 
     render 'students/personal_info_forms/edit_name'
   end
+
   def edit_phone_number
     render 'students/personal_info_forms/edit_phone_number'
+  end
+
+  def edit_major
+    render 'students/personal_info_forms/edit_major'
+  end
+
+  def edit_is_private
+    render 'students/personal_info_forms/edit_is_private'
   end
 
 
@@ -106,10 +124,6 @@ class StudentsController < ApplicationController
   
   # need to add more fields
   def student_params
-    params.require(:student).permit(:name, :email, :gender, :birthday)
-  end
-
-  def name_params
-    params.require(:student).permit(:name)
+    params.require(:student).permit(:name, :email, :gender, :birthday, :phone_number, :major, :is_private, :grad_year)
   end
 end

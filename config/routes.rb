@@ -46,18 +46,8 @@ Rails.application.routes.draw do
     get 'experience', on: :member
     post 'experience', on: :member
   end
-  
-  # resources :activity_preferences do
-  #   get 'experience', on: :member
-  # end
-  
   get 'students/:id', to: 'students#show', constraints: { id: %r{[^/]+} }
 
-  # resources :landing do
-  #   member do
-  #     get :delete
-  #   end
-  # end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
