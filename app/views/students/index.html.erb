@@ -12,12 +12,18 @@
   <!-- intro -->
   <div class="profile-header">
     <div class = "profile-header-inner">
-      <div class="profile-picture-div">
-        <img class="profile-picture" src="https://i.pinimg.com/736x/d7/1d/1a/d71d1a41b69bbbf2ca2d94b918d86faf.jpg">
+      <div class = "profile-picture-and-buttons">
+        <div class = "spacer"></div>
+        <div class="profile-picture-div">
+          <img class="profile-picture" src="https://i.pinimg.com/736x/d7/1d/1a/d71d1a41b69bbbf2ca2d94b918d86faf.jpg">
+        </div>
+        <div class = "settings-link-div">
+          <%= image_tag asset_path("settings_icon.png"), class: "spacer", alt: "Settings link" %>
+        </div>
       </div>
       <div class="profile-info">
         <p class="profile-name"><%= @current_student.name %><p>
-        <p><%= @current_student.major %> • <%= @current_student.grad_year %></p>
+        <p class = "major-and-class"><%= @major_and_class %></p>
         <div class = "socials-bar">
           <%= image_tag asset_path("instagram_icon.png"), class: "social-link", alt: "Instagram Link" %>
           <%= image_tag asset_path("x_icon.png"), class: "social-link", alt: "X Link" %>

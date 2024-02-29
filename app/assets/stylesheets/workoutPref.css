@@ -81,6 +81,16 @@
   position: relative;
 }
 
+.radio-label-pair{
+  display: flex;
+  flex-wrap: nowrap;
+  margin: 1rem 0rem;
+}
+
+.new_activity_preference{
+  width:10rem;
+}
+
 /* CSS */
 .experience-select-btn label {
   display: inline-block; /* or inline */

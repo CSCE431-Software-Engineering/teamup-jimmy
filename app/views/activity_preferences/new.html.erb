@@ -9,8 +9,15 @@
 </head>
 
 <body>
-  <%= render(partial:'back', locals:{c: "activity_preferences", a: "index", s: "edit-back-btn"}) %>
-
+  <nav class="material-header">
+    <div class="material-banner">
+      <%= link_to activity_preferences_path,  class: "navbar-link material-back-button" do %>
+        <%= image_tag('back_arrow.png', alt: 'Back', class: 'back-arrow-icon') %> Back
+      <% end %>
+      <h1 class="material-title">Creating A New Preference</h1>
+      <span class="material-spacer"></span>
+    </div>
+  </nav>
   <h1 class="workoutpref-landing-title"> Select activity... </h1>
   <div class="experience-select-div">
 

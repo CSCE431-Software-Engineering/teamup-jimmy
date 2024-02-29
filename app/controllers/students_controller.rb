@@ -4,6 +4,15 @@ class StudentsController < ApplicationController
 
   before_action :set_current_student, only: [:index, :personal_info, :edit_name, :edit_birthday, :edit_gender, :edit_grad_year, :edit_is_private, :edit_phone_number, :edit_major, :edit_biography]
   def index
+    if @current_student.major && @current_student.grad_year.nil?
+      @major_and_class = @current_student.major
+    elsif @current_student.major.nil? && @current_student.grad_year
+      @major_and_class = "Class of #{@current_student.grad_year}"
+    elsif @current_student.major && @current_student.grad_year
+      @major_and_class = "#{@current_student.major} • Class of #{@current_student.grad_year}"
+    else
+      @major_and_class = ""
+    end
   end
 
   def new

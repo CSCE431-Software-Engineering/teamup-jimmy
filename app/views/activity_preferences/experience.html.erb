@@ -8,9 +8,16 @@
 </head>
 
 <body>
+  <nav class="material-header">
+    <div class="material-banner">
+      <%= link_to new_activity_preference_path,  class: "navbar-link material-back-button" do %>
+        <%= image_tag('back_arrow.png', alt: 'Back', class: 'back-arrow-icon') %> Back
+      <% end %>
+      <h1 class="material-title">Experience Level</h1>
+      <span class="material-spacer"></span>
+    </div>
+  </nav>
   <% @activity=Activity.find(params[:id])%>
-  <%= render(partial:'back', locals:{c: "activity_preferences", a: "new", s: "edit-back-btn"}) %>
-
   <h1 class="workoutpref-landing-title"> Select your experience level for <%=@activity.activity_name%>... </h1>
   <div class="experience-select-div">
 
@@ -18,7 +25,7 @@
       <div class="experience-select-btn">
         <% @levels.each do |level| %>
           <div class="radio-label-pair">
-            <%= form.radio_button :experience_level, level %>
+            <%= form.radio_button :experience_level, level, class: "bullet" %>
             <%= form.label level, level %>
           </div>
         <% end %>
