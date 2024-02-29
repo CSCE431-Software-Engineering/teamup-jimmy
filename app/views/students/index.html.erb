@@ -17,7 +17,7 @@
       </div>
       <div class="profile-info">
         <p class="profile-name"><%= @current_student.name %><p>
-        <p>Computer Science • 2025</p>
+        <p><%= @current_student.major %> • <%= @current_student.grad_year %></p>
         <div class = "socials-bar">
           <%= image_tag asset_path("instagram_icon.png"), class: "social-link", alt: "Instagram Link" %>
           <%= image_tag asset_path("x_icon.png"), class: "social-link", alt: "X Link" %>
@@ -29,7 +29,7 @@
   <div class="profile-body">
     <div class="profile-body-inner">
       <p class="profile-title">About Me</p>
-      <p> Hi! I am a Computer Science major at Texas A&M University. I am looking for a gym buddy to workout with. I am open to any one.</p> 
+      <p> <%= @current_student.biography %></p> 
       <p class="profile-title">Workouts</p>
       <li class="profile-body-text">Badminton</li>
       <li class="profile-body-text">Walks</li>

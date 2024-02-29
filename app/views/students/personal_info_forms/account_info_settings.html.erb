@@ -27,6 +27,11 @@
               <div class="info-row-content"><%= @current_student.name %></div>
               <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Instagram Link" %>
             <% end %>
+            <%= link_to '/students/edit_biography', class: 'info-row' do %>
+              <div class="info-row-title">Biography</div>
+              <div class="info-row-content"><%= @current_student.biography%></div>
+              <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Instagram Link" %>
+            <% end %>
             <%= link_to '/students/edit_gender', class: 'info-row' do %>
               <div class="info-row-title">Gender</div>
               <div class="info-row-content"><%= @current_student.gender %></div>

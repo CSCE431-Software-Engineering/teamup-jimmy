@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get 'students/edit_major'
   get 'students/edit_grad_year'
   get 'students/edit_is_private'
+  get 'students/edit_biography'
 
   get 'students/connect_socials'
   get 'students/workoutPref'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_24_224706) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_29_160955) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -82,6 +82,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_24_224706) do
     t.string "x_url"
     t.string "snap_url"
     t.string "profile_picture_url"
+    t.string "biography"
   end
 
   create_table "time_preferences", force: :cascade do |t|

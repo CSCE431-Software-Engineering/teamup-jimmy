@@ -2,7 +2,7 @@
 
 class StudentsController < ApplicationController
 
-  before_action :set_current_student, only: [:index, :personal_info, :edit_name, :edit_birthday, :edit_gender, :edit_grad_year, :edit_is_private, :edit_phone_number, :edit_major]
+  before_action :set_current_student, only: [:index, :personal_info, :edit_name, :edit_birthday, :edit_gender, :edit_grad_year, :edit_is_private, :edit_phone_number, :edit_major, :edit_biography]
   def index
   end
 
@@ -111,7 +111,15 @@ class StudentsController < ApplicationController
     render 'students/personal_info_forms/edit_is_private'
   end
 
-
+  def edit_biography
+    @biography_placeholder = ""
+    if @current_student.biography.nil?
+      @biography_placeholder = "Enter your biography"
+    else
+      @biography_placeholder = @current_student.biography
+    end
+    render 'students/personal_info_forms/edit_biography'
+  end
 
   private
 
@@ -124,6 +132,6 @@ class StudentsController < ApplicationController
   
   # need to add more fields
   def student_params
-    params.require(:student).permit(:name, :email, :gender, :birthday, :phone_number, :major, :is_private, :grad_year)
+    params.require(:student).permit(:name, :email, :gender, :birthday, :phone_number, :major, :is_private, :grad_year, :biography)
   end
 end

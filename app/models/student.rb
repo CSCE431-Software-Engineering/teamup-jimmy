@@ -16,4 +16,5 @@ class Student < ApplicationRecord
   validates :major, presence: false
   validates :is_private, presence: false
   validates :grad_year, presence: false
+  validates :biography, presence: false
 end
