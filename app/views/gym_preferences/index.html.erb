@@ -17,20 +17,21 @@
       </tr>
     </thead>
     <% @gyms.each do |gym| %>
+    <%= puts @gyms%>
     <tr>
       <td><%= gym.name%></td>
       <td> 
-        <% gym_to_delete = Gym.find_by(student_email: @current_student.email, gym_id: (Gym.find_by(name: gym.name)).id)%>
+        <% gym_to_delete = GymPreference.find_by(student_email: @current_student.email, gym_id: gym.id)%>
         <%= form_with(model: gym_to_delete, url: gym_preference_path(gym_to_delete), method: :delete) do |form| %>
           <%= form.submit 'Delete', class: "material-symbols-outlined edit-workoutpref-add-btn" %>
         <% end %>
+
       </td>
     </tr>
     <% end %>
 
     <tr>
       <td> Add Gym </td>
-      <td> </td>
       <td> <%= render(partial:'add', locals:{c: "gym_preferences", a: "edit"}) %> </td>
     </tr>
   </table>

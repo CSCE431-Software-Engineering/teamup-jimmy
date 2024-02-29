@@ -1,2 +1,27 @@
-<h1>GymPreferences#edit</h1>
-<p>Find me in app/views/gym_preferences/edit.html.erb</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag 'navbar', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <title>Jimmy</title>
+</head>
+
+<body>
+  <%= render(partial:'back', locals:{c: "gym_preferences", a: "index", s: "edit-back-btn"}) %>
+
+  <h1 class="workoutpref-landing-title"> Select new location to add... </h1>
+  <div class="edit-workoutpref-div">
+    <%= form_for @new_gym do |g| %>
+      <div class="edit-gym-select-div">
+        <%= g.select :gym_id, [
+           ['Please select a new location', '']] + @gyms.map { |gym| [gym.name, gym.id] }, 
+           { class: 'styled-select', required: true }
+        %>
+        <%= g.submit 'Save', class: 'edit-save-btn gym-edit-btn' %>
+      </div>
+    <%end%>
+  </div>
+
+</body>
