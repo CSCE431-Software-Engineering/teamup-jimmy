@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag 'navbar', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <title>Jimmy</title>
+</head>
+
+<body>
+  <h1 class="workoutpref-landing-title"> Your avalible times for workouts ... </h1>
+  <div class="edit-time-table-div">
+    <table summary="Added activities" class="edit-workoutpref-table edit-time-table">
+      <thead>
+        <tr>
+        <th></th>
+        <th> Morning </th>
+        <th> Afternoon </th>
+        <th> Evening </th>
+        <th> Night </th>
+        </tr>
+      </thead>
+
+     <% @time_table.each do |day, data| %>
+      <tr>
+        <th><%= day %></th>
+        <% Array(data).each do |status| %>
+          <td><span class="material-symbols-outlined edit-workoutpref-add-btn"><%= status %></span></td>
+        <% end %>
+      </tr>
+    <% end %>
+    </table>
+
+    <%= button_to("Edit", {action: "edit"}, method: :get, class: "edit-edit-btn edit-back-btn") %>
+  </div>
+</body>

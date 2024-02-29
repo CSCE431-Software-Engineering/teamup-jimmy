@@ -1,0 +1,67 @@
+.workoutpref-landing-title {
+  margin-top: 3rem;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  text-align: center;
+}
+
+.edit-workoutpref-div{
+  max-height: 25rem;
+  overflow-y: auto;
+}
+
+.edit-workoutpref-table{
+  background-color: rgb(243, 219, 174);
+  padding: 0.5rem;
+  border-radius: 8px;
+  border-collapse: separate;
+  border-spacing: 1rem 0.25rem;
+  justify-content: space-between;
+  font-family: roboto, sans-serif;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: max-content;
+  max-width: 100%;
+  text-align: left;
+  border: 2px solid black
+}
+
+.edit-workoutpref-add-btn{
+  border: 0rem;
+  background-color: rgb(243, 219, 174);
+  font-size: large;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.experience-select-div{
+  display: flex;
+  justify-content: center;
+  font-family: "Roboto", sans-serif;
+  font-size: medium;
+}
+
+.edit-time-table td{
+  text-align: center;
+  border-bottom: 1px solid black;
+  height: 2rem;
+}
+
+.edit-time-table tr{
+  border-bottom: 1px solid black
+}
+
+.edit-time-table-div{
+  margin-left: auto;
+  margin-right: auto;
+  max-width: max-content;
+}
+
+
+label.radio-label {
+  margin-bottom: 0.75rem; /* Adjust the margin as needed */
+}
+
+input[type="radio"] {
+  margin-bottom: 0.75rem; /* Adjust the margin as needed */
+}

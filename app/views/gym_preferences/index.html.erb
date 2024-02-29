@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag 'navbar', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <title>Jimmy</title>
+</head>
+
+<body>
+  <h1 class="workoutpref-landing-title"> Add your preferred workout locations ... </h1>
+  <div class="edit-workoutpref-div">
+  <table summary="Added activities" class="edit-workoutpref-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <% @gyms.each do |gym| %>
+    <tr>
+      <td><%= gym.name%></td>
+      <td> 
+        <% gym_to_delete = Gym.find_by(student_email: @current_student.email, gym_id: (Gym.find_by(name: gym.name)).id)%>
+        <%= form_with(model: gym_to_delete, url: gym_preference_path(gym_to_delete), method: :delete) do |form| %>
+          <%= form.submit 'Delete', class: "material-symbols-outlined edit-workoutpref-add-btn" %>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+
+    <tr>
+      <td> Add Gym </td>
+      <td> </td>
+      <td> <%= render(partial:'add', locals:{c: "gym_preferences", a: "edit"}) %> </td>
+    </tr>
+  </table>
+  </div>
+</body>

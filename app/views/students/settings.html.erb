@@ -18,76 +18,28 @@
         </div>
       </div>
       <div class="edit-profile-info">
-
-    <% if flash[:notice].present? %>
-      <div id="flash-notice" class="flash-notice">
-        <div class="flash-notice-content">
-          <p><%= flash[:notice] %></p>
+        <%= render 'pages/flash' %>
+        <div class="students-listed-info-div">
+          <%= link_to '/students/personal_info', class: 'info-row' do %>
+            <div class="info-row-title">Update Personal Info</div>
+            <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Forward Arrow" %>
+          <% end %>
+          <div class="info-row">
+            <div class="info-row-title">Update Matching Preferences</div>
+            <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Forward Arrow" %>
+          </div>
+          <div class="info-row">
+            <div class="info-row-title">Update Workout Preferences</div>
+            <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Forward Arrow" %>
+          </div>
+          <div class="info-row">
+            <div class="info-row-title">Connect Socials</div>
+            <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Forward Arrow" %>
+          </div>
         </div>
-      </div>
-      <script>
-        var flash_notice = document.getElementById("flash-notice");
-        var span = document.getElementsByClassName("close")[0];
-
-        span.onclick = function() {
-          flash_notice.style.display = "none";
-        };
-
-        window.onclick = function(event) {
-          if (event.target == flash_notice) {
-            flash_notice.style.display = "none";
-          }
-        };
-
-        flash_notice.style.display = "inline-block";
-      </script>
-    <% end %>
-        
-    <table class="students-listed-info-table">
-      <tr>
-        <th>
-          <p class = "info-row-title">Display Name</p>
-        </th>
-        <td>
-          <%= @current_student.name %>
-        </td>
-      </tr>
-      <tr>
-        <th>
-          <p class = "info-row-title">Gender</p>
-        </th>
-        <td>
-          <%= @current_student.gender %>
-        </td>
-      </tr>
-      <tr>
-        <th>
-          <p class = "info-row-title">Birthday</p>
-        </th>
-        <td>
-          <%= @current_student.birthday %>
-        </td>
-      </tr>
-      <tr>
-        <th>
-          <p class = "info-row-title">Phone Number</p>
-        </th>
-        <td>
-          <%= @current_student.phone_number %>
-        </td>
-      </tr>
-      <tr>
-        <th>
-          <p class = "info-row-title">Major</p>
-        </th>
-        <td>
-          <%= @current_student.major %>
-        </td>
-      </tr>
-    </table>
 
 
-
+    <!--
     <div class="edit-profile-form">
         <%= form_for(@current_student) do |s| %> 
             <table class="students-edit-info-form">
@@ -167,7 +119,7 @@
         <% end %>
     </div>
   </div>
-  
+  -->
 
 
   <!-- below could be links too -->

@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
 class StudentsController < ApplicationController
-  def index
-    @current_student = Student.find_by(email: session[:student_id])
-    return if @current_student
 
-    flash[:alert] = 'You must be logged in to access this page.'
+  before_action :set_current_student, only: [:index, :personal_info, :edit_name, :edit_birthday, :edit_gender, :edit_grad_year, :edit_is_private, :edit_phone_number, :edit_major]
+  def index
   end
 
   def new
@@ -31,11 +29,11 @@ class StudentsController < ApplicationController
         session[:student_id] = @student.email
         redirect_to controller: 'pages', action: 'home'
       else
-        flash[:notice] = 'There was a problem with your input. Please make sure to fill out every field.'
+        flash[:alert] = 'There was a problem with your input. Please make sure to fill out every field.'
         redirect_to(action: 'basic')
       end
     else
-      flash[:notice] = 'Email is not a valid TAMU email address.'
+      flash[:alert] = 'Email is not a valid TAMU email address.'
       redirect_to(action: 'basic')
     end
   end
@@ -44,7 +42,7 @@ class StudentsController < ApplicationController
     @student = Student.find(params[:id])
   end
 
-  def update
+  def settings
     puts session[:student_id]
     @current_student = Student.find_by(email: session[:student_id])
     return if @current_student
@@ -52,10 +50,80 @@ class StudentsController < ApplicationController
     flash[:alert] = 'You must be logged in to access this page.'
   end
 
+  def personal_info
+    if @current_student.is_private.nil?
+      @account_publicity = "Account publicity not set"
+    elsif @current_student.is_private
+      @account_publicity = "Private account"
+    else
+      @account_publicity = "Public account"
+    end
+
+    render 'students/personal_info_forms/account_info_settings'
+  end
+
+  def update
+    # Find the student by ID from the parameters
+    puts "test1"
+    @student = Student.find(params[:id])
+    puts "test2"
+    if @student.nil?
+      puts "test3"
+      flash[:alert] = "Student not found."
+      redirect_back fallback_location: root_path and return
+    end
+    if @student.update(student_params)
+      puts "test4"
+      flash[:notice] = "Your account was successfully updated."
+      redirect_to request.referer || default_path
+    else
+      puts "test5"
+      flash.now[:alert] = "There was a problem updating your account."
+      redirect_to request.referer || default_path
+    end
+  end
+
+  def edit_birthday
+    render 'students/personal_info_forms/edit_birthday'
+  end
+
+  def edit_gender
+    render 'students/personal_info_forms/edit_gender'
+  end
+
+  def edit_grad_year
+    render 'students/personal_info_forms/edit_grad_year'
+  end
+
+  def edit_name
+    render 'students/personal_info_forms/edit_name'
+  end
+
+  def edit_phone_number
+    render 'students/personal_info_forms/edit_phone_number'
+  end
+
+  def edit_major
+    render 'students/personal_info_forms/edit_major'
+  end
+
+  def edit_is_private
+    render 'students/personal_info_forms/edit_is_private'
+  end
+
+
+
   private
 
+  def set_current_student
+    @current_student = Student.find_by(email: session[:student_id])
+    unless @current_student
+      flash[:alert] = 'You must be logged in to access this page.'
+    end
+  end
+  
   # need to add more fields
   def student_params
-    params.require(:student).permit(:name, :email, :gender, :birthday)
+    params.require(:student).permit(:name, :email, :gender, :birthday, :phone_number, :major, :is_private, :grad_year)
   end
 end
