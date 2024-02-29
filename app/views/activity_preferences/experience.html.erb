@@ -17,8 +17,10 @@
     <%= form_for @new_pref do |form| %>
       <div class="experience-select-btn">
         <% @levels.each do |level| %>
-          <%= form.radio_button :experience_level, level %>
-          <%= form.label level, level %><br>
+          <div class="radio-label-pair">
+            <%= form.radio_button :experience_level, level %>
+            <%= form.label level, level %>
+          </div>
         <% end %>
       </div>
       
