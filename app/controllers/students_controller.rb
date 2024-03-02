@@ -71,6 +71,10 @@ class StudentsController < ApplicationController
     render 'students/personal_info_forms/account_info_settings'
   end
 
+  def workout_preferences
+    render 'students/workoutPref'
+  end
+
   def update
     # Find the student by ID from the parameters
     puts "test1"

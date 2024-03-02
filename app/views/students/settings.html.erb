@@ -20,22 +20,22 @@
       <div class="edit-profile-info">
         <%= render 'pages/flash' %>
         <div class="students-listed-info-div">
-          <%= link_to '/students/personal_info', class: 'info-row' do %>
+          <%= link_to students_personal_info_path, class: 'info-row' do %>
             <div class="info-row-title">Update Personal Info</div>
             <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Forward Arrow" %>
           <% end %>
-          <div class="info-row">
+          <%= link_to '/students/personal_info', class: 'info-row' do %>
             <div class="info-row-title">Update Matching Preferences</div>
             <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Forward Arrow" %>
-          </div>
-          <div class="info-row">
+          <% end %>
+          <%= link_to students_workout_preferences_path, class: 'info-row' do %>
             <div class="info-row-title">Update Workout Preferences</div>
             <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Forward Arrow" %>
-          </div>
-          <div class="info-row">
+          <% end %>
+          <%= link_to '/students/personal_info', class: 'info-row' do %>
             <div class="info-row-title">Connect Socials</div>
             <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Forward Arrow" %>
-          </div>
+          <% end %>
         </div>
 
 

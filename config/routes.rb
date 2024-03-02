@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   get 'students/edit_biography'
 
   get 'students/connect_socials'
-  get 'students/workoutPref'
+  get 'students/workout_preferences'
 
   get 'customization/personalPref'
   get 'customization/socialMedia'
