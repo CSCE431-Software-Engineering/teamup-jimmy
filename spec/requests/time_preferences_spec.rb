@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "TimePreferences", type: :request do
-  describe "GET /index" do
+  describe "GET /edit" do
     it "returns http success" do
-      get "/time_preferences/index"
+      get "/gym_preferences/edit"
       expect(response).to have_http_status(:success)
     end
   end
@@ -17,7 +17,7 @@ RSpec.describe "TimePreferences", type: :request do
 
   describe "GET /edit" do
     it "returns http success" do
-      get "/time_preferences/edit"
+      get "/gym_preferences/edit"
       expect(response).to have_http_status(:success)
     end
   end
