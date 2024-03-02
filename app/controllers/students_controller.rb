@@ -13,6 +13,10 @@ class StudentsController < ApplicationController
     else
       @major_and_class = ""
     end
+
+    @activity_ids = ActivityPreference.where(student_email: @current_student.email).pluck(:activity_id)
+    @current_activities = Activity.where(id: @activity_ids).pluck(:activity_name)
+    
   end
 
   def new

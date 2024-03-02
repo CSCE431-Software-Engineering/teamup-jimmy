@@ -36,10 +36,11 @@
     <div class="profile-body-inner">
       <p class="profile-title">About Me</p>
       <p> <%= @current_student.biography %></p> 
+
       <p class="profile-title">Workouts</p>
-      <li class="profile-body-text">Badminton</li>
-      <li class="profile-body-text">Walks</li>
-      <li class="profile-body-text">431 with Pauline Wade</li>
+      <% @current_activities.each do |name|%>
+      <li class="profile-body-text"><%=name%></li>
+      <%end%>
     </div>
     
   </div>
