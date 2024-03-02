@@ -7,7 +7,15 @@
   <title>Jimmy</title>
 </head>
 <body>
-  <%= render 'pages/navbar' %>
+  <nav class="material-header">
+  <div class="material-banner">
+    <%= link_to students_path,  class: "navbar-link material-back-button" do %>
+      <%= image_tag('back_arrow.png', alt: 'Back', class: 'back-arrow-icon') %> Back
+    <% end %>
+    <h1 class="material-title">Profile Settings</h1>
+    <span class="material-spacer"></span>
+  </div>
+  </nav>
   <!-- logo -->
   <!-- intro -->
   <div class="edit-profile-main">
