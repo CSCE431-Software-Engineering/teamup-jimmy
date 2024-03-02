@@ -8,6 +8,15 @@
 </head>
 
 <body>
+  <nav class="material-header">
+    <div class="material-banner">
+      <%= link_to students_index_path,  class: "navbar-link material-back-button" do %>
+        <%= image_tag('back_arrow.png', alt: 'Back', class: 'back-arrow-icon') %> Back
+      <% end %>
+      <h1 class="material-title">Gym Preferences</h1>
+      <span class="material-spacer"></span>
+    </div>
+  </nav>
   <h1 class="workoutpref-landing-title"> Add your preferred workout locations ... </h1>
   <div class="edit-workoutpref-div">
   <table summary="Added activities" class="edit-workoutpref-table">

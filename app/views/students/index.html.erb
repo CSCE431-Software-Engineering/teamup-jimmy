@@ -18,7 +18,7 @@
           <img class="profile-picture" src="https://i.pinimg.com/736x/d7/1d/1a/d71d1a41b69bbbf2ca2d94b918d86faf.jpg">
         </div>
         <div class = "settings-link-div">
-          <%= image_tag asset_path("settings_icon.png"), class: "spacer", alt: "Settings link" %>
+          <%= link_to image_tag(asset_path("settings_icon.png"), class: "spacer", alt: "Settings link"), students_settings_path %>
         </div>
       </div>
       <div class="profile-info">
