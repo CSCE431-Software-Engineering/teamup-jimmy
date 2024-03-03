@@ -2,7 +2,7 @@
 
 class StudentsController < ApplicationController
 
-  before_action :set_current_student, only: [:index, :personal_info, :edit_name, :edit_birthday, :edit_gender, :edit_grad_year, :edit_is_private, :edit_phone_number, :edit_major, :edit_biography]
+  before_action :set_current_student, only: [:index, :edit_gender_pref, :edit_age_pref, :personal_info, :edit_name, :edit_birthday, :edit_gender, :edit_grad_year, :edit_is_private, :edit_phone_number, :edit_major, :edit_biography, :matching_preferences, :connect_socials]
   def index
     if @current_student.major && @current_student.grad_year.nil?
       @major_and_class = @current_student.major
@@ -75,6 +75,14 @@ class StudentsController < ApplicationController
     render 'students/personal_info_forms/account_info_settings'
   end
 
+  def matching_preferences
+    render 'students/matching_preferences_forms/matching_preferences_settings'
+  end
+
+  def connect_socials
+    render 'students/socials_forms/socials_settings'
+  end
+
   def workout_preferences
     render 'students/workoutPref'
   end
@@ -83,18 +91,21 @@ class StudentsController < ApplicationController
     # Find the student by ID from the parameters
     puts "test1"
     @student = Student.find(params[:id])
-    puts "test2"
     if @student.nil?
       puts "test3"
       flash[:alert] = "Student not found."
       redirect_back fallback_location: root_path and return
     end
     if @student.update(student_params)
+
       puts "test4"
       flash[:notice] = "Your account was successfully updated."
       redirect_to request.referer || default_path
     else
-      puts "test5"
+      logger.info "Failed to update Student: #{student_params}"
+    logger.info "Errors: #{@student.errors.full_messages}"
+
+
       flash.now[:alert] = "There was a problem updating your account."
       redirect_to request.referer || default_path
     end
@@ -138,6 +149,13 @@ class StudentsController < ApplicationController
     render 'students/personal_info_forms/edit_biography'
   end
 
+  def edit_gender_pref
+    render 'students/matching_preferences_forms/edit_gender_pref'
+  end
+
+  def edit_age_pref
+    render 'students/matching_preferences_forms/edit_age_pref'
+  end
   private
 
   def set_current_student
@@ -149,6 +167,6 @@ class StudentsController < ApplicationController
   
   # need to add more fields
   def student_params
-    params.require(:student).permit(:name, :email, :gender, :birthday, :phone_number, :major, :is_private, :grad_year, :biography)
+    params.require(:student).permit(:name, :email, :gender, :birthday, :phone_number, :major, :is_private, :grad_year, :biography, :gender_pref_female, :gender_pref_male, :gender_pref_other, :age_start_pref, :age_end_pref)
   end
 end

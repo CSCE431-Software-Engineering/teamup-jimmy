@@ -25,6 +25,11 @@ Rails.application.routes.draw do
   get 'students/edit_is_private'
   get 'students/edit_biography'
 
+
+  get 'students/matching_preferences'
+  get 'students/edit_gender_pref'
+  get 'students/edit_age_pref'
+
   get 'students/connect_socials'
   get 'students/workout_preferences'
 
