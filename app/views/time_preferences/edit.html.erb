@@ -11,7 +11,7 @@
 <body>
   <nav class="material-header">
   <div class="material-banner">
-    <%= link_to time_preferences_path,  class: "navbar-link material-back-button" do %>
+    <%= link_to time_preferences_index_path,  class: "navbar-link material-back-button" do %>
       <%= image_tag('back_arrow.png', alt: 'Back', class: 'back-arrow-icon') %> Back
     <% end %>
     <h1 class="material-title">Time Preferences</h1>
@@ -20,27 +20,32 @@
   </nav>
   <h1 class="workoutpref-landing-title"> Edit your avalible times for workouts ... </h1>
   <div class="edit-time-table-div">
-    <table summary="Added activities" class="edit-workoutpref-table edit-time-table">
-      <thead>
-        <tr>
-        <th></th>
-        <th> Morning </th>
-        <th> Afternoon </th>
-        <th> Evening </th>
-        <th> Night </th>
-        </tr>
-      </thead>
-
-     <% @time_table.each do |day, data| %>
-      <tr>
-        <th><%= day %></th>
-        <% Array(data).each do |status| %>
-          <td><span class="material-symbols-outlined edit-workoutpref-add-btn"><%= status %></span></td>
-        <% end %>
-      </tr>
+    <%= form_with model: @time_preference, url: time_preferences_path, method: :patch do |form| %>
+      <table summary="Added activities" class="edit-workoutpref-table edit-time-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Morning</th>
+            <th>Afternoon</th>
+            <th>Evening</th>
+            <th>Night</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @time_table.each do |day, times| %>
+            <tr>
+              <th><%= day %></th>
+              <% ['Morning', 'Afternoon', 'Evening', 'Night'].each_with_index do |time_of_day, index| %>
+                <td>
+                  <%= check_box_tag "time_preferences[#{day}][#{time_of_day}]", '1', times.include?(time_of_day) %>
+                </td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    
+      <%= form.submit "Save Changes", class: "material-button time-pref-edit-submit-btn" %>
     <% end %>
-    </table>
-
-    <%= button_to("Edit", {action: "edit"}, method: :get, class: "edit-edit-btn edit-back-btn") %>
   </div>
 </body>
