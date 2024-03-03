@@ -89,16 +89,13 @@ class StudentsController < ApplicationController
 
   def update
     # Find the student by ID from the parameters
-    puts "test1"
     @student = Student.find(params[:id])
     if @student.nil?
-      puts "test3"
       flash[:alert] = "Student not found."
       redirect_back fallback_location: root_path and return
     end
     if @student.update(student_params)
 
-      puts "test4"
       flash[:notice] = "Your account was successfully updated."
       redirect_to request.referer || default_path
     else

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :activities, except: :show
   resources :activity_preferences, only: [:index, :destroy, :new]
-  resources :time_preferences, only: [:index, :edit, :new]
+  resource :time_preferences, only: [:index, :edit, :new, :update]
   resources :gym_preferences, except: :show
   get 'students/basic'
   get 'students/index'
