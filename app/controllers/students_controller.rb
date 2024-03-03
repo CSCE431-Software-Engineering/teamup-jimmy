@@ -56,7 +56,6 @@ class StudentsController < ApplicationController
   end
 
   def settings
-    puts session[:student_id]
     @current_student = Student.find_by(email: session[:student_id])
     return if @current_student
 

@@ -52,7 +52,6 @@ class TimePreferencesController < ApplicationController
 
   def edit
     initialize_time_variables()
-    puts @time_preference
     time_table()
   end
 
@@ -111,7 +110,10 @@ class TimePreferencesController < ApplicationController
     @afternoon = "0000000"
     @evening = "0000000"
     @night = "0000000"
-
+    
+    if form_params.nil?
+      return
+    end
     days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     days_of_week.each_with_index do |day, index|
       if form_params[day].nil? == false
