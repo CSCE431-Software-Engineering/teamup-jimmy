@@ -17,4 +17,9 @@ class Student < ApplicationRecord
   validates :is_private, presence: false
   validates :grad_year, presence: false
   validates :biography, presence: false
+  validates :age_start_pref, presence: true
+  validates :age_end_pref, presence: true
+  validates_inclusion_of :gender_pref_female, in: [true, false]
+  validates_inclusion_of :gender_pref_male, in: [true, false]
+  validates_inclusion_of :gender_pref_other, in: [true, false]
 end

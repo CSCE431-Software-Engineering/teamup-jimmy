@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_29_160955) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_03_062433) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
+    t.string "email", null: false
+    t.string "full_name"
+    t.string "uid"
+    t.string "avatar_url"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.index ["email"], name: "index_accounts_on_email", unique: true
+  end
 
   create_table "activities", force: :cascade do |t|
     t.string "activity_name"
@@ -59,7 +69,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_29_160955) do
     t.date "birthday"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "gender_pref"
+    t.string "provider"
+    t.string "uid"
     t.integer "age_start_pref"
     t.integer "age_end_pref"
     t.string "phone_number"
@@ -71,6 +82,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_29_160955) do
     t.string "snap_url"
     t.string "profile_picture_url"
     t.string "biography"
+    t.boolean "gender_pref_male", default: true, null: false
+    t.boolean "gender_pref_female", default: true, null: false
+    t.boolean "gender_pref_other", default: true, null: false
   end
 
   create_table "time_preferences", force: :cascade do |t|
