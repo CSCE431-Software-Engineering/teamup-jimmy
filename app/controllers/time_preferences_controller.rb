@@ -23,10 +23,11 @@ class TimePreferencesController < ApplicationController
     # Update the TimePreference record
     if @time_preference.update(morning: @morning, afternoon: @afternoon, evening: @evening, night: @night)
       # Handle successful update, e.g., redirect or render success message
-      puts "yipee"
+      flash[:notice] = 'Time preferences updated successfully.'
       # redirect_to some_path, notice: "Time preferences updated successfully."
     else
       # Handle errors, e.g., re-render the edit form with error messages
+      flash[:alert] = 'There was an error updating your time preferences.'
       render :edit
     end
   end
@@ -111,9 +112,6 @@ class TimePreferencesController < ApplicationController
     @evening = "0000000"
     @night = "0000000"
 
-    puts "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-    puts form_params
-    
     days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     days_of_week.each_with_index do |day, index|
       if form_params[day].nil? == false
