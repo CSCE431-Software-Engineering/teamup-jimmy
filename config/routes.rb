@@ -12,8 +12,12 @@ Rails.application.routes.draw do
   resources :time_preferences, only: [:index, :edit, :new]
   resources :gym_preferences, except: :show
   get 'students/basic'
-  get 'students/index'
+  #####
+  get 'students/index', to: 'students#index', as: :student_index
   get 'students/settings'
+
+  #####
+  get 'students/new', to: 'students#new', as: :student_new
 
   get 'students/personal_info'
   get 'students/edit_name'
@@ -47,6 +51,7 @@ Rails.application.routes.draw do
   end
   get 'students/:id', to: 'students#show', constraints: { id: %r{[^/]+} }
 
+  ######
   # Routes for handling omniauth callback and sign in/out
   devise_for :accounts, controllers: { omniauth_callbacks: 'accounts/omniauth_callbacks' }
   devise_scope :account do
