@@ -35,6 +35,9 @@ Rails.application.routes.draw do
   get 'pages/home'
   get 'pages/match'
   get 'pages/profile'
+  #######
+  get 'pages/browse'
+  get '/search_users', to: 'pages#search', as: 'search_users'
 
   get 'time_preferences/index'
   get 'time_preferences/edit'

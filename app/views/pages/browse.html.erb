@@ -1,0 +1,28 @@
+<!-- app/views/pages/browse.html.erb -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag 'navbar', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <title>Browse</title>
+</head>
+<body>
+  <%= render 'pages/navbar' %>
+  <%= render(partial:'back', locals:{c: "pages", a: "match", s: "back-btn"}) %>
+
+  <!-- Search Bar -->
+  <%= form_tag(search_users_path, method: :get) do %>
+    <%= text_field_tag :query, params[:query], placeholder: "Search users by name" %>
+    <%= select_tag :genders, options_for_select(['', 'Male', 'Female', 'Other'], params[:genders]), include_blank: true, multiple: true %>
+    <%= submit_tag "Search", class: "btn btn-primary" %>
+  <% end %>
+
+  <!-- Intro -->
+  <div class="home-title">
+    <p>Welcome to Browse Page!</p>
+  </div>
+
+</body>
+</html>

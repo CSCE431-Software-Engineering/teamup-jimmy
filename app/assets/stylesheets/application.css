@@ -47,6 +47,42 @@ body {
   left: 1%;
 }
 
+/* Search Bar and Button styling */
+.btn-primary {
+  /* Style the Search button */
+  padding: 8px 15px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Search table styling */
+.user-info-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.user-info-table th, .user-info-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.user-info-table th {
+  background-color: #f2f2f2;
+}
+
+.user-info-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.user-info-table tbody tr:hover {
+  background-color: #e5e5e5;
+}
+
 /* Footer styling */
 .footer {
   background-color: #f3dbae; /* Choose a background color that fits your design */
