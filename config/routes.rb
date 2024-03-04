@@ -41,6 +41,10 @@ Rails.application.routes.draw do
   get 'pages/match'
   get 'pages/profile'
 
+  ### paths added for browsig feature ####
+  get 'pages/browse'
+  get '/search_users', to: 'pages#search', as: 'search_users'
+
   get 'time_preferences/index'
   get 'time_preferences/edit'
 
