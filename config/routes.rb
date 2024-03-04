@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :activities, except: :show
   resources :activity_preferences, only: [:index, :destroy, :new]
-  resources :time_preferences, only: [:index, :edit, :new]
+  resource :time_preferences, only: [:index, :edit, :new, :update]
   resources :gym_preferences, except: :show
   get 'students/basic'
   get 'students/index'
@@ -25,6 +25,11 @@ Rails.application.routes.draw do
   get 'students/edit_is_private'
   get 'students/edit_biography'
 
+
+  get 'students/matching_preferences'
+  get 'students/edit_gender_pref'
+  get 'students/edit_age_pref'
+
   get 'students/connect_socials'
   get 'students/workout_preferences'
 
@@ -35,7 +40,8 @@ Rails.application.routes.draw do
   get 'pages/home'
   get 'pages/match'
   get 'pages/profile'
-  #######
+
+  ### paths added for browsig feature ####
   get 'pages/browse'
   get '/search_users', to: 'pages#search', as: 'search_users'
 

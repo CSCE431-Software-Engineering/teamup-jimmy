@@ -105,3 +105,7 @@ label.radio-label {
 input[type="radio"] {
   margin-bottom: 0.75rem; /* Adjust the margin as needed */
 }
+
+.time-pref-edit-submit-btn{
+  margin-top: 1rem;
+}

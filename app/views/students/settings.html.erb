@@ -7,7 +7,15 @@
   <title>Jimmy</title>
 </head>
 <body>
-  <%= render 'pages/navbar' %>
+  <nav class="material-header">
+  <div class="material-banner">
+    <%= link_to students_path,  class: "navbar-link material-back-button" do %>
+      <%= image_tag('back_arrow.png', alt: 'Back', class: 'back-arrow-icon') %> Back
+    <% end %>
+    <h1 class="material-title">Profile Settings</h1>
+    <span class="material-spacer"></span>
+  </div>
+  </nav>
   <!-- logo -->
   <!-- intro -->
   <div class="edit-profile-main">
@@ -22,19 +30,19 @@
         <div class="students-listed-info-div">
           <%= link_to students_personal_info_path, class: 'info-row' do %>
             <div class="info-row-title">Update Personal Info</div>
-            <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Forward Arrow" %>
+            <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Forward Arrow" %>
           <% end %>
-          <%= link_to '/students/personal_info', class: 'info-row' do %>
+          <%= link_to students_matching_preferences_path, class: 'info-row' do %>
             <div class="info-row-title">Update Matching Preferences</div>
-            <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Forward Arrow" %>
+            <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Forward Arrow" %>
           <% end %>
           <%= link_to students_workout_preferences_path, class: 'info-row' do %>
             <div class="info-row-title">Update Workout Preferences</div>
-            <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Forward Arrow" %>
+            <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Forward Arrow" %>
           <% end %>
-          <%= link_to '/students/personal_info', class: 'info-row' do %>
+          <%= link_to students_connect_socials_path, class: 'info-row' do %>
             <div class="info-row-title">Connect Socials</div>
-            <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Forward Arrow" %>
+            <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Forward Arrow" %>
           <% end %>
         </div>
 

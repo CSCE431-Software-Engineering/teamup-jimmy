@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jimmy</title>
+</head>
+<body>
+  <nav class="material-header">
+    <div class="material-banner">
+      <%= link_to students_matching_preferences_path,  class: "navbar-link material-back-button" do %>
+        <%= image_tag('back_arrow.png', alt: 'Back', class: 'back-arrow-icon') %> Back
+      <% end %>
+      <h1 class="material-title">Gender Preference</h1>
+      <span class="material-spacer"></span>
+    </div>
+  </nav>
+  <div class="edit-profile-main">
+    <div class="edit-profile-inner"> 
+      <%= form_with(model: @current_student, local: true, method: :patch) do |form| %>
+        <div>
+          <p class = "edit-form-label">Workout partner gender prefernce</p>
+          <p class = "edit-form-label edit-form-subscript">
+            Please select from the list below for genders that you would like to consider for matchmaking. </p>
+          <p></p>
+        </div>
+
+        <div class="checkbox-container">
+          <div>
+            <%= form.label :gender_pref_female, 'Female' %>
+            <div>
+              <%= form.check_box :gender_pref_female %>
+            </div>
+          </div>
+          <div>  
+            <%= form.label :gender_pref_male, 'Male' %>
+            <div>
+              <%= form.check_box :gender_pref_male %>
+            </div>
+          </div>
+          <div>
+            <%= form.label :gender_pref_other, 'Other' %>
+            <div>
+              <%= form.check_box :gender_pref_other %>
+            </div>
+          </div>
+        </div>
+        <div class="submit-button-container">
+          <%= form.submit "Save", class: "material-button" %>
+        </div>
+      <% end %>  
+      <%= render 'pages/flash' %>
+    </div>
+  </div>    
+</body>
+</html>

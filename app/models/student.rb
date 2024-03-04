@@ -12,9 +12,17 @@ class Student < ApplicationRecord
   validates :name, presence: true
   validates :gender, presence: true, inclusion: { in: %w[Male Female Other] }
   validates :birthday, presence: true
-  validates :phone_number, presence: false
   validates :major, presence: false
   validates :is_private, presence: false
-  validates :grad_year, presence: false
   validates :biography, presence: false
+  validates :age_start_pref, presence: true
+  validates :age_end_pref, presence: true
+
+  validates :phone_number, format: { with: /\A\d{10}\z/, message: "must be exactly 10 digits long" }, allow_blank: true
+  validates :grad_year, format: { with: /\A\d{4}\z/, message: "must be a four-digit year" }, allow_blank: true
+
+
+  validates_inclusion_of :gender_pref_female, in: [true, false]
+  validates_inclusion_of :gender_pref_male, in: [true, false]
+  validates_inclusion_of :gender_pref_other, in: [true, false]
 end

@@ -24,7 +24,7 @@
               <div class="edit-form-field">
                 <p class = "edit-form-label">New phone number</p>
                 <p class = "edit-form-label edit-form-subscript">Do not include spaces, parentheses, or dashes.</p>
-                <%= form.text_field :phone_number, placeholder: 'Phone number', class: 'custom-styled-input' %>
+                <%= form.text_field :phone_number, placeholder: 'Phone number', class: 'custom-styled-input', pattern: "^[0-9]{10}$", title: "Please enter a 10-digit phone number without spaces, parentheses, or dashes." %>
               </div>
             </th>
           </tr>

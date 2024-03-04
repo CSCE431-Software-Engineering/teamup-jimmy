@@ -65,6 +65,7 @@
 }
 
 .students-edit-info-form{
+    border-spacing: 0px;
     margin: 0px;
     text-align: left;
     width: 100%;
@@ -137,7 +138,9 @@
     box-shadow: none;
 }
 
-  
+.edit-form-selector{
+    color: var(--primary-text-color )
+}
 
 .custom-styled-input{
     width: 94%;
@@ -198,3 +201,19 @@
     box-sizing: border-box;
 }
 
+.checkbox-container div{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.checkbox-container div input[type="checkbox"] {
+    width: 20px; /* or any size */
+    height: 20px; /* or any size */
+    cursor: pointer;
+  }
+  
+  .checkbox-container label {
+    margin-right: 10px; /* Space out the label from the checkbox */
+    width: 5rem;
+  }
