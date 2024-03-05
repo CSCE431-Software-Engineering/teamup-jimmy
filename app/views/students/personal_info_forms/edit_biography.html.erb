@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jimmy</title>
+</head>
+<body>
+<nav class="material-header">
+  <div class="material-banner">
+    <%= link_to students_personal_info_path,  class: "navbar-link material-back-button" do %>
+      <%= image_tag('back_arrow.png', alt: 'Back', class: 'back-arrow-icon') %> Back
+    <% end %>
+    <h1 class="material-title">Edit Biography</h1>
+    <span class="material-spacer"></span>
+  </div>
+</nav>
+  <div class="edit-profile-main">
+    <div class="edit-profile-inner">      
+      <%= form_with(model: @current_student, local: true) do |form| %>
+        <table class="students-edit-info-form">
+          <tr class="students-edit-info-form-row">
+            <th>
+              <div class="edit-form-field">
+                <p class = "edit-form-label">New biography</p>
+                <%= form.text_field :biography, placeholder: @biography_placeholder, class: 'custom-styled-input' %>
+              </div>
+            </th>
+          </tr>
+        </table>
+        <div class="submit-button-container">
+          <%= form.submit "Save", class: "material-button" %>
+        </div>
+      <% end %>  
+      <%= render 'pages/flash' %>
+    </div>
+  </div>    
+
+  </body>
+</html>

@@ -1,83 +1,96 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 require 'date'
 
-RSpec.describe "CreatingAccounts", type: :system do
+RSpec.describe 'CreatingAccounts', type: :system do
   before do
     driven_by(:rack_test)
   end
 
-  it 'check for a back button' do
+  it 'Unit: check for a back button' do
     visit '/students/basic'
 
     expect(page).to have_content('Back')
   end
 
-  it 'navigating back to previous new student page' do
+  it 'Unit: navigating back to previous new student page' do
     visit '/students/basic'
     click_on 'Back'
 
     expect(page).to have_content('Let\'s get started!')
   end
 
-  it 'preventing empty name' do
+  it 'Integrity: preventing empty name' do
     visit '/students/basic'
-    fill_in 'Name', with: ''
-    fill_in 'Email', with: 'vincentvalentine@tamu.edu'
-    select 'Male', from: 'Gender Identification Preference'
-    fill_in 'Select Your Birthday', with: DateTime.new(1950, 10, 13)
+    fill_in 'student_name', with: ''
+    fill_in 'student_email', with: 'vincentvalentine@tamu.edu'
+    select 'Male', from: 'student_gender'
+    fill_in 'student_birthday', with: '1950-10-13'
     click_on 'Create Profile'
 
-    expect(page).to have_content('Input cannot be blank')
+    expect(page).to have_content('There was a problem with your input. Please make sure to fill out every field.')
   end
 
-  it 'preventing empty email' do
+  it 'Integrity: preventing empty email' do
     visit '/students/basic'
-    fill_in 'Name', with: 'Barret Wallace'
-    fill_in 'Email', with: ''
-    select 'Male', with: 'Gender Identification Preference'
-    fill_in 'Select Your Birthday', with: DateTime.new(1972, 12, 15)
+    fill_in 'student_name', with: 'Barret Wallace'
+    fill_in 'student_email', with: ''
+    select 'Male', from: 'student_gender'
+    fill_in 'student_birthday', with: '1972-12-15'
     click_on 'Create Profile'
 
-    expect(page).to have_content('Input cannot be blank')
+    expect(page).to have_content('Email is not a valid TAMU email address.')
   end
 
-  it 'preventing empty gender' do
+  it 'Integrity: preventing empty gender' do
     visit '/students/basic'
-    fill_in 'Name', with: 'Aerith Gainsborough'
-    fill_in 'Email', with: 'aerithgainsborough@tamu.edu'
-    select 'Please select gender', with: 'Gender Identification Preference'
-    fill_in 'Select Your Birthday', with: DateTime.new(1985, 2, 7)
+    fill_in 'student_name', with: 'Aerith Gainsborough'
+    fill_in 'student_email', with: 'aerithgainsborough@tamu.edu'
+    select 'Please select gender', from: 'student_gender'
+    fill_in 'student_birthday', with: '1985-02-07'
     click_on 'Create Profile'
 
-    expect(page).to have_content('Input cannot be blank')
+    expect(page).to have_content('There was a problem with your input. Please make sure to fill out every field.')
   end
 
-  it 'preventing empty birthday' do
+  it 'Integrity: preventing empty birthday' do
     visit '/students/basic'
-    fill_in 'Name', with: 'Tifa Lockhart'
-    fill_in 'Email', with: 'tifalockhard@tamu.edu'
-    select 'Female', with: 'Gender Identification Preference'
-    fill_in 'Select Your Birthday', with: DateTime.new();
+    fill_in 'student_name', with: 'Tifa Lockhart'
+    fill_in 'student_email', with: 'tifalockhard@tamu.edu'
+    select 'Female', from: 'student_gender'
+    fill_in 'student_birthday', with: ''
     click_on 'Create Profile'
 
-    expect(page).to have_content('Input cannot be blank')
+    expect(page).to have_content('There was a problem with your input. Please make sure to fill out every field.')
   end
 
-  it 'test all empty' do
+  it 'Integrity: test all empty' do
     visit '/students/basic'
     click_on 'Create Profile'
 
-    expect(page).to have_content('Input cannot be blank')
+    expect(page).to have_content('Email is not a valid TAMU email address.')
   end
 
-  it 'test successful profile creation' do
+  it 'Integrity: test successful profile creation, with valid tamu email' do
     visit '/students/basic'
-    fill_in 'Name', with: 'Cloud Strife'
-    fill_in 'Email', with: 'cloudstrife@tamu.edu'
-    select 'Male', from: 'Gender Identification Preference'
-    fill_in 'Select Your Birthday', with: DateTime.new(1986, 8, 11)
+    fill_in 'student_name', with: 'Cloud Strife'
+    fill_in 'student_email', with: 'cloudstrife@tamu.edu'
+    select 'Male', from: 'student_gender'
+    fill_in 'student_birthday', with: '1986-08-11'
     click_on 'Create Profile'
 
     expect(page).to have_content('You\'re signed in!')
+  end
+
+  it 'Integrity: test unsuccessful profile creation, with non-tamu email' do
+    visit '/students/basic'
+    fill_in 'student_name', with: 'Cid Highwind'
+    fill_in 'student_email', with: 'cidhighwind@yahoo.com'
+    select 'Male', from: 'student_gender'
+    fill_in 'student_birthday', with: '1975-02-22'
+    click_on 'Create Profile'
+
+    expect(page).to have_content('Email is not a valid TAMU email address.')
   end
 end

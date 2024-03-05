@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateTimePreferences < ActiveRecord::Migration[7.0]
   def change
     create_table :time_preferences do |t|
@@ -9,6 +11,6 @@ class CreateTimePreferences < ActiveRecord::Migration[7.0]
       t.timestamps
     end
 
-    add_foreign_key :time_preferences, :students, column: :student_email, primary_key: "email"
+    add_foreign_key :time_preferences, :students, column: :student_email, primary_key: 'email'
   end
 end

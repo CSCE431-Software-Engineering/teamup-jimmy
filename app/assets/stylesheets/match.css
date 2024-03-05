@@ -1,0 +1,22 @@
+/* Style for the container of matches */
+.matches-container {
+  margin-top: 20px;
+}
+
+/* Style for individual match */
+.match {
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+/* Style for match details */
+.match-details {
+  font-size: 16px;
+}
+
+/* Style for matched user emails */
+.match-emails {
+  font-weight: bold;
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jimmy</title>
+</head>
+<body>
+<nav class="material-header">
+  <div class="material-banner">
+    <%= link_to students_personal_info_path,  class: "navbar-link material-back-button" do %>
+      <%= image_tag('back_arrow.png', alt: 'Back', class: 'back-arrow-icon') %> Back
+    <% end %>
+    <h1 class="material-title">Privacy Settings</h1>
+    <span class="material-spacer"></span>
+  </div>
+</nav>
+  <div class="edit-profile-main">
+    <div class="edit-profile-inner"> 
+
+      <%= form_with(model: @current_student, local: true, method: :patch) do |form| %>
+        <div class="privacy-form">
+          <p class = "edit-form-label">Account publicity</p>
+          <p class = "edit-form-label edit-form-subscript">
+            Having a public account will allow people you have not matched with to be 
+            able to view your profile through searching. </p>
+          <p class = "edit-form-label edit-form-subscript">
+            Setting it to private will 
+            only allow the people you have matched with to view your account profile.
+          </p>
+          <p></p>
+          <div>
+            <%= form.radio_button :is_private, "true", class: "bullet" %>
+            <%= form.label :is_private_true, "<strong>Private:</strong> Only let users you have matched with view your profile.".html_safe, value: "true" %>
+            <br>
+
+          </div>
+          <div>
+            <%= form.radio_button :is_private, "false", class: "bullet" %>
+            <%= form.label :is_private_false, "<strong>Public:</strong> Let anybody view your profile.".html_safe, value: "false" %>
+            <br>
+          </div>
+        </div>
+        <div class="submit-button-container">
+          <%= form.submit "Save", class: "material-button" %>
+        </div>
+      <% end %>  
+      <%= render 'pages/flash' %>
+    </div>
+  </div>    
+
+  </body>
+</html>

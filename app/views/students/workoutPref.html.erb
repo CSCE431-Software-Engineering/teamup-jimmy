@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag 'navbar', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <title>Jimmy</title>
+</head>
+
+<body>
+  <nav class="material-header">
+      <div class="material-banner">
+        <%= link_to students_index_path,  class: "navbar-link material-back-button" do %>
+          <%= image_tag('back_arrow.png', alt: 'Back', class: 'back-arrow-icon') %> Back
+        <% end %>
+        <h1 class="material-title">Workout Preference Settings</h1>
+        <span class="material-spacer"></span>
+      </div>
+    </nav>
+
+
+  <div class="edit-profile-main">
+    <div class = "profile-header-inner">
+      <div class="edit-profile-info">
+        <%= render 'pages/flash' %>
+        <div class = "personal_info_main">
+          <div class="students-listed-info-div">
+            <%= link_to time_preferences_index_path, class: 'info-row' do %>
+              <div class="info-row-title">Update workout time preferences</div>
+              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
+            <% end %>
+            <%= link_to gym_preferences_path, class: 'info-row' do %>
+              <div class="info-row-title">Update gym location preferences</div>
+              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
+            <% end %>
+            <%= link_to activity_preferences_path, class: 'info-row' do %>
+              <div class="info-row-title">Update activity prefereces</div>
+              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
+            <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
