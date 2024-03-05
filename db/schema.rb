@@ -10,19 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_03_183009) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_05_025323) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "accounts", force: :cascade do |t|
-    t.string "email", null: false
-    t.string "full_name"
-    t.string "uid"
-    t.string "avatar_url"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.index ["email"], name: "index_accounts_on_email", unique: true
-  end
 
   create_table "activities", force: :cascade do |t|
     t.string "activity_name"
@@ -58,9 +48,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_03_183009) do
   create_table "matches", force: :cascade do |t|
     t.string "student1_email", null: false
     t.string "student2_email", null: false
-    t.string "relation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "match_score", precision: 10, scale: 2
   end
 
   create_table "students", primary_key: "email", id: :string, force: :cascade do |t|
@@ -69,8 +59,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_03_183009) do
     t.date "birthday"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "provider"
-    t.string "uid"
     t.integer "age_start_pref", default: 18
     t.integer "age_end_pref", default: 99
     t.string "phone_number"
