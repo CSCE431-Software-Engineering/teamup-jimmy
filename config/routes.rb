@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   resources :landing, except: :show
   resources :students, except: :show, constraints: { id: /[^\/]+/ }
 
-
   resources :activities, except: :show
   resources :activity_preferences, only: [:index, :destroy, :new]
   resource :time_preferences, only: [:index, :edit, :new, :update]
@@ -25,6 +24,8 @@ Rails.application.routes.draw do
   get 'students/edit_is_private'
   get 'students/edit_biography'
 
+  get 'students/start_matching'
+  get '/start_matching', to: 'students#start_matching', as: 'start_matching'
 
 
   get 'students/matching_preferences'
@@ -55,14 +56,11 @@ Rails.application.routes.draw do
 
   get 'gym_preferences/edit'
   
-
-
   resources :activity_preferences do
     get 'experience', on: :member
     post 'experience', on: :member
   end
   get 'students/:id', to: 'students#show', constraints: { id: %r{[^/]+} }
-
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
