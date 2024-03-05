@@ -10,9 +10,8 @@
   <%= render 'pages/navbar' %>
   <!-- logo -->
   <!-- intro -->
-  <div class="home-title">
-      <p>Start Matching!</p>
-  </div>
-  <br/>
+  <%= form_with(url: students_start_matching_path, method: :get) do |form| %>
+    <%= form.submit "Start Matching!", class: "btn btn-primary" %>
+  <% end %>
 </body>
 </html>
