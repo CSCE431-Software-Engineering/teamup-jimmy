@@ -17,6 +17,8 @@ class Student < ApplicationRecord
   validates :biography, presence: false
   validates :age_start_pref, presence: true
   validates :age_end_pref, presence: true
+  validates :x_url, format: { with: /\A(?:(?:http|https):\/\/)?(?:www\.)?x\.com\/.+\z/, message: "must be a valid X URL" }, allow_blank: true
+  validates :instagram_url, format: { with: /\A(?:(?:http|https):\/\/)?(?:www\.)?instagram\.com\/.+\z/, message: "must be a valid Instagram URL" }, allow_blank: true
 
   validates :phone_number, format: { with: /\A\d{10}\z/, message: "must be exactly 10 digits long" }, allow_blank: true
   validates :grad_year, format: { with: /\A\d{4}\z/, message: "must be a four-digit year" }, allow_blank: true

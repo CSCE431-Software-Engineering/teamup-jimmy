@@ -24,11 +24,19 @@
       <div class="profile-info">
         <p class="profile-name"><%= @current_student.name %><p>
         <p class = "major-and-class"><%= @major_and_class %></p>
-        <div class = "socials-bar">
-          <%= image_tag asset_path("instagram_icon.png"), class: "social-link", alt: "Instagram Link" %>
-          <%= image_tag asset_path("x_icon.png"), class: "social-link", alt: "X Link" %>
-          <%= image_tag asset_path("snapchat_icon.png"), class: "social-link", alt: "Snapchat Link" %>
-        </div>
+        <div class="socials-bar">
+          <% if @current_student.instagram_url.present? %>
+            <%= link_to "https://#{@current_student.instagram_url}", target: "_blank", class: "social-link", alt: "Instagram Link" do %>
+              <%= image_tag asset_path("instagram_icon.png"), class: "social-link", alt: "Instagram Link" %>
+            <% end %>
+          <% end %>
+      
+        <% if @current_student.x_url.present? %>
+          <%= link_to "https://#{@current_student.x_url}", target: "_blank", class: "social-link", alt: "X Link" do %>
+            <%= image_tag asset_path("x_icon.png"), class: "social-link", alt: "X Link" %>
+          <% end %>
+        <% end %>
+      </div>
       </div>
     </div>
   </div>

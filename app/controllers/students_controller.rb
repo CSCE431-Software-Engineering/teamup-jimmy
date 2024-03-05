@@ -2,7 +2,7 @@
 
 class StudentsController < ApplicationController
 
-  before_action :set_current_student, only: [:index, :edit_gender_pref, :edit_age_pref, :personal_info, :edit_name, :edit_birthday, :edit_gender, :edit_grad_year, :edit_is_private, :edit_phone_number, :edit_major, :edit_biography, :matching_preferences, :connect_socials]
+  before_action :set_current_student, only: [:index, :edit_gender_pref, :edit_age_pref, :personal_info, :edit_name, :edit_birthday, :edit_gender, :edit_grad_year, :edit_is_private, :edit_phone_number, :edit_major, :edit_biography, :matching_preferences, :edit_instagram_url, :edit_snap_url, :edit_x_url, :connect_socials, :workout_preferences, :update]
   def index
     if @current_student.major && @current_student.grad_year.nil?
       @major_and_class = @current_student.major
@@ -98,11 +98,11 @@ class StudentsController < ApplicationController
       flash[:notice] = "Your account was successfully updated."
       redirect_to request.referer || default_path
     else
+      flash[:alert] = "There was a problem updating your account."
       logger.info "Failed to update Student: #{student_params}"
     logger.info "Errors: #{@student.errors.full_messages}"
 
 
-      flash.now[:alert] = "There was a problem updating your account."
       redirect_to request.referer || default_path
     end
   end
@@ -152,6 +152,19 @@ class StudentsController < ApplicationController
   def edit_age_pref
     render 'students/matching_preferences_forms/edit_age_pref'
   end
+
+  def edit_instagram_url
+    render 'students/socials_forms/edit_instagram_link'
+  end
+
+  def edit_x_url
+    render 'students/socials_forms/edit_x_link'
+  end
+
+  def edit_snap_url
+    render 'students/socials_forms/edit_snapchat_link'
+  end
+
   private
 
   def set_current_student
@@ -159,10 +172,10 @@ class StudentsController < ApplicationController
     unless @current_student
       flash[:alert] = 'You must be logged in to access this page.'
     end
-  end
+  end  
   
   # need to add more fields
   def student_params
-    params.require(:student).permit(:name, :email, :gender, :birthday, :phone_number, :major, :is_private, :grad_year, :biography, :gender_pref_female, :gender_pref_male, :gender_pref_other, :age_start_pref, :age_end_pref)
+    params.require(:student).permit(:name, :email, :gender, :birthday, :phone_number, :major, :is_private, :grad_year, :biography, :instagram_url, :x_url, :snap_url, :gender_pref_female, :gender_pref_male, :gender_pref_other, :age_start_pref, :age_end_pref)
   end
 end

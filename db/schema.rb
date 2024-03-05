@@ -77,9 +77,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_03_183009) do
     t.string "major"
     t.integer "grad_year"
     t.boolean "is_private"
-    t.string "instagram_url"
-    t.string "x_url"
-    t.string "snap_url"
+    t.string "instagram_url", default: ""
+    t.string "x_url", default: ""
+    t.string "snap_url", default: ""
     t.string "profile_picture_url"
     t.string "biography"
     t.boolean "gender_pref_male", default: true, null: false
