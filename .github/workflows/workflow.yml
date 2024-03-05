@@ -55,9 +55,63 @@ jobs:
         with:
           name: rubocop-report.txt
           path: rubocop.txt
-      - name: Upload brakeman report
-        uses: actions/upload-artifact@master
-        if: always()
-        with:
-          name: brakeman-report.txt
-          path: brakeman.txt
+
+
+  # accessibility-test:
+  #   name: Accessibility
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+      
+  #     # Setup Ruby. You can use the same version as your RSpec tests
+  #     - uses: ruby/setup-ruby@v1
+  #       with:
+  #         ruby-version: ${{ env.RUBY_VERSION }}
+      
+  #     # Install dependencies
+  #     - name: Install dependencies
+  #       run: |
+  #         gem install bundler
+  #         bundle install
+      
+  #     # Setup Node.js for pa11y
+  #     - name: Setup Node.js environment
+  #       run: |
+  #         curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+  #         . $HOME/.nvm/nvm.sh
+  #         nvm install 16 # Choose a version that supports ??= operator
+  #         nvm use 16
+  #         node -v
+
+      
+  #     # Install pa11y
+  #     - name: Install pa11y
+  #       run: npm install -g pa11y
+      
+  #     # Start the application server in the background
+  #     - name: Start Rails server
+  #       run: bundle exec rails server &
+  #       env:
+  #         RAILS_ENV: test
+      
+  #     # Wait for the server to start
+  #     - name: Wait for server
+  #       run: sleep 10 # You might need to adjust the sleep duration
+      
+  #     # Run pa11y tests
+  #     - name: Run accessibility tests
+  #       run: pa11y http://localhost:3000/students/basic
+      
+  #     # Upload accessibility report
+  #     - name: Upload accessibility report
+  #       uses: actions/upload-artifact@master
+  #       if: always()
+  #       with:
+  #         name: accessibility-report
+  #         path: pa11y-results.json
+  #     - name: Upload brakeman report
+  #       uses: actions/upload-artifact@master
+  #       if: always()
+  #       with:
+  #         name: brakeman-report.txt
+  #         path: brakeman.txt

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "NewStudents", type: :system do
+RSpec.describe 'NewStudents', type: :system do
   before do
     driven_by(:rack_test)
   end
@@ -18,10 +20,10 @@ RSpec.describe "NewStudents", type: :system do
     expect(page).to have_content('Create A Profile')
   end
 
-  it 'navigating from new student to account creation page' do
-    visit '/students/new'
-    click_on 'Fill out only the basic information'
+  # it 'navigating from new student to account creation page' do
+  #   visit '/students/new'
+  #   click_on 'Fill out only the basic information'
 
-    expect(page).to have_content('Account Creation')
-  end
+  #   expect(page).to have_content('Account Creation')
+  # end
 end

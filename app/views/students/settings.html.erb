@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag 'navbar', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <title>Jimmy</title>
+</head>
+<body>
+  <nav class="material-header">
+  <div class="material-banner">
+    <%= link_to students_path,  class: "navbar-link material-back-button" do %>
+      <%= image_tag('back_arrow.png', alt: 'Back', class: 'back-arrow-icon') %> Back
+    <% end %>
+    <h1 class="material-title">Profile Settings</h1>
+    <span class="material-spacer"></span>
+  </div>
+  </nav>
+  <!-- logo -->
+  <!-- intro -->
+  <div class="edit-profile-main">
+    <div class = "profile-header-inner">
+      <div class="profile-picture-div">
+        <img class="edit-profile-picture" src="https://i.pinimg.com/736x/d7/1d/1a/d71d1a41b69bbbf2ca2d94b918d86faf.jpg">
+        <p>Edit picture</p>
+        </div>
+      </div>
+      <div class="edit-profile-info">
+        <%= render 'pages/flash' %>
+        <div class="students-listed-info-div">
+          <%= link_to students_personal_info_path, class: 'info-row' do %>
+            <div class="info-row-title">Update Personal Info</div>
+            <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Forward Arrow" %>
+          <% end %>
+          <%= link_to students_matching_preferences_path, class: 'info-row' do %>
+            <div class="info-row-title">Update Matching Preferences</div>
+            <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Forward Arrow" %>
+          <% end %>
+          <%= link_to students_workout_preferences_path, class: 'info-row' do %>
+            <div class="info-row-title">Update Workout Preferences</div>
+            <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Forward Arrow" %>
+          <% end %>
+          <%= link_to students_connect_socials_path, class: 'info-row' do %>
+            <div class="info-row-title">Connect Socials</div>
+            <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Forward Arrow" %>
+          <% end %>
+        </div>
+
+
+    <!--
+    <div class="edit-profile-form">
+        <%= form_for(@current_student) do |s| %> 
+            <table class="students-edit-info-form">
+                <tr class="students-edit-info-form-row">
+                    <th>
+                        <div class="edit-form-label">
+                            <p>Display Name</p>
+                            <%= s.text_field(:name, placeholder: 'First Last', class: 'custom-styled-input') %>
+                        </div>
+                    </th>
+                </tr>
+                <tr class="students-edit-info-form-row">
+                    <th>
+                        <div class="edit-form-label">
+                            <p>Gender</p>
+                            <%= s.text_field(:gender, placeholder: 'M/F/Other', class: 'custom-styled-input') %>
+                        </div>
+                    </th>
+                </tr>
+                <tr class="students-edit-info-form-row">
+                    <th>
+                        <div class="edit-form-label">
+                            <p>Birthday</p>
+                            <%= s.date_field(:birthday, class: 'custom-styled-input') %>
+                        </div>
+                    </th>
+                </tr>
+                <tr class="students-edit-info-form-row">
+                    <th>
+                        <div class="edit-form-label">
+                            <p>Phone Number</p>
+                            <%= s.telephone_field(:phone_number, placeholder: '123-456-7890', class: 'custom-styled-input') %>
+                        </div>
+                    </th>
+                </tr>
+                <tr class="students-edit-info-form-row">
+                    <th>
+                        <div class="edit-form-label">
+                            <p>Major</p>
+                            <%= s.text_field(:major, placeholder: 'Your Major', class: 'custom-styled-input') %>
+                        </div>
+                    </th>
+                </tr>
+                <tr class="students-edit-info-form-row">
+                    <th>
+                        <div class="edit-form-label">
+                            <p>Graduation Year</p>
+                            <%= s.number_field(:grad_year, placeholder: 'YYYY', class: 'custom-styled-input') %>
+                        </div>
+                    </th>
+                </tr>
+                <tr class="students-edit-info-form-row">
+                    <th>
+                        <div class="edit-form-label">
+                            <p>Instagram URL</p>
+                            <%= s.url_field(:instagram_url, placeholder: 'https://', class: 'custom-styled-input') %>
+                        </div>
+                    </th>
+                </tr>
+                <tr class="students-edit-info-form-row">
+                    <th>
+                        <div class="edit-form-label">
+                            <p>X (Twitter) URL</p>
+                            <%= s.url_field(:x_url, placeholder: 'https://', class: 'custom-styled-input') %>
+                        </div>
+                    </th>
+                </tr>
+                <tr class="students-edit-info-form-row">
+                    <th>
+                        <div class="edit-form-label">
+                            <p>Snapchat URL</p>
+                            <%= s.url_field(:snap_url, placeholder: 'https://', class: 'custom-styled-input') %>
+                        </div>
+                    </th>
+                </tr>
+            </table>  
+        <% end %>
+    </div>
+  </div>
+  -->
+
+
+  <!-- below could be links too -->
+  <!-- the onclick part should be a function in the controller to determine
+  where the user is taken to after log in -->
+</body>
+</html>

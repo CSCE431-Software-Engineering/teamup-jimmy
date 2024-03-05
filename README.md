@@ -1,24 +1,101 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Introduction ##
+Our team is creating an application, Jimmy, as a part of the TeamUp organization. This application will help students at Texas A&M University find workout buddies according to their preferences and interests: users will be able to create profiles with their preferred workout activities, workout times, gym location, etc., and Jimmy will present other users' profiles that matched theirs the best and potentially connect with new workout buddies.
 
-Things you may want to cover:
+## Requirements ##
 
-* Ruby version
+This code has been run and tested on:
 
-* System dependencies
+* Ruby - 3.1.2
+* Rails - 7.0.8
+* Ruby Gems - Listed in `Gemfile`
+* PostgreSQL - 13.7
 
-* Configuration
+## External Deps  ##
 
-* Database creation
+* Docker - Download latest version at https://www.docker.com/products/docker-desktop
+* Heroku CLI - Download latest version at https://devcenter.heroku.com/articles/heroku-cli
+* Git - Downloat latest version at https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 
-* Database initialization
+## Installation ##
 
-* How to run the test suite
+Download this code repository by using git:
 
-* Services (job queues, cache servers, search engines, etc.)
+ `git clone https://github.com/CSCE431-Software-Engineering/teamup-jimmy`
 
-* Deployment instructions
 
-* ...
+## Tests ##
+
+An RSpec test suite is available and can be ran using:
+
+  `rspec spec/`
+
+## Execute Code ##
+
+Run the following code in Powershell if using windows or the terminal using Linux/Mac
+
+  `cd teamup-jimmy`
+
+  `docker run --rm -it --volume "$(pwd):/rails_app" -e DATABASE_USER=test_app -e DATABASE_PASSWORD=test_password -p 3000:3000 paulinewade/csce431:latest`
+
+Install the app
+
+  `bundle install && rails webpacker:install && rails db:create && db:migrate`
+
+Run the app
+  `rails server --binding:0.0.0.0`
+
+The application can be seen using a browser and navigating to http://localhost:3000/
+
+## Environmental Variables/Files ##
+
+N/A yet, coming soon!
+
+
+## Deployment ##
+
+Setup a Heroku account: https://signup.heroku.com/
+
+From the heroku dashboard select `New` -> `Create New Pipline`
+
+Name the pipeline, and link the respective git repo to the pipline
+
+Our application does not need any extra options, so select `Enable Review Apps` right away
+
+Click `New app` under review apps, and link your test branch from your repo
+
+Under staging app, select `Create new app` and link your main branch from your repo
+
+--------
+
+To add enviornment variables to enable google oauth2 functionality, head over to the settings tab on the pipeline dashboard
+
+Scroll down until `Reveal config vars`
+
+Add both your client id and your secret id, with fields `GOOGLE_OAUTH_CLIENT_ID` and `GOOGLE_OAUTH_CLIENT_SECRET` respectively
+
+Now once your pipeline has built the apps, select `Open app` to open the app
+
+With the staging app, if you would like to move the app to production, click the two up and down arrows and select `Move to production`
+
+And now your application is setup and in production mode!
+
+
+## CI/CD ##
+
+For continuous development, we set up Heroku to automatically deploy our apps when their respective github branches are updated.
+
+  `Review app: test branch`
+
+  `Production app: main branch`
+
+For continuous integration, we set up a Github action to run our specs, security checks, linter, etc. after every push or pull-request. This allows us to automatically ensure that our code is working as intended.
+
+## References ##
+
+- https://www.w3schools.com/howto/howto_js_filter_table.asp
+
+## Support ##
+
+N/A yet, coming soon!

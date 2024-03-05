@@ -11,9 +11,17 @@
   <!-- logo -->
   <!-- intro -->
   <div class="home-title">
-      <p>You're signed in!</p>
-      <p>Here are your matches.</p>
+    <p>You're signed in!</p>
+    <p>Here are your matches.</p>
   </div>
   <br/>
+  <div class="matches-container">
+    <% @matches.each do |match| %>
+      <div class="match">
+        <% matched_student = Student.find_by(email: match.student2_email) %>
+        <p>You matched with <%= matched_student.name %>!</p>
+      </div>
+    <% end %>
+  </div>
 </body>
 </html>

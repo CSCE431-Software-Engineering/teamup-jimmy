@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag 'navbar', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <title>Browse</title>
+</head>
+<body>
+  <%= render 'pages/navbar' %>
+  <%= render(partial:'back', locals:{c: "pages", a: "match", s: "back-btn"}) %>
+  <div class="home-title">
+    <p>Welcome to Browse Page!</p>
+  </div>
+
+  <!-- Search Bar -->
+  <%= form_tag(search_users_path, method: :get, id: 'search-form') do %>
+    <div class="search-bar">
+      <%= text_field_tag :query, params[:query], placeholder: "Search users by name", id: 'search-input' %>
+    </div>
+    <
+    <!-- Checkboxes for gender preference -->
+    <div class="gender-filters">
+      <label>
+        <%= check_box_tag :male, '1', params[:male] %>
+        Male
+      </label>
+
+      <label>
+        <%= check_box_tag :female, '1', params[:female] %>
+        Female
+      </label>
+
+      <label>
+        <%= check_box_tag :other, '1', params[:other] %>
+        Other
+      </label>
+    </div>
+
+    <%= submit_tag "Search", class: "btn btn-primary", id: 'search-submit' %>
+  <% end %>
+
+  
+  
+
+</body>
+</html>

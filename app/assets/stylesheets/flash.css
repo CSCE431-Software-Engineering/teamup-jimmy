@@ -1,0 +1,37 @@
+.flash-alert {
+  display: flex;          /* Use flexbox layout */
+  justify-content: center; /* Center children horizontally */
+  align-items: center;     /* Center children vertically if you also want vertical centering */
+  padding: 16px 0px;       /* Adjust padding as needed */
+  margin-bottom: 0px;
+  width: 100%;
+}
+
+.flash-alert-content{
+  width: 100%;
+  margin-left: 0%;
+  margin-right: 0%;
+  background-color: rgb(255, 188, 188);
+  color: rgb(196, 0, 0);
+  border-radius: 8px;
+  padding: 0px 1rem;
+}
+
+.flash-notice {
+  display: flex;          /* Use flexbox layout */
+  justify-content: center; /* Center children horizontally */
+  align-items: center;     /* Center children vertically if you also want vertical centering */
+  padding: 16px 0px;       /* Adjust padding as needed */
+  margin-bottom: 0px;
+  width: 100%;
+}
+
+.flash-notice-content{
+  width: 100%;
+  margin-left: 0%;
+  margin-right: 0%;
+  background-color:#E3FFED;
+  color: #36E873;
+  border-radius: 8px;
+  padding: 0px 1rem;
+}
