@@ -152,6 +152,25 @@ class StudentsController < ApplicationController
   def edit_age_pref
     render 'students/matching_preferences_forms/edit_age_pref'
   end
+
+  def start_matching
+    # Fetch the current student
+    @current_student = Student.find_by(email: session[:student_id])
+
+    # Retrieve preferences and criteria for matching
+    activity_preferences = @current_student.activity_preferences
+    gym_preferences = @current_student.gym_preferences
+
+    # Initialize the MatchingService with necessary parameters
+    matching_service = MatchingService.new(@current_student)
+
+    # Perform matching
+    matches = matching_service.match_students
+
+    # Redirect to the home page
+    redirect_to pages_home_path, notice: "Matching process completed successfully!"
+  end
+
   private
 
   def set_current_student
