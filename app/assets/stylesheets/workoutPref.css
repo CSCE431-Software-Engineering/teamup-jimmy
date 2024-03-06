@@ -41,6 +41,11 @@
   font-size: medium;
 }
 
+.edit-time-table-ch{
+  width: 4rem;
+  text-align: center;
+}
+
 .edit-time-table td{
   text-align: center;
   border-bottom: 1px solid black;
@@ -48,7 +53,7 @@
 }
 
 .edit-time-table tr{
-  border-bottom: 1px solid black
+  border-bottom: 1px solid black;
 }
 
 .edit-time-table-div{
