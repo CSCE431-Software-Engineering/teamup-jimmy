@@ -9,25 +9,27 @@ class PagesController < ApplicationController
 
   def match; end
 
-  def browse; end
-
-  def search
+  def browse; 
     @query = params[:query]
-    puts @query
 
-    # Updated to handle checkboxes
-    @genders_filter = params[:genders] || []
-    @genders_filter += ['Male'] if params[:male] == '1'
-    @genders_filter += ['Female'] if params[:female] == '1'
-    @genders_filter += ['Other'] if params[:other] == '1'
+    if @query.present?
+      # Updated to handle checkboxes
+      @genders_filter = params[:genders] || []
+      @genders_filter += ['Male'] if params[:male] == '1'
+      @genders_filter += ['Female'] if params[:female] == '1'
+      @genders_filter += ['Other'] if params[:other] == '1'
 
-    puts @genders_filter
+      name_condition = @query.present? ? "name ILIKE :query" : nil
+      genders_condition = @genders_filter.present? ? "gender IN (:genders)" : nil
 
-    name_condition = @query.present? ? "name ILIKE :query" : nil
-    genders_condition = @genders_filter.present? ? "gender IN (:genders)" : nil
+      conditions = [name_condition, genders_condition].compact.join(' AND ')
 
-    conditions = [name_condition, genders_condition].compact.join(' AND ')
+      @results = Student.where(conditions, query: "%#{@query.downcase}%", genders: @genders_filter)
 
-    @results = Student.where(conditions, query: "%#{@query.downcase}%", genders: @genders_filter)
+      @results = @results.where(is_private: false)
+    else
+      @results = -1
+    end
   end
+
 end
