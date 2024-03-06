@@ -4,19 +4,7 @@ class StudentsController < ApplicationController
 
   before_action :set_current_student, only: [:index, :edit_gender_pref, :edit_age_pref, :personal_info, :edit_name, :edit_birthday, :edit_gender, :edit_grad_year, :edit_is_private, :edit_phone_number, :edit_major, :edit_biography, :matching_preferences, :edit_instagram_url, :edit_snap_url, :edit_x_url, :connect_socials, :workout_preferences, :update]
   def index
-    if @current_student.major && @current_student.grad_year.nil?
-      @major_and_class = @current_student.major
-    elsif @current_student.major.nil? && @current_student.grad_year
-      @major_and_class = "Class of #{@current_student.grad_year}"
-    elsif @current_student.major && @current_student.grad_year
-      @major_and_class = "#{@current_student.major} • Class of #{@current_student.grad_year}"
-    else
-      @major_and_class = ""
-    end
-
-    @activity_ids = ActivityPreference.where(student_email: @current_student.email).pluck(:activity_id)
-    @current_activities = Activity.where(id: @activity_ids).pluck(:activity_name)
-    
+    redirect_to action: :show, id: @current_student.id and return if @current_student
   end
 
   def new
@@ -52,7 +40,7 @@ class StudentsController < ApplicationController
   end
 
   def show
-    @student = Student.find(params[:id])
+    set_profile_args
   end
 
   def settings
@@ -191,6 +179,23 @@ class StudentsController < ApplicationController
       flash[:alert] = 'You must be logged in to access this page.'
     end
   end  
+
+  def set_profile_args
+    @student = Student.find(params[:id])
+    if @student.major && @student.grad_year.nil?
+      @major_and_class = @student.major
+    elsif @student.major.nil? && @student.grad_year
+      @major_and_class = "Class of #{@student.grad_year}"
+    elsif @student.major && @student.grad_year
+      @major_and_class = "#{@student.major} • Class of #{@student.grad_year}"
+    else
+      @major_and_class = ""
+    end
+
+    @activity_ids = ActivityPreference.where(student_email: @student.email).pluck(:activity_id)
+    @current_activities = Activity.where(id: @activity_ids).pluck(:activity_name)
+  end
+
   
   # need to add more fields
   def student_params
