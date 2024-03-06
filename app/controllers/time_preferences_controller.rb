@@ -25,6 +25,7 @@ class TimePreferencesController < ApplicationController
       # Handle successful update, e.g., redirect or render success message
       flash[:notice] = 'Time preferences updated successfully.'
       # redirect_to some_path, notice: "Time preferences updated successfully."
+      redirect_to(action: "index")
     else
       # Handle errors, e.g., re-render the edit form with error messages
       flash[:alert] = 'There was an error updating your time preferences.'
@@ -66,11 +67,10 @@ class TimePreferencesController < ApplicationController
     @time_preference = TimePreference.find_by(student_email: @current_student.email)
 
     if @time_preference
-      @morning_iter = @time_preference.morning
-      @afternoon_iter = @time_preference.afternoon
-      @evening_iter = @time_preference.evening
-      @night_iter = @time_preference.night
-
+      @morning_iter = iterate_over_times(@time_preference.morning)
+      @afternoon_iter = iterate_over_times(@time_preference.afternoon)
+      @evening_iter = iterate_over_times(@time_preference.evening)
+      @night_iter = iterate_over_times(@time_preference.night)
     else
       @morning_iter, @afternoon_iter, @evening_iter, @night_iter = "", "", "", ""
     end
