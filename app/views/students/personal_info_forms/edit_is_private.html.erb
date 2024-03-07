@@ -30,13 +30,13 @@
           </p>
           <p></p>
           <div>
-            <%= form.radio_button :is_private, "true", class: "bullet" %>
-            <%= form.label :is_private_true, "<strong>Private:</strong> Only let users you have matched with view your profile.".html_safe, value: "true" %>
-            <br>
+           <%= form.radio_button :is_private, "true", id: 'is_private_true', class: "bullet" %>
+           <%= form.label :is_private_true, "<strong>Private:</strong> Only let users you have matched with view your profile.".html_safe, value: "true" %>
+           <br>
 
           </div>
           <div>
-            <%= form.radio_button :is_private, "false", class: "bullet" %>
+            <%= form.radio_button :is_private, "false", id: 'is_private_false', class: "bullet" %>
             <%= form.label :is_private_false, "<strong>Public:</strong> Let anybody view your profile.".html_safe, value: "false" %>
             <br>
           </div>
