@@ -15,25 +15,25 @@ RSpec.feature "EditPrivacySettings", type: :feature do
     visit '/students/edit_is_private'
   end
 
-  scenario 'Clicking back button returns to the previous page' do
-    click_link 'Back'
-    expect(page).to have_current_path(students_personal_info_path)
-  end
-
-  scenario 'Successfully sets account to private' do
+  scenario 'Sunny: Successfully sets account to private' do
     choose 'is_private_true' # This will look for an element with id 'is_private_true'
     click_button 'Save'
     expect(page).to have_content('Your account was successfully updated.')
   end
 
-  scenario 'Successfully sets account to public' do
+  scenario 'Sunny: Successfully sets account to public' do
     choose 'is_private_false' # This will look for an element with id 'is_private_false'
     click_button 'Save'
     expect(page).to have_content('Your account was successfully updated.')
   end
 
-  scenario 'Form submission successful when no option is selected' do
+  scenario 'Rainy: Form submission successful when no option is selected' do
     click_button 'Save'
     expect(page).to have_content('Your account was successfully updated.') 
+  end
+
+  scenario 'Rainy: Clicking back button without selecting returns to the previous page' do
+    click_link 'Back'
+    expect(page).to have_current_path(students_personal_info_path)
   end
 end
