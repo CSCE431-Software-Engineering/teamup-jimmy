@@ -9,7 +9,7 @@
 <body>
   <nav class="material-header">
     <div class="material-banner">
-      <%= link_to students_index_path,  class: "navbar-link material-back-button" do %>
+      <%= link_to students_settings_path,  class: "navbar-link material-back-button" do %>
         <%= image_tag('back_arrow.png', alt: 'Back', class: 'back-arrow-icon') %> Back
       <% end %>
       <h1 class="material-title">Profile Settings</h1>
@@ -25,42 +25,42 @@
             <%= link_to '/students/edit_name', class: 'info-row' do %>
               <div class="info-row-title">Name</div>
               <div class="info-row-content"><%= @current_student.name %></div>
-              <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Instagram Link" %>
+              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
             <% end %>
             <%= link_to '/students/edit_biography', class: 'info-row' do %>
               <div class="info-row-title">Biography</div>
               <div class="info-row-content"><%= @current_student.biography%></div>
-              <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Instagram Link" %>
+              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
             <% end %>
             <%= link_to '/students/edit_gender', class: 'info-row' do %>
               <div class="info-row-title">Gender</div>
               <div class="info-row-content"><%= @current_student.gender %></div>
-              <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Instagram Link" %>
+              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
               <% end %>
             <%= link_to '/students/edit_birthday', class: 'info-row' do %>
               <div class="info-row-title">Birthday</div>
               <div class="info-row-content"><%= @current_student.birthday %></div>
-              <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Instagram Link" %>
+              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
             <% end %>
             <%= link_to '/students/edit_phone_number', class: 'info-row' do %>
               <div class="info-row-title">Phone Number</div>
               <div class="info-row-content"><%= @current_student.phone_number %></div>
-              <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Instagram Link" %>
+              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
             <% end %>
             <%= link_to '/students/edit_major', class: 'info-row' do %>
               <div class="info-row-title">Major</div>
               <div class="info-row-content"><%= @current_student.major %></div>
-              <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Instagram Link" %>
+              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
             <% end %>
             <%= link_to '/students/edit_grad_year', class: 'info-row' do %>
               <div class="info-row-title">Graduation Year</div>
               <div class="info-row-content"><%= @current_student.grad_year %></div>
-              <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Instagram Link" %>
+              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
             <% end %>
             <%= link_to '/students/edit_is_private', class: 'info-row' do %>
               <div class="info-row-title">Privacy</div>
               <div class="info-row-content"><%= @account_publicity%></div>
-              <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Instagram Link" %>
+              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
             <% end %>
         </div>
       </div>

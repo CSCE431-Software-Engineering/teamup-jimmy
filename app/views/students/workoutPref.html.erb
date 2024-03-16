@@ -25,17 +25,17 @@
         <%= render 'pages/flash' %>
         <div class = "personal_info_main">
           <div class="students-listed-info-div">
-            <%= link_to time_preferences_path, class: 'info-row' do %>
+            <%= link_to time_preferences_index_path, class: 'info-row' do %>
               <div class="info-row-title">Update workout time preferences</div>
-              <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Instagram Link" %>
+              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
             <% end %>
             <%= link_to gym_preferences_path, class: 'info-row' do %>
               <div class="info-row-title">Update gym location preferences</div>
-              <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Instagram Link" %>
+              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
             <% end %>
             <%= link_to activity_preferences_path, class: 'info-row' do %>
               <div class="info-row-title">Update activity prefereces</div>
-              <%= image_tag asset_path("forward_arrow"), class: "forward-arrow", alt: "Instagram Link" %>
+              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
             <% end %>
         </div>
       </div>

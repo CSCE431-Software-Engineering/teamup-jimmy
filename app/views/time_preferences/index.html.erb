@@ -11,7 +11,7 @@
 <body>
   <nav class="material-header">
   <div class="material-banner">
-    <%= link_to students_index_path,  class: "navbar-link material-back-button" do %>
+    <%= link_to students_workout_preferences_path,  class: "navbar-link material-back-button" do %>
       <%= image_tag('back_arrow.png', alt: 'Back', class: 'back-arrow-icon') %> Back
     <% end %>
     <h1 class="material-title">Time Preferences</h1>
@@ -24,10 +24,10 @@
       <thead>
         <tr>
         <th></th>
-        <th> Morning </th>
-        <th> Afternoon </th>
-        <th> Evening </th>
-        <th> Night </th>
+        <th class="edit-time-table-ch"> Morning </th>
+        <th class="edit-time-table-ch"> Afternoon </th>
+        <th class="edit-time-table-ch"> Evening </th>
+        <th class="edit-time-table-ch"> Night </th>
         </tr>
       </thead>
 

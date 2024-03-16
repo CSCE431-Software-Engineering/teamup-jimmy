@@ -1,23 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe "Times", type: :request do
-  describe "GET /index" do
+  describe "GET /edit" do
     it "returns http success" do
-      get "/time/index"
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET /new" do
-    it "returns http success" do
-      get "/time/new"
+      get "/gym_preferences/edit"
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "GET /edit" do
     it "returns http success" do
-      get "/time/edit"
+      get "/gym_preferences/edit"
+      expect(response).to have_http_status(:success)
+    end
+  end
+
+  describe "GET /edit" do
+    it "returns http success" do
+      get "/gym_preferences/edit"
       expect(response).to have_http_status(:success)
     end
   end

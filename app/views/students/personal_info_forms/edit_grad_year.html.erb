@@ -23,7 +23,7 @@
             <th>
               <div class="edit-form-field">
                 <p class = "edit-form-label">New graduation year</p>
-                <%= form.text_field :grad_year, placeholder: '2023', class: 'custom-styled-input' %>
+                <%= form.text_field :grad_year, placeholder: '2023', class: 'custom-styled-input', pattern: '\d{4}', title: 'Graduation year must be a four-digit number.' %>
               </div>
             </th>
           </tr>

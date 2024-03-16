@@ -12,7 +12,7 @@
       <%= link_to students_settings_path,  class: "navbar-link material-back-button" do %>
         <%= image_tag('back_arrow.png', alt: 'Back', class: 'back-arrow-icon') %> Back
       <% end %>
-      <h1 class="material-title">Profile Settings</h1>
+      <h1 class="material-title">Matching Preferences</h1>
       <span class="material-spacer"></span>
     </div>
   </nav>
@@ -22,16 +22,15 @@
         <%= render 'pages/flash' %>
         <div class = "personal_info_main">
           <div class="students-listed-info-div">
-            <%= link_to students_edit_instagram_url_path, class: 'info-row' do %>
-              <div class="info-row-title">Connect Insta</div>
-              <div class="info-row-content"><%= @current_student.instagram_url %></div>
+            <%= link_to students_edit_gender_pref_path, class: 'info-row' do %>
+              <div class="info-row-title">Preferred gender of workout partners</div>
               <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
             <% end %>
-            <%= link_to students_edit_x_url_path, class: 'info-row' do %>
-              <div class="info-row-title">Connect X</div>
-              <div class="info-row-content"><%= @current_student.x_url%></div>
+            <%= link_to students_edit_age_pref_path, class: 'info-row' do %>
+              <div class="info-row-title">Preferred age of workout partners</div>
               <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
             <% end %>
+          </div>
         </div>
       </div>
     </div>

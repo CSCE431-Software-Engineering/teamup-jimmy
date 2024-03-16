@@ -56,13 +56,8 @@ Rails.application.routes.draw do
 
   get 'gym_preferences/edit'
   
-  resources :activity_preferences do
-    get 'experience', on: :member
-    post 'experience', on: :member
-  end
-  get 'students/:id', to: 'students#show', constraints: { id: %r{[^/]+} }
 
-  
+
   resources :activity_preferences do
     get 'experience', on: :member
     post 'experience', on: :member
