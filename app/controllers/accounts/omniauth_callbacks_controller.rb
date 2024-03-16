@@ -16,9 +16,10 @@ class Accounts::OmniauthCallbacksController < Devise::OmniauthCallbacksControlle
   
   def sign_in_and_redirect_existing_or_new_account(account)
     if account.persisted?
-      redirect_to student_index_path
+      session[:student_id] = account.email.split('@').first
+      redirect_to students_index_path
     else
-      redirect_to student_new_path
+      redirect_to students_new_path
     end
   end
   
