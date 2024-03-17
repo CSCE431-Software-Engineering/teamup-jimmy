@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :activity_preferences, only: [:index, :destroy, :new]
   resource :time_preferences, only: [:index, :edit, :new, :update]
   resources :gym_preferences, except: :show
+  resources :matches, only: [:index, :pending, :matched, :blocked]
 
   get '/logout', to: 'application#logout'
 
@@ -64,6 +65,9 @@ Rails.application.routes.draw do
 
   get 'gym_preferences/edit'
   
+  get 'matches/pending'
+  get 'matches/matched'
+  get 'matches/blocked'
 
 
   resources :activity_preferences do
