@@ -80,3 +80,8 @@ end
 gem 'brakeman'
 gem 'rubocop'
 gem 'yaml_db'
+
+gem 'devise'
+gem 'omniauth', '~> 1.9.1'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'

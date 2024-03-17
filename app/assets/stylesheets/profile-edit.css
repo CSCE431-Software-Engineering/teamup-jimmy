@@ -103,8 +103,9 @@
 .material-button {
     width: 100%;
     padding: 0.6rem 1.2rem;
-    font-size: 14px;
-    text-transform: uppercase;
+    font-size: 1em;
+    /* text-transform: uppercase; */
+    text-decoration: none;
     color: var(--primary-text-color);
     background-color: #F3DBAE;
     border: none;
@@ -217,3 +218,23 @@
     margin-right: 10px; /* Space out the label from the checkbox */
     width: 5rem;
   }
+
+.delete-account-button{
+    justify-content: center;
+    background-color: #f44336;
+    color: white;
+}
+
+.delete-account-button:hover{
+    background-color: #d32f2f;
+}
+
+.cancel-delete-account-container{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    width: 100%;
+    text-decoration: none!important;
+    text-align: center;
+}

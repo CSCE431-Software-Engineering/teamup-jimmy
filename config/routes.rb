@@ -10,6 +10,10 @@ Rails.application.routes.draw do
   resources :activity_preferences, only: [:index, :destroy, :new]
   resource :time_preferences, only: [:index, :edit, :new, :update]
   resources :gym_preferences, except: :show
+
+  get '/logout', to: 'application#logout'
+
+
   get 'students/basic'
   get 'students/index'
   get 'students/settings'
@@ -23,6 +27,7 @@ Rails.application.routes.draw do
   get 'students/edit_grad_year'
   get 'students/edit_is_private'
   get 'students/edit_biography'
+  get 'students/delete_confirmation'
 
   get 'students/start_matching'
   get '/start_matching', to: 'students#start_matching', as: 'start_matching'
@@ -38,6 +43,9 @@ Rails.application.routes.draw do
   get 'students/edit_snap_url'
   
   get 'students/workout_preferences'
+
+  get 'students/:id', to: 'students#show', constraints: { id: %r{[^/]+} }
+  delete 'students/:id', to: 'students#destroy', as: 'destroy_student'
 
   get 'customization/personalPref'
   get 'customization/socialMedia'
@@ -56,11 +64,23 @@ Rails.application.routes.draw do
 
   get 'gym_preferences/edit'
   
+
+
   resources :activity_preferences do
     get 'experience', on: :member
     post 'experience', on: :member
   end
-  get 'students/:id', to: 'students#show', constraints: { id: %r{[^/]+} }
+
+
+
+  ######
+  # Routes for handling omniauth callback and sign in/out
+  devise_for :accounts, controllers: { omniauth_callbacks: 'accounts/omniauth_callbacks' }
+  devise_scope :account do
+    get 'accounts/sign_in', to: 'accounts/sessions#new', as: :new_account_session
+    get 'accounts/sign_out', to: 'accounts/sessions#destroy', as: :destroy_account_session
+  end
+
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
