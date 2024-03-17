@@ -15,11 +15,25 @@ class Accounts::OmniauthCallbacksController < Devise::OmniauthCallbacksControlle
   private
   
   def sign_in_and_redirect_existing_or_new_account(account)
+    
     if account.persisted?
-      session[:student_id] = account.email.split('@').first
-      redirect_to students_index_path
+      
+      # Try to find the student associated with the account by email
+      student_email_prefix = account.email.split('@').first
+      session[:student_id] = student_email_prefix
+      student = Student.find_by(email: student_email_prefix)
+      if student.present?
+        # If a student entity exists, set the session and redirect to the students index
+        redirect_to students_index_path
+      else
+        # If a student entity does not exist, create one
+        session[:student_id] = student_email_prefix
+        redirect_to students_basic_path
+      end
     else
-      redirect_to students_new_path
+      # If the account is new, sign in and redirect to the path for new accounts
+      sign_in account, event: :authentication
+      redirect_to after_sign_in_path_for(account)
     end
   end
   

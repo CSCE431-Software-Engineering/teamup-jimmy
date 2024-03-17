@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jimmy</title>
+</head>
+<body>
+<nav class="material-header">
+  <div class="material-banner">
+    <%= link_to students_settings_path,  class: "navbar-link material-back-button" do %>
+      <%= image_tag('back_arrow.png', alt: 'Back', class: 'back-arrow-icon') %> Back
+    <% end %>
+    <h1 class="material-title">Delete Account</h1>
+    <span class="material-spacer"></span>
+  </div>
+</nav>
+  <div class="edit-profile-main">
+    <div class="edit-profile-inner">      
+        <div class="edit-profile-info">
+          <h2>Are you sure you want to delete your account?</h2>
+          <p>This action cannot be undone.</p>
+          <div class="submit-button-container cancel-delete-account-container">
+            <%= link_to students_settings_path, class: "material-button" do %>Cancel<% end %>
+          </div>
+          <%= form_with(url: student_path(@current_student), method: :delete) do |form| %>
+            <%= form.submit 'Delete my account', class: "material-button delete-account-button" %>
+          <% end %>
+      </div>
+      <%= render 'pages/flash' %>
+    </div>
+  </div>    
+
+  </body>
+</html>
