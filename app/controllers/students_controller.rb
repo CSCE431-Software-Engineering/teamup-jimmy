@@ -2,7 +2,7 @@
 
 class StudentsController < ApplicationController
 
-  before_action :set_current_student, only: [:index, :edit_gender_pref, :edit_age_pref, :personal_info, :edit_name, :edit_birthday, :edit_gender, :edit_grad_year, :edit_is_private, :edit_phone_number, :edit_major, :edit_biography, :matching_preferences, :edit_instagram_url, :edit_snap_url, :edit_x_url, :connect_socials, :workout_preferences, :update]
+  before_action :set_current_student, only: [:index, :delete_confirmation, :delete, :destroy, :edit_gender_pref, :edit_age_pref, :personal_info, :edit_name, :edit_birthday, :edit_gender, :edit_grad_year, :edit_is_private, :edit_phone_number, :edit_major, :edit_biography, :matching_preferences, :edit_instagram_url, :edit_snap_url, :edit_x_url, :connect_socials, :workout_preferences, :update]
   def index
     redirect_to action: :show, id: @current_student.id and return if @current_student
   end
@@ -17,24 +17,14 @@ class StudentsController < ApplicationController
 
   def create
     @student = Student.new(student_params)
+    
+    @student.email = session[:student_id]
+    puts @student.email
 
-    # Regex pattern to check for a valid TAMU email
-    tamu_email_regex = /\A[^@]+@(\w+\.)?tamu\.edu\z/
-
-    # Verify the email format
-    if tamu_email_regex.match?(@student.email)
-      # If the email format is correct, split before the '@' sign if needed
-
-      @student.email = @student.email.split('@').first
-      if Student.find_by(email: @student.email) || @student.save
-        session[:student_id] = @student.email
-        redirect_to controller: 'pages', action: 'home'
-      else
-        flash[:alert] = 'There was a problem with your input. Please make sure to fill out every field.'
-        redirect_to(action: 'basic')
-      end
+    if Student.find_by(email: @student.email) || @student.save
+      redirect_to controller: 'pages', action: 'home'
     else
-      flash[:alert] = 'Email is not a valid TAMU email address.'
+      flash[:alert] = 'There was a problem with your input. Please make sure to fill out every field.'
       redirect_to(action: 'basic')
     end
   end
@@ -49,6 +39,25 @@ class StudentsController < ApplicationController
 
     flash[:alert] = 'You must be logged in to access this page.'
   end
+
+  def delete_confirmation
+  end
+
+  def delete
+  end
+
+  def destroy
+    if params[:id] == session[:student_id]
+      @student_to_delelete = Student.find(params[:id])
+      @student_to_delelete.destroy
+      flash[:notice] = 'Your account was successfully deleted.'
+      redirect_to root_path
+    else
+      flash[:alert] = 'You are not authorized to delete this account.'
+      redirect_to students_index_path
+    end
+  end
+
 
   def personal_info
     if @current_student.is_private.nil?

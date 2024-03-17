@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_06_074815) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_16_183502) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -87,9 +87,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_06_074815) do
   end
 
   add_foreign_key "activity_preferences", "activities"
-  add_foreign_key "activity_preferences", "students", column: "student_email", primary_key: "email"
-  add_foreign_key "gym_preferences", "students", column: "student_email", primary_key: "email"
-  add_foreign_key "matches", "students", column: "student1_email", primary_key: "email"
-  add_foreign_key "matches", "students", column: "student2_email", primary_key: "email"
-  add_foreign_key "time_preferences", "students", column: "student_email", primary_key: "email"
+  add_foreign_key "activity_preferences", "students", column: "student_email", primary_key: "email", on_delete: :cascade
+  add_foreign_key "gym_preferences", "students", column: "student_email", primary_key: "email", on_delete: :cascade
+  add_foreign_key "matches", "students", column: "student1_email", primary_key: "email", on_delete: :cascade
+  add_foreign_key "matches", "students", column: "student2_email", primary_key: "email", on_delete: :cascade
+  add_foreign_key "time_preferences", "students", column: "student_email", primary_key: "email", on_delete: :cascade
 end
