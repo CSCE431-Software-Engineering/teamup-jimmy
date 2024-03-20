@@ -18,13 +18,15 @@
   </nav>
 
   <div class="card-container">
-    <% @matched_emails.each do |student|%>
-    <div class="card-body"> 
-        <h3> <%= student.name %> </h3>
-        <p> <%= @major_class_hash[student] %>
-        <p> <%= student.biography%>
+    <div class="card-grid">
+        <% @matched_emails.each do |student|%>
+        <div class="card-body"> 
+            <h3> <%= student.name %> </h3>
+            <p> <%= @major_class_hash[student] %> </p>
+            <p> <%= student.biography%> </p>
+        </div>
+        <%end%>
     </div>
-    <%end%>
   </div>
   
 </body>

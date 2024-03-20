@@ -1,14 +1,23 @@
-.card-container{
-    width: 80%;
+.card-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));;
+    gap: 1rem;
+    max-width: 100%;
     padding: 3%;
 }
 
 .card-body{
-    display: flex;
+    display: inline-block;
     border-radius: 0.5rem;
     border: 1.5px solid black;
     height: 16rem;
-    min-width: 33%;
+    min-width: 12rem;
+    max-width: 12rem;
     text-align: center;
-    padding: 1.5%;
 }
+
+.card-container {
+    display: flex;
+    justify-content: center; /* Horizontally center the grid */
+    align-items: center; /* Vertically center the grid */
+  }
