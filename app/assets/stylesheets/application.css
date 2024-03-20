@@ -146,7 +146,7 @@ body {
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   text-align: center;
-  color: tan;
+  color: black;
 }
 
 .landing-logo {
@@ -168,9 +168,9 @@ body {
 .landing-button {
   height: 3rem; /* Increased from 2rem to 3rem */
   margin-top: 1.5rem; /* Increased from 1rem to 1.5rem */
-  border-color: tan;
-  color: tan;
-  background-color: antiquewhite;
+  border-color: black;
+  color: black;
+  background-color: rgb(243, 219, 174);
   border-radius: 0.25rem;
   font-size: 1.25rem; /* Increase font size for better readability */
   display: block;
