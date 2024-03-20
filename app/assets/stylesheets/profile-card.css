@@ -1,0 +1,12 @@
+.card-container{
+    width: 80%;
+    padding: 3%;
+}
+
+.card-body{
+    border-radius: 0.5rem;
+    border: 1.5px solid black;
+    height: 16rem;
+    max-width: 12rem;
+    text-align: center;
+}

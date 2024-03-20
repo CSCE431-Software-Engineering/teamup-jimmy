@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_16_183502) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_20_021031) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -61,6 +61,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_16_183502) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.decimal "match_score", precision: 10, scale: 2
+    t.integer "relationship_enum", default: 0
   end
 
   create_table "students", primary_key: "email", id: :string, force: :cascade do |t|
