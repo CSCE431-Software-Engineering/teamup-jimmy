@@ -4,11 +4,11 @@
 }
 
 .card-body{
-    display: inline;
+    display: flex;
     border-radius: 0.5rem;
     border: 1.5px solid black;
     height: 16rem;
-    max-width: 12rem;
+    min-width: 33%;
     text-align: center;
     padding: 1.5%;
 }
