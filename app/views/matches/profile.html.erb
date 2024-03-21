@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag 'navbar', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <title>Jimmy</title>
+</head>
+<body>
+  <%= render(partial:'header', locals:{dest: matches_matched_path, name: @student.name}) %>
+  <!-- logo -->
+  <!-- intro -->
+  <div class="profile-header">
+    <div class = "profile-header-inner">
+      <div class = "profile-picture-and-buttons">
+        <div class = "spacer"></div>
+        <div class="profile-picture-div">
+          <img class="profile-picture" src="https://i.pinimg.com/736x/d7/1d/1a/d71d1a41b69bbbf2ca2d94b918d86faf.jpg">
+        </div>
+        <div class = "spacer"></div>
+      </div>
+      <div class="profile-info">
+        <p class="profile-name"><%= @student.name %><p>
+        <p class = "major-and-class"><%= @major_and_class %></p>
+        <div class="socials-bar">
+          <% if @student.instagram_url.present? %>
+            <%= link_to "https://#{@student.instagram_url}", target: "_blank", class: "social-link", alt: "Instagram Link" do %>
+              <%= image_tag asset_path("instagram_icon.png"), class: "social-link", alt: "Instagram Link" %>
+            <% end %>
+          <% end %>
+      
+        <% if @student.x_url.present? %>
+          <%= link_to "https://#{@student.x_url}", target: "_blank", class: "social-link", alt: "X Link" do %>
+            <%= image_tag asset_path("x_icon.png"), class: "social-link", alt: "X Link" %>
+          <% end %>
+        <% end %>
+      </div>
+      </div>
+    </div>
+  </div>
+  <div class="profile-body">
+    <div class="profile-body-inner">
+      <p class="profile-title">About Me</p>
+      <p> <%= @student.biography %></p> 
+
+      <p class="profile-title">Workouts</p>
+      <% @current_activities.each do |name|%>
+      <li class="profile-body-text"><%=name%></li>
+      <%end%>
+    </div>
+    
+  </div>
+</body>
+</html>
