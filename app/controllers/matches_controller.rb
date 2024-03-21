@@ -20,23 +20,7 @@ class MatchesController < ApplicationController
     @existing_matches_A = Match.where(student1_email: @current_student, relationship_enum: 0)
     
     # @matched_emails = Student.where(email: @existing_matches_A&.pluck(:student2_email)).or(Student.where(email: @existing_matches_B&.pluck(:student1_email)))    
-    @matched_emails = Student.where(email: @existing_matches_A&.pluck(:student2_email))
-    
-    @major_class_hash = {}
-
-    @matched_emails.each do |email|
-      student = Student.find_by(email: email)
-      if student.major && student.grad_year.nil?
-        major_and_class = student.major
-      elsif student.major.nil? && student.grad_year
-        major_and_class = "Class of #{student.grad_year}"
-      elsif student.major && student.grad_year
-        major_and_class = "#{student.major} • Class of #{@student.grad_year}"
-      else
-        major_and_class = ""
-      end
-      @major_class_hash[email] = major_and_class
-    end
+    @matched_emails = Student.where(email: @existing_matches_A&.pluck(:student1_email))
 
   end
 

@@ -69,7 +69,6 @@ Rails.application.routes.draw do
   get 'matches/matched'
   get 'matches/blocked'
 
-
   resources :activity_preferences do
     get 'experience', on: :member
     post 'experience', on: :member

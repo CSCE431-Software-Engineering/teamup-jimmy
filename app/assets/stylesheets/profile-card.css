@@ -1,12 +1,51 @@
-.card-container{
-    width: 80%;
-    padding: 3%;
+.card-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));;
+  gap: 1rem;
+  max-width: 100%;
+  padding: 3%;
 }
 
 .card-body{
-    border-radius: 0.5rem;
-    border: 1.5px solid black;
-    height: 16rem;
-    max-width: 12rem;
-    text-align: center;
+  display: inline-block;
+  border-radius: 0.5rem;
+  background-color: #F3DBAE;
+  height: 16rem;
+  min-width: 12rem;
+  max-width: 12rem;
+  text-align: center;
+
+  overflow:hidden;
+  text-overflow: ellipsis;
 }
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-bio {
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
+  text-align: left;
+  left: auto;
+  right: auto;
+  padding-bottom: 0.75rem;
+}
+
+.card-profile-picture-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.card-profile-picture {
+  width: 5.5rem;
+  height: 5.5rem;
+  border-radius: 50%;
+  border: 5px solid #FAFAFA;
+  box-shadow: 0 0 0 5px #e2e2e2;
+  }
+
