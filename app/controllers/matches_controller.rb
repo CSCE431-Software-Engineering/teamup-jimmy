@@ -11,6 +11,9 @@ class MatchesController < ApplicationController
     @pending_emails = Student.where(email: @pending_requests_A.pluck(:student2_email)).or(Student.where(email: @pending_requests_B.pluck(:student1_email)))    
   end
 
+  def show
+  end
+
   def matched
     @current_student = Student.find_by(email: session[:student_id])
 
