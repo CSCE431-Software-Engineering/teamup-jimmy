@@ -3,11 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <%= stylesheet_link_tag 'navbar', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <title>Jimmy</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <style>
+    /* Custom styles for settings cards */
+    .settings-card {
+      border: 2px solid #ddd; /* Solid border for the card */
+      border-radius: 8px; /* Rounded corners */
+      padding: 16px; /* Padding inside the card */
+      margin-bottom: 16px; /* Margin to the bottom of the card */
+      background-color: #fff; /* White background */
+    }
+    .settings-title {
+      font-size: 18px; /* Larger font size for visibility */
+      font-weight: bold; /* Bold font for the title */
+    }
+    .settings-value {
+      color: #666; /* Muted color for the value */
+      margin-top: 8px; /* Margin above the value */
+    }
+    .arrow-link {
+      text-decoration: none; /* Remove text decoration from links */
+      color: inherit; /* Link color same as text color */
+      position: relative; /* Positioning context for absolute children */
+    }
+    .arrow-link::after {
+      content: '>'; /* Pseudo-element for arrow */
+      position: absolute; /* Absolute position */
+      right: 0; /* Align to the right */
+      top: 50%; /* Center vertically */
+      transform: translateY(-50%); /* Center vertically */
+      font-size: 24px; /* Larger font size for the arrow */
+    }
+  </style>
+  <title>Profile Settings</title>
 </head>
 <body>
-  <!-- Navbar using Bootstrap classes for styling and responsiveness -->
+  <!-- Navigation Bar -->
+  <% settings = [
+              { title: 'Name', value: @current_student.name, path: '/students/edit_name' },
+              { title: 'Biography', value: @current_student.biography, path: '/students/edit_biography' },
+              { title: 'Gender', value: @current_student.gender, path: '/students/edit_gender' },
+              { title: 'Birthday', value: @current_student.birthday.strftime('%Y-%m-%d'), path: '/students/edit_birthday' },
+              { title: 'Phone Number', value: @current_student.phone_number, path: '/students/edit_phone_number' },
+              { title: 'Major', value: @current_student.major, path: '/students/edit_major' },
+              { title: 'Graduation Year', value: @current_student.grad_year, path: '/students/edit_grad_year' },
+              { title: 'Privacy', value: @current_student.is_private ? 'Private' : 'Public', path: '/students/edit_is_private' }
+            ] %>
   <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F3DBAE;">
     <div class="container">
       <!-- Back button with an image and text -->
@@ -20,39 +61,29 @@
     </div>
   </nav>
 
-  <!-- Main content area -->
+  <!-- Main content container -->
   <div class="container mt-4">
-    <!-- Flash messages -->
+    <!-- Flash messages placeholder -->
     <%= render 'pages/flash' %>
-    <!-- Settings list -->
-    <div class="list-group align-items-center">
-      <!-- Mapping through each setting item -->
-      <% settings = [
-        { title: 'Name', value: @current_student.name, path: '/students/edit_name' },
-        { title: 'Biography', value: @current_student.biography, path: '/students/edit_biography' },
-        { title: 'Gender', value: @current_student.gender, path: '/students/edit_gender' },
-        { title: 'Birthday', value: @current_student.birthday.strftime('%Y-%m-%d'), path: '/students/edit_birthday' },
-        { title: 'Phone Number', value: @current_student.phone_number, path: '/students/edit_phone_number' },
-        { title: 'Major', value: @current_student.major, path: '/students/edit_major' },
-        { title: 'Graduation Year', value: @current_student.grad_year, path: '/students/edit_grad_year' },
-        { title: 'Privacy', value: @current_student.is_private ? 'Private' : 'Public', path: '/students/edit_is_private' }
-      ] %>
-
-      <div class="personal_info_main">
-    <div class="students-listed-info-div">
-    <% settings.each do |setting| %>
-      <%= link_to setting[:path], class: 'info-row' do %>
-        <div class="info-row-title"><%= setting[:title] %></div>
-        <div class="info-row-content"><%= setting[:value] %></div>
-        <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "#{setting[:title]} Link" %>
-      <% end %>
-    <% end %>
+    <!-- Settings cards -->
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-8 col-lg-6">
+        <% settings.each do |setting| %>
+          <div class="settings-card">
+            <%= link_to setting[:path], class: 'arrow-link' do %>
+              <div class="settings-title"><%= setting[:title] %></div>
+              <div class="settings-value"><%= setting[:value] %></div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-</div>
 
-  
-  <!-- Bootstrap JS files -->
+  <!-- Bootstrap JavaScript includes -->
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </body>
-
 </html>
+
+
+ 
