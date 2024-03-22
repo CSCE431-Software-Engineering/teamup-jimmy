@@ -224,17 +224,16 @@ class StudentsController < ApplicationController
         @match = Match.where(student1_email: @current_student.email, student2_email: @student.email) .or(Match.where(student1_email: @student.email, student2_email: @current_student.email)).first
       end
       if @match.student1_email == @current_student.email
-        @can_block = @match.relationship_enum == -1 || @match.relationship_enum >= 0
-        @can_block = @match.relationship_enum == 0
-        @can_unblock = @match.relationship_enum == -1 || @match.relationship_enum == -3
+        @can_block = (@match.relationship_enum == -2) || (@match.relationship_enum >= 0)
+        @can_unblock = (@match.relationship_enum == -1) || (@match.relationship_enum == -3)
         @can_send_match_request = @match.relationship_enum == 0
         @can_cancel_match_request = @match.relationship_enum == 1
         @can_accept_match_request = @match.relationship_enum == 2
         @can_reject_match_request = @match.relationship_enum == 2
         @can_unmatch = @match.relationship_enum == 3
       elsif @match.student2_email == @current_student.email
-        @can_block = @match.relationship_enum == -2 || @match.relationship_enum >= 0
-        @can_unblock = @match.relationship_enum == -2 || @match.relationship_enum == -3
+        @can_block = (@match.relationship_enum == -1) || (@match.relationship_enum >= 0)
+        @can_unblock = (@match.relationship_enum == -2) || (@match.relationship_enum == -3)
         @can_send_match_request = @match.relationship_enum == 0
         @can_cancel_match_request = @match.relationship_enum == 2
         @can_accept_match_request = @match.relationship_enum == 1
