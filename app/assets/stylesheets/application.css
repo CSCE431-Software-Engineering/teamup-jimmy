@@ -246,3 +246,23 @@ body {
     width: 100%;
   }
 }
+
+
+.nav-link {
+  font-weight: bold;
+  font-size: 16pt; /* 16pt is roughly equivalent to 21px */
+  padding: 0 30px; /* Increase the space around the links */
+  color: var(--primary-text-color); /* Use a CSS variable for the text color */
+}
+
+/* Adjust the navbar padding for better alignment */
+.navbar-nav {
+  align-items: center; /* Centers the links vertically */
+}
+
+/* You may also want to ensure the navbar brand matches the links */
+.navbar-brand {
+  font-weight: bold;
+  font-size: 16pt;
+  color: var(--primary-text-color);
+}
