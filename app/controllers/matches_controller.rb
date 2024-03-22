@@ -36,12 +36,6 @@ class MatchesController < ApplicationController
     # puts "end"
     #@matched_emails = Student.where(email: @existing_matches_A&.pluck(:student1_email))
 
-    if @student.grad_year
-      @major = "Class of #{@student.grad_year}"
-    else
-      @major = ""
-    end
-
   end
 
   def blocked
