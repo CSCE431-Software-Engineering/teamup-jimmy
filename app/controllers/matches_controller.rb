@@ -10,11 +10,6 @@ class MatchesController < ApplicationController
     
     @pending_emails = Student.where(email: @pending_requests_A.pluck(:student2_email)).or(Student.where(email: @pending_requests_B.pluck(:student1_email)))    
 
-    if @student.grad_year
-      @major = "Class of #{@student.grad_year}"
-    else
-      @major = ""
-    end
   end
 
   def show
@@ -48,11 +43,6 @@ class MatchesController < ApplicationController
     
     @blocked_emails = Student.where(email: @existing_blocks_A.pluck(:student2_email)).or(Student.where(email: @existing_blocks_B.pluck(:student1_email))).or(Student.where(email: @existing_blocks_C.pluck(:student1_email))).or(Student.where(email: @existing_blocks_D.pluck(:student1_email)))    
     
-    if @student.grad_year
-      @major = "Class of #{@student.grad_year}"
-    else
-      @major = ""
-    end
   end
 
   def profile
