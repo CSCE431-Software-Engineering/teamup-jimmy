@@ -9,13 +9,6 @@
 <body>
   <%= render 'pages/navbar' %>
 
-  <%= button_to 'Browse', pages_browse_path, method: :get%>
-
-  <!-- logo -->
-  <!-- intro -->
-  <%= form_with(url: students_start_matching_path, method: :get) do |form| %>
-    <%= form.submit "Start Matching!", class: "btn btn-primary" %>
-  <% end %>
     <div class="edit-profile-main">
     <div class = "profile-header-inner">
       <div class="edit-profile-info">
