@@ -27,8 +27,11 @@ class PagesController < ApplicationController
       genders_condition = @genders_filter.present? ? "gender IN (:genders)" : nil
 
       conditions = [name_condition, genders_condition].compact.join(' AND ')
+      @current_student = Student.find_by(email: session[:student_id])
 
       @results = Student.where(conditions, query: "%#{@query.downcase}%", genders: @genders_filter)
+      @results = @results.where.not(email: @current_student.email)
+
       @results.each do |result|
         match = Match.where(student1_email: @current_student.email, student2_email: result.email).or(Match.where(student1_email: result.email, student2_email: @current_student.email)).first
         if match.relationship_enum < 0
