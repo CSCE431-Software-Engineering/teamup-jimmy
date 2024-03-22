@@ -3,61 +3,121 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <%= stylesheet_link_tag 'navbar', media: 'all', 'data-turbolinks-track': 'reload' %>
   <title>Jimmy</title>
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      background-color: rgb(247, 233, 206);
+    }
+    
+    .profile-picture {
+      width: 200px; /* Adjust size as needed */
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #fff; /* Optional: adds a border around the image */
+    }
+
+    .social-icon {
+      width: 24px; /* Adjust size as needed */
+      height: 24px;
+    }
+
+    /* Adjust the spacing and padding as needed */
+    .profile-section {
+      padding: 2rem 0;
+    }
+
+    .name-title, .section-title {
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .socials-bar {
+      padding: 1rem 0;
+    }
+
+    .dropdown .dropbtn {
+      font-size: 1.5rem;
+      border: none;
+      background: transparent;
+      color: #6c757d; /* Bootstrap's default icon color */
+    }
+
+    .dropdown-content {
+      right: 0; /* Aligns dropdown to the right */
+      left: auto; /* Ensures it doesn't stretch to the full width */
+    }
+
+    /* Additional media queries can be added for fine-tuning */
+
+  </style>
 </head>
 <body>
   <%= render 'pages/navbar' %>
-  <!-- logo -->
-  <!-- intro -->
-  <div class="profile-header">
-    <div class = "profile-header-inner">
-      <div class = "profile-picture-and-buttons">
-        <div class = "spacer"></div>
-        <div class="profile-picture-div">
-          <img class="profile-picture" src="https://i.pinimg.com/736x/d7/1d/1a/d71d1a41b69bbbf2ca2d94b918d86faf.jpg">
-        </div>
-        <div class = "spacer">
-          <div class="dropdown">
-            <button class="dropbtn">• • •</button>
-            <div class="dropdown-content">
-              <a href="#">Link 1</a>
-              <a href="#">Link 2</a>
-              <a href="#">Link 3</a>
-            </div>
+
+  <div class="container profile-section">
+    <div class="row justify-content-center">
+      <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
+        <img class="profile-picture img-fluid mb-3" src="https://i.pinimg.com/736x/d7/1d/1a/d71d1a41b69bbbf2ca2d94b918d86faf.jpg">
+        <div class="dropdown">
+          <button class="dropbtn">•••</button>
+          <div class="dropdown-content">
+            <a href="#">link 1</a>
+            <a href="#">link 2</a>
+            <a href="#">link</a>
           </div>
-       </div>
-      </div>
-      <div class="profile-info">
-        <p class="profile-name"><%= @student.name %><p>
-        <p class = "major-and-class"><%= @major_and_class %></p>
-        <div class="socials-bar">
-          <% if @student.instagram_url.present? %>
-            <%= link_to "https://#{@student.instagram_url}", target: "_blank", class: "social-link", alt: "Instagram Link" do %>
-              <%= image_tag asset_path("instagram_icon.png"), class: "social-link", alt: "Instagram Link" %>
-            <% end %>
-          <% end %>
-      
-          <% if @student.x_url.present? %>
-            <%= link_to "https://#{@student.x_url}", target: "_blank", class: "social-link", alt: "X Link" do %>
-              <%= image_tag asset_path("x_icon.png"), class: "social-link", alt: "X Link" %>
-            <% end %>
-          <% end %>
         </div>
+        <h2 class="name-title"><%= @student.name %></h2>
+        <p class="major-and-class"><%= @major_and_class %></p>
       </div>
     </div>
-  </div>
-  <div class="profile-body">
-    <div class="profile-body-inner">
-      <p class="profile-title">About Me</p>
-      <p> <%= @student.biography %></p> 
+    <div class="row justify-content-center">
+      <div class="col-12 text-center socials-bar">
+        <% if @student.instagram_url.present? %>
+          <%= link_to "https://#{@student.instagram_url}", target: "_blank", class: "social-link mx-2" do %>
+            <%= image_tag asset_path("instagram_icon.png"), class: "social-icon", alt: "Instagram Link" %>
+          <% end %>
+        <% end %>
 
-      <p class="profile-title">Workouts</p>
-      <% @current_activities.each do |name|%>
-      <li class="profile-body-text"><%=name%></li>
-      <%end%>
+        <% if @student.x_url.present? %>
+          <%= link_to "https://#{@student.x_url}", target: "_blank", class: "social-link mx-2" do %>
+            <%= image_tag asset_path("x_icon.png"), class: "social-icon", alt: "X Link" %>
+          <% end %>
+        <% end %>
+      </div>
     </div>
     
+    <div class="row">
+      <div class="col text-center">
+        <h3 class="section-title">About Me</h3>
+        <p><%= @student.biography %></p> 
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col text-center">
+        <h3 class="section-title">Workouts</h3>
+        <ul class="list-unstyled">
+          <% @current_activities.each do |name| %>
+            <li><%= name %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   </div>
+  
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+
+  <!-- below could be links too -->
+  <!-- the onclick part should be a function in the controller to determine
+  where the user is taken to after log in -->
 </body>
 </html>
