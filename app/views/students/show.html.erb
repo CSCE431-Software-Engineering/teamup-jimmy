@@ -85,13 +85,19 @@
   </div>
   <div class="profile-body">
     <div class="profile-body-inner">
-      <p class="profile-title">About Me</p>
-      <p> <%= @student.biography %></p> 
-
-      <p class="profile-title">Workouts</p>
-      <% @current_activities.each do |name|%>
-      <li class="profile-body-text"><%=name%></li>
-      <%end%>
+      <% if @student.biography.present? %>
+        <p class="profile-title">About Me</p>
+        <p><%= @student.biography %></p>
+      <% end %>
+   
+      <% if @current_activities.empty? %>
+        <p class="profile-title">Workouts</p>
+        <p class="profile-body-text">This user has not added any workouts</p>
+      <% else %>
+        <% @current_activities.each do |name|%>
+          <li class="profile-body-text"><%=name%></li>
+        <%end%>
+      <% end %>
     </div>
     
   </div>
