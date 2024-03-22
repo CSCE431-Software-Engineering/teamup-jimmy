@@ -14,13 +14,18 @@ class MatchesController < ApplicationController
   def matched
     @current_student = Student.find_by(email: session[:student_id])
 
-    # @existing_matches_A = Match.where(student1_email: @current_student, relationship_enum: 3)
-    # @existing_matches_B = Match.where(student2_email: @current_student, relationship_enum: 3)
+    @existing_matches_A = Match.where(student1_email: @current_student, relationship_enum: 3)
+    @existing_matches_B = Match.where(student2_email: @current_student, relationship_enum: 3)
 
-    @existing_matches_A = Match.where(student1_email: @current_student, relationship_enum: 0)
+    #@existing_matches_A = Match.where(student1_email: @current_student, relationship_enum: 0)
     
-    # @matched_emails = Student.where(email: @existing_matches_A&.pluck(:student2_email)).or(Student.where(email: @existing_matches_B&.pluck(:student1_email)))    
-    @matched_emails = Student.where(email: @existing_matches_A&.pluck(:student1_email))
+    @matched_emails = Student.where(email: @existing_matches_A&.pluck(:student2_email)).or(Student.where(email: @existing_matches_B&.pluck(:student1_email)))  
+    # puts "start"
+    # puts @matched_emails  
+    # # puts @existing_matches_A
+    # # puts @existing_matches_B
+    # puts "end"
+    #@matched_emails = Student.where(email: @existing_matches_A&.pluck(:student1_email))
 
   end
 
@@ -32,14 +37,10 @@ class MatchesController < ApplicationController
     @existing_blocks_C = Match.where(student1_email: @current_student, relationship_enum: -3)
     @existing_blocks_D = Match.where(student2_email: @current_student, relationship_enum: -3)
     
-    @blocked_emails = Student.where(email: @pending_requests_A.pluck(:student2_email)).or(Student.where(email: @pending_requests_B.pluck(:student1_email))).or(Student.where(email: @pending_requests_C.pluck(:student1_email))).or(Student.where(email: @pending_requests_D.pluck(:student1_email)))    
+    @blocked_emails = Student.where(email: @existing_blocks_A.pluck(:student2_email)).or(Student.where(email: @existing_blocks_B.pluck(:student1_email))).or(Student.where(email: @existing_blocks_C.pluck(:student1_email))).or(Student.where(email: @existing_blocks_D.pluck(:student1_email)))    
   end
 
   def profile
-
-    puts "Howdy"
-    puts params
-
     @student = Student.find(params[:id])
 
     if @student.major && @student.grad_year.nil?

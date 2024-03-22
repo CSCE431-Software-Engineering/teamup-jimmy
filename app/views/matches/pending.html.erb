@@ -1,2 +1,38 @@
-<h1>Matches#pending</h1>
-<p>Find me in app/views/matches/pending.html.erb</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag 'navbar', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <title>Jimmy</title>
+</head>
+<body>
+   <nav class="material-header">
+    <div class="material-banner">
+      <%= link_to matches_path,  class: "navbar-link material-back-button" do %>
+        <%= image_tag('back_arrow.png', alt: 'Back', class: 'back-arrow-icon') %> Back
+      <% end %>
+      <h1 class="material-title">Matched Users</h1>
+      <span class="material-spacer"></span>
+    </div>
+  </nav>
+
+  <div class="card-container">
+    <div class="card-grid">
+        <% @pending_emails.each do |student|%>
+          <%= link_to matches_profile_path(id: student.email) do %>
+            <div class="card-body"> 
+              <h3> <%= student.name %> </h3>
+              <div class="card-profile-picture-div">
+                <img class="card-profile-picture" src="https://i.pinimg.com/736x/d7/1d/1a/d71d1a41b69bbbf2ca2d94b918d86faf.jpg">
+              </div>
+              <p> Class of <%= student.grad_year%> </p>
+              <p class="card-bio"> <%= student.biography%> </p>
+            </div>
+          <%end%>
+        <%end%>
+    </div>
+  </div>
+  
+</body>
+</html>
