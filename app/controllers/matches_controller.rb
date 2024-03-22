@@ -64,6 +64,9 @@ class MatchesController < ApplicationController
   def update
     @match = Match.find(params[:id])
     student_email = session[:student_id]
+    if student_email != @match.student1_email && student_email != @match.student2_email
+      render :edit, status: :unprocessable_entity
+    end
     action_name = params[:action_name]
     if action_name == 'block'
       if @match.student1_email == student_email && @match.relationship_enum >= 0
