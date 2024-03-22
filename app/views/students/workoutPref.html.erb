@@ -8,15 +8,17 @@
 </head>
 
 <body>
-  <nav class="material-header">
-      <div class="material-banner">
-        <%= link_to students_index_path,  class: "navbar-link material-back-button" do %>
-          <%= image_tag('back_arrow.png', alt: 'Back', class: 'back-arrow-icon') %> Back
-        <% end %>
-        <h1 class="material-title">Workout Preference Settings</h1>
-        <span class="material-spacer"></span>
-      </div>
-    </nav>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F3DBAE;">
+    <div class="container">
+      <!-- Back button with an image and text -->
+      <%= link_to students_index_path, class: "navbar-brand" do %>
+        <%= image_tag('back_arrow.png', alt: 'Back', class: 'img-fluid', style: 'height: 24px;') %>
+        <span class="ml-2">Back</span>
+      <% end %>
+      <!-- Title of the page -->
+      <h1 class="ml-auto">Workout Preference Settings</h1>
+    </div>
+  </nav>
 
 
   <div class="edit-profile-main">
