@@ -82,6 +82,52 @@
           <% end %>
         <% end %>
       </div>
+
+      <div class = "relationship-controls-container">
+          <% if @can_send_match_request %> 
+            <%= button_to 'Send Match Request', 
+            match_path(@match, action_name: 'send_match_request'), 
+            method: :patch,
+            class: "material-button"%>
+          <% end %>
+          <% if @can_cancel_match_request %>
+            <%= button_to 'Cancel Match Request', 
+            match_path(@match, action_name: 'cancel_match_request'), 
+            method: :patch,
+            class: "material-button"%>
+          <% end %>
+          <% if @can_accept_match_request %>
+            <%= button_to 'Accept Match Request', 
+            match_path(@match, action_name: 'accept_match_request'), 
+            method: :patch,
+            class: "material-button"%>
+          <% end %>
+          <% if @can_reject_match_request %>
+            <%= button_to 'Decline Match Request', 
+            match_path(@match, action_name: 'reject_match_request'), 
+            method: :patch,
+            class: "material-button"%>
+          <% end %>
+          <% if @can_unmatch %>
+            <%= button_to 'Unmatch', 
+            match_path(@match, action_name: 'unmatch'), 
+            method: :patch,
+            class: "material-button"%>
+          <% end %>
+          <% if @can_block %>
+            <%= button_to 'Block User', 
+              match_path(@match, action_name: 'block'), 
+              method: :patch,
+              class: "material-button"%>
+            <% end %>
+          <% if @can_unblock %>
+            <%= button_to 'Unblock User', 
+            match_path(@match, action_name: 'unblock'), 
+            method: :patch,
+            class: "material-button"%>
+          <% end %>
+        </div>
+        
     </div>
     
     <div class="row">
