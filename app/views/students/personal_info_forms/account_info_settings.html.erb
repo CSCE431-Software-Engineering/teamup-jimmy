@@ -3,68 +3,87 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <%= stylesheet_link_tag 'navbar', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <title>Jimmy</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <style>
+    /* Custom styles for settings cards */
+    .settings-card {
+      border: 2px solid #ddd; /* Solid border for the card */
+      border-radius: 8px; /* Rounded corners */
+      padding: 16px; /* Padding inside the card */
+      margin-bottom: 16px; /* Margin to the bottom of the card */
+      background-color: #fff; /* White background */
+    }
+    .settings-title {
+      font-size: 18px; /* Larger font size for visibility */
+      font-weight: bold; /* Bold font for the title */
+    }
+    .settings-value {
+      color: #666; /* Muted color for the value */
+      margin-top: 8px; /* Margin above the value */
+    }
+    .arrow-link {
+      text-decoration: none; /* Remove text decoration from links */
+      color: inherit; /* Link color same as text color */
+      position: relative; /* Positioning context for absolute children */
+    }
+    .arrow-link::after {
+      content: '>'; /* Pseudo-element for arrow */
+      position: absolute; /* Absolute position */
+      right: 0; /* Align to the right */
+      top: 50%; /* Center vertically */
+      transform: translateY(-50%); /* Center vertically */
+      font-size: 24px; /* Larger font size for the arrow */
+    }
+  </style>
+  <title>Profile Settings</title>
 </head>
 <body>
-  <nav class="material-header">
-    <div class="material-banner">
-      <%= link_to students_settings_path,  class: "navbar-link material-back-button" do %>
-        <%= image_tag('back_arrow.png', alt: 'Back', class: 'back-arrow-icon') %> Back
+  <!-- Navigation Bar -->
+  <% settings = [
+              { title: 'Name', value: @current_student.name, path: '/students/edit_name' },
+              { title: 'Biography', value: @current_student.biography, path: '/students/edit_biography' },
+              { title: 'Gender', value: @current_student.gender, path: '/students/edit_gender' },
+              { title: 'Birthday', value: @current_student.birthday.strftime('%Y-%m-%d'), path: '/students/edit_birthday' },
+              { title: 'Phone Number', value: @current_student.phone_number, path: '/students/edit_phone_number' },
+              { title: 'Major', value: @current_student.major, path: '/students/edit_major' },
+              { title: 'Graduation Year', value: @current_student.grad_year, path: '/students/edit_grad_year' },
+              { title: 'Privacy', value: @current_student.is_private ? 'Private' : 'Public', path: '/students/edit_is_private' }
+            ] %>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F3DBAE;">
+    <div class="container">
+      <!-- Back button with an image and text -->
+      <%= link_to students_settings_path, class: "navbar-brand" do %>
+        <%= image_tag('back_arrow.png', alt: 'Back', class: 'img-fluid', style: 'height: 24px;') %>
+        <span class="ml-2">Back</span>
       <% end %>
-      <h1 class="material-title">Profile Settings</h1>
-      <span class="material-spacer"></span>
+      <!-- Title of the page -->
+      <h1 class="ml-auto">Profile Settings</h1>
     </div>
   </nav>
-  <div class="edit-profile-main">
-    <div class = "profile-header-inner">
-      <div class="edit-profile-info">
-        <%= render 'pages/flash' %>
-        <div class = "personal_info_main">
-          <div class="students-listed-info-div">
-            <%= link_to '/students/edit_name', class: 'info-row' do %>
-              <div class="info-row-title">Name</div>
-              <div class="info-row-content"><%= @current_student.name %></div>
-              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
+
+  <!-- Main content container -->
+  <div class="container mt-4">
+    <!-- Flash messages placeholder -->
+    <%= render 'pages/flash' %>
+    <!-- Settings cards -->
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-8 col-lg-6">
+        <% settings.each do |setting| %>
+          <div class="settings-card">
+            <%= link_to setting[:path], class: 'arrow-link' do %>
+              <div class="settings-title"><%= setting[:title] %></div>
+              <div class="settings-value"><%= setting[:value] %></div>
             <% end %>
-            <%= link_to '/students/edit_biography', class: 'info-row' do %>
-              <div class="info-row-title">Biography</div>
-              <div class="info-row-content"><%= @current_student.biography%></div>
-              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
-            <% end %>
-            <%= link_to '/students/edit_gender', class: 'info-row' do %>
-              <div class="info-row-title">Gender</div>
-              <div class="info-row-content"><%= @current_student.gender %></div>
-              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
-              <% end %>
-            <%= link_to '/students/edit_birthday', class: 'info-row' do %>
-              <div class="info-row-title">Birthday</div>
-              <div class="info-row-content"><%= @current_student.birthday %></div>
-              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
-            <% end %>
-            <%= link_to '/students/edit_phone_number', class: 'info-row' do %>
-              <div class="info-row-title">Phone Number</div>
-              <div class="info-row-content"><%= @current_student.phone_number %></div>
-              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
-            <% end %>
-            <%= link_to '/students/edit_major', class: 'info-row' do %>
-              <div class="info-row-title">Major</div>
-              <div class="info-row-content"><%= @current_student.major %></div>
-              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
-            <% end %>
-            <%= link_to '/students/edit_grad_year', class: 'info-row' do %>
-              <div class="info-row-title">Graduation Year</div>
-              <div class="info-row-content"><%= @current_student.grad_year %></div>
-              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
-            <% end %>
-            <%= link_to '/students/edit_is_private', class: 'info-row' do %>
-              <div class="info-row-title">Privacy</div>
-              <div class="info-row-content"><%= @account_publicity%></div>
-              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
-            <% end %>
-        </div>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
+
+  <!-- Bootstrap JavaScript includes -->
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </body>
 </html>
+
+
+ 

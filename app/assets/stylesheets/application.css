@@ -48,6 +48,10 @@ body {
   left: 1%;
 }
 
+.info-row a, a:hover, a:focus, a:active {
+  color: #000000 !important; /* Set the text color to black, or any color you prefer */
+  text-decoration: none !important; /* Removes the underline from the link */
+}
 /* Search Bar/Button, checkboxes styling */
 .btn-primary {
   /* Style the Search button */
@@ -108,9 +112,6 @@ body {
   background-color: #f9f9f9;
 }
 
-.user-info-table tbody tr:hover {
-  background-color: #e5e5e5;
-}
 
 /* Footer styling */
 .footer {
@@ -171,7 +172,6 @@ body {
   margin-top: 1.5rem; /* Increased from 1rem to 1.5rem */
   border-color: black;
   color: black;
-  background-color: rgb(243, 219, 174);
   border-radius: 0.25rem;
   font-size: 1.25rem; /* Increase font size for better readability */
   display: block;
@@ -230,15 +230,6 @@ body {
   position: relative; /* Required for absolute positioning of the tooltip */
 }
 
-.landing-button:hover,
-.back-btn:hover,
-.students-button:hover {
-  background-color: tan;
-  color: antiquewhite;
-  border-color: #F7E9CE;
-  cursor:pointer;
-  box-shadow: (0, 0,25rem, 0.5rem, rgba(0,0,0,0.26));
-}
 
 /* Add responsiveness to the table */
 @media (max-width: 768px) {
@@ -246,3 +237,66 @@ body {
     width: 100%;
   }
 }
+
+
+.nav-link {
+  font-weight: bold;
+  font-size: 16pt; /* 16pt is roughly equivalent to 21px */
+  padding: 0 30px; /* Increase the space around the links */
+  color: var(--primary-text-color); /* Use a CSS variable for the text color */
+}
+
+/* Adjust the navbar padding for better alignment */
+.navbar-nav {
+  align-items: center; /* Centers the links vertically */
+}
+
+/* You may also want to ensure the navbar brand matches the links */
+.navbar-brand {
+  font-weight: bold;
+  font-size: 16pt;
+  color: var(--primary-text-color);
+}
+
+.navbar .container {
+  width: 100%;
+  position: relative;
+}
+
+/* Center the title */
+.navbar h1 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); /* Combine both translations into one line */
+}
+
+
+/* This class is added to an element that comes after the h1 */
+.navbar-brand::after {
+  content: '';
+  display: inline-block;
+  width: 100%;
+}
+
+/* Adjust the back arrow and text to be inline and align at the start */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+/* Use media queries if the navbar-brand should be hidden or styled differently on smaller screens */
+@media (max-width: 768px) {
+  .navbar h1 {
+    position: static;
+    transform: none;
+  }
+  
+  .navbar-brand::after {
+    display: none;
+  }
+}
+
