@@ -29,13 +29,15 @@
   <title>Jimmy</title>
 </head>
 <body>
-  <nav class="navbar navbar-light material-header">
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F3DBAE;">
     <div class="container">
-      <%= link_to students_path, class: "navbar-link" do %>
-        <%= image_tag('back_arrow.png', alt: 'Back', class: 'back-arrow-icon') %> Back
+      <!-- Back button with an image and text -->
+      <%= link_to students_path, class: "navbar-brand" do %>
+        <%= image_tag('back_arrow.png', alt: 'Back', class: 'img-fluid', style: 'height: 24px;') %>
+        <span class="ml-2">Back</span>
       <% end %>
-      <h1>Profile Settings</h1>
-      <span class="material-spacer"></span>
+      <!-- Title of the page -->
+      <h1 class="ml-auto">Profile Settings</h1>
     </div>
   </nav>
 
