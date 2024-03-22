@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :activity_preferences, only: [:index, :destroy, :new]
   resource :time_preferences, only: [:index, :edit, :new, :update]
   resources :gym_preferences, except: :show
-  resources :matches, only: [:index, :pending, :matched, :blocked]
+  resources :matches, only: [:index, :pending, :matched, :blocked, :profile, :update]
 
   get '/logout', to: 'application#logout'
 
@@ -68,12 +68,20 @@ Rails.application.routes.draw do
   get 'matches/pending'
   get 'matches/matched'
   get 'matches/blocked'
+  get 'matches/profile'
 
+  get 'matches/:id', to: 'matches#profile', constraints: { id: %r{[^/]+} }
 
   resources :activity_preferences do
     get 'experience', on: :member
     post 'experience', on: :member
   end
+
+  # resources :matches do
+  #   member do
+  #     patch :update_relationship_enum
+  #   end
+  # end
 
 
 

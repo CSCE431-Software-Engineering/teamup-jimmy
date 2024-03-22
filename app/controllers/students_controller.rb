@@ -2,7 +2,7 @@
 
 class StudentsController < ApplicationController
 
-  before_action :set_current_student, only: [:index, :delete_confirmation, :delete, :destroy, :edit_gender_pref, :edit_age_pref, :personal_info, :edit_name, :edit_birthday, :edit_gender, :edit_grad_year, :edit_is_private, :edit_phone_number, :edit_major, :edit_biography, :matching_preferences, :edit_instagram_url, :edit_snap_url, :edit_x_url, :connect_socials, :workout_preferences, :update]
+  before_action :set_current_student, only: [:index, :set_profile_args, :delete_confirmation, :delete, :destroy, :edit_gender_pref, :edit_age_pref, :personal_info, :edit_name, :edit_birthday, :edit_gender, :edit_grad_year, :edit_is_private, :edit_phone_number, :edit_major, :edit_biography, :matching_preferences, :edit_instagram_url, :edit_snap_url, :edit_x_url, :connect_socials, :workout_preferences, :update]
   def index
     redirect_to action: :show, id: @current_student.id and return if @current_student
   end
@@ -203,6 +203,52 @@ class StudentsController < ApplicationController
 
     @activity_ids = ActivityPreference.where(student_email: @student.email).pluck(:activity_id)
     @current_activities = Activity.where(id: @activity_ids).pluck(:activity_name)
+
+    @can_block = false
+    @can_unblock = false
+    @can_send_match_request = false
+    @can_cancel_match_request = false
+    @can_accept_match_request = false
+    @can_reject_match_request = false
+    @can_unmatch = false
+    set_current_student
+    if @student.email != @current_student.email
+      @match = Match.where(student1_email: @current_student.email, student2_email: @student.email) .or(Match.where(student1_email: @student.email, student2_email: @current_student.email)).first
+      if @match.nil?
+        puts "match not founnd for student1: #{@current_student} and student2: #{@student}"
+        @match = Match.new
+        @match.relationship_enum = 0
+        @match.student1_email = @current_student.email
+        @match.student2_email = @student.email
+        @match.save
+        @match = Match.where(student1_email: @current_student.email, student2_email: @student.email) .or(Match.where(student1_email: @student.email, student2_email: @current_student.email)).first
+      end
+      if @match.student1_email == @current_student.email
+        @can_block = (@match.relationship_enum == -2) || (@match.relationship_enum >= 0)
+        @can_unblock = (@match.relationship_enum == -1) || (@match.relationship_enum == -3)
+        @can_send_match_request = @match.relationship_enum == 0
+        @can_cancel_match_request = @match.relationship_enum == 1
+        @can_accept_match_request = @match.relationship_enum == 2
+        @can_reject_match_request = @match.relationship_enum == 2
+        @can_unmatch = @match.relationship_enum == 3
+      elsif @match.student2_email == @current_student.email
+        @can_block = (@match.relationship_enum == -1) || (@match.relationship_enum >= 0)
+        @can_unblock = (@match.relationship_enum == -2) || (@match.relationship_enum == -3)
+        @can_send_match_request = @match.relationship_enum == 0
+        @can_cancel_match_request = @match.relationship_enum == 2
+        @can_accept_match_request = @match.relationship_enum == 1
+        @can_reject_match_request = @match.relationship_enum == 1
+        @can_unmatch = @match.relationship_enum == 3
+      end
+      puts "can block: #{@can_block}"
+      puts "can unblock: #{@can_unblock}"
+      puts "can send match request: #{@can_send_match_request}"
+      puts "can cancel match request: #{@can_cancel_match_request}"
+      puts "can accept match request: #{@can_accept_match_request}"
+      puts "can reject match request: #{@can_reject_match_request}"
+      puts "can unmatch: #{@can_unmatch}"
+
+    end
   end
 
   
