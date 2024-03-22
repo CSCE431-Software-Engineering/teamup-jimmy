@@ -15,13 +15,29 @@
     <p>Here are your matches.</p>
   </div>
   <br/>
-  <div class="matches-container">
-    <% @matches.each do |match| %>
-      <div class="match">
-        <% matched_student = Student.find_by(email: match.student2_email) %>
-        <p>You matched with <%= matched_student.name %>!</p>
-      </div>
-    <% end %>
+  <div class="card-container">
+    <div class="card-grid">
+        <% @matched_emails.each do |student|%>
+          <%= link_to matches_profile_path(id: student.email) do %>
+            <div class="card-body"> 
+              <h3> <%= student.name %> </h3>
+              <div class="card-profile-picture-div">
+                <img class="card-profile-picture" src="https://i.pinimg.com/736x/d7/1d/1a/d71d1a41b69bbbf2ca2d94b918d86faf.jpg">
+              </div>
+              <%
+                if student.grad_year
+                  @major = "Class of #{@student.grad_year}"
+                else
+                  @major = ""
+                end
+              %>
+              <p> <%=@major%> </p>
+
+              <p class="card-bio"> <%= student.biography%> </p>
+            </div>
+          <%end%>
+        <%end%>
+    </div>
   </div>
 </body>
 </html>
