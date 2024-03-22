@@ -16,18 +16,35 @@
   <%= form_with(url: students_start_matching_path, method: :get) do |form| %>
     <%= form.submit "Start Matching!", class: "btn btn-primary" %>
   <% end %>
-
-  <%= link_to({controller: 'matches', action: 'pending'}, class: 'info-row') do %>
-    <div class="info-row-title">View list of incoming match requests</div>
-    <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
-  <% end %>
-  <%= link_to({controller: 'matches', action: 'matched'}, class: 'info-row') do %>
-    <div class="info-row-title">View list of users you've matched with</div>
-    <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
-  <% end %>
-  <%= link_to({controller: 'matches', action: 'blocked'}, class: 'info-row') do %>
-    <div class="info-row-title">View list of users you've blocked</div>
-    <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
-  <% end %>
+    <div class="edit-profile-main">
+    <div class = "profile-header-inner">
+      <div class="edit-profile-info">
+        <div class = "personal_info_main">
+          <div class="students-listed-info-div">
+              <%= link_to(students_start_matching_path, class: 'info-row') do %>
+                <div class="info-row-title">Start Matching!</div>
+                <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
+              <% end %>
+              <%= link_to(pages_browse_path, class: 'info-row') do %>
+                <div class="info-row-title">Search for a user</div>
+                <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
+              <% end %>
+              <%= link_to({controller: 'matches', action: 'pending'}, class: 'info-row') do %>
+                <div class="info-row-title">View list of incoming match requests</div>
+                <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
+              <% end %>
+              <%= link_to({controller: 'matches', action: 'matched'}, class: 'info-row') do %>
+                <div class="info-row-title">View list of users you've matched with</div>
+                <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
+              <% end %>
+              <%= link_to({controller: 'matches', action: 'blocked'}, class: 'info-row') do %>
+                <div class="info-row-title">View list of users you've blocked</div>
+                <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
+              <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
