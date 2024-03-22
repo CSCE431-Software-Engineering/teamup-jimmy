@@ -12,7 +12,7 @@
       <%= link_to matches_path,  class: "navbar-link material-back-button" do %>
         <%= image_tag('back_arrow.png', alt: 'Back', class: 'back-arrow-icon') %> Back
       <% end %>
-      <h1 class="material-title">Matched Users</h1>
+      <h1 class="material-title">Incoming Matches</h1>
       <span class="material-spacer"></span>
     </div>
   </nav>
@@ -26,7 +26,7 @@
               <div class="card-profile-picture-div">
                 <img class="card-profile-picture" src="https://i.pinimg.com/736x/d7/1d/1a/d71d1a41b69bbbf2ca2d94b918d86faf.jpg">
               </div>
-              <p> Class of <%= student.grad_year%> </p>
+              <p> <%=@major%> </p>
               <p class="card-bio"> <%= student.biography%> </p>
             </div>
           <%end%>
