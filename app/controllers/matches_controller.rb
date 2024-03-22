@@ -45,24 +45,6 @@ class MatchesController < ApplicationController
     
   end
 
-  def profile
-    @student = Student.find(params[:id])
-
-    if @student.major && @student.grad_year.nil?
-      @major_and_class = @student.major
-    elsif @student.major.nil? && @student.grad_year
-      @major_and_class = "Class of #{@student.grad_year}"
-    elsif @student.major && @student.grad_year
-      @major_and_class = "#{@student.major} • Class of #{@student.grad_year}"
-    else
-      @major_and_class = ""
-    end
-
-    @activity_ids = ActivityPreference.where(student_email: @student.email).pluck(:activity_id)
-    @current_activities = Activity.where(id: @activity_ids).pluck(:activity_name)
-  end
-
-
   def update
     @match = Match.find(params[:id])
     student_email = session[:student_id]
