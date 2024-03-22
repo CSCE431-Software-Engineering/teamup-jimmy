@@ -125,3 +125,7 @@
 .dropdown:hover .dropdown-content {display: block;}
 
 .dropdown:hover .dropbtn {background-color: var(--primary-bg-color);}
+
+.relationship-controls-container form{
+  margin-top: 1rem;
+}

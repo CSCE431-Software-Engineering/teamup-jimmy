@@ -50,4 +50,83 @@ class MatchesController < ApplicationController
     
     @blocked_emails = Student.where(email: @pending_requests_A.pluck(:student2_email)).or(Student.where(email: @pending_requests_B.pluck(:student1_email))).or(Student.where(email: @pending_requests_C.pluck(:student1_email))).or(Student.where(email: @pending_requests_D.pluck(:student1_email)))    
   end
+
+
+  def update
+    @match = Match.find(params[:id])
+    student_email = session[:student_id]
+    action_name = params[:action_name]
+    if action_name == 'block'
+      if @match.student1_email == student_email && @match.relationship_enum >= 0
+        @match.relationship_enum = -1
+      elsif @match.student2_email == student_email  && @match.relationship_enum >= 0
+        @match.relationship_enum = -2
+      elsif (@match.student1_email == student_email && @match.relationship_enum == -2) || (@match.student2_email == student_email && @match.relationship_enum == -1)
+        @match.relationship_enum = -3
+      end
+    end
+    if action_name == 'unblock'
+      if @match.student1_email == student_email && @match.relationship_enum == -3 
+        @match.relationship_enum = -2
+      elsif @match.student2_email == student_email && @match.relationship_enum == -3 
+        @match.relationship_enum = -1
+      elsif @match.student1_email == student_email && @match.relationship_enum == -1
+        @match.relationship_enum = 0
+      elsif @match.student2_email == student_email && @match.relationship_enum == -2
+        @match.relationship_enum = 0
+      end
+    end
+    if action_name == 'send_match_request'
+      if @match.student1_email == student_email && @match.relationship_enum == 0
+        @match.relationship_enum = 1
+      elsif @match.student2_email == student_email && @match.relationship_enum == 0
+        @match.relationship_enum = 2
+      end
+    end
+    if action_name == 'cancel_match_request'
+      if @match.student1_email == student_email && @match.relationship_enum == 1
+        @match.relationship_enum = 0
+      elsif @match.student2_email == student_email && @match.relationship_enum == 2
+        @match.relationship_enum = 0
+      end
+    end
+    if action_name == 'accept_match_request'
+      if @match.student1_email == student_email && @match.relationship_enum == 2
+        @match.relationship_enum = 3
+      elsif @match.student2_email == student_email && @match.relationship_enum == 1
+        @match.relationship_enum = 3
+      end
+    end
+    if action_name == 'reject_match_request'
+      if @match.student1_email == student_email && @match.relationship_enum == 2
+        @match.relationship_enum = 0
+      elsif @match.student2_email == student_email && @match.relationship_enum == 1
+        @match.relationship_enum = 0
+      end
+    end
+    if action_name == 'unmatch'
+      if @match.student1_email == student_email && @match.relationship_enum == 3
+        @match.relationship_enum = 0
+      elsif @match.student2_email == student_email && @match.relationship_enum == 3
+        @match.relationship_enum = 0
+      end
+    end
+    if @match.save
+      if @match.student1_email == student_email
+        redirect_to student_path(@match.student2_email)
+      else 
+        redirect_to student_path(@match.student1_email)
+      end
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def match_params
+    params.require(:match).permit(:student1_email, :student2_email, :match_score, :relationship_enum) 
+  end
 end
+
+
