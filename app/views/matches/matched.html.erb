@@ -20,7 +20,7 @@
   <div class="card-container">
     <div class="card-grid">
         <% @matched_emails.each do |student|%>
-          <%= link_to students_path(id: student.email) do %>
+          <%= link_to student_path(id: student.email) do %>
             <div class="card-body"> 
               <h3> <%= student.name %> </h3>
               <div class="card-profile-picture-div">
