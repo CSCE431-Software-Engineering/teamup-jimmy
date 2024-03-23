@@ -78,12 +78,10 @@
             <%= link_to students_edit_instagram_url_path, class: 'info-row' do %>
               <div class="info-row-title">Connect Instagram</div>
               <div class="info-row-content"><%= @current_student.instagram_url %></div>
-              <%= image_tag(asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Edit Instagram Link") %>
             <% end %>
             <%= link_to students_edit_x_url_path, class: 'info-row' do %>
               <div class="info-row-title">Connect X</div>
               <div class="info-row-content"><%= @current_student.x_url %></div>
-              <%= image_tag(asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Edit X Link") %>
             <% end %>
           </div>
         </div>
