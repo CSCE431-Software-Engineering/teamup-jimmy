@@ -3,40 +3,97 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <%= stylesheet_link_tag 'navbar', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <!-- Include Bootstrap CSS for responsiveness -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  <style>
+    /* Custom styles */
+    .navbar {
+      background-color: #F3DBAE;
+    }
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px; /* Increased padding for better tap targets */
+      border-bottom: 1px solid #ddd;
+    }
+    .info-row-title {
+      font-size: 18px; /* Slightly increased font size for mobile readability */
+    }
+    .info-row-content {
+      flex-grow: 1;
+      margin-left: 15px; /* Add space between the title and content */
+      text-align: right;
+    }
+    .forward-arrow {
+      width: 24px;
+    }
+    .edit-profile-main {
+      padding: 20px; /* Increased padding for mobile layout */
+    }
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .navbar-brand, .navbar h1 {
+        flex-basis: 100%;
+        text-align: center;
+        margin-bottom: 10px; /* Adjusted for better spacing */
+      }
+      .navbar h1 {
+        order: 1; /* Places the title below the back button */
+      }
+      .info-row {
+        flex-direction: column; /* Stack elements vertically */
+        text-align: left; /* Align text to the left on mobile */
+      }
+      .info-row-content {
+        text-align: left; /* Align content to the left on mobile */
+        margin-right: 0; /* Remove right margin on mobile */
+        margin-bottom: 10px; /* Add some space below the content */
+      }
+      .forward-arrow {
+        align-self: flex-end; /* Align arrow to the right on mobile */
+      }
+    }
+  </style>
   <title>Jimmy</title>
 </head>
-<body>
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F3DBAE;">
+<body style="background-color: rgb(247, 233, 206);">
+  <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
-      <!-- Back button with an image and text -->
-      <%= link_to students_settings_path, class: "navbar-brand" do %>
-        <%= image_tag('back_arrow.png', alt: 'Back', class: 'img-fluid', style: 'height: 24px;') %>
-        <span class="ml-2">Back</span>
-      <% end %>
-      <!-- Title of the page -->
-      <h1 class="ml-auto">Profile Settings</h1>
+      <!-- Collapsible button for small screens -->
+        <%= link_to students_settings_path, class: "navbar-brand" do %>
+          <span>Back</span>
+        <% end %>
+        <h1>Profile Settings</h1>
     </div>
   </nav>
   <div class="edit-profile-main">
-    <div class = "profile-header-inner">
+    <div class="profile-header-inner">
       <div class="edit-profile-info">
         <%= render 'pages/flash' %>
-        <div class = "personal_info_main">
+        <div class="personal_info_main">
           <div class="students-listed-info-div">
             <%= link_to students_edit_instagram_url_path, class: 'info-row' do %>
-              <div class="info-row-title">Connect Insta</div>
+              <div class="info-row-title">Connect Instagram</div>
               <div class="info-row-content"><%= @current_student.instagram_url %></div>
-              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
+              <%= image_tag(asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Edit Instagram Link") %>
             <% end %>
             <%= link_to students_edit_x_url_path, class: 'info-row' do %>
               <div class="info-row-title">Connect X</div>
-              <div class="info-row-content"><%= @current_student.x_url%></div>
-              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
+              <div class="info-row-content"><%= @current_student.x_url %></div>
+              <%= image_tag(asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Edit X Link") %>
             <% end %>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
