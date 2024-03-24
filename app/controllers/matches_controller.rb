@@ -2,11 +2,20 @@ class MatchesController < ApplicationController
   def index
   end
 
-  def pending
+  def incoming
     @current_student = Student.find_by(email: session[:student_id])
 
     @pending_requests_A = Match.where(student1_email: @current_student, relationship_enum: 2)
     @pending_requests_B = Match.where(student2_email: @current_student, relationship_enum: 1)
+    
+    @pending_emails = Student.where(email: @pending_requests_A.pluck(:student2_email)).or(Student.where(email: @pending_requests_B.pluck(:student1_email)))
+  end
+
+  def pending
+    @current_student = Student.find_by(email: session[:student_id])
+
+    @pending_requests_A = Match.where(student1_email: @current_student, relationship_enum: 1)
+    @pending_requests_B = Match.where(student2_email: @current_student, relationship_enum: 2)
     
     @pending_emails = Student.where(email: @pending_requests_A.pluck(:student2_email)).or(Student.where(email: @pending_requests_B.pluck(:student1_email)))    
 

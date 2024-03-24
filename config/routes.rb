@@ -66,6 +66,7 @@ Rails.application.routes.draw do
   get 'gym_preferences/edit'
   
   get 'matches/pending'
+  get 'matches/incoming'
   get 'matches/matched'
   get 'matches/blocked'
   get 'matches/profile'
