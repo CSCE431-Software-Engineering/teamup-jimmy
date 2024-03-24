@@ -195,6 +195,7 @@ body {
   margin-top: 1.5rem; /* Increased from 1rem to 1.5rem */
   border-color: black;
   color: black;
+  background-color: #f3dbae;
   border-radius: 0.25rem;
   font-size: 1.25rem; /* Increase font size for better readability */
   display: block;
