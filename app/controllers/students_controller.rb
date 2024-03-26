@@ -251,8 +251,6 @@ class StudentsController < ApplicationController
     end
   end
 
-  
-  # need to add more fields
   def student_params
     params.require(:student).permit(:name, :email, :gender, :birthday, :phone_number, :major, :is_private, :grad_year, :biography, :instagram_url, :x_url, :snap_url, :gender_pref_female, :gender_pref_male, :gender_pref_other, :age_start_pref, :age_end_pref)
   end
