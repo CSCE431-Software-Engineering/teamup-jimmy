@@ -4,59 +4,43 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= stylesheet_link_tag 'navbar', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <title>Jimmy</title>
   <style>
     body, html {
       margin: 0;
       padding: 0;
-      width: 100%;
       font-family: Arial, sans-serif;
-      overflow-x: hidden;
+      background-color: #f7e9ce; /* Use the same background color as the rest of your site */
     }
 
     .edit-profile-main {
-      padding: 0.5rem; /* Responsive padding */
-      box-sizing: border-box;
-    }
-
-    .info-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #f8f9fa;
-      border: 1px solid #ddd;
-      border-radius: 4px;
       padding: 0.5rem;
-      margin-bottom: 0.5rem;
-      text-decoration: none;
-      color: black;
-      font-size: 0.9rem; /* Slightly smaller font size */
     }
 
-    .info-row-title {
-      flex: 1; /* Allows title to grow and shrink as needed */
-      margin-right: 10px; /* Space between text and icon */
-      font-size: 1em; /* Adaptable font size */
-      word-wrap: break-word; /* Ensures the text can wrap and not overflow */
+    /* Use Bootstrap's button classes for guaranteed mobile responsiveness */
+    .btn-block {
+      display: block;
+      width: 60%;
+      padding: 0.75rem 1rem; /* Bootstrap's default padding for buttons */
+      font-size: 1rem; /* Bootstrap's default font size for buttons */
+      border-radius: 0.25rem; /* Bootstrap's default border radius for buttons */
+      margin-bottom: 0.5rem; /* Add some bottom margin for spacing */
+      color: #495057; /* Text color for buttons */
+      background-color: #ffffff; /* Background color for buttons */
+      border: 1px solid #ddd; /* Border color for buttons */
+      font-weight:bold;
     }
 
-    /* Fix the arrow image being pushed outside */
-    .forward-arrow {
-      flex-shrink: 0; /* Prevents the icon from shrinking */
-      margin-left: 5px; /* Ensures some space between the text and the arrow */
-      width: 1em; /* Relative size to keep consistent with text */
-      height: auto; /* Maintain aspect ratio */
+    .btn-block:hover, .btn-block:active {
+      color: #495057; /* Text color for buttons when hovered/active */
+      border-color: #dae0e5; /* Slightly darker border color for buttons when hovered/active */
     }
 
+    /* Adjust the mobile view */
     @media (max-width: 576px) {
-      .info-row {
-        padding: 0.5rem;
-        flex-direction: column; /* Stack elements on small screens */
-        align-items: flex-start; /* Align to start on small screens */
-      }
-
-      .info-row-title {
-        margin-bottom: 0.5rem; /* Space between title and arrow on small screens */
+      .btn-block {
+        font-size: 0.9rem; /* Slightly smaller font size for very small devices */
       }
     }
   </style>
@@ -65,33 +49,14 @@
   <%= render 'pages/navbar' %>
 
   <div class="edit-profile-main">
-    <div class="profile-header-inner">
-      <div class="edit-profile-info">
-        <div class="personal_info_main">
-          <div class="students-listed-info-div">
-              <%= link_to(students_start_matching_path, class: 'info-row') do %>
-                <div class="info-row-title">Start Matching!</div>
-              <% end %>
-              <%= link_to(pages_browse_path, class: 'info-row') do %>
-                <div class="info-row-title">Search for a user</div>
-              <% end %>
-              <%= link_to({controller: 'matches', action: 'incoming'}, class: 'info-row') do %>
-                <div class="info-row-title">View list of incoming match requests</div>
-              <% end %>
-              <%= link_to({controller: 'matches', action: 'pending'}, class: 'info-row') do %>
-                <div class="info-row-title">View list of outgoing match requests</div>
-              <% end %>
-              <%= link_to({controller: 'matches', action: 'matched'}, class: 'info-row') do %>
-                <div class="info-row-title">View list of users you've matched with</div>
-              <% end %>
-              <%= link_to({controller: 'matches', action: 'blocked'}, class: 'info-row') do %>
-                <div class="info-row-title">View list of users you've blocked</div>
-              <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
+    <%= link_to 'Start Matching!', students_start_matching_path, class: 'btn btn-block' %>
+    <%= link_to 'Search for a user', pages_browse_path, class: 'btn btn-block' %>
+    <%= link_to 'View list of incoming match requests', {controller: 'matches', action: 'incoming'}, class: 'btn btn-block' %>
+    <%= link_to 'View list of outgoing match requests', {controller: 'matches', action: 'pending'}, class: 'btn btn-block' %>
+    <%= link_to "View list of users you've matched with", {controller: 'matches', action: 'matched'}, class: 'btn btn-block' %>
+    <%= link_to "View list of users you've blocked", {controller: 'matches', action: 'blocked'}, class: 'btn btn-block' %>
   </div>
+
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
