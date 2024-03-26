@@ -153,7 +153,7 @@ body {
   margin: 0; /* Removes default margin */
   font-size: 1.0rem; /* Increases the font size */
   line-height: 1.6; /* Adjusts the space between lines */
-  color: rgb(113, 109, 109); /* Sets the text color */
+  color: black; /* Sets the text color */
 }
 
 /* Link styling */
