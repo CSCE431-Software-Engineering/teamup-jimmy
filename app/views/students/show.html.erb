@@ -53,6 +53,12 @@
       left: auto; /* Ensures it doesn't stretch to the full width */
     }
 
+    @media (max-width: 768px) {
+      .profile-section, .socials-bar {
+        padding: 1rem;
+      }
+    }
+
     /* Additional media queries can be added for fine-tuning */
 
   </style>
@@ -62,8 +68,8 @@
 
   <div class="container profile-section">
     <div class="row justify-content-center">
-      <div class="col-12 col-sm-8 col-md-6 col-lg-4 text-center">
-        <img class="profile-picture img-fluid mb-3" src="https://i.pinimg.com/736x/d7/1d/1a/d71d1a41b69bbbf2ca2d94b918d86faf.jpg">
+      <div class="col-10 col-md-6 col-lg-4 text-center">
+        <img class="profile-picture img-fluid mb-3" src="https://i.pinimg.com/736x/d7/1d/1a/d71d1a41b69bbbf2ca2d94b918d86faf.jpg" alt="Profile Picture">
         <h2 class="name-title"><%= @student.name %></h2>
         <p class="major-and-class"><%= @major_and_class %></p>
       </div>
