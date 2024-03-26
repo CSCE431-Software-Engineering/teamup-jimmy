@@ -5,43 +5,95 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= stylesheet_link_tag 'navbar', media: 'all', 'data-turbolinks-track': 'reload' %>
   <title>Jimmy</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    .edit-profile-main {
+      padding: 0.5rem; /* Responsive padding */
+      box-sizing: border-box;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f8f9fa;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 0.5rem;
+      margin-bottom: 0.5rem;
+      text-decoration: none;
+      color: black;
+      font-size: 0.9rem; /* Slightly smaller font size */
+    }
+
+    .info-row-title {
+      flex: 1; /* Allows title to grow and shrink as needed */
+      margin-right: 10px; /* Space between text and icon */
+      font-size: 1em; /* Adaptable font size */
+      word-wrap: break-word; /* Ensures the text can wrap and not overflow */
+    }
+
+    /* Fix the arrow image being pushed outside */
+    .forward-arrow {
+      flex-shrink: 0; /* Prevents the icon from shrinking */
+      margin-left: 5px; /* Ensures some space between the text and the arrow */
+      width: 1em; /* Relative size to keep consistent with text */
+      height: auto; /* Maintain aspect ratio */
+    }
+
+    @media (max-width: 576px) {
+      .info-row {
+        padding: 0.5rem;
+        flex-direction: column; /* Stack elements on small screens */
+        align-items: flex-start; /* Align to start on small screens */
+      }
+
+      .info-row-title {
+        margin-bottom: 0.5rem; /* Space between title and arrow on small screens */
+      }
+    }
+  </style>
 </head>
 <body>
   <%= render 'pages/navbar' %>
 
-    <div class="edit-profile-main">
-    <div class = "profile-header-inner">
+  <div class="edit-profile-main">
+    <div class="profile-header-inner">
       <div class="edit-profile-info">
-        <div class = "personal_info_main">
+        <div class="personal_info_main">
           <div class="students-listed-info-div">
               <%= link_to(students_start_matching_path, class: 'info-row') do %>
                 <div class="info-row-title">Start Matching!</div>
-                <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
               <% end %>
               <%= link_to(pages_browse_path, class: 'info-row') do %>
                 <div class="info-row-title">Search for a user</div>
-                <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
               <% end %>
               <%= link_to({controller: 'matches', action: 'incoming'}, class: 'info-row') do %>
                 <div class="info-row-title">View list of incoming match requests</div>
-                <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
               <% end %>
               <%= link_to({controller: 'matches', action: 'pending'}, class: 'info-row') do %>
                 <div class="info-row-title">View list of outgoing match requests</div>
-                <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
               <% end %>
               <%= link_to({controller: 'matches', action: 'matched'}, class: 'info-row') do %>
                 <div class="info-row-title">View list of users you've matched with</div>
-                <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
               <% end %>
               <%= link_to({controller: 'matches', action: 'blocked'}, class: 'info-row') do %>
                 <div class="info-row-title">View list of users you've blocked</div>
-                <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
               <% end %>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
