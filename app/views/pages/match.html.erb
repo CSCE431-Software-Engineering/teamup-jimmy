@@ -4,44 +4,61 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= stylesheet_link_tag 'navbar', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <title>Jimmy</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f7e9ce; /* Use the same background color as the rest of your site */
+    }
+
+    .edit-profile-main {
+      padding: 0.5rem;
+    }
+
+    /* Use Bootstrap's button classes for guaranteed mobile responsiveness */
+    .btn-block {
+      display: block;
+      width: 60%;
+      padding: 0.75rem 1rem; /* Bootstrap's default padding for buttons */
+      font-size: 1rem; /* Bootstrap's default font size for buttons */
+      border-radius: 0.25rem; /* Bootstrap's default border radius for buttons */
+      margin-bottom: 0.5rem; /* Add some bottom margin for spacing */
+      color: #495057; /* Text color for buttons */
+      background-color: #ffffff; /* Background color for buttons */
+      border: 1px solid #ddd; /* Border color for buttons */
+      font-weight:bold;
+    }
+
+    .btn-block:hover, .btn-block:active {
+      color: #495057; /* Text color for buttons when hovered/active */
+      border-color: #dae0e5; /* Slightly darker border color for buttons when hovered/active */
+    }
+
+    /* Adjust the mobile view */
+    @media (max-width: 576px) {
+      .btn-block {
+        font-size: 0.9rem; /* Slightly smaller font size for very small devices */
+      }
+    }
+  </style>
 </head>
 <body>
   <%= render 'pages/navbar' %>
 
-    <div class="edit-profile-main">
-    <div class = "profile-header-inner">
-      <div class="edit-profile-info">
-        <div class = "personal_info_main">
-          <div class="students-listed-info-div">
-              <%= link_to(students_start_matching_path, class: 'info-row') do %>
-                <div class="info-row-title">Start Matching!</div>
-                <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
-              <% end %>
-              <%= link_to(pages_browse_path, class: 'info-row') do %>
-                <div class="info-row-title">Search for a user</div>
-                <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
-              <% end %>
-              <%= link_to({controller: 'matches', action: 'incoming'}, class: 'info-row') do %>
-                <div class="info-row-title">View list of incoming match requests</div>
-                <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
-              <% end %>
-              <%= link_to({controller: 'matches', action: 'pending'}, class: 'info-row') do %>
-                <div class="info-row-title">View list of outgoing match requests</div>
-                <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
-              <% end %>
-              <%= link_to({controller: 'matches', action: 'matched'}, class: 'info-row') do %>
-                <div class="info-row-title">View list of users you've matched with</div>
-                <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
-              <% end %>
-              <%= link_to({controller: 'matches', action: 'blocked'}, class: 'info-row') do %>
-                <div class="info-row-title">View list of users you've blocked</div>
-                <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
-              <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="edit-profile-main">
+    <%= link_to 'Start Matching!', students_start_matching_path, class: 'btn btn-block' %>
+    <%= link_to 'Search for a user', pages_browse_path, class: 'btn btn-block' %>
+    <%= link_to 'View list of incoming match requests', {controller: 'matches', action: 'incoming'}, class: 'btn btn-block' %>
+    <%= link_to 'View list of outgoing match requests', {controller: 'matches', action: 'pending'}, class: 'btn btn-block' %>
+    <%= link_to "View list of users you've matched with", {controller: 'matches', action: 'matched'}, class: 'btn btn-block' %>
+    <%= link_to "View list of users you've blocked", {controller: 'matches', action: 'blocked'}, class: 'btn btn-block' %>
   </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
