@@ -6,6 +6,65 @@
   <%= stylesheet_link_tag 'navbar', media: 'all', 'data-turbolinks-track': 'reload' %>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <title>Jimmy</title>
+  <style>
+  /* Base styles for mobile friendliness */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Ensure that the navbar, table, and buttons are flexibly laid out */
+.material-header, .edit-time-table-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.workoutpref-landing-title, .material-title {
+  font-size: 1.2em; /* Larger font size for readability */
+}
+
+.edit-workoutpref-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.edit-workoutpref-table th, .edit-workoutpref-table td {
+  text-align: center;
+  padding: 8px;
+}
+
+/* Button adjustments for better touch interaction */
+.edit-edit-btn, .edit-back-btn {
+  padding: 10px 20px;
+  font-size: 1em;
+  margin-top: 20px;
+}
+
+/* Responsive Table */
+@media screen and (max-width: 600px) {
+  .edit-workoutpref-table, .edit-time-table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .material-header, .material-banner {
+    flex-direction: column;
+  }
+
+  .material-title, .workoutpref-landing-title {
+    font-size: 1.5em; /* Increase font size for small screens */
+  }
+
+  /* Ensure back button and icons are easily clickable */
+  .material-back-button, .material-symbols-outlined {
+    font-size: 2em; /* Larger icons */
+    margin: 10px 0; /* More space around icons */
+  }
+}
+  </style>
 </head>
 
 <body>
@@ -18,17 +77,17 @@
     <span class="material-spacer"></span>
   </div>
   </nav>
-  <h1 class="workoutpref-landing-title"> Edit your avalible times for workouts ... </h1>
+  <h1 class="workoutpref-landing-title"> Edit your available times for workouts</h1>
   <div class="edit-time-table-div">
     <%= form_with model: @time_preference, url: time_preferences_path, method: :patch do |form| %>
       <table summary="Added activities" class="edit-workoutpref-table edit-time-table">
         <thead>
           <tr>
             <th></th>
-            <th class="edit-time-table-ch"> Morning </th>
-            <th class="edit-time-table-ch"> Afternoon </th>
-            <th class="edit-time-table-ch"> Evening </th>
-            <th class="edit-time-table-ch"> Night </th>
+            <th class="edit-time-table-ch">Morning</th>
+            <th class="edit-time-table-ch">Afternoon</th>
+            <th class="edit-time-table-ch">Evening</th>
+            <th class="edit-time-table-ch">Night</th>
           </tr>
         </thead>
         <tbody>
