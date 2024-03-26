@@ -45,10 +45,6 @@ class ActivityPreferencesController < ApplicationController
     def update
     end
 
-    def activity_preference_params
-        params.require(:activity_preference).permit(:activity_id, :student_email, :experience_level)
-    end
-
     def delete
       @current_student = Student.find_by(email: session[:student_id])
       @activity_to_delete = ActivityPreference.find_by(student_email: @current_student.email, activity_id: params[:activity_id])
@@ -60,6 +56,10 @@ class ActivityPreferencesController < ApplicationController
       @activity_to_delete.destroy
       redirect_to activity_preferences_path
     end
-  
+
+    private
+    def activity_preference_params
+      params.require(:activity_preference).permit(:activity_id, :student_email, :experience_level)
+    end
   end
   
