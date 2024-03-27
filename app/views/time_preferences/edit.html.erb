@@ -7,14 +7,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <title>Jimmy</title>
   <style>
-  /* Base styles for mobile friendliness */
-body, html {
-  margin: 0;
-  padding: 0;
-  font-family: 'Arial', sans-serif;
-}
 
-/* Ensure that the navbar, table, and buttons are flexibly laid out */
 .material-header, .edit-time-table-div {
   display: flex;
   flex-direction: column;
@@ -36,20 +29,8 @@ body, html {
   padding: 8px;
 }
 
-/* Button adjustments for better touch interaction */
-.edit-edit-btn, .edit-back-btn {
-  padding: 10px 20px;
-  font-size: 1em;
-  margin-top: 20px;
-}
-
 /* Responsive Table */
 @media screen and (max-width: 600px) {
-  .edit-workoutpref-table, .edit-time-table {
-    display: block;
-    overflow-x: auto;
-  }
-
   .material-header, .material-banner {
     flex-direction: column;
   }
@@ -77,34 +58,45 @@ body, html {
     <span class="material-spacer"></span>
   </div>
   </nav>
-  <h1 class="workoutpref-landing-title"> Edit your available times for workouts</h1>
-  <div class="edit-time-table-div">
-    <%= form_with model: @time_preference, url: time_preferences_path, method: :patch do |form| %>
-      <table summary="Added activities" class="edit-workoutpref-table edit-time-table">
-        <thead>
-          <tr>
-            <th></th>
-            <th class="edit-time-table-ch">Morning</th>
-            <th class="edit-time-table-ch">Afternoon</th>
-            <th class="edit-time-table-ch">Evening</th>
-            <th class="edit-time-table-ch">Night</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @time_table.each do |day, times| %>
-            <tr>
-              <th><%= day %></th>
-              <% ['Morning', 'Afternoon', 'Evening', 'Night'].each_with_index do |time_of_day, index| %>
-                <td>
-                  <%= check_box_tag "time_preferences[#{day}][#{time_of_day}]", '1', times.include?(time_of_day) %>
-                </td>
-              <% end %>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    
-      <%= form.submit "Save changes", class: "material-button time-pref-edit-submit-btn" %>
-    <% end %>
+
+
+  <div class = "general-div-main">
+    <div class = "general-div-inner">
+      <p class="edit-form-label">Customize your preferred times</p>
+      <p class = "edit-form-label edit-form-subscript">
+        We will prioritize matching you with people who are active at the same times as you.
+      </p>
+      <br>
+      <div class="edit-time-table-div time-table-div">
+        <%= form_with model: @time_preference, url: time_preferences_path, method: :patch do |form| %>
+          <div class = "edit-workoutpref-div time-table-div">
+            <table summary="Added activities" class="edit-workoutpref-table">
+              <thead>
+                <tr class="time-table-header-row">
+                  <th></th>
+                  <th class="edit-form-label">Morning</th>
+                  <th class="edit-form-label">Afternoon</th>
+                  <th class="edit-form-label">Evening</th>
+                  <th class="edit-form-label">Night</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @time_table.each do |day, times| %>
+                  <tr class =  "timetable-row edit-workout-pref-table-tr">
+                    <th class = "edit-form-label edit-form-subscript"><%= day %></th>
+                    <% ['Morning', 'Afternoon', 'Evening', 'Night'].each_with_index do |time_of_day, index| %>
+                      <td>
+                        <%= check_box_tag "time_preferences[#{day}][#{time_of_day}]", '1', times.include?(time_of_day) %>
+                      </td>
+                    <% end %>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <%= form.submit "Save changes", class: "material-button time-pref-edit-submit-btn" %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </body>

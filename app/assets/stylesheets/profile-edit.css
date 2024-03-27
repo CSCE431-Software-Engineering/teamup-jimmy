@@ -34,7 +34,9 @@
     flex-direction: column;
 }
 
-.edit-profile-main{
+.general-div-main{
+    margin-left:1rem;
+    margin-right:1rem;
     margin-top: 3rem;
     display: flex;
     justify-content: center;
@@ -43,7 +45,7 @@
     flex-direction: column;
 }
 
-.edit-profile-inner {
+.general-div-inner {
     width: 100%; /* Makes the div grow to fill its parent */
     max-width: 500px; /* Caps the div's maximum size to 500px */
 }

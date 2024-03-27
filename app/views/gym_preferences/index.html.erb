@@ -19,32 +19,35 @@
       <h1 class="ml-auto">Gym Preferences</h1>
     </div>
   </nav>
-  <h1 class="workoutpref-landing-title"> Add your preferred workout locations ... </h1>
-  <div class="edit-workoutpref-div">
-  <table summary="Added activities" class="edit-workoutpref-table">
-    <thead>
-      <tr>
-        <th>Name</th>
-      </tr>
-    </thead>
-    <% @gyms.each do |gym| %>
-    <%= puts @gyms%>
-    <tr>
-      <td><%= gym.name%></td>
-      <td> 
-        <% gym_to_delete = GymPreference.find_by(student_email: @current_student.email, gym_id: gym.id)%>
-        <%= form_with(model: gym_to_delete, url: gym_preference_path(gym_to_delete), method: :delete) do |form| %>
-          <%= form.submit 'Delete', class: "material-symbols-outlined edit-workoutpref-add-btn" %>
-        <% end %>
 
-      </td>
-    </tr>
-    <% end %>
+  <div class = "general-div-main">
+    <div class="general-div-inner"> 
+      <p class="edit-form-label">Enter your preferred workout locations</p>
+      <p class = "edit-form-label edit-form-subscript">
+        This will help us match you with people who workout at the same locations as you.
+      </p>
+      <br>
+      <div class="edit-workoutpref-div">
+        <table summary="Added activities" class="edit-workoutpref-table">
+          <% @gyms.each do |gym| %>
+          <%= puts @gyms%>
+            <tr class = "edit-workout-pref-table-tr">
+              <td class = "edit-form-label edit-form-subscript"><%= gym.name%></td>
+              <td class = "table-icon"> 
+                <% gym_to_delete = GymPreference.find_by(student_email: @current_student.email, gym_id: gym.id)%>
+                <%= form_with(model: gym_to_delete, url: gym_preference_path(gym_to_delete), method: :delete) do |form| %>
+                  <%= form.submit 'Delete', class: "material-symbols-outlined edit-workoutpref-add-btn" %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
 
-    <tr>
-      <td> Add Gym </td>
-      <td> <%= render(partial:'add', locals:{c: "gym_preferences", a: "edit"}) %> </td>
-    </tr>
-  </table>
+          <tr class= "edit-workout-pref-table-add-tr">
+            <td class = "edit-form-label"> Add Gym </td>
+            <td class = "table-icon"> <%= render(partial:'add', locals:{c: "gym_preferences", a: "edit"}) %> </td>
+          </tr>
+        </table>
+      </div>
+    </div>
   </div>
 </body>

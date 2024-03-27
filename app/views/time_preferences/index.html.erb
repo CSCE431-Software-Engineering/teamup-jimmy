@@ -7,20 +7,15 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <title>Jimmy</title>
   <style>
-    /* Base styles for mobile friendliness */
-    body, html {
-      margin: 0;
-      padding: 0;
-      font-family: 'Arial', sans-serif;
-    }
 
-    /* Ensure that the navbar, table, and buttons are flexibly laid out */
     .material-header, .edit-time-table-div {
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
     }
+
+    
 
     .workoutpref-landing-title, .material-title {
       font-size: 1.2em; /* Larger font size for readability */
@@ -31,24 +26,13 @@
       border-collapse: collapse;
     }
 
-    .edit-workoutpref-table th, .edit-workoutpref-table td {
-      text-align: center;
-      padding: 4px;
-    }
-
-    /* Button adjustments for better touch interaction */
     .edit-edit-btn, .edit-back-btn {
       padding: 10px 20px;
       font-size: 1.5em;
       margin-top: 20px;
     }
 
-    /* Responsive Table */
     @media screen and (max-width: 600px) {
-      .edit-workoutpref-table, .edit-time-table {
-        display: block;
-        overflow-x: auto;
-      }
 
       .material-header, .material-banner {
         flex-direction: column;
@@ -56,12 +40,6 @@
 
       .material-title, .workoutpref-landing-title {
         font-size: 1.2em; /* Increase font size for small screens */
-      }
-
-      /* Ensure back button and icons are easily clickable */
-      .material-back-button, .material-symbols-outlined {
-        font-size: 2em; /* Larger icons */
-        margin: 10px 0; /* More space around icons */
       }
     }
   </style>
@@ -77,30 +55,39 @@
     <span class="material-spacer"></span>
   </div>
   </nav>
-  <h1 class="workoutpref-landing-title"> Your available times for workouts ... </h1>
-  <div class="edit-time-table-div">
-    <table summary="Added activities" class="edit-workoutpref-table edit-time-table">
-      <thead>
-        <tr>
-        <th></th>
-        <th class="edit-time-table-ch">Morning</th>
-        <th class="edit-time-table-ch">Afternoon</th>
-        <th class="edit-time-table-ch">Evening</th>
-        <th class="edit-time-table-ch">Night</th>
-        </tr>
-      </thead>
+  <div class = "general-div-main">
+    <div class = "general-div-inner">
+      <p class="edit-form-label">Customize your preferred times</p>
+      <p class = "edit-form-label edit-form-subscript">
+        We will prioritize matching you with people who are active at the same times as you.
+      </p>
+      <br>
+      <div class="edit-workoutpref-div time-table-div">
+        <table summary="Added activities" class="edit-workoutpref-table">
+          <thead>
+            <tr class="time-table-header-row">
+              <th></th>
+              <th class="edit-form-label">Morning</th>
+              <th class="edit-form-label">Afternoon</th>
+              <th class="edit-form-label">Evening</th>
+              <th class="edit-form-label">Night</th>
+            </tr>
+          </thead>
 
-     <% @time_table.each do |day, data| %>
-      <tr>
-        <th><%= day %></th>
-        <% Array(data).each do |status| %>
-          <td><span class="material-symbols-outlined edit-workoutpref-add-btn"><%= status %></span></td>
-        <% end %>
-      </tr>
-    <% end %>
-    </table>
-
-    <%= button_to("Edit", {action: "edit"}, method: :get, class: "edit-edit-btn edit-back-btn") %>
+          <% @time_table.each do |day, data| %>
+            <tr class = "timetable-row edit-workout-pref-table-tr">
+              <th class = "edit-form-label edit-form-subscript"><%= day %></th>
+              <% Array(data).each do |status| %>
+                <td><span class="material-symbols-outlined edit-workoutpref-add-btn"><%= status %></span></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+      <%= button_to("Edit", {action: "edit"}, method: :get, class: "material-button time-pref-edit-submit-btn") %>
+      <%= render 'pages/flash' %>
+    </div>
   </div>
+    
 </body>
 </html>

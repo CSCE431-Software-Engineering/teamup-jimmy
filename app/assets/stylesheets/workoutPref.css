@@ -6,15 +6,26 @@
 }
 
 .edit-workoutpref-div{
+  padding-top:0.3rem;
+  padding-bottom: 0.3rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background-color: #F3DBAE;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  font-family: "Roboto", sans-serif;
+  width: 100%;  
   max-height: 25rem;
   overflow-y: auto;
 }
 
 .edit-workoutpref-table{
+  width: 100%;
   background-color: rgb(243, 219, 174);
   padding: 0.5rem;
   border-radius: 8px;
-  border-collapse: separate;
+  border-collapse: collapse;
   border-spacing: 1rem 0.25rem;
   justify-content: space-between;
   font-family: roboto, sans-serif;
@@ -23,10 +34,26 @@
   min-width: max-content;
   max-width: 100%;
   text-align: left;
-  border: 2px solid black
+}
+
+.edit-workout-pref-table-tr {
+  width:100%;
+  border-bottom: 1px solid var(--primary-text-color);
+}
+
+.edit-workout-pref-table-tr td, .edit-workout-pref-table-add-tr td {
+  padding: 0.5rem;
+}
+
+.table-icon{
+  height: 2rem;
+  width: 2rem;
 }
 
 .edit-workoutpref-add-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 0rem;
   background-color: rgb(243, 219, 174);
   font-size: large;
@@ -59,7 +86,11 @@
 .edit-time-table-div{
   margin-left: auto;
   margin-right: auto;
-  max-width: max-content;
+  max-width: 100%;
+}
+
+.edit-time-table-div form{
+  width: 100%;
 }
 
 .edit-gym-select-div{
@@ -113,4 +144,42 @@ input[type="radio"] {
 
 .time-pref-edit-submit-btn{
   margin-top: 1rem;
+}
+
+.edit-workoutpref-div::-webkit-scrollbar {
+  width: 1rem; /* width of the entire scrollbar */
+}
+
+.edit-workoutpref-div::-webkit-scrollbar-track {
+  background: #f3dbae; /* color of the tracking area */
+  border-radius: 1rem;
+}
+
+.edit-workoutpref-div::-webkit-scrollbar-thumb {
+  background-color: #b68d60; /* color of the scroll thumb */
+  border-radius: 1rem; /* roundness of the scroll thumb */
+  border: 3px solid #f3dbae; /* creates padding around scroll thumb */
+}
+
+.edit-workoutpref-div::-webkit-scrollbar-thumb:hover {
+  background: #a27850;
+}
+
+.timetable-row{
+  border-bottom: 0px var(--primary-text-color)!important;
+  border-top: 1px solid var(--primary-text-color)!important;
+  height: 3rem;
+}
+
+.time-table-div{
+  max-height: none!important;
+}
+
+.time-table-header-row{
+  height:2.5rem;
+}
+
+.edit-workoutpref-table th, .edit-workoutpref-table td {
+  text-align: center;
+  padding: 8px;
 }

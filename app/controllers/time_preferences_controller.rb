@@ -17,9 +17,12 @@ class TimePreferencesController < ApplicationController
     # Find or initialize the TimePreference record
     @time_preference = TimePreference.find_or_initialize_by(student_email: @current_student.email)
     
+    puts params["time_preferences"]
     # Process incoming parameters to construct preference strings
     process_time_preferences(params["time_preferences"])
     
+    puts "morning:"
+    puts @morning
     # Update the TimePreference record
     if @time_preference.update(morning: @morning, afternoon: @afternoon, evening: @evening, night: @night)
       # Handle successful update, e.g., redirect or render success message
@@ -79,7 +82,7 @@ class TimePreferencesController < ApplicationController
   def time_table()
     initialize_time_variables()
     # @mon = [@morning_iter[0]] + [@afternoon_iter[0]] + [@evening_iter[0]] + [@night_iter[0]]
-    days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    days_of_week = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 
     # Initialize an empty array to store the results
     @time_table = []
@@ -114,7 +117,7 @@ class TimePreferencesController < ApplicationController
     if form_params.nil?
       return
     end
-    days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    days_of_week = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
     days_of_week.each_with_index do |day, index|
       if form_params[day].nil? == false
         @morning[index] = '1' if form_params[day]["Morning"] == "1"
@@ -124,6 +127,8 @@ class TimePreferencesController < ApplicationController
       end
     end
   end
+
+  puts @morning
 
 
 end

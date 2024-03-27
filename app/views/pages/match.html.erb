@@ -14,10 +14,6 @@
       background-color: #f7e9ce; /* Use the same background color as the rest of your site */
     }
 
-    .edit-profile-main {
-      padding: 0.5rem;
-    }
-
     /* Use Bootstrap's button classes for guaranteed mobile responsiveness */
     .btn-block {
       display: block;
@@ -48,7 +44,7 @@
 <body>
   <%= render 'pages/navbar' %>
 
-  <div class="edit-profile-main">
+  <div class="general-div-main">
     <%= link_to 'Start Matching!', students_start_matching_path, class: 'btn btn-block' %>
     <%= link_to 'Search for a user', pages_browse_path, class: 'btn btn-block' %>
     <%= link_to 'View list of incoming match requests', {controller: 'matches', action: 'incoming'}, class: 'btn btn-block' %>

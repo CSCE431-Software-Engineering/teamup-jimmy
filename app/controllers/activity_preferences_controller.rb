@@ -12,7 +12,12 @@ class ActivityPreferencesController < ApplicationController
     end
   
     def new
-      @activities = Activity.all()
+      query = params[:query]
+      if query.present?
+        @activities = Activity.where("activity_name ILIKE :query", query: "%#{query.downcase}%")
+      else
+        @activities = -1
+      end
     end
   
     def create

@@ -20,6 +20,7 @@ class GymPreferencesController < ApplicationController
       student_email: @current_student.email,
     )
     if @new_gym.save
+      flash[:notice] = "Gym preference added successfully"
       redirect_to gym_preferences_path
     else
       render 'index'
@@ -38,6 +39,7 @@ class GymPreferencesController < ApplicationController
       gym_id: params[:gym_preference][:gym_id]    
     )
     if @new_gym.save
+      flash[:notice] = "Gym preference added successfully"
       redirect_to gym_preferences_path
     else
       render 'index'
