@@ -121,6 +121,7 @@
 .material-button:hover {
     background-color: #f1d39b; /* Darker shade for hover state */
     box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Elevation effect */
+    color: var(--primary-text-color)!important;
 }
 
 .material-button:focus {
