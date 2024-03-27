@@ -23,8 +23,8 @@
   --primary-bg-color: #F7E9CE;
 }
 
-body {
-  background-color: #F7E9CE;
+body, html {
+  background-color: #F7E9CE!important;
   margin:0px;
   font-family: 'Roboto', sans-serif;
 
@@ -324,3 +324,9 @@ body {
   }
 }
 
+
+.icon {
+  background: --var(--primary-text-color); /* Or any color you want */
+  -webkit-mask: url('instagram_icon.png') no-repeat center / contain;
+          mask: url('instagram_icon.png') no-repeat center / contain;
+}
