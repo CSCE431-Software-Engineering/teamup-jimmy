@@ -48,16 +48,63 @@ body, html {
   left: 1%;
 }
 
-.info-row a, a:hover, a:focus, a:active {
-  color: #000000 !important; /* Set the text color to black, or any color you prefer */
-  text-decoration: none !important; /* Removes the underline from the link */
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(243, 219, 174); /* Example color */
+  margin-bottom: 10px;
+  border-radius: 8px;
+  color: var(--primary-text-color);
+  text-decoration: none;
+  transition: background-color 0.3s, box-shadow 0.2s;
+  -webkit-tap-highlight-color: transparent; /* Prevents the mobile browser from highlighting the button on tap */
 }
 
-.info-row {
-  border: 1px solid #ddd; /* Optional border for visual structure */
-  border-radius: 0.25rem;
-  background-color: #FFFFFF; /* Or any color you prefer */
+
+.info-row-title {
+  font-weight: bold;
+  padding: 1rem;
+  flex-basis: 20%;
+  text-align: left;
+  white-space: nowrap;
+  min-width: 10rem;
+  text-decoration: none;
 }
+
+.info-row-content {
+  padding: 1rem;
+  flex-basis: 60%; /* Adjust as needed to control the width of the content */
+  text-align: left;
+}
+
+.info-row-top-padding {
+  padding-top: 12%;
+}
+
+.info-row:hover {
+  background-color: #f1d39b; /* Darker shade for hover state */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Elevation effect */
+  text-decoration: none!important; /* Removes the underline */
+  color: var(--primary-text-color); /* Keeps the color the same as it was without hover */
+}
+
+.info-row:focus {
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #f1d39b; /* Focus state with outer and inner rings */
+}
+
+.info-row:active {
+  background-color: #ebbd67; /* Even darker shade for active/click state */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Simulate "pressed" effect by reducing elevation */
+}
+
+.info-row:disabled {
+  background-color: #E0E0E0; /* Disabled state color */
+  color: #9E9E9E;
+  cursor: default;
+  box-shadow: none;
+}
+
 
 @media (max-width: 768px) {
   .navbar-brand {
@@ -69,9 +116,6 @@ body, html {
   }
   .forward-arrow {
     width: 1rem; /* Smaller arrows on mobile */
-  }
-  .info-row {
-    padding: 1rem; /* More padding on mobile */
   }
 }
 

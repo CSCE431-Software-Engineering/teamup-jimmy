@@ -4,23 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= stylesheet_link_tag 'navbar', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <style>
-    /* Custom styles */
-    .info-row {
-      padding: 1rem; /* Spacing */
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #ddd; /* Visual separation */
-    }
-    .info-row-title {
-      font-size: 1rem; /* Responsive text size */
-    }
-    .forward-arrow {
-      height: auto; /* Ensure the arrow image is responsive */
-      width: 1.5rem; /* Maintain aspect ratio */
-    }
-  </style>
   <!-- Include Bootstrap CSS for responsiveness -->
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <title>Jimmy</title>
@@ -37,14 +20,25 @@
       <h1 class="ml-auto">Matching Preferences</h1>
     </div>
   </nav>
+  
   <div class="container mt-4">
     <%= render 'pages/flash' %>
-    <%= link_to students_edit_gender_pref_path, class: 'info-row' do %>
-      <div class="info-row-title">Preferred gender of workout partners</div>
-    <% end %>
-    <%= link_to students_edit_age_pref_path, class: 'info-row' do %>
-      <div class="info-row-title">Preferred age of workout partners</div>
-    <% end %>
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-8 col-lg-6">
+        <div class="settings-card">
+          <%= link_to students_edit_gender_pref_path, class: 'info-row' do %>
+            <div class="info-row-title">Preferred gender of workout partners</div>
+            <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
+          <% end %>
+        </div>
+        <div class="settings-card">
+          <%= link_to students_edit_age_pref_path, class: 'info-row' do %>
+            <div class="info-row-title">Preferred age of workout partners</div>
+            <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
   <!-- Include Bootstrap JS for responsiveness -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -52,3 +46,6 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
+
+

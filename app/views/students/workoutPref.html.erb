@@ -37,16 +37,30 @@
 
 <div class="container mt-4">
   <%= render 'pages/flash' %>
-  <%= link_to time_preferences_index_path, class: 'info-row d-flex justify-content-between align-items-center mb-2 p-2' do %>
-    <span class="info-row-title">Update workout time preferences</span>
-  <% end %>
-  <%= link_to gym_preferences_path, class: 'info-row d-flex justify-content-between align-items-center mb-2 p-2' do %>
-    <span class="info-row-title">Update gym location preferences</span>
-  <% end %>
-  <%= link_to activity_preferences_path, class: 'info-row d-flex justify-content-between align-items-center mb-2 p-2' do %>
-    <span class="info-row-title">Update activity preferences</span>
-  <% end %>
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+      <div class="settings-card">
+        <%= link_to time_preferences_index_path, class: 'info-row' do %>
+          <div class="info-row-title">Update workout time preferences</div>
+          <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
+        <% end %>
+      </div>
+      <div class="settings-card">
+        <%= link_to gym_preferences_path, class: 'info-row' do %>
+          <div class="info-row-title">Update gym location preferences</div>
+          <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
+        <% end %>
+      </div>
+      <div class="settings-card">
+        <%= link_to activity_preferences_path, class: 'info-row' do %>
+          <div class="info-row-title">Update activity preferences</div>
+          <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
+
 
 <!-- Bootstrap JS and jQuery for collapsible navbar and responsiveness -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

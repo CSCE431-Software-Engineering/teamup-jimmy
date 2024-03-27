@@ -4,37 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <style>
-    /* Custom styles for settings cards */
-    .settings-card {
-      border: 2px solid #ddd; /* Solid border for the card */
-      border-radius: 8px; /* Rounded corners */
-      padding: 16px; /* Padding inside the card */
-      margin-bottom: 16px; /* Margin to the bottom of the card */
-      background-color: #fff; /* White background */
-    }
-    .settings-title {
-      font-size: 18px; /* Larger font size for visibility */
-      font-weight: bold; /* Bold font for the title */
-    }
-    .settings-value {
-      color: #666; /* Muted color for the value */
-      margin-top: 8px; /* Margin above the value */
-    }
-    .arrow-link {
-      text-decoration: none; /* Remove text decoration from links */
-      color: inherit; /* Link color same as text color */
-      position: relative; /* Positioning context for absolute children */
-    }
-    .arrow-link::after {
-      content: ''; /* Pseudo-element for arrow */
-      position: absolute; /* Absolute position */
-      right: 0; /* Align to the right */
-      top: 50%; /* Center vertically */
-      transform: translateY(-50%); /* Center vertically */
-      font-size: 24px; /* Larger font size for the arrow */
-    }
-  </style>
   <title>Profile Settings</title>
 </head>
 <body>
@@ -61,18 +30,16 @@
     </div>
   </nav>
 
-  <!-- Main content container -->
   <div class="container mt-4">
-    <!-- Flash messages placeholder -->
     <%= render 'pages/flash' %>
-    <!-- Settings cards -->
     <div class="row justify-content-center">
       <div class="col-12 col-md-8 col-lg-6">
         <% settings.each do |setting| %>
           <div class="settings-card">
-            <%= link_to setting[:path], class: 'arrow-link' do %>
-              <div class="settings-title"><%= setting[:title] %></div>
-              <div class="settings-value"><%= setting[:value] %></div>
+            <%= link_to setting[:path], class: 'info-row' do %>
+              <div class="info-row-title"><%= setting[:title] %></div>
+              <div class="info-row-content"><%= setting[:value] %></div>
+              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
             <% end %>
           </div>
         <% end %>
