@@ -214,7 +214,7 @@ class StudentsController < ApplicationController
     set_current_student
     @number = -1
     if @student.email != @current_student.email
-      @number = student.phone_number
+      @number = @student.phone_number
       if @number.nil? 
         @number = -1
       end
