@@ -38,8 +38,11 @@
             <td> 
               <% activity = ActivityPreference.find_by(student_email: @current_student.email, activity_id: (Activity.find_by(activity_name: activity_name)).id)%>
               <%= form_with(model: activity, url: activity_preference_path(activity), method: :delete) do |form| %>
-                <%= form.submit 'Delete', class: "material-symbols-outlined edit-workoutpref-add-btn" %>
+                <%= form.button class: "edit-workoutpref-add-btn" do %>
+                  <%= image_tag('remove_icon.png', alt: 'Delete') %>
+                <% end %>
               <% end %>
+              
             </td>
           </tr>
           <% end %>
