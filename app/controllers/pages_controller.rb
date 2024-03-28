@@ -34,7 +34,8 @@ class PagesController < ApplicationController
 
       @results.each do |result|
         match = Match.where(student1_email: @current_student.email, student2_email: result.email).or(Match.where(student1_email: result.email, student2_email: @current_student.email)).first
-        if match.relationship_enum < 0
+        
+        if !(match.nil?) && match.relationship_enum < 0
           @results = @results.where.not(email: result.email)
         end
       end
