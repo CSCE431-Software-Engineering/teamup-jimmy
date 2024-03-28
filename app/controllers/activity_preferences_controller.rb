@@ -14,7 +14,7 @@ class ActivityPreferencesController < ApplicationController
     def new
       query = params[:query]
       if query.present?
-        @activities = Activity.where("activity_name ILIKE :query", query: "%#{query.downcase}%")
+        @activities = Activity.where("activity_name ILIKE :query", query: "%#{query.downcase}%").order(:activity_name)
       else
         @activities = -1
       end
