@@ -7,150 +7,123 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <%= stylesheet_link_tag 'navbar', media: 'all', 'data-turbolinks-track': 'reload' %>
   <title>Jimmy</title>
-  <style>
-    body, html {
-      height: 100%;
-      margin: 0;
-      background-color: rgb(247, 233, 206);
-    }
-    
-    .profile-picture {
-      width: 200px; /* Adjust size as needed */
-      height: 200px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid #fff; /* Optional: adds a border around the image */
-    }
-
-    .social-icon {
-      width: 24px; /* Adjust size as needed */
-      height: 24px;
-    }
-
-    /* Adjust the spacing and padding as needed */
-    .profile-section {
-      padding: 2rem 0;
-    }
-
-    .name-title, .section-title {
-      font-weight: bold;
-      margin-bottom: 1rem;
-    }
-
-    .socials-bar {
-      padding: 1rem 0;
-    }
-
-    .dropdown .dropbtn {
-      font-size: 1.5rem;
-      border: none;
-      background: transparent;
-      color: #6c757d; /* Bootstrap's default icon color */
-    }
-
-    .dropdown-content {
-      right: 0; /* Aligns dropdown to the right */
-      left: auto; /* Ensures it doesn't stretch to the full width */
-    }
-
-    @media (max-width: 768px) {
-      .profile-section, .socials-bar {
-        padding: 1rem;
-      }
-    }
-
-    /* Additional media queries can be added for fine-tuning */
-
-  </style>
 </head>
 <body>
   <%= render 'pages/navbar' %>
-
-  <div class="container profile-section">
-    <div class="row justify-content-center">
-      <div class="col-10 col-md-6 col-lg-4 text-center">
-        <img class="profile-picture img-fluid mb-3" src="https://i.pinimg.com/736x/d7/1d/1a/d71d1a41b69bbbf2ca2d94b918d86faf.jpg" alt="Profile Picture">
-        <h2 class="name-title"><%= @student.name %></h2>
-        <p class="major-and-class"><%= @major_and_class %></p>
+  
+  <div class="container profile-section profile-header">
+    <div>
+      <div class="row justify-content-center">
+        <div class="col-10 col-md-6 col-lg-4 text-center">
+          <img class="profile-picture img-fluid mb-3" src="https://i.pinimg.com/736x/d7/1d/1a/d71d1a41b69bbbf2ca2d94b918d86faf.jpg" alt="Profile Picture">
+          <h2 class="profile-name"><%= @student.name %></h2>
+          <p class="major-and-class"><%= @major_and_class %></p>
+        </div>
       </div>
-    </div>
-    <div class="row justify-content-center">
-      <div class="col-12 text-center socials-bar">
-        <% if @student.instagram_url.present? %>
-          <%= link_to "https://#{@student.instagram_url}", target: "_blank", class: "social-link mx-2" do %>
-            <%= image_tag asset_path("instagram_icon.png"), class: "social-icon", alt: "Instagram Link" %>
+      <div class="row justify-content-center">
+        <div class="col-12 text-center socials-bar">
+          <% if @student.instagram_url.present? %>
+            <%= link_to "https://#{@student.instagram_url}", target: "_blank", class: "mx-2" do %>
+              <%= image_tag asset_path("instagram_icon.png"), class: "social-link", alt: "Instagram Link" %>
+            <% end %>
           <% end %>
-        <% end %>
 
-        <% if @student.x_url.present? %>
-          <%= link_to "https://#{@student.x_url}", target: "_blank", class: "social-link mx-2" do %>
-            <%= image_tag asset_path("x_icon.png"), class: "social-icon", alt: "X Link" %>
+          <% if @student.x_url.present? %>
+            <%= link_to "https://#{@student.x_url}", target: "_blank", class: "mx-2" do %>
+              <%= image_tag asset_path("x_icon.png"), class: "social-link", alt: "X Link" %>
+            <% end %>
           <% end %>
-        <% end %>
-      </div>
-
-      <div class = "relationship-controls-container">
-          <% if @can_send_match_request %> 
-            <%= button_to 'Send Match Request', 
-            match_path(@match, action_name: 'send_match_request'), 
-            method: :patch,
-            class: "material-button"%>
-          <% end %>
-          <% if @can_cancel_match_request %>
-            <%= button_to 'Cancel Match Request', 
-            match_path(@match, action_name: 'cancel_match_request'), 
-            method: :patch,
-            class: "material-button"%>
-          <% end %>
-          <% if @can_accept_match_request %>
-            <%= button_to 'Accept Match Request', 
-            match_path(@match, action_name: 'accept_match_request'), 
-            method: :patch,
-            class: "material-button"%>
-          <% end %>
-          <% if @can_reject_match_request %>
-            <%= button_to 'Decline Match Request', 
-            match_path(@match, action_name: 'reject_match_request'), 
-            method: :patch,
-            class: "material-button"%>
-          <% end %>
-          <% if @can_unmatch %>
-            <%= button_to 'Unmatch', 
-            match_path(@match, action_name: 'unmatch'), 
-            method: :patch,
-            class: "material-button"%>
-          <% end %>
-          <% if @can_block %>
-            <%= button_to 'Block User', 
-              match_path(@match, action_name: 'block'), 
+        </div>
+        <div class = "relationship-controls-container">
+            <% if @can_send_match_request %> 
+              <%= button_to 'Send Match Request', 
+              match_path(@match, action_name: 'send_match_request'), 
               method: :patch,
               class: "material-button"%>
             <% end %>
-          <% if @can_unblock %>
-            <%= button_to 'Unblock User', 
-            match_path(@match, action_name: 'unblock'), 
-            method: :patch,
-            class: "material-button"%>
-          <% end %>
+            <% if @can_cancel_match_request %>
+              <%= button_to 'Cancel Match Request', 
+              match_path(@match, action_name: 'cancel_match_request'), 
+              method: :patch,
+              class: "material-button"%>
+            <% end %>
+            <% if @can_accept_match_request %>
+              <%= button_to 'Accept Match Request', 
+              match_path(@match, action_name: 'accept_match_request'), 
+              method: :patch,
+              class: "material-button"%>
+            <% end %>
+            <% if @can_reject_match_request %>
+              <%= button_to 'Decline Match Request', 
+              match_path(@match, action_name: 'reject_match_request'), 
+              method: :patch,
+              class: "material-button"%>
+            <% end %>
+            <% if @can_unmatch %>
+              <%= button_to 'Unmatch', 
+              match_path(@match, action_name: 'unmatch'), 
+              method: :patch,
+              class: "material-button"%>
+            <% end %>
+            <% if @can_block %>
+              <%= button_to 'Block User', 
+                match_path(@match, action_name: 'block'), 
+                method: :patch,
+                class: "material-button"%>
+              <% end %>
+            <% if @can_unblock %>
+              <%= button_to 'Unblock User', 
+              match_path(@match, action_name: 'unblock'), 
+              method: :patch,
+              class: "material-button"%>
+            <% end %>
+            <% if @number != -1%>
+              <%= tag.button "Contact via Phone", data: {controller: "clipboard", action: "clipboard#copy"}, class: "material-button copy-number-button" %>
+            <% end %>
+            <div id="phoneNumber"><%=@number%></div>
+
+            <!-- Event listener for copy button. -->
+            <script type="module">
+              import { copyTextToClipboard } from 'clipboard';
+
+              document.addEventListener('DOMContentLoaded', () => {
+                const copyButton = document.querySelector('button[data-controller="clipboard"]');
+                copyButton.addEventListener('click', () => copyTextToClipboard('phoneNumber'));
+              });
+            </script>
+          </div>
+          
         </div>
-        
-    </div>
-    
-    <div class="row">
-      <div class="col text-center">
-        <h3 class="section-title">About Me</h3>
-        <p><%= @student.biography %></p> 
       </div>
     </div>
+  </div>
 
-    <div class="row">
-      <div class="col text-center">
-        <h3 class="section-title">Workouts</h3>
-        <ul class="list-unstyled">
-          <% @current_activities.each do |name| %>
-            <li><%= name %></li>
-          <% end %>
-        </ul>
+  <div class = "linear-divider"></div>
+
+  <div class = "container">
+    <div class = "profile-content-outer">
+      <div class = "profile-content">
+        <div class="row">
+          <div class="col">
+            <% if @student.biography.present? %>
+              <p class="profile-name">About Me</p>
+              <p class="profile-body-text"><%= @student.biography %></p>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <h3 class="profile-name">Workouts</h3>
+            <% if @current_activities.empty? %>
+              <p class="profile-body-text">This user has not added any workouts</p>
+            <% else %>
+              <% @current_activities.each do |name|%>
+                <li class="profile-body-text"><%=name%></li>
+              <%end%>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
   </div>

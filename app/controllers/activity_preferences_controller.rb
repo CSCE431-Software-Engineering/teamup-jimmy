@@ -12,7 +12,12 @@ class ActivityPreferencesController < ApplicationController
     end
   
     def new
-      @activities = Activity.all()
+      query = params[:query]
+      if query.present?
+        @activities = Activity.where("activity_name ILIKE :query", query: "%#{query.downcase}%")
+      else
+        @activities = -1
+      end
     end
   
     def create
@@ -27,9 +32,11 @@ class ActivityPreferencesController < ApplicationController
         )
       
         if @new_pref.save
+          flash[:notice] = "Activity preference added successfully."
           redirect_to activity_preferences_path
         else
-          render 'experience'
+          flash[:alert] = "Failed to add activity preference."
+          render redirect_to activity_preferences_path
         end
       end
   
@@ -54,6 +61,7 @@ class ActivityPreferencesController < ApplicationController
       @current_student = Student.find_by(email: session[:student_id])
       @activity_to_delete = ActivityPreference.find(params[:id])
       @activity_to_delete.destroy
+      flash[:notice] = "Activity preference deleted successfully."
       redirect_to activity_preferences_path
     end
 

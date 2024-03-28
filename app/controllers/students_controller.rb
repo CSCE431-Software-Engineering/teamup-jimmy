@@ -212,7 +212,12 @@ class StudentsController < ApplicationController
     @can_reject_match_request = false
     @can_unmatch = false
     set_current_student
+    @number = -1
     if @student.email != @current_student.email
+      @number = @student.phone_number
+      if @number.nil? 
+        @number = -1
+      end
       @match = Match.where(student1_email: @current_student.email, student2_email: @student.email) .or(Match.where(student1_email: @student.email, student2_email: @current_student.email)).first
       if @match.nil?
         puts "match not founnd for student1: #{@current_student} and student2: #{@student}"

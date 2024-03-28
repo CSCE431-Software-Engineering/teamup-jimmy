@@ -34,7 +34,9 @@
     flex-direction: column;
 }
 
-.edit-profile-main{
+.general-div-main{
+    margin-left:1rem;
+    margin-right:1rem;
     margin-top: 3rem;
     display: flex;
     justify-content: center;
@@ -43,7 +45,7 @@
     flex-direction: column;
 }
 
-.edit-profile-inner {
+.general-div-inner {
     width: 100%; /* Makes the div grow to fill its parent */
     max-width: 500px; /* Caps the div's maximum size to 500px */
 }
@@ -121,6 +123,7 @@
 .material-button:hover {
     background-color: #f1d39b; /* Darker shade for hover state */
     box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Elevation effect */
+    color: var(--primary-text-color)!important;
 }
 
 .material-button:focus {
@@ -156,36 +159,7 @@
     font-family: roboto, sans-serif;
 }
   
-.info-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: rgb(243, 219, 174); /* Example color */
-    margin-bottom: 10px;
-    border-radius: 8px;
-    color: var(--primary-text-color);
-    text-decoration: none;
-}
-  
-.info-row-title {
-    font-weight: bold;
-    padding: 1rem;
-    flex-basis: 20%;
-    text-align: left;
-    white-space: nowrap;
-    min-width: 7rem;
-    text-decoration: none;
-}
-  
-.info-row-content {
-    padding: 1rem;
-    flex-basis: 60%; /* Adjust as needed to control the width of the content */
-    text-align: left;
-}
 
-.info-row-top-padding {
-    padding-top: 12%;
-}
 
 .forward-arrow{
     max-height: 2rem;
