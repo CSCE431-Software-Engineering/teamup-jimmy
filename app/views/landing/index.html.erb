@@ -8,7 +8,7 @@
   <br/>
   
   <%# This button should invoke the Google OAuth%>
-  <%= button_to("Log in / Sign up", account_google_oauth2_omniauth_authorize_path, method: :post, class: 'landing-button') %>
+  <%= button_to("Log in / Sign up", account_google_oauth2_omniauth_authorize_path, method: :post, class: 'landing-button', data: { turbo: false }) %>
   <%= render 'footer' %>
 
 </body>
