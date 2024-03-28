@@ -36,7 +36,9 @@
               <td class = "table-icon"> 
                 <% gym_to_delete = GymPreference.find_by(student_email: @current_student.email, gym_id: gym.id)%>
                 <%= form_with(model: gym_to_delete, url: gym_preference_path(gym_to_delete), method: :delete) do |form| %>
-                  <%= form.submit 'Delete', class: "material-symbols-outlined edit-workoutpref-add-btn" %>
+                  <%= form.button class: "edit-workoutpref-add-btn" do %>
+                    <%= image_tag('remove_icon.png', alt: 'Delete', class: 'table-icon') %>
+                  <% end %>
                 <% end %>
               </td>
             </tr>
