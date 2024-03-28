@@ -44,14 +44,21 @@
 <body>
   <%= render 'pages/navbar' %>
 
-  <div class="general-div-main">
-    <%= link_to 'Start Matching!', students_start_matching_path, class: 'btn btn-block' %>
-    <%= link_to 'Search for a user', pages_browse_path, class: 'btn btn-block' %>
-    <%= link_to 'View list of incoming match requests', {controller: 'matches', action: 'incoming'}, class: 'btn btn-block' %>
-    <%= link_to 'View list of outgoing match requests', {controller: 'matches', action: 'pending'}, class: 'btn btn-block' %>
-    <%= link_to "View list of users you've matched with", {controller: 'matches', action: 'matched'}, class: 'btn btn-block' %>
-    <%= link_to "View list of users you've blocked", {controller: 'matches', action: 'blocked'}, class: 'btn btn-block' %>
+ <div class="container mt-4">
+  <br>
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+
+      <div class = "settings-card">
+        <%= link_to students_start_matching_path, class: 'info-row' do %>
+          <div class="info-row-title">Start Matching!</div>
+          <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Arrow" %>
+        <% end %>
+      </div>
+
+    </div>
   </div>
+
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>

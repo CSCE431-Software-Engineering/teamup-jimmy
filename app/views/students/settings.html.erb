@@ -15,7 +15,7 @@
         <%= image_tag('back_arrow.png', alt: 'Back', class: 'img-fluid', style: 'height: 24px;') %>
         <span class="ml-2">Back</span>
       <% end %>
-      <h1 class="ml-auto">Profile Settings</h1>
+      <h1 class="navbar-text mx-auto var(--primary-text-color)">Profile Settings</h1>
     </div>
   </nav>
 
@@ -51,6 +51,10 @@
               <div class="info-row-title">Delete Account</div>
               <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Forward Arrow" %>
             <% end %>
+            <%= link_to matches_blocked_path, class: 'info-row' do %>
+              <div class="info-row-title">View list of users you've blocked</div>
+              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Arrow" %>
+            <% end %> 
           </div>
         </div>
       </div>
