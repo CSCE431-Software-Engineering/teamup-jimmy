@@ -46,15 +46,18 @@
 </head>
 
 <body>
-  <nav class="material-header">
-  <div class="material-banner">
-    <%= link_to students_workout_preferences_path,  class: "navbar-link material-back-button" do %>
-      <%= image_tag('back_arrow.png', alt: 'Back', class: 'back-arrow-icon') %> Back
-    <% end %>
-    <h1 class="material-title">Time Preferences</h1>
-    <span class="material-spacer"></span>
-  </div>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F3DBAE;">
+    <div class="container">
+      <!-- Back button with an image and text -->
+      <%= link_to students_workout_preferences_path, class: "navbar-brand" do %>
+        <%= image_tag('back_arrow.png', alt: 'Back', class: 'img-fluid', style: 'height: 24px;') %>
+        <span class="ml-2">Back</span>
+      <% end %>
+      <!-- Title of the page -->
+      <h1 class="navbar-text mx-auto var(--primary-text-color)">Time Preference</h1>
+    </div>
   </nav>
+
   <div class = "general-div-main">
     <div class = "general-div-inner">
       <p class="edit-form-label">Customize your preferred times</p>
