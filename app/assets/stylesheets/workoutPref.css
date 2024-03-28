@@ -183,3 +183,13 @@ input[type="radio"] {
 .edit-timepref-table{
   text-align: center;
 }
+
+.gym-select-form select{
+  width: 100%;
+  margin-bottom: 2rem;
+  font-family: "Roboto", sans-serif;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+}
