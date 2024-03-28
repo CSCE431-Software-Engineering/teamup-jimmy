@@ -59,3 +59,19 @@ box-sizing: border-box;
     max-width: 400px;
     margin: auto;
   }
+
+  #phoneNumber{
+    display: none;
+  }
+  
+  .copy-number-button{
+    max-width: 300px;
+    background-color: var(--accent-color);
+    color: var(--primary-bg-color);
+  }
+
+  .copy-number-button:hover {
+    background-color: var(--accent-darkened);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    color: var(--primary-bg-color) !important;
+}

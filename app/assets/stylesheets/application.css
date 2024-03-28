@@ -21,6 +21,8 @@
 :root {
   --primary-text-color: #554838;
   --primary-bg-color: #F7E9CE;
+  --accent-color: #b68d60;
+  --accent-darkened: #a27850;
 }
 
 body, html {

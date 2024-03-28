@@ -77,6 +77,20 @@
               method: :patch,
               class: "material-button"%>
             <% end %>
+            <% if @number != -1%>
+              <%= tag.button "Contact via Phone", data: {controller: "clipboard", action: "clipboard#copy"}, class: "material-button copy-number-button" %>
+            <% end %>
+            <div id="phoneNumber"><%=@number%></div>
+
+            <!-- Event listener for copy button. -->
+            <script type="module">
+              import { copyTextToClipboard } from 'clipboard';
+
+              document.addEventListener('DOMContentLoaded', () => {
+                const copyButton = document.querySelector('button[data-controller="clipboard"]');
+                copyButton.addEventListener('click', () => copyTextToClipboard('phoneNumber'));
+              });
+            </script>
           </div>
           
         </div>
