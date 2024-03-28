@@ -39,11 +39,11 @@ class GymPreferencesController < ApplicationController
       gym_id: params[:gym_preference][:gym_id]    
     )
     if @new_gym.save
-      flash[:notice] = "Gym preference added successfully"
+      flash[:notice] = "Gym preference has been added successfully"
       redirect_to gym_preferences_path
     else
-      render 'index'
-      puts @new_gym.errors.inspect 
+      flash[:alert] = "Failed to add gym preference"
+      redirect_to gym_preferences_path
     end
   end
 
@@ -55,6 +55,7 @@ class GymPreferencesController < ApplicationController
     @current_student = Student.find_by(email: session[:student_id])
     @gym_to_delete = GymPreference.find(params[:id])
     @gym_to_delete.destroy
+    flash[:notice] = "Gym preference has been removed"
     redirect_to gym_preferences_path
   end
 
