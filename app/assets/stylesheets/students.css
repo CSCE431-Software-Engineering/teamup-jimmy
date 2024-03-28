@@ -65,6 +65,7 @@ box-sizing: border-box;
   }
   
   .copy-number-button{
+    margin-top: 1rem;
     max-width: 300px;
     background-color: var(--accent-color);
     color: var(--primary-bg-color);
