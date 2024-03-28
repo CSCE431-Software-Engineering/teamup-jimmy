@@ -180,11 +180,6 @@ input[type="radio"] {
   height:2.5rem;
 }
 
-.edit-workoutpref-table th, .edit-workoutpref-table td {
-  text-align: center;
-  padding: 8px;
-}
-
 .edit-timepref-table{
   text-align: center;
 }
