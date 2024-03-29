@@ -112,13 +112,37 @@ body, html {
   .navbar-brand {
     flex-grow: 1; /* Allow back button to use available space */
     justify-content: start; /* Align back button to the start */
+    font-size: 1rem;
+    padding-right: 0;
   }
   .navbar h1 {
-    font-size: 1.25rem; /* Smaller font size on mobile */
+    font-size: 1.2rem; /* Smaller font size on mobile */
+    margin: 0;
+    
   }
   .forward-arrow {
     width: 1rem; /* Smaller arrows on mobile */
   }
+
+  .navbar span{
+    font-size: 1rem;
+  }
+}
+
+.right-placeholder {
+  font-size: 1rem;
+  margin: 0;
+  color: #f3dbae;
+  flex-grow: 1;
+  justify-content: end;
+  user-select: none;
+  -webkit-user-select: none; 
+  -moz-user-select: none; 
+  -ms-user-select: none;
+}
+
+.hidden-arrow {
+  visibility: hidden;
 }
 
 /* Search Bar/Button, checkboxes styling */

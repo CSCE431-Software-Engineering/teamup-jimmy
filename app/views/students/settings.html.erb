@@ -13,9 +13,15 @@
       <!-- Back button with an image and text -->
       <%= link_to students_path, class: "navbar-brand" do %>
         <%= image_tag('back_arrow.png', alt: 'Back', class: 'img-fluid', style: 'height: 24px;') %>
-        <span class="ml-2">Back</span>
+        <span class="ml-1">Back</span>
       <% end %>
       <h1 class="navbar-text mx-auto my-auto var(--primary-text-color)">Profile Settings</h1>
+      <%# Centering the title with identical content on the right %>
+      <div class="navbar-brand">
+        <span class="right-placeholder mr-1"> Back </span>
+         <%= image_tag('back_arrow.png', alt: 'Back', class: 'hidden-arrow', style: 'height: 24px;') %>
+      </div>
+    </div>
   </nav>
 
   <div class="container mt-4">
