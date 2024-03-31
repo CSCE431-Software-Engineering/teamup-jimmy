@@ -20,7 +20,7 @@
       <%# Centering the title with identical content on the right %>
       <div class="navbar-brand">
         <span class="right-placeholder mr-1"> Back </span>
-         <%= image_tag('back_arrow.png', alt: 'Back', class: 'hidden-arrow', style: 'height: 24px;') %>
+        <%= image_tag('back_arrow.png', alt: 'Back', class: 'hidden-arrow', style: 'height: 24px;') %>
       </div>
     </div>
   </nav>
@@ -29,7 +29,19 @@
   <h1 class="workoutpref-landing-title"> Select your experience level for <%=@activity.activity_name%>... </h1>
   <div class="experience-select-div">
 
-    <%= render 'activity_preferences/experience_form'%>
+    <%= form_for @new_pref do |form| %>
+      <div class="experience-select-btn">
+        <% @levels.each do |level| %>
+          <div class="radio-label-pair">
+            <%= form.radio_button :experience_level, level, class: "bullet" %>
+            <%= form.label level, level %>
+          </div>
+        <% end %>
+      </div>
+        
+      <%= form.hidden_field :activity_id, value: @activity.id %> 
+      <%= form.submit 'Save', class: 'edit-save-btn' %>
+    <% end %>
   </div>
 
 </body>

@@ -1,0 +1,58 @@
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <h1 class="navbar-text mx-auto my-auto profile-name">Account Information</h1>
+  </div>
+</nav>
+
+
+<body class="students-text">
+  <div class = "general-div-main">
+    <div class = "general-div-inner">
+      <%= render 'pages/flash' %>
+      <%= form_for(@student, url: students_path) do |s| %>
+        <table class="students-edit-info-form">
+          <tr class = "students-edit-info-form-row">
+            <th class = "edit-form-label">
+                Name
+                <%= s.text_field(:name, value: @default_name, placeholder: 'First Last', class: 'custom-styled-input') %>
+            </th>
+          </tr>
+          <tr class = "students-edit-info-form-row">
+            <th class = "edit-form-label">
+              Gender Identification Preference
+              <%= s.select :gender, [
+                ['Please select gender', ''],
+                ['Male', 'Male'],
+                ['Female', 'Female'],
+                ['Other', 'Other']
+              ], { selected: @default_gender }, { class: 'custom-styled-input', required: true }
+              %>
+            </th>
+          </tr>
+
+          <tr class = "students-edit-info-form-row">
+            <th class = "edit-form-label">
+              Select Your Birthday
+              <% if @default_birthday != '' %>
+                <%= s.date_field(:birthday, value: @default_birthday, placeholder: 'Please select your birthday', class: 'custom-styled-input') %>
+              <% else %>
+                <%= s.date_field(:birthday, placeholder: 'Please select your birthday', class: 'custom-styled-input') %>
+              <% end %>
+            </th>
+          </tr>
+
+          <tr class = "students-edit-info-form-row">
+            <th class = "edit-form-label">
+              Enter Your Phone Number
+              <%= s.text_field(:phone_number, value: @default_phone_number, placeholder: '1112223333', class: 'custom-styled-input', pattern: "^[0-9]{10}$", title: "Please enter a 10-digit phone number without spaces, parentheses, or dashes.")%>
+            </th>
+          </tr>
+        </table>
+        <br>
+        <div class = "profile-creation-button-div">
+          <%= s.submit "Next", class: "material-button dark-material-button" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</body>

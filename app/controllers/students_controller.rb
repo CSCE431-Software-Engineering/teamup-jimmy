@@ -3,6 +3,9 @@
 class StudentsController < ApplicationController
 
   before_action :set_current_student, only: [:index, :set_profile_args, :delete_confirmation, :delete, :destroy, :edit_gender_pref, :edit_age_pref, :personal_info, :edit_name, :edit_birthday, :edit_gender, :edit_grad_year, :edit_is_private, :edit_phone_number, :edit_major, :edit_biography, :matching_preferences, :edit_instagram_url, :edit_snap_url, :edit_x_url, :connect_socials, :workout_preferences, :update]
+  skip_before_action :set_initialization_false, only: [:new, :basic, :setup_personal_info, :setup_workout_partner_preferences, :setup_activity_preferences, :setup_gym_preferences, :setup_time_preferences, :create, :delete, :destroy, :update, :show, :set_profile_args, :set_current_student]
+
+  
   def index
     redirect_to action: :show, id: @current_student.id and return if @current_student
   end
@@ -12,7 +15,53 @@ class StudentsController < ApplicationController
   end
 
   def basic
+    flash[:notice] = ''
     @student = Student.new
+    @default_name = ''
+    @default_gender = 'Please select gender'
+    @default_birthday = ''
+    @default_phone_number = ''
+    stu = Student.find_by(email: session[:student_id])
+    if stu
+      @default_name = stu.name
+      @default_gender = stu.gender
+      @default_birthday = stu.birthday
+      @default_phone_number = stu.phone_number
+    end
+    render 'students/account_creation/basic'
+  end
+
+  def setup_personal_info
+    flash[:notice] = ''
+    @current_student = Student.find_by(email: session[:student_id])
+    @default_major = '' || @current_student.major
+    @default_grad_year = '' || @current_student.grad_year
+    @default_biography = '' || @current_student.biography
+    session['redirect_to'] = students_setup_workout_partner_preferences_path
+    render 'students/account_creation/personal_info'
+  end
+
+  def setup_workout_partner_preferences
+    flash[:notice] = ''
+    @current_student = Student.find_by(email: session[:student_id])
+    session['dont_render_nav'] = true
+    session['render_account_creation_nav'] = true
+    session['redirect_to'] = activity_preferences_path
+    render 'students/account_creation/workout_partner_preferences'
+  end
+
+  def setup_activity_preferences
+    @current_student = Student.find_by(email: session[:student_id])
+  
+    @activity_ids = ActivityPreference.where(student_email: @current_student.email).pluck(:activity_id)
+    @current_activities = Activity.where(id: @activity_ids).pluck(:activity_name).to_a
+    
+    @exp_levels = []
+    @current_activities.each do |name|
+      @exp_levels << ActivityPreference.find_by(student_email: @current_student.email, activity_id: Activity.where(activity_name: name).pluck(:id)).experience_level
+    end
+
+    render 'students/account_creation/activity_preferences'
   end
 
   def create
@@ -22,7 +71,7 @@ class StudentsController < ApplicationController
     puts @student.email
 
     if Student.find_by(email: @student.email) || @student.save
-      redirect_to controller: 'pages', action: 'home'
+      redirect_to students_setup_personal_info_path
     else
       flash[:alert] = 'There was a problem with your input. Please make sure to fill out every field.'
       redirect_to(action: 'basic')
@@ -94,7 +143,9 @@ class StudentsController < ApplicationController
     if @student.update(student_params)
       flash[:notice] = "Your account was successfully updated."
       session["reinit_match_score"] = true
-      redirect_to request.referer || default_path
+      redirect_path = session["redirect_to"] || request.referer || root_path 
+      session["redirect_to"] = nil
+      redirect_to redirect_path
     else
       flash[:alert] = "There was a problem updating your account."
       logger.info "Failed to update Student: #{student_params}"

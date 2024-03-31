@@ -51,6 +51,7 @@
 }
 
 .edit-form-label{
+    text-align: left;
     font-weight: bold;
     margin: 0px;
     color: var(--primary-text-color);
@@ -147,11 +148,12 @@
 }
 
 .custom-styled-input{
-    width: 94%;
+    width: 100%;
     padding: 1rem;
     border-radius: 5px;
     border: 1px solid #e2e2e2;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 .students-listed-info-div {

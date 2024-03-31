@@ -1,8 +1,10 @@
 class TimePreferencesController < ApplicationController
+  skip_before_action :set_initialization_false
   before_action :time_table, only: [:index, :edit]
   def index
-    @current_student = Student.find_by(email: session[:student_id])
-    @time_preference = TimePreference.find_by(student_email: @current_student.email)
+    @time_preference = TimePreference.find_by(student_email: session[:student_id])
+    @render_account_creation_nav = session['render_account_creation_nav']
+    puts @render_account_creation_nav
   end
 
   def new
@@ -12,10 +14,8 @@ class TimePreferencesController < ApplicationController
   end
 
   def update
-    # Assuming @current_student is already set
-    @current_student = Student.find_by(email: session[:student_id])
     # Find or initialize the TimePreference record
-    @time_preference = TimePreference.find_or_initialize_by(student_email: @current_student.email)
+    @time_preference = TimePreference.find_or_initialize_by(student_email: session[:student_id])
     
     # Process incoming parameters to construct preference strings
     process_time_preferences(params["time_preferences"])
@@ -62,8 +62,7 @@ class TimePreferencesController < ApplicationController
   end
 
   def initialize_time_variables()
-    @current_student = Student.find_by(email: session[:student_id])
-    @time_preference = TimePreference.find_by(student_email: @current_student.email)
+    @time_preference = TimePreference.find_by(student_email: session[:student_id])
 
     if @time_preference
       @morning_iter = iterate_over_times(@time_preference.morning)

@@ -1,9 +1,13 @@
 class GymPreferencesController < ApplicationController
+
+  skip_before_action :set_initialization_false
+  
   def index
     @current_student = Student.find_by(email: session[:student_id])
     @current_gyms = GymPreference.where(student_email: @current_student.email)
     @current_gyms_id = @current_gyms.pluck(:gym_id)
     @gyms = Gym.where(id: @current_gyms_id)
+    @render_account_creation_nav = session['render_account_creation_nav']
 
   end
 

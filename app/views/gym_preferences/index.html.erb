@@ -10,10 +10,11 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F3DBAE;">
     <div class="container">
-      <!-- Back button with an image and text -->
-      <%= link_to students_workout_preferences_path, class: "navbar-brand" do %>
-        <%= image_tag('back_arrow.png', alt: 'Back', class: 'img-fluid', style: 'height: 24px;') %>
-        <span class="ml-1">Back</span>
+      <% if !(@render_account_creation_nav) %>
+        <%= link_to students_workout_preferences_path, class: "navbar-brand" do %>
+          <%= image_tag('back_arrow.png', alt: 'Back', class: 'img-fluid', style: 'height: 24px;') %>
+          <span class="ml-1">Back</span>
+        <% end %>
       <% end %>
       <h1 class="navbar-text mx-auto my-auto var(--primary-text-color)">Gym Preferences</h1>
       <%# Centering the title with identical content on the right %>
@@ -54,6 +55,22 @@
           </tr>
         </table>
       </div>
+
+      <% if @render_account_creation_nav %>
+        <br>
+        <br>
+        <div class = "profile-creation-button-div">
+          <div class="left">
+            <%= link_to "Back", activity_preferences_path, class: "material-button dark-material-button", role: "button" %>
+          </div>
+          <div class = "right"><%= link_to "Next", time_preferences_index_path, class: "material-button dark-material-button" %></div>
+        </div>
+        <div class = "profile-creation-button-div">
+          <div class="left"> </div>
+          <div class = "right"><%= link_to "Skip for now", students_index_path, class: "material-button dark-material-button", role: "button" %></div>
+        </div>
+      <% end %>
+
       <%= render 'pages/flash' %>
     </div>
   </div>
