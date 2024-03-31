@@ -17,17 +17,13 @@ class TimePreferencesController < ApplicationController
     # Find or initialize the TimePreference record
     @time_preference = TimePreference.find_or_initialize_by(student_email: @current_student.email)
     
-    puts params["time_preferences"]
     # Process incoming parameters to construct preference strings
     process_time_preferences(params["time_preferences"])
     
-    puts "morning:"
-    puts @morning
     # Update the TimePreference record
     if @time_preference.update(morning: @morning, afternoon: @afternoon, evening: @evening, night: @night)
-      # Handle successful update, e.g., redirect or render success message
+      session[:reinit_match_score] = true
       flash[:notice] = 'Time preferences updated successfully.'
-      # redirect_to some_path, notice: "Time preferences updated successfully."
       redirect_to(action: "index")
     else
       # Handle errors, e.g., re-render the edit form with error messages

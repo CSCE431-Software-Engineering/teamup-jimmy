@@ -21,6 +21,12 @@
   text-overflow: ellipsis;
 }
 
+.card-body-enlarged{
+  min-width: 23rem;
+  height: 32rem;
+}
+
+
 .card-container {
   display: flex;
   justify-content: center;
@@ -34,6 +40,7 @@
   left: auto;
   right: auto;
   padding-bottom: 0.75rem;
+  color: var(--primary-text-color)
 }
 
 .card-profile-picture-div{
@@ -51,3 +58,21 @@
   box-shadow: 0 0 0 5px #e2e2e2;
   }
 
+.card-profile-picture-enlarged{
+  width: 10rem;
+  height: 10rem;
+  border-radius: 10px;
+}
+
+.actions-holder{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.actions-holder form{
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  width: 50%
+}

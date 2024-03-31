@@ -33,6 +33,7 @@ class ActivityPreferencesController < ApplicationController
       
         if @new_pref.save
           flash[:notice] = "Activity preference added successfully."
+          session[:reinit_match_score] = true
           redirect_to activity_preferences_path
         else
           flash[:alert] = "Failed to add activity preference."
@@ -61,6 +62,7 @@ class ActivityPreferencesController < ApplicationController
       @current_student = Student.find_by(email: session[:student_id])
       @activity_to_delete = ActivityPreference.find(params[:id])
       @activity_to_delete.destroy
+      session[:reinit_match_score] = true
       flash[:notice] = "Activity preference deleted successfully."
       redirect_to activity_preferences_path
     end

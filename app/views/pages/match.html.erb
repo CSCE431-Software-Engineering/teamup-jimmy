@@ -45,23 +45,41 @@
   <%= render 'pages/navbar' %>
 
  <div class="container mt-4">
-  <br>
   <div class="row justify-content-center">
     <div class="col-12 col-md-8 col-lg-6">
 
-      <div class = "settings-card">
-        <%= link_to students_start_matching_path, class: 'info-row' do %>
-          <div class="info-row-title">Start Matching!</div>
-          <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Arrow" %>
-        <% end %>
-      </div>
 
+            <div class="card-body card-body-enlarged"> 
+              <p class = "profile-name"> <%= @featured_user.name %> </p>
+              <div class="card-profile-picture-div">
+                <img class="card-profile-picture-enlarged" src="https://i.pinimg.com/736x/d7/1d/1a/d71d1a41b69bbbf2ca2d94b918d86faf.jpg">
+              </div>
+              <br>
+              <% if @featured_user.biography.present? %>
+                <p class="card-bio"> <%= @featured_user.biography %> </p>
+              <% end %>
+              <% if @shared_activities.length > 0%>
+                <p class = "profile-name card-bio">Shared Activities:</p>
+                  <% @shared_activities.each do |activity| %>
+                    <p class = "card-bio">• <%= activity %><p>
+                  <% end %>
+                </ul>
+              <% end %>
+              <div class = "actions-holder">
+                <%= button_to 'Send Match Request', 
+                match_path(@match, action_name: 'send_match_request'), 
+                method: :patch,
+                class: "material-button copy-number-button"%>
+                <%= button_to 'Pass', 
+                pages_match_path,
+                class: "material-button copy-number-button"%>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-
-
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+

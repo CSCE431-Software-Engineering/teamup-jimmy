@@ -90,16 +90,15 @@ class StudentsController < ApplicationController
       flash[:alert] = "Student not found."
       redirect_back fallback_location: root_path and return
     end
-    if @student.update(student_params)
 
+    if @student.update(student_params)
       flash[:notice] = "Your account was successfully updated."
+      session["reinit_match_score"] = true
       redirect_to request.referer || default_path
     else
       flash[:alert] = "There was a problem updating your account."
       logger.info "Failed to update Student: #{student_params}"
-    logger.info "Errors: #{@student.errors.full_messages}"
-
-
+      logger.info "Errors: #{@student.errors.full_messages}"
       redirect_to request.referer || default_path
     end
   end
