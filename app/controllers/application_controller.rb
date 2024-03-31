@@ -17,7 +17,5 @@ class ApplicationController < ActionController::Base
 
   def set_initialization_false
     session[:render_account_creation_nav] = false
-    puts 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
-    puts "Called by: #{caller(1,1)}"
   end
 end
