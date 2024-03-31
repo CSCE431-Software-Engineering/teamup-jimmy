@@ -20,3 +20,11 @@
 .match-emails {
   font-weight: bold;
 }
+
+@media (max-width: 768px) {
+  .match-button{
+    height: 4.2rem;
+    justify-content: center;
+    align-items: center;
+  }
+}

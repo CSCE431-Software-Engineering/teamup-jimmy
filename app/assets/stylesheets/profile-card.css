@@ -22,8 +22,10 @@
 }
 
 .card-body-enlarged{
-  min-width: 23rem;
-  height: 32rem;
+  right:auto;
+  left:auto;
+  min-width: 20rem;
+  height: 28rem;
 }
 
 
