@@ -1,0 +1,35 @@
+<div class = "general-div-main">
+  <div class = "general-div-inner">
+    <p class="edit-form-label">Enter your preferred activities</p>
+    <p class = "edit-form-label edit-form-subscript">
+      This will help us match you with people who enjoy the same activities as you.
+    </p>
+    <p class = "edit-form-label edit-form-subscript">
+      Your experience level helps us match you with people who are at a similar level.
+    </p>
+    <br>
+    <div class="edit-workoutpref-div">
+      <table summary="Added activities" class="edit-workoutpref-table">
+        <% @current_activities.zip(@exp_levels).each do |activity_name, exp| %>
+          <tr class = "edit-workout-pref-table-tr">
+            <td class = "edit-form-label edit-form-subscript"><%= activity_name%>   (<%= exp %>)</td>
+            <td> 
+              <% activity = ActivityPreference.find_by(student_email: @current_student.email, activity_id: (Activity.find_by(activity_name: activity_name)).id)%>
+              <%= form_with(model: activity, url: activity_preference_path(activity), method: :delete) do |form| %>
+                <%= form.button class: "edit-workoutpref-add-btn" do %>
+                  <%= image_tag('remove_icon.png', alt: 'Delete', class: 'table-icon') %>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+
+        <tr class = "edit-workout-pref-table-add-tr">
+        <td class = "edit-form-label edit-form-subscript"> Add Activity </td>
+        <td class = "table-icon"> <%= render(partial:'add', locals:{c: "activity_preferences", a: "new"}) %> </td>
+        </tr>
+    </table>
+    </div>
+    <%= render 'pages/flash' %>
+</div>
+</div>

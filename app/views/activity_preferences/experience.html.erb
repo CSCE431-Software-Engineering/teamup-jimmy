@@ -15,6 +15,7 @@
         <%= image_tag('back_arrow.png', alt: 'Back', class: 'img-fluid', style: 'height: 24px;') %>
         <span class="ml-1">Back</span>
       <% end %>
+      
       <h1 class="navbar-text mx-auto my-auto var(--primary-text-color)">Experience Level</h1>
       <%# Centering the title with identical content on the right %>
       <div class="navbar-brand">
@@ -28,24 +29,7 @@
   <h1 class="workoutpref-landing-title"> Select your experience level for <%=@activity.activity_name%>... </h1>
   <div class="experience-select-div">
 
-    <%= form_for @new_pref do |form| %>
-      <div class="experience-select-btn">
-        <% @levels.each do |level| %>
-          <div class="radio-label-pair">
-            <%= form.radio_button :experience_level, level, class: "bullet" %>
-            <%= form.label level, level %>
-          </div>
-        <% end %>
-      </div>
-      
-      <%= form.hidden_field :activity_id, value: @activity.id %> 
-      
-      <%= form.submit 'Save', class: 'edit-save-btn' %>
-    <% end %>
-
-  
-
-
+    <%= render 'activity_preferences/experience_form'%>
   </div>
 
 </body>
