@@ -2,7 +2,7 @@
 
 class StudentsController < ApplicationController
 
-  before_action :set_current_student, only: [:index, :set_profile_args, :delete_confirmation, :delete, :destroy, :edit_gender_pref, :edit_age_pref, :personal_info, :edit_name, :edit_birthday, :edit_gender, :edit_grad_year, :edit_is_private, :edit_phone_number, :edit_major, :edit_biography, :matching_preferences, :edit_instagram_url, :edit_snap_url, :edit_x_url, :connect_socials, :workout_preferences, :update]
+  before_action :set_current_student, only: [:index, :set_profile_args, :delete_confirmation, :delete, :destroy, :edit_gender_pref, :edit_age_pref, :personal_info, :edit_name, :edit_birthday, :edit_gender, :edit_grad_year, :edit_is_private, :edit_phone_number, :edit_major, :edit_biography, :matching_preferences, :edit_instagram_url, :edit_snap_url, :edit_x_url, :connect_socials, :workout_preferences, :update, :upload_file, :delete_profile_picture]
   skip_before_action :set_initialization_false, only: [:new, :basic, :setup_personal_info, :setup_workout_partner_preferences, :setup_activity_preferences, :setup_gym_preferences, :setup_time_preferences, :create, :delete, :destroy, :update, :show, :set_profile_args, :set_current_student]
 
   
@@ -140,6 +140,8 @@ class StudentsController < ApplicationController
       redirect_back fallback_location: root_path and return
     end
 
+    
+
     if @student.update(student_params)
       flash[:notice] = "Your account was successfully updated."
       session["reinit_match_score"] = true
@@ -230,6 +232,68 @@ class StudentsController < ApplicationController
     redirect_to pages_home_path, notice: "Matching process completed successfully!"
   end
 
+  def upload_file
+    uploaded_file = params[:file]
+  
+    if uploaded_file
+      s3 = Aws::S3::Resource.new
+      bucket_name = 'jimmy-profile-pictures'
+      bucket = s3.bucket(bucket_name)
+
+      if uploaded_file.content_type.start_with?('image/')
+        # Check if the current student already has a profile picture
+        if @current_student.profile_picture_url.present?
+          # Extract the key (filename) from the URL
+          existing_key = URI.parse(@current_student.profile_picture_url).path.split('/').last
+          # Delete the existing profile picture from S3
+          bucket.object(existing_key).delete
+          puts "The current image was deleted successfully!"
+        end
+    
+        # Generate a unique filename
+        file_key = SecureRandom.hex + File.extname(uploaded_file.original_filename)
+    
+        # Upload the file to S3
+        obj = bucket.object(file_key)
+        obj.upload_file(uploaded_file.tempfile, content_disposition: 'inline')
+    
+        # Update current_student's profile picture with the S3 URL
+        @current_student.profile_picture_url = obj.public_url.to_s
+        @current_student.save
+    
+        flash[:success] = "File uploaded successfully!"
+      else
+        puts "File type is not supported" 
+      end
+    else
+      flash[:error] = "Please select a file to upload."
+    end
+    redirect_to students_settings_path
+  end
+  
+  def delete_profile_picture
+    if @current_student.profile_picture_url.present?
+      s3 = Aws::S3::Resource.new
+      bucket_name = 'jimmy-profile-pictures'
+      bucket = s3.bucket(bucket_name)
+
+      # Delete the profile picture
+      existing_key = URI.parse(@current_student.profile_picture_url).path.split('/').last
+      # Delete the existing profile picture from S3
+      bucket.object(existing_key).delete
+      puts "The current image was deleted from S3 successfully!"
+
+      @current_student.profile_picture_url = nil
+      @current_student.save
+      puts "The current image was deleted from the database successfully!"
+
+      flash[:success] = "Profile picture deleted successfully."
+    else
+      flash[:error] = "No profile picture to delete."
+    end
+    redirect_to students_settings_path
+  end
+  
   private
 
   def set_current_student
@@ -237,7 +301,8 @@ class StudentsController < ApplicationController
     unless @current_student
       flash[:alert] = 'You must be logged in to access this page.'
     end
-  end  
+  end
+  
 
   def set_profile_args
     @student = Student.find(params[:id])
@@ -264,11 +329,13 @@ class StudentsController < ApplicationController
     set_current_student
     @number = -1
     if @student.email != @current_student.email
-      @number = @student.phone_number
+      @match = Match.where(student1_email: @current_student.email, student2_email: @student.email) .or(Match.where(student1_email: @student.email, student2_email: @current_student.email)).first
+      if @match.relationship_enum == 3
+        @number = @student.phone_number
+      end
       if @number.nil? 
         @number = -1
       end
-      @match = Match.where(student1_email: @current_student.email, student2_email: @student.email) .or(Match.where(student1_email: @student.email, student2_email: @current_student.email)).first
       if @match.nil?
         puts "match not founnd for student1: #{@current_student} and student2: #{@student}"
         @match = Match.new

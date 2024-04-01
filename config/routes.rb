@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   get 'students/basic'
   get 'students/index'
-  get 'students/settings'
+  get 'students/settings', to: "students#settings", as: 'students_settings'
 
   get 'students/personal_info'
   get 'students/edit_name'
@@ -33,6 +33,9 @@ Rails.application.routes.draw do
   get 'students/setup_workout_partner_preferences'
   get 'students/setup_activity_preferences'
   get 'students/setup_time_preferences'
+
+  post 'students/upload_file', to: 'students#upload_file'
+  post 'students/delete_profile_picture', to: 'students#delete_profile_picture', as: :delete_profile_picture
 
   get 'students/start_matching'
   get '/start_matching', to: 'students#start_matching', as: 'start_matching'

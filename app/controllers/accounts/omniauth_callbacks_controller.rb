@@ -23,6 +23,7 @@ class Accounts::OmniauthCallbacksController < Devise::OmniauthCallbacksControlle
       # Try to find the student associated with the account by email
       student_email_prefix = account.email.split('@').first
       session[:student_id] = student_email_prefix
+      session[:reinit_match_score] = true
       student = Student.find_by(email: student_email_prefix)
       if student.present?
         # If a student entity exists, set the session and redirect to the students index
