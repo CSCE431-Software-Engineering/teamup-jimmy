@@ -41,6 +41,8 @@ class PagesController < ApplicationController
     match_queue = incoming_requests + possible_matches
     puts "length of match queue: #{match_queue.length}"
 
+    puts "match queue: #{match_queue}"
+
     @match = nil
     # get next match
     if match_queue.length > 0
