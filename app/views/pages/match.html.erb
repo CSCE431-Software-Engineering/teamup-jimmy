@@ -48,32 +48,34 @@
     <div class="row justify-content-center">
       <div class="col-12 col-md-8 col-lg-6">
         <div class="card-container">
-          <div class="card-body card-body-enlarged"> 
-            <p class = "profile-name"> <%= @featured_user.name %> </p>
-            <div class="card-profile-picture-div">
-              <img class="card-profile-picture-enlarged" src="https://i.pinimg.com/736x/d7/1d/1a/d71d1a41b69bbbf2ca2d94b918d86faf.jpg">
+          <%= link_to student_path(id: @featured_user.email) do %>
+            <div class="card-body card-body-enlarged"> 
+              <p class = "profile-name"> <%= @featured_user.name %> </p>
+              <div class="card-profile-picture-div">
+                <img class="card-profile-picture-enlarged" src="https://i.pinimg.com/736x/d7/1d/1a/d71d1a41b69bbbf2ca2d94b918d86faf.jpg">
+              </div>
+              <br>
+              <% if @featured_user.biography.present? %>
+                <p class="card-bio"> <%= @featured_user.biography %> </p>
+              <% end %>
+              <% if @shared_activities.length > 0%>
+                <p class = "profile-name card-bio">Shared Activities:</p>
+                  <% @shared_activities.each do |activity| %>
+                    <p class = "card-bio">• <%= activity %><p>
+                  <% end %>
+                </ul>
+              <% end %>
             </div>
-            <br>
-            <% if @featured_user.biography.present? %>
-              <p class="card-bio"> <%= @featured_user.biography %> </p>
-            <% end %>
-            <% if @shared_activities.length > 0%>
-              <p class = "profile-name card-bio">Shared Activities:</p>
-                <% @shared_activities.each do |activity| %>
-                  <p class = "card-bio">• <%= activity %><p>
-                <% end %>
-              </ul>
-            <% end %>
-          </div>
+          <% end %>
         </div>
         <div class = "actions-holder">
-          <%= button_to 'Send Match Request', 
+          <%= button_to 'Match Request', 
           match_path(@match, action_name: 'send_match_request'), 
           method: :patch,
           class: "material-button dark-material-button"%>
           <%= button_to 'Pass', 
           pages_match_path,
-          class: "material-button dark-material-button match-button"%>
+          class: "material-button dark-material-button"%>
         </div>
       </div>
     </div>
