@@ -265,9 +265,7 @@ class StudentsController < ApplicationController
     @can_unmatch = false
     set_current_student
     @number = -1
-    @private = False
     if @student.email != @current_student.email
-      @private = @student.is_private
       @match = Match.where(student1_email: @current_student.email, student2_email: @student.email) .or(Match.where(student1_email: @student.email, student2_email: @current_student.email)).first
       if @match.relationship_enum == 3
         @number = @student.phone_number
