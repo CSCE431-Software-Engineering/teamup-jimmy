@@ -68,15 +68,28 @@
               </div>
             <% end %>
           </div>
-          <div class = "actions-holder">
-            <%= button_to 'Match Request', 
-            match_path(@match, action_name: 'send_match_request'), 
-            method: :patch,
-            class: "material-button dark-material-button"%>
-            <%= button_to 'Pass', 
-            pages_match_path,
-            class: "material-button dark-material-button"%>
-          </div>
+          <% if @incoming_request %> 
+            <div class = "actions-holder">
+              <%= button_to 'Match Request', 
+              match_path(@match, action_name: 'accept_match_request'), 
+              method: :patch,
+              class: "material-button dark-material-button"%>
+              <%= button_to 'Match Request', 
+              match_path(@match, action_name: 'reject_match_request'), 
+              method: :patch,
+              class: "material-button dark-material-button"%>
+            </div>
+          <% else %>
+            <div class = "actions-holder">
+              <%= button_to 'Match Request', 
+              match_path(@match, action_name: 'send_match_request'), 
+              method: :patch,
+              class: "material-button dark-material-button"%>
+              <%= button_to 'Pass', 
+              pages_match_path,
+              class: "material-button dark-material-button"%>
+            </div>
+          <% end %>
         </div>
       </div>
     <% else %>
