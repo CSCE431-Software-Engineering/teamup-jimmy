@@ -51,7 +51,11 @@
                 <tr>
                   <%= link_to student_path(student), class: 'info-row' do %>
                     <div class = "pfp-name-pair">
-                    <%= image_tag "https://canadabeercup.com/wp-content/uploads/2022/09/generic-profile-picture-1200x1200-1.jpg", class: "profile-pic", alt: "Profile Picture" %>
+                    <% if student.profile_picture_url.present? %>
+                      <%= image_tag student.profile_picture_url, class: "profile-pic", alt: "Profile Picture" %>
+                    <% else %>
+                      <%= image_tag "https://canadabeercup.com/wp-content/uploads/2022/09/generic-profile-picture-1200x1200-1.jpg", class: "profile-pic", alt: "Profile Picture" %>
+                    <% end %>
                     <div class="info-row-title"><%= student.name %></div>
 
                     </div>
