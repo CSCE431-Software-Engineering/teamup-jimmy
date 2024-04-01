@@ -264,11 +264,13 @@ class StudentsController < ApplicationController
     set_current_student
     @number = -1
     if @student.email != @current_student.email
-      @number = @student.phone_number
+      @match = Match.where(student1_email: @current_student.email, student2_email: @student.email) .or(Match.where(student1_email: @student.email, student2_email: @current_student.email)).first
+      if @match.relationship_enum == 3
+        @number = @student.phone_number
+      end
       if @number.nil? 
         @number = -1
       end
-      @match = Match.where(student1_email: @current_student.email, student2_email: @student.email) .or(Match.where(student1_email: @student.email, student2_email: @current_student.email)).first
       if @match.nil?
         puts "match not founnd for student1: #{@current_student} and student2: #{@student}"
         @match = Match.new
