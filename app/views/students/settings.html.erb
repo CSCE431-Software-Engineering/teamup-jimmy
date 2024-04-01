@@ -52,14 +52,18 @@
               <div class="info-row-title">Link Socials</div>
               <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Forward Arrow" %>
             <% end %>
+            <%= link_to matches_blocked_path, class: 'info-row' do %>
+              <div class="info-row-title">Blocked Users</div>
+              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Arrow" %>
+            <% end %> 
+            <%= link_to 'https://forms.gle/tvWwfJD25RU8hhDs7', class: 'info-row', target: '_blank' do %>
+              <div class="info-row-title">Give Feedback</div>
+              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Arrow" %>
+            <% end %> 
             <%= link_to students_delete_confirmation_path, class: 'info-row'  do %>
               <div class="info-row-title">Delete Account</div>
               <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Forward Arrow" %>
             <% end %>
-            <%= link_to matches_blocked_path, class: 'info-row' do %>
-              <div class="info-row-title">View list of users you've blocked</div>
-              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Arrow" %>
-            <% end %> 
           </div>
         </div>
       </div>
