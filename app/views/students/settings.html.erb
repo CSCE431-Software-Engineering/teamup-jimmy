@@ -34,10 +34,15 @@
             <% else %>
               <%= image_tag "https://canadabeercup.com/wp-content/uploads/2022/09/generic-profile-picture-1200x1200-1.jpg", class: "img-fluid profile-picture mb-2", alt: "Profile Picture" %>
             <% end %>
-            <%= form_tag({controller: "students", action: "upload_file"}, multipart: true) do %>
-              <%= file_field_tag 'file' %>
-              <%= submit_tag 'Edit Profile Picture' %>
+            <%= form_tag({controller: "students", action: "upload_file"}, multipart: true, id: "upload_form") do %>
+              <%= file_field_tag 'file', onchange: "autoSubmitForm()" %>
+              <%= submit_tag 'Edit Profile Picture', id: "submit_button", style: "display: none;" %>
             <% end %> 
+            <script>
+              function autoSubmitForm() {
+                document.getElementById("upload_form").submit();
+              }
+            </script>
             <%= render 'pages/flash' %>
             <% if @current_student.profile_picture_url.present? %>
               <%= button_to "Delete Profile Picture", delete_profile_picture_path, method: :post, data: { confirm: 'Are you sure you want to delete your profile picture?' }, class: "btn btn-danger mt-2" %>
