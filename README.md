@@ -98,4 +98,22 @@ For continuous integration, we set up a Github action to run our specs, security
 
 ## Support ##
 
-N/A yet, coming soon!
+Heroku Deployment Errors Solution: 
+Use heroku logs --tail for error details. Common fixes include setting environment variables, running migrations, and checking the Procfile.
+
+Database Migration Failures
+Solution: Execute heroku run rake db:migrate. If errors occur, consider rolling back with heroku run rake db:rollback and correcting the migration script.
+Application Crashing on Startup
+Solution: Investigate with heroku logs --tail. Ensure dependencies are met, and the Procfile is correctly configured.
+
+Slow Web App Performance
+Solution: Review Heroku Dyno metrics and logs. Optimize database queries, consider dyno scaling, and use caching strategies.
+
+Email Delivery Failures
+Solution: Check third-party service dashboards (e.g., SendGrid) for errors. Ensure API keys and email settings are correctly configured in Heroku.
+
+Failed Assets Precompilation
+Solution: Precompile assets with RAILS_ENV=production rake assets:precompile. Ensure config.assets.initialize_on_precompile is false.
+
+Connectivity Issues with External Services
+Solution: Double-check credentials for external services in Heroku's config vars. Test connectivity through Heroku's console.
