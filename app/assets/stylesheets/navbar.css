@@ -1,6 +1,7 @@
 .navbar {
   background-color: #f3dbae; /* Slightly darker shade for contrast */
-  padding: 20px 15px; /* Increased padding for more space */
+  padding: 0.5rem 1rem; /* Increased padding for more space */
+  height:70px;
   display: flex;
   align-items: center;
   justify-content: center; /* Center the items horizontally */
@@ -39,4 +40,9 @@
   text-decoration: none; /* Removed underline to keep it clean */
   background-color: #e7d5b8; /* Light background on hover for highlight */
   border-radius: 5px; /* Rounded corners for background highlight */
+}
+
+.container-fluid{
+  padding-left: 15px!important;
+  padding-right: 15px!important;
 }
