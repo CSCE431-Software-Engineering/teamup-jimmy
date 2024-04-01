@@ -22,7 +22,9 @@ class MatchingService
         else
           match.match_score = match_score
         end
-        
+        puts "################################################################"
+        puts "match score for #{match.student1_email} and #{match.student2_email} is #{match.match_score}"
+        puts "################################################################"
         match.save # This line saves the match to the database, assuming that's the intended behavior
         
       rescue => e

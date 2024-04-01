@@ -13,29 +13,34 @@ class PagesController < ApplicationController
 
   def match 
     @current_student = Student.find_by(email: session[:student_id])
-    
 
     if session[:reinit_match_score] == true
       matching_service = MatchingService.new(@current_student)
       matching_service.match_students
       session[:reinit_match_score] = false
+      session[:match_queue] = nil # reset match queue
     end
-
-
+   
     # initialize match queue
     if session[:match_queue].nil?
-      possible_matches = Match.where(student1_email: @current_student.email)
+      puts "initializing match queue"
+      possible_matches = Match.where(student1_email: @current_student.email, relationship_enum: 0)
               .or(Match.where(student2_email: @current_student.email, relationship_enum: 0))
-              .where("match_score > 0")
-              .order(match_score: :desc)
+              # .where("match_score > 0")
+              # .order(match_score: :desc)
+      puts "possible matches: #{possible_matches.length}"
       incoming_requests = Match.where(student2_email: @current_student.email, relationship_enum: 1)
               .or(Match.where(student1_email: @current_student.email, relationship_enum: 2))
               .order(match_score: :desc)
+
+      puts "incoming requests: #{incoming_requests.length}"
+      puts "possible matches: #{possible_matches.length}"
       session[:match_queue] = incoming_requests + possible_matches
       session[:match_queue_index] = 0
     end
 
-
+    puts "length of match queue: #{session[:match_queue].length}"
+    @match = nil
     # get next match
     if session[:match_queue].length > 0
       potential_match = session[:match_queue][session[:match_queue_index]]
