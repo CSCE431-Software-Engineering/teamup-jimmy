@@ -23,14 +23,26 @@
       </div>
     </div>
   </nav>
-
+  
   <div class="container mt-4">
     <div class = "profile-content-outer">
       <div class = "profile-content">
         <div class="row justify-content-center">
           <div class="col-12 col-md-6 col-lg-4 text-center mb-4">
-            <img class="img-fluid profile-picture mb-2" src="https://i.pinimg.com/736x/d7/1d/1a/d71d1a41b69bbbf2ca2d94b918d86faf.jpg" alt="Profile Picture">
-            <p>Edit picture</p>
+            <% if @current_student.profile_picture_url.present? %>
+              <%= image_tag @current_student.profile_picture_url, class: "img-fluid profile-picture mb-2", alt: "Profile Picture" %>
+            <% else %>
+              <%= image_tag "https://canadabeercup.com/wp-content/uploads/2022/09/generic-profile-picture-1200x1200-1.jpg", class: "img-fluid profile-picture mb-2", alt: "Profile Picture" %>
+            <% end %>
+            <%= form_tag({controller: "students", action: "upload_file"}, multipart: true) do %>
+              <%= file_field_tag 'file' %>
+              <%= submit_tag 'Edit Profile Picture' %>
+            <% end %> 
+            <%= render 'pages/flash' %>
+            <% if @current_student.profile_picture_url.present? %>
+              <%= button_to "Delete Profile Picture", delete_profile_picture_path, method: :post, data: { confirm: 'Are you sure you want to delete your profile picture?' }, class: "btn btn-danger mt-2" %>
+            <% end %>
+
           </div>
         </div>
 
@@ -52,14 +64,18 @@
               <div class="info-row-title">Link Socials</div>
               <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Forward Arrow" %>
             <% end %>
+            <%= link_to matches_blocked_path, class: 'info-row' do %>
+              <div class="info-row-title">Blocked Users</div>
+              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Arrow" %>
+            <% end %> 
+            <%= link_to 'https://forms.gle/tvWwfJD25RU8hhDs7', class: 'info-row', target: '_blank' do %>
+              <div class="info-row-title">Give Feedback</div>
+              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Arrow" %>
+            <% end %> 
             <%= link_to students_delete_confirmation_path, class: 'info-row'  do %>
               <div class="info-row-title">Delete Account</div>
               <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Forward Arrow" %>
             <% end %>
-            <%= link_to matches_blocked_path, class: 'info-row' do %>
-              <div class="info-row-title">View list of users you've blocked</div>
-              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Arrow" %>
-            <% end %> 
           </div>
         </div>
       </div>
