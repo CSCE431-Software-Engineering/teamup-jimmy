@@ -72,4 +72,11 @@ Rails.application.configure do
 
   ENV['GOOGLE_OAUTH_CLIENT_ID'] = '905185092103-1bcifjnlmltfntk241dktta3rfcd9sus.apps.googleusercontent.com'
   ENV['GOOGLE_OAUTH_CLIENT_SECRET'] = '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'
+
+  config.aws = {
+    access_key_id: ENV['AKIA2LZ6POUASKPCFBOB'],
+    secret_access_key: ENV['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'],
+    region: ENV['us-east-2'],
+    bucket: ENV['jimmy-profile-pictures']
+  }
 end

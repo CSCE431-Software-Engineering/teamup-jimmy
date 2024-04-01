@@ -15,7 +15,11 @@
     <div>
       <div class="row justify-content-center">
         <div class="col-10 col-md-6 col-lg-4 text-center">
-          <img class="profile-picture img-fluid mb-3" src="https://i.pinimg.com/736x/d7/1d/1a/d71d1a41b69bbbf2ca2d94b918d86faf.jpg" alt="Profile Picture">
+          <% if @current_student.profile_picture_url.present? %>
+            <%= image_tag @current_student.profile_picture_url, class: "profile-picture img-fluid mb-3", alt: "Profile Picture" %>
+          <% else %>
+            <%= image_tag "https://i.pinimg.com/736x/d7/1d/1a/d71d1a41b69bbbf2ca2d94b918d86faf.jpg", class: "profile-picture img-fluid mb-3", alt: "Profile Picture" %>
+          <% end %>
           <h2 class="profile-name"><%= @student.name %></h2>
           <p class="major-and-class"><%= @major_and_class %></p>
         </div>

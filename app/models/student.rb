@@ -28,4 +28,6 @@ class Student < ApplicationRecord
   validates_inclusion_of :gender_pref_female, in: [true, false]
   validates_inclusion_of :gender_pref_male, in: [true, false]
   validates_inclusion_of :gender_pref_other, in: [true, false]
+
+  has_one_attached :avatar
 end
