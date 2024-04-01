@@ -6,17 +6,22 @@
   <title>Jimmy</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F3DBAE;">
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F3DBAE;">
     <div class="container">
       <!-- Back button with an image and text -->
       <%= link_to students_personal_info_path, class: "navbar-brand" do %>
         <%= image_tag('back_arrow.png', alt: 'Back', class: 'img-fluid', style: 'height: 24px;') %>
-        <span class="ml-2">Back</span>
+        <span class="ml-1">Back</span>
       <% end %>
-      <!-- Title of the page -->
-      <h1 class="ml-auto">Edit Birthday</h1>
+      <h1 class="navbar-text mx-auto my-auto var(--primary-text-color)">Edit Birthday</h1>
+      <%# Centering the title with identical content on the right %>
+      <div class="navbar-brand">
+        <span class="right-placeholder mr-1"> Back </span>
+         <%= image_tag('back_arrow.png', alt: 'Back', class: 'hidden-arrow', style: 'height: 24px;') %>
+      </div>
     </div>
   </nav>
+
   <div class="general-div-main">
     <div class="general-div-inner">      
       <%= form_with(model: @current_student, local: true) do |form| %>

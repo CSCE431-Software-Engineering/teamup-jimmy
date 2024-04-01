@@ -29,6 +29,10 @@ Rails.application.routes.draw do
   get 'students/edit_is_private'
   get 'students/edit_biography'
   get 'students/delete_confirmation'
+  get 'students/setup_personal_info'
+  get 'students/setup_workout_partner_preferences'
+  get 'students/setup_activity_preferences'
+  get 'students/setup_time_preferences'
 
   get 'students/start_matching'
   get '/start_matching', to: 'students#start_matching', as: 'start_matching'

@@ -1,4 +1,6 @@
 class Accounts::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  skip_before_action :confirm_authenticated_account
+  
   def google_oauth2
     account = Account.from_google(**from_google_params)
   
@@ -40,7 +42,8 @@ class Accounts::OmniauthCallbacksController < Devise::OmniauthCallbacksControlle
   protected
   
   def after_omniauth_failure_path_for(_scope)
-    new_account_session_path
+    puts "Failed to authenticate with Google"
+    root_path
   end
   
   def after_sign_in_path_for(resource_or_scope)

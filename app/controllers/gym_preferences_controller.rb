@@ -1,9 +1,13 @@
 class GymPreferencesController < ApplicationController
+
+  skip_before_action :set_initialization_false
+  
   def index
     @current_student = Student.find_by(email: session[:student_id])
     @current_gyms = GymPreference.where(student_email: @current_student.email)
     @current_gyms_id = @current_gyms.pluck(:gym_id)
     @gyms = Gym.where(id: @current_gyms_id)
+    @render_account_creation_nav = session['render_account_creation_nav']
 
   end
 
@@ -39,11 +43,12 @@ class GymPreferencesController < ApplicationController
       gym_id: params[:gym_preference][:gym_id]    
     )
     if @new_gym.save
-      flash[:notice] = "Gym preference added successfully"
+      session[:reinit_match_score] = true
+      flash[:notice] = "Gym preference has been added successfully"
       redirect_to gym_preferences_path
     else
-      render 'index'
-      puts @new_gym.errors.inspect 
+      flash[:alert] = "Failed to add gym preference"
+      redirect_to gym_preferences_path
     end
   end
 
@@ -55,6 +60,8 @@ class GymPreferencesController < ApplicationController
     @current_student = Student.find_by(email: session[:student_id])
     @gym_to_delete = GymPreference.find(params[:id])
     @gym_to_delete.destroy
+    session[:reinit_match_score] = true
+    flash[:notice] = "Gym preference has been removed"
     redirect_to gym_preferences_path
   end
 

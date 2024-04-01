@@ -10,29 +10,34 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F3DBAE;">
     <div class="container">
-      <!-- Back button with an image and text -->
-      <%= link_to students_workout_preferences_path, class: "navbar-brand" do %>
-        <%= image_tag('back_arrow.png', alt: 'Back', class: 'img-fluid', style: 'height: 24px;') %>
-        <span class="ml-2">Back</span>
+      <% if !(@render_account_creation_nav) %>
+        <%= link_to students_workout_preferences_path, class: "navbar-brand" do %>
+          <%= image_tag('back_arrow.png', alt: 'Back', class: 'img-fluid', style: 'height: 24px;') %>
+          <span class="ml-1">Back</span>
+        <% end %>
       <% end %>
-      <!-- Title of the page -->
-      <h1 class="ml-auto">Activity Preference</h1>
+      <h1 class="navbar-text mx-auto my-auto var(--primary-text-color)">Activity Preference</h1>
+      <%# Centering the title with identical content on the right %>
+      <div class="navbar-brand">
+        <span class="right-placeholder mr-1"> Back </span>
+         <%= image_tag('back_arrow.png', alt: 'Back', class: 'hidden-arrow', style: 'height: 24px;') %>
+      </div>
     </div>
   </nav>
 
   <div class = "general-div-main">
-    <div class = "general-div-inner">
-      <p class="edit-form-label">Enter your preferred activities</p>
-      <p class = "edit-form-label edit-form-subscript">
-        This will help us match you with people who enjoy the same activities as you.
-      </p>
-      <p class = "edit-form-label edit-form-subscript">
-        Your experience level helps us match you with people who are at a similar level.
-      </p>
-      <br>
-      <div class="edit-workoutpref-div">
-        <table summary="Added activities" class="edit-workoutpref-table">
-          <% @current_activities.zip(@exp_levels).each do |activity_name, exp| %>
+  <div class = "general-div-inner">
+    <p class="edit-form-label">Enter your preferred activities</p>
+    <p class = "edit-form-label edit-form-subscript">
+      This will help us match you with people who enjoy the same activities as you.
+    </p>
+    <p class = "edit-form-label edit-form-subscript">
+      Your experience level helps us match you with people who are at a similar level.
+    </p>
+    <br>
+    <div class="edit-workoutpref-div">
+      <table summary="Added activities" class="edit-workoutpref-table">
+        <% @current_activities.zip(@exp_levels).each do |activity_name, exp| %>
           <tr class = "edit-workout-pref-table-tr">
             <td class = "edit-form-label edit-form-subscript"><%= activity_name%>   (<%= exp %>)</td>
             <td> 
@@ -44,15 +49,30 @@
               <% end %>
             </td>
           </tr>
-          <% end %>
+        <% end %>
 
-          <tr class = "edit-workout-pref-table-add-tr">
-            <td class = "edit-form-label edit-form-subscript"> Add Activity </td>
-            <td class = "table-icon"> <%= render(partial:'add', locals:{c: "activity_preferences", a: "new"}) %> </td>
-          </tr>
-        </table>
-      </div>
-      <%= render 'pages/flash' %>
+        <tr class = "edit-workout-pref-table-add-tr">
+        <td class = "edit-form-label edit-form-subscript"> Add Activity </td>
+        <td class = "table-icon"> <%= render(partial:'add', locals:{c: "activity_preferences", a: "new"}) %> </td>
+        </tr>
+    </table>
     </div>
-  </div>
+
+    <% if @render_account_creation_nav %>
+      <br>
+      <br>
+      <div class = "profile-creation-button-div">
+        <div class="left">
+          <%= link_to "Back", students_setup_workout_partner_preferences_path, class: "material-button dark-material-button", role: "button" %>
+        </div>
+        <div class = "right"><%= link_to "Next", gym_preferences_path, class: "material-button dark-material-button" %></div>
+      </div>
+      <div class = "profile-creation-button-div">
+        <div class="left"> </div>
+        <div class = "right"><%= link_to "Skip for now", students_index_path, class: "material-button dark-material-button", role: "button" %></div>
+      </div>
+    <% end %>
+    <%= render 'pages/flash' %>
+</div>
+</div>
 </body>

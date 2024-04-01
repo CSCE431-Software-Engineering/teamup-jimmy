@@ -78,7 +78,7 @@
               class: "material-button"%>
             <% end %>
             <% if @number != -1%>
-              <%= tag.button "Contact via Phone", data: {controller: "clipboard", action: "clipboard#copy"}, class: "material-button copy-number-button" %>
+              <%= tag.button "Contact via Phone", data: {controller: "clipboard", action: "clipboard#copy"}, class: "material-button dark-material-button" %>
             <% end %>
             <div id="phoneNumber"><%=@number%></div>
 

@@ -2,7 +2,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(243, 219, 174);">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Jimmy</a>
+    <%= link_to 'Jimmy', pages_home_path, class: "navbar-brand" %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -24,7 +24,7 @@
           <%= link_to 'Settings', students_settings_path, class: "nav-link px-lg-4" %>
         </li>
         <li class="nav-item">
-          <%= link_to 'Logout', root_path, class: "nav-link px-lg-3" %>
+          <%= link_to 'Logout', logout_path, class: "nav-link px-lg-3" %>
         </li>
       </ul>
     </div>
