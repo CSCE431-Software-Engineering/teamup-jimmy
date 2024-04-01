@@ -11,7 +11,7 @@
   <!-- Search Bar -->
   <div class="browse-main">
     <div class ="browse-inner">
-      <h1>Browse Users</h1>
+      <h1 class = "profile-name">Browse Users</h1>
       <%= form_tag(pages_browse_path, method: :get, id: 'search-form', remote: true) do %>
         <div class="search-bar">
           <%= text_field_tag :query, params[:query], placeholder: "Search users by name", id: 'search-input' %>
