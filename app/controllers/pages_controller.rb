@@ -13,32 +13,40 @@ class PagesController < ApplicationController
 
   def match 
     @current_student = Student.find_by(email: session[:student_id])
-    
 
     if session[:reinit_match_score] == true
       matching_service = MatchingService.new(@current_student)
       matching_service.match_students
+      session[:match_queue_index] = 0
       session[:reinit_match_score] = false
     end
 
-
-    # initialize match queue
-    if session[:match_queue].nil?
-      possible_matches = Match.where(student1_email: @current_student.email)
-              .or(Match.where(student2_email: @current_student.email, relationship_enum: 0))
-              .where("match_score > 0")
-              .order(match_score: :desc)
-      incoming_requests = Match.where(student2_email: @current_student.email, relationship_enum: 1)
-              .or(Match.where(student1_email: @current_student.email, relationship_enum: 2))
-              .order(match_score: :desc)
-      session[:match_queue] = incoming_requests + possible_matches
+    if session[:match_queue_index].nil?
       session[:match_queue_index] = 0
     end
+    # initialize match queue
+  
+    puts "initializing match queue"
+    possible_matches = Match.where(student1_email: @current_student.email, relationship_enum: 0)
+            .or(Match.where(student2_email: @current_student.email, relationship_enum: 0))
+            .where("match_score > 0")
+            .order(match_score: :desc)
+    puts "possible matches: #{possible_matches.length}"
+    incoming_requests = Match.where(student2_email: @current_student.email, relationship_enum: 1)
+            .or(Match.where(student1_email: @current_student.email, relationship_enum: 2))
+            .order(match_score: :desc)
 
+    puts "incoming requests: #{incoming_requests.length}"
+    puts "possible matches: #{possible_matches.length}"
+    match_queue = incoming_requests + possible_matches
+    puts "length of match queue: #{match_queue.length}"
 
+    puts "match queue: #{match_queue}"
+
+    @match = nil
     # get next match
-    if session[:match_queue].length > 0
-      potential_match = session[:match_queue][session[:match_queue_index]]
+    if match_queue.length > 0
+      potential_match = match_queue[session[:match_queue_index]]
       @match = potential_match
       if @current_student.email == potential_match["student1_email"]
         @featured_user = Student.find_by(email: potential_match["student2_email"])
@@ -51,7 +59,7 @@ class PagesController < ApplicationController
       @incoming_request = (potential_match["relationship_enum"]) > 0
       session[:match_queue_index] += 1
 
-      if session[:match_queue_index] >= session[:match_queue].length
+      if session[:match_queue_index] >= match_queue.length
         session[:match_queue_index] = 0
       end
     else
