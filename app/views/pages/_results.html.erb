@@ -1,0 +1,26 @@
+<% if @results != -1 %>
+  <br><br>
+  <div class="linear-divider"></div>
+  <div class="browse-inner">
+    <% if @results.present? %>
+      <h2>Search Results for "<%= @query %>"</h2>
+      <p><%= @results.count %> result(s) found</p>
+      <table class="students-edit-info-form">
+        <tbody>
+          <% @results.each do |student| %>
+            <tr>
+              <%= link_to student_path(student), class: 'info-row' do %>
+                <div class="pfp-name-pair">
+                  <%= image_tag student.profile_picture_url || "https://canadabeercup.com/wp-content/uploads/2022/09/generic-profile-picture-1200x1200-1.jpg", class: "profile-pic", alt: "Profile Picture" %>
+                  <div class="info-row-title"><%= student.name%></div>
+                </div>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p>No results found for "<%= @query %>"</p>
+    <% end %>
+  </div>
+<% end %>

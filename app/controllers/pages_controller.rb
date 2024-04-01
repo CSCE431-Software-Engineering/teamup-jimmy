@@ -67,9 +67,19 @@ class PagesController < ApplicationController
     end
   end
 
-  def browse; 
+  def browse
     @query = params[:query]
+    @results = search_results
+  
+    respond_to do |format|
+      format.html # Render HTML as usual
+      format.js   # Respond to AJAX requests
+    end
+  end
 
+  private
+
+  def search_results
     if @query.present?
       # Updated to handle checkboxes
       @genders_filter = params[:genders] || []
