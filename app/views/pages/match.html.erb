@@ -70,12 +70,12 @@
           </div>
           <% if @incoming_request %> 
             <div class = "actions-holder">
-              <%= button_to 'Match Request', 
-              match_path(@match, action_name: 'accept_match_request'), 
+              <%= button_to 'Decline Match', 
+              match_path(@match, action_name: 'reject_match_request'), 
               method: :patch,
               class: "material-button dark-material-button"%>
-              <%= button_to 'Match Request', 
-              match_path(@match, action_name: 'reject_match_request'), 
+              <%= button_to 'Accept Match', 
+              match_path(@match, action_name: 'accept_match_request'), 
               method: :patch,
               class: "material-button dark-material-button"%>
             </div>
