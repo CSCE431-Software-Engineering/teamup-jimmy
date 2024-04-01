@@ -77,6 +77,10 @@
               <div class="info-row-title">Give Feedback</div>
               <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Arrow" %>
             <% end %> 
+            <%= link_to pages_faq_path, class: 'info-row'  do %>
+              <div class="info-row-title">Frequently Asked Questions</div>
+              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Forward Arrow" %>
+            <% end %>
             <%= link_to students_delete_confirmation_path, class: 'info-row'  do %>
               <div class="info-row-title">Delete Account</div>
               <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Forward Arrow" %>

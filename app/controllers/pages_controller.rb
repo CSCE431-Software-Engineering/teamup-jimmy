@@ -100,4 +100,7 @@ class PagesController < ApplicationController
     end
   end
 
+  def faq
+  end
+
 end

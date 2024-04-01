@@ -62,6 +62,7 @@ Rails.application.routes.draw do
   get 'pages/home'
   get 'pages/match'
   get 'pages/profile'
+  get 'pages/faq'
 
   ### paths added for browsig feature ####
   get 'pages/browse'
