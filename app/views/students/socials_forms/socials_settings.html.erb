@@ -3,38 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <%= stylesheet_link_tag 'navbar', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <!-- Include Bootstrap CSS for responsiveness -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <title>Jimmy</title>
 </head>
-<body>
-  <nav class="material-header">
-    <div class="material-banner">
-      <%= link_to students_settings_path,  class: "navbar-link material-back-button" do %>
-        <%= image_tag('back_arrow.png', alt: 'Back', class: 'back-arrow-icon') %> Back
+<body style="background-color: rgb(247, 233, 206);">
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F3DBAE;">
+    <div class="container">
+      <!-- Back button with an image and text -->
+      <%= link_to students_settings_path, class: "navbar-brand" do %>
+        <%= image_tag('back_arrow.png', alt: 'Back', class: 'img-fluid', style: 'height: 24px;') %>
+        <span class="ml-1">Back</span>
       <% end %>
-      <h1 class="material-title">Profile Settings</h1>
-      <span class="material-spacer"></span>
+      <h1 class="navbar-text mx-auto my-auto var(--primary-text-color)">Socials Settings</h1>
+      <%# Centering the title with identical content on the right %>
+      <div class="navbar-brand">
+        <span class="right-placeholder mr-1"> Back </span>
+         <%= image_tag('back_arrow.png', alt: 'Back', class: 'hidden-arrow', style: 'height: 24px;') %>
+      </div>
     </div>
   </nav>
-  <div class="edit-profile-main">
-    <div class = "profile-header-inner">
-      <div class="edit-profile-info">
-        <%= render 'pages/flash' %>
-        <div class = "personal_info_main">
-          <div class="students-listed-info-div">
-            <%= link_to students_edit_instagram_url_path, class: 'info-row' do %>
-              <div class="info-row-title">Connect Insta</div>
-              <div class="info-row-content"><%= @current_student.instagram_url %></div>
-              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
-            <% end %>
-            <%= link_to students_edit_x_url_path, class: 'info-row' do %>
-              <div class="info-row-title">Connect X</div>
-              <div class="info-row-content"><%= @current_student.x_url%></div>
-              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
-            <% end %>
+
+  <div class="container mt-4">
+    <br>
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-8 col-lg-6">
+        <div class="settings-card">
+          <%= link_to students_edit_instagram_url_path, class: 'info-row' do %>
+            <div class="info-row-title">Link Instagram</div>
+            <div class="info-row-content"><%= @current_student.instagram_url %></div>
+            <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
+          <% end %>
+        </div>
+        <div class="settings-card">
+          <%= link_to students_edit_x_url_path, class: 'info-row' do %>
+            <div class="info-row-title">Link X</div>
+            <div class="info-row-content"><%= @current_student.x_url %></div>
+            <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>

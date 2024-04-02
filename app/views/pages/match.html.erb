@@ -4,17 +4,109 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= stylesheet_link_tag 'navbar', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <title>Jimmy</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      background-color: #f7e9ce; /* Use the same background color as the rest of your site */
+    }
+
+    /* Use Bootstrap's button classes for guaranteed mobile responsiveness */
+    .btn-block {
+      display: block;
+      width: 60%;
+      padding: 0.75rem 1rem; /* Bootstrap's default padding for buttons */
+      font-size: 1rem; /* Bootstrap's default font size for buttons */
+      border-radius: 0.25rem; /* Bootstrap's default border radius for buttons */
+      margin-bottom: 0.5rem; /* Add some bottom margin for spacing */
+      color: #495057; /* Text color for buttons */
+      background-color: #ffffff; /* Background color for buttons */
+      border: 1px solid #ddd; /* Border color for buttons */
+      font-weight:bold;
+    }
+
+    .btn-block:hover, .btn-block:active {
+      color: #495057; /* Text color for buttons when hovered/active */
+      border-color: #dae0e5; /* Slightly darker border color for buttons when hovered/active */
+    }
+
+    /* Adjust the mobile view */
+    # @media (max-width: 576px) {
+    #   .btn-block {
+    #     font-size: 0.9rem; /* Slightly smaller font size for very small devices */
+    #   }
+    # }
+  </style>
 </head>
 <body>
   <%= render 'pages/navbar' %>
-
-  <%= button_to 'Browse', pages_browse_path, method: :get%>
-
-  <!-- logo -->
-  <!-- intro -->
-  <%= form_with(url: students_start_matching_path, method: :get) do |form| %>
-    <%= form.submit "Start Matching!", class: "btn btn-primary" %>
-  <% end %>
+  <div class="container mt-4">
+    <% if !(@match.nil?) %>  
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+          <div class="card-container">
+            <%= link_to student_path(id: @featured_user.email) do %>
+              <div class="card-body card-body-enlarged"> 
+                <p class = "profile-name"> <%= @featured_user.name %> </p>
+                <div class="card-profile-picture-div">
+                  <% if @featured_user.profile_picture_url.present? %>
+                    <%= image_tag @featured_user.profile_picture_url, class: "card-profile-picture-enlarged", alt: "Profile Picture" %>
+                  <% else %>
+                    <%= image_tag "https://canadabeercup.com/wp-content/uploads/2022/09/generic-profile-picture-1200x1200-1.jpg", class: "card-profile-picture-enlarged", alt: "Profile Picture" %>
+                  <% end %>
+                </div>
+                <br>
+                <% if @featured_user.biography.present? %>
+                  <p class="card-bio"> <%= @featured_user.biography %> </p>
+                <% end %>
+                <% if @shared_activities.length > 0%>
+                  <p class = "profile-name card-bio">Shared Activities:</p>
+                    <% @shared_activities.each do |activity| %>
+                      <p class = "card-bio">• <%= activity %><p>
+                    <% end %>
+                  </ul>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+          <% if @incoming_request %> 
+            <div class = "actions-holder">
+              <%= button_to 'Decline Match', 
+              match_path(@match, action_name: 'reject_match_request'), 
+              method: :patch,
+              class: "material-button dark-material-button"%>
+              <%= button_to 'Accept Match', 
+              match_path(@match, action_name: 'accept_match_request'), 
+              method: :patch,
+              class: "material-button dark-material-button"%>
+            </div>
+          <% else %>
+            <div class = "actions-holder">
+              <%= button_to 'Pass', 
+              pages_match_path,
+              class: "material-button dark-material-button"%>
+              <%= button_to 'Match Request', 
+              match_path(@match, action_name: 'send_match_request'), 
+              method: :patch,
+              class: "material-button dark-material-button"%>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% else %>
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+          <p class = "profile-name">No potential matches found. </p>
+          <br>
+          <p class = "edit-form-label">
+            Please add information about your workout preferences, activity preferences, 
+            and time preferences to increase your likelyhood of getting a match.
+          </p>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </body>
 </html>

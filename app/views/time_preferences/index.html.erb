@@ -6,41 +6,112 @@
   <%= stylesheet_link_tag 'navbar', media: 'all', 'data-turbolinks-track': 'reload' %>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <title>Jimmy</title>
+  <style>
+
+    .material-header, .edit-time-table-div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    
+
+    .workoutpref-landing-title, .material-title {
+      font-size: 1.2em; /* Larger font size for readability */
+    }
+
+    .edit-workoutpref-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .edit-edit-btn, .edit-back-btn {
+      padding: 10px 20px;
+      font-size: 1.5em;
+      margin-top: 20px;
+    }
+
+    @media screen and (max-width: 600px) {
+
+      .material-header, .material-banner {
+        flex-direction: column;
+      }
+
+      .material-title, .workoutpref-landing-title {
+        font-size: 1.2em; /* Increase font size for small screens */
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <nav class="material-header">
-  <div class="material-banner">
-    <%= link_to students_workout_preferences_path,  class: "navbar-link material-back-button" do %>
-      <%= image_tag('back_arrow.png', alt: 'Back', class: 'back-arrow-icon') %> Back
-    <% end %>
-    <h1 class="material-title">Time Preferences</h1>
-    <span class="material-spacer"></span>
-  </div>
-  </nav>
-  <h1 class="workoutpref-landing-title"> Your avalible times for workouts ... </h1>
-  <div class="edit-time-table-div">
-    <table summary="Added activities" class="edit-workoutpref-table edit-time-table">
-      <thead>
-        <tr>
-        <th></th>
-        <th class="edit-time-table-ch"> Morning </th>
-        <th class="edit-time-table-ch"> Afternoon </th>
-        <th class="edit-time-table-ch"> Evening </th>
-        <th class="edit-time-table-ch"> Night </th>
-        </tr>
-      </thead>
-
-     <% @time_table.each do |day, data| %>
-      <tr>
-        <th><%= day %></th>
-        <% Array(data).each do |status| %>
-          <td><span class="material-symbols-outlined edit-workoutpref-add-btn"><%= status %></span></td>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F3DBAE;">
+    <div class="container">
+      <% if !(@render_account_creation_nav) %>
+        <%= link_to students_workout_preferences_path, class: "navbar-brand" do %>
+          <%= image_tag('back_arrow.png', alt: 'Back', class: 'img-fluid', style: 'height: 24px;') %>
+          <span class="ml-1">Back</span>
         <% end %>
-      </tr>
-    <% end %>
-    </table>
+      <% end %>
+      <h1 class="navbar-text mx-auto my-auto var(--primary-text-color)">Time Preferences</h1>
+      <%# Centering the title with identical content on the right %>
+      <div class="navbar-brand">
+        <span class="right-placeholder mr-1"> Back </span>
+         <%= image_tag('back_arrow.png', alt: 'Back', class: 'hidden-arrow', style: 'height: 24px;') %>
+      </div>
+    </div>
+  </nav>
 
-    <%= button_to("Edit", {action: "edit"}, method: :get, class: "edit-edit-btn edit-back-btn") %>
+  <div class = "general-div-main">
+    <div class = "general-div-inner">
+      <p class="edit-form-label">Customize your preferred times</p>
+      <p class = "edit-form-label edit-form-subscript">
+        We will prioritize matching you with people who are active at the same times as you.
+      </p>
+      <br>
+      <div class="edit-workoutpref-div time-table-div">
+        <table summary="Added activities" class="edit-workoutpref-table edit-timepref-table">
+          <thead>
+            <tr class="time-table-header-row">
+              <th></th>
+              <th class="edit-form-label">Morning</th>
+              <th class="edit-form-label">Afternoon</th>
+              <th class="edit-form-label">Evening</th>
+              <th class="edit-form-label">Night</th>
+            </tr>
+          </thead>
+
+          <% @time_table.each do |day, data| %>
+            <tr class = "timetable-row edit-workout-pref-table-tr">
+              <th class = "edit-form-label edit-form-subscript"><%= day %></th>
+              <% Array(data).each do |status| %>
+                <td><span class="material-symbols-outlined edit-workoutpref-add-btn"><%= status %></span></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+      <%= button_to("Edit", {action: "edit"}, method: :get, class: "material-button time-pref-edit-submit-btn") %>
+      
+      <% if @render_account_creation_nav %>
+        <br>
+        <br>
+        <div class = "profile-creation-button-div">
+          <div class="left">
+            <%= link_to "Back", gym_preferences_path, class: "material-button dark-material-button", role: "button" %>
+          </div>
+          <div class = "right"><%= link_to "Next", students_path, class: "material-button dark-material-button" %></div>
+        </div>
+        <div class = "profile-creation-button-div">
+          <div class="left"> </div>
+          <div class = "right"><%= link_to "Skip for now", students_index_path, class: "material-button dark-material-button", role: "button" %></div>
+        </div>
+      <% end %>
+      
+      <%= render 'pages/flash' %>
+    </div>
   </div>
+    
 </body>
+</html>

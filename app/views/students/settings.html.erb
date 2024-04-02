@@ -4,47 +4,97 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= stylesheet_link_tag 'navbar', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <title>Jimmy</title>
 </head>
 <body>
-  <nav class="material-header">
-  <div class="material-banner">
-    <%= link_to students_path,  class: "navbar-link material-back-button" do %>
-      <%= image_tag('back_arrow.png', alt: 'Back', class: 'back-arrow-icon') %> Back
-    <% end %>
-    <h1 class="material-title">Profile Settings</h1>
-    <span class="material-spacer"></span>
-  </div>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F3DBAE;">
+    <div class="container">
+      <!-- Back button with an image and text -->
+      <%= link_to students_path, class: "navbar-brand" do %>
+        <%= image_tag('back_arrow.png', alt: 'Back', class: 'img-fluid', style: 'height: 24px;') %>
+        <span class="ml-1">Back</span>
+      <% end %>
+      <h1 class="navbar-text mx-auto my-auto var(--primary-text-color)">Profile Settings</h1>
+      <div class="navbar-brand">
+        <span class="right-placeholder mr-1"> Back </span>
+         <%= image_tag('back_arrow.png', alt: 'Back', class: 'hidden-arrow', style: 'height: 24px;') %>
+      </div>
+    </div>
   </nav>
-  <!-- logo -->
-  <!-- intro -->
-  <div class="edit-profile-main">
-    <div class = "profile-header-inner">
-      <div class="profile-picture-div">
-        <img class="edit-profile-picture" src="https://i.pinimg.com/736x/d7/1d/1a/d71d1a41b69bbbf2ca2d94b918d86faf.jpg">
-        <p>Edit picture</p>
+  
+  <div class="container mt-4">
+    <div class = "profile-content-outer">
+      <div class = "profile-content">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-6 col-lg-4 text-center mb-4">
+            <% if @current_student.profile_picture_url.present? %>
+              <%= image_tag @current_student.profile_picture_url, class: "img-fluid profile-picture mb-2", alt: "Profile Picture" %>
+            <% else %>
+              <%= image_tag "https://canadabeercup.com/wp-content/uploads/2022/09/generic-profile-picture-1200x1200-1.jpg", class: "img-fluid profile-picture mb-2", alt: "Profile Picture" %>
+            <% end %>
+            <%= form_tag({controller: "students", action: "upload_file"}, multipart: true, id: "upload_form") do %>
+              <label for="file" class="material-button">
+                Replace Picture
+              </label>
+              <%= file_field_tag 'file', onchange: "autoSubmitForm()", id: "file", style: "display: none;" %>
+            <% end %>
+            <script>
+              function autoSubmitForm() {
+                document.getElementById("upload_form").submit();
+              }
+            </script>
+            <%= render 'pages/flash' %>
+            <% if @current_student.profile_picture_url.present? %>
+              <%= button_to "Delete Picture", delete_profile_picture_path, method: :post, data: { confirm: 'Are you sure you want to delete your profile picture?' }, class: "material-button material-button-ghost" %>
+            <% end %>
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <%= link_to students_personal_info_path, class: 'info-row' do %>
+                <div class="info-row-title">Update Personal Info</div>
+                <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Forward Arrow" %>
+            <% end %>
+            <%= link_to students_matching_preferences_path, class: 'info-row' do %>
+                  <div class="info-row-title">Update Matching Preferences</div>
+                  <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Forward Arrow" %>
+            <% end %>
+            <%= link_to students_workout_preferences_path, class: 'info-row' do %>
+              <div class="info-row-title">Update Workout Preferences</div>
+              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Forward Arrow" %>
+            <% end %>
+            <%= link_to students_connect_socials_path, class: 'info-row'  do %>
+              <div class="info-row-title">Link Socials</div>
+              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Forward Arrow" %>
+            <% end %>
+            <%= link_to matches_blocked_path, class: 'info-row' do %>
+              <div class="info-row-title">Blocked Users</div>
+              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Arrow" %>
+            <% end %> 
+            <%= link_to 'https://forms.gle/tvWwfJD25RU8hhDs7', class: 'info-row', target: '_blank' do %>
+              <div class="info-row-title">Give Feedback</div>
+              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Arrow" %>
+            <% end %> 
+            <%= link_to pages_faq_path, class: 'info-row'  do %>
+              <div class="info-row-title">Frequently Asked Questions</div>
+              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Forward Arrow" %>
+            <% end %>
+            <%= link_to students_delete_confirmation_path, class: 'info-row'  do %>
+              <div class="info-row-title">Delete Account</div>
+              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Forward Arrow" %>
+            <% end %>
+          </div>
         </div>
       </div>
-      <div class="edit-profile-info">
-        <%= render 'pages/flash' %>
-        <div class="students-listed-info-div">
-          <%= link_to students_personal_info_path, class: 'info-row' do %>
-            <div class="info-row-title">Update Personal Info</div>
-            <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Forward Arrow" %>
-          <% end %>
-          <%= link_to students_matching_preferences_path, class: 'info-row' do %>
-            <div class="info-row-title">Update Matching Preferences</div>
-            <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Forward Arrow" %>
-          <% end %>
-          <%= link_to students_workout_preferences_path, class: 'info-row' do %>
-            <div class="info-row-title">Update Workout Preferences</div>
-            <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Forward Arrow" %>
-          <% end %>
-          <%= link_to students_connect_socials_path, class: 'info-row' do %>
-            <div class="info-row-title">Connect Socials</div>
-            <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Forward Arrow" %>
-          <% end %>
-        </div>
+    </div>
+  </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
   <!-- below could be links too -->
   <!-- the onclick part should be a function in the controller to determine

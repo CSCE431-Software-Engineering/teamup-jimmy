@@ -7,22 +7,22 @@ RSpec.describe 'LandingPages', type: :system do
     driven_by(:rack_test)
   end
 
-  it 'check load for landing page' do
-    visit '/'
+  it 'Integrity Test: Preventing Viewing other users pages' do
+    visit 'students/kieranbeirne'
 
     expect(page).to have_content('Jimmy')
   end
 
-  it 'check for copyright footer' do
+  it 'Usability Test: Check for footer' do
     visit '/'
 
     expect(page).to have_content('Teamup is a 501(c)(3) nonprofit organization.')
   end
 
-  it 'navigating from landing page to log in / sign up' do
+  it 'Usability Test: Login Button' do
     visit '/'
     click_on 'Log in / Sign up'
 
-    expect(page).to have_content('Seems like you\'re new to Jimmy...')
+    expect(page).to have_content('Please select gender Male Female Other Select Your Birthday Enter Your Phone Number')
   end
 end

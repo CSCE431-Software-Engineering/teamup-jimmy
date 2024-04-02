@@ -9,27 +9,35 @@
 </head>
 
 <body>
-  <nav class="material-header">
-    <div class="material-banner">
-      <%= link_to gym_preferences_path,  class: "navbar-link material-back-button" do %>
-        <%= image_tag('back_arrow.png', alt: 'Back', class: 'back-arrow-icon') %> Back
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F3DBAE;">
+    <div class="container">
+      <!-- Back button with an image and text -->
+      <%= link_to gym_preferences_path, class: "navbar-brand" do %>
+        <%= image_tag('back_arrow.png', alt: 'Back', class: 'img-fluid', style: 'height: 24px;') %>
+        <span class="ml-1">Back</span>
       <% end %>
-      <h1 class="material-title">Gym Preferences</h1>
-      <span class="material-spacer"></span>
+      <h1 class="navbar-text mx-auto my-auto var(--primary-text-color)">Gym Preferences</h1>
+      <%# Centering the title with identical content on the right %>
+      <div class="navbar-brand">
+        <span class="right-placeholder mr-1"> Back </span>
+         <%= image_tag('back_arrow.png', alt: 'Back', class: 'hidden-arrow', style: 'height: 24px;') %>
+      </div>
     </div>
   </nav>
-
-  <h1 class="workoutpref-landing-title"> Select new location to add... </h1>
-  <div class="edit-workoutpref-div">
-    <%= form_for @new_gym do |g| %>
-      <div class="edit-gym-select-div">
-        <%= g.select :gym_id, [
-           ['Please select a new location', '']] + @gyms.map { |gym| [gym.name, gym.id] }, 
-           { class: 'styled-select', required: true }
-        %>
-        <%= g.submit 'Save', class: 'edit-save-btn gym-edit-btn' %>
-      </div>
-    <%end%>
+  
+  <div class = "general-div-main">
+    <div class="general-div-inner">
+      <p class="edit-form-label">Enter your preferred workout locations</p>
+      <p class = "edit-form-label edit-form-subscript">
+        This will help us match you with people who workout at the same locations as you.
+      </p>
+      <br>
+        <%= form_for @new_gym, html: { class: 'gym-select-form' } do |g| %>
+          <%= g.select :gym_id, @gyms.map { |gym| [gym.name, gym.id] }, 
+            { class: 'styled-select', required: true }
+          %>
+          <%= g.submit 'Save', class: 'material-button' %>
+        <% end %>
+    </div>
   </div>
-
 </body>

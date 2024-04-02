@@ -10,15 +10,23 @@ class MatchingService
     # Iterate through all combinations of users
     users.each do |user2|
       next if @current_user == user2 # skip comparing a user with themselves
-
-      # Calculate match score for this pair of users
-      match_score = calculate_match_score(@current_user, user2)
-
-      next if match_score == 0 # skip match if no match found
-
-      # Store the match in the database
+      puts "Matching #{@current_user.email} with #{user2.email}"
       begin
-        Match.create(student1_email: @current_user.email, student2_email: user2.email, match_score: match_score)
+        # Calculate match score for this pair of users
+        match_score = calculate_match_score(@current_user, user2)
+        puts match_score
+
+        match = Match.where(student1_email: @current_user.email, student2_email: user2.email).or(Match.where(student1_email: user2.email, student2_email: @current_user.email)).first
+        if match.nil?
+          match = Match.new(student1_email: @current_user.email, student2_email: user2.email, match_score: match_score)
+        else
+          match.match_score = match_score
+        end
+        puts "################################################################"
+        puts "match score for #{match.student1_email} and #{match.student2_email} is #{match.match_score}"
+        puts "################################################################"
+        match.save # This line saves the match to the database, assuming that's the intended behavior
+        
       rescue => e
         puts "Error creating match: #{e.message}"
       end
@@ -76,4 +84,5 @@ class MatchingService
     # Return the gym match score
     gym_match_score * gym_weight
   end
+
 end

@@ -9,32 +9,81 @@
 </head>
 
 <body>
-  <nav class="material-header">
-    <div class="material-banner">
-      <%= link_to activity_preferences_path,  class: "navbar-link material-back-button" do %>
-        <%= image_tag('back_arrow.png', alt: 'Back', class: 'back-arrow-icon') %> Back
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F3DBAE;">
+    <div class="container">
+      
+      <%= link_to activity_preferences_path, class: "navbar-brand" do %>
+        <%= image_tag('back_arrow.png', alt: 'Back', class: 'img-fluid', style: 'height: 24px;') %>
+        <span class="ml-1">Back</span>
       <% end %>
-      <h1 class="material-title">Creating A New Preference</h1>
-      <span class="material-spacer"></span>
+      <h1 class="navbar-text mx-auto my-auto var(--primary-text-color)">Add Activity</h1>
+      <%# Centering the title with identical content on the right %>
+      <div class="navbar-brand">
+        <span class="right-placeholder mr-1"> Back </span>
+         <%= image_tag('back_arrow.png', alt: 'Back', class: 'hidden-arrow', style: 'height: 24px;') %>
+      </div>
     </div>
   </nav>
-  <h1 class="workoutpref-landing-title"> Select activity... </h1>
-  <div class="experience-select-div">
 
-  <div class="edit-workoutpref-div">
-  <table summary="Added activities" class="edit-workoutpref-table">
-    <% @activities.each do |activity|%>
-      <tr>
-        <th><%=activity.activity_name%></th>
-        <td> 
-          <%= button_to(experience_activity_preference_path(activity), method: :get, class: "material-symbols-outlined edit-workoutpref-add-btn") do %>
-            <span class="material-symbols-outlined">add</span>
-          <% end %>
-        <td>
-      </tr>
-    <%end%>
-  </table>
+  <div class="container">
+    <div class="general-div-main">
+      <div class="general-div-inner">
+
+
+        <h1 class="profile-name">Seach For Activities </h1>
+        <br>
+
+        <%= form_tag(new_activity_preference_path, method: :get, id: 'search-form', remote: true) do %>
+          <div class="search-bar">
+            <%= text_field_tag :query, params[:query], placeholder: "Soccer", id: 'search-input' %>
+          </div>
+          <%= submit_tag "Search", class: "material-button", id: 'search-submit' %>
+        <% end %>
+
+      </div>
+    </div>
   </div>
+
+  <% if @activities != -1 %>
+  
+    <div class = "linear-divider"></div>
+
+    <div class="container">
+      <div class="general-div-main">
+        <div class="general-div-inner">
+          <h1 class="profile-name">Search Results</h1>
+          <br>
+          <div class="edit-workoutpref-div">
+            <table summary="Added activities" class="edit-workoutpref-table">
+              <% @activities.each do |activity|%>
+                <% if activity == @activities.last %>
+                  <tr class = "edit-workout-pref-table-add-tr">
+                    <td class = "edit-form-label edit-form-subscript"><%=activity.activity_name%></th>
+                    <td class = "table-icon"> 
+                      <%= button_to(experience_activity_preference_path(activity), method: :get, class: "material-symbols-outlined edit-workoutpref-add-btn") do %>
+                        <%= image_tag asset_path("add_icon.png"), class: "table-icon", alt: "Add item" %>
+                      <% end %>
+                    <td>
+                  </tr>
+                <% else %>
+                  <tr class = "edit-workout-pref-table-tr">
+                    <td class = "edit-form-label edit-form-subscript"><%=activity.activity_name%></th>
+                    <td class = "table-icon"> 
+                      <%= button_to(experience_activity_preference_path(activity), method: :get, class: "material-symbols-outlined edit-workoutpref-add-btn") do %>
+                        <%= image_tag asset_path("add_icon.png"), class: "table-icon", alt: "Add item" %>
+                      <% end %>
+                    <td>
+                  </tr>
+                <% end %>
+                
+              <%end%>
+            </table>
+          </div>
+        </div>
+      </div>
+      <br>
+    </div>
+  <% end %>
 </div>
 
 </body>

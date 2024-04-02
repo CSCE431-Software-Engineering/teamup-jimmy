@@ -1,8 +1,10 @@
 class TimePreferencesController < ApplicationController
+  skip_before_action :set_initialization_false
   before_action :time_table, only: [:index, :edit]
   def index
-    @current_student = Student.find_by(email: session[:student_id])
-    @time_preference = TimePreference.find_by(student_email: @current_student.email)
+    @time_preference = TimePreference.find_by(student_email: session[:student_id])
+    @render_account_creation_nav = session['render_account_creation_nav']
+    puts @render_account_creation_nav
   end
 
   def new
@@ -12,19 +14,16 @@ class TimePreferencesController < ApplicationController
   end
 
   def update
-    # Assuming @current_student is already set
-    @current_student = Student.find_by(email: session[:student_id])
     # Find or initialize the TimePreference record
-    @time_preference = TimePreference.find_or_initialize_by(student_email: @current_student.email)
+    @time_preference = TimePreference.find_or_initialize_by(student_email: session[:student_id])
     
     # Process incoming parameters to construct preference strings
     process_time_preferences(params["time_preferences"])
     
     # Update the TimePreference record
     if @time_preference.update(morning: @morning, afternoon: @afternoon, evening: @evening, night: @night)
-      # Handle successful update, e.g., redirect or render success message
+      session[:reinit_match_score] = true
       flash[:notice] = 'Time preferences updated successfully.'
-      # redirect_to some_path, notice: "Time preferences updated successfully."
       redirect_to(action: "index")
     else
       # Handle errors, e.g., re-render the edit form with error messages
@@ -63,8 +62,7 @@ class TimePreferencesController < ApplicationController
   end
 
   def initialize_time_variables()
-    @current_student = Student.find_by(email: session[:student_id])
-    @time_preference = TimePreference.find_by(student_email: @current_student.email)
+    @time_preference = TimePreference.find_by(student_email: session[:student_id])
 
     if @time_preference
       @morning_iter = iterate_over_times(@time_preference.morning)
@@ -79,7 +77,7 @@ class TimePreferencesController < ApplicationController
   def time_table()
     initialize_time_variables()
     # @mon = [@morning_iter[0]] + [@afternoon_iter[0]] + [@evening_iter[0]] + [@night_iter[0]]
-    days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    days_of_week = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 
     # Initialize an empty array to store the results
     @time_table = []
@@ -114,7 +112,7 @@ class TimePreferencesController < ApplicationController
     if form_params.nil?
       return
     end
-    days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    days_of_week = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
     days_of_week.each_with_index do |day, index|
       if form_params[day].nil? == false
         @morning[index] = '1' if form_params[day]["Morning"] == "1"
@@ -124,6 +122,8 @@ class TimePreferencesController < ApplicationController
       end
     end
   end
+
+  puts @morning
 
 
 end

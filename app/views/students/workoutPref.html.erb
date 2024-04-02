@@ -4,41 +4,58 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= stylesheet_link_tag 'navbar', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <!-- Ensure you're including Bootstrap CSS here for responsiveness -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <title>Jimmy</title>
 </head>
 
-<body>
-  <nav class="material-header">
-      <div class="material-banner">
-        <%= link_to students_index_path,  class: "navbar-link material-back-button" do %>
-          <%= image_tag('back_arrow.png', alt: 'Back', class: 'back-arrow-icon') %> Back
-        <% end %>
-        <h1 class="material-title">Workout Preference Settings</h1>
-        <span class="material-spacer"></span>
+<body body style="background-color: rgb(247, 233, 206);">
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F3DBAE;">
+    <div class="container">
+      <!-- Back button with an image and text -->
+      <%= link_to students_index_path, class: "navbar-brand" do %>
+        <%= image_tag('back_arrow.png', alt: 'Back', class: 'img-fluid', style: 'height: 24px;') %>
+        <span class="ml-1">Back</span>
+      <% end %>
+      <h1 class="navbar-text mx-auto my-auto var(--primary-text-color)">Workout Preferences</h1>
+      <%# Centering the title with identical content on the right %>
+      <div class="navbar-brand">
+        <span class="right-placeholder mr-1"> Back </span>
+         <%= image_tag('back_arrow.png', alt: 'Back', class: 'hidden-arrow', style: 'height: 24px;') %>
       </div>
-    </nav>
+    </div>
+  </nav>
 
-
-  <div class="edit-profile-main">
-    <div class = "profile-header-inner">
-      <div class="edit-profile-info">
-        <%= render 'pages/flash' %>
-        <div class = "personal_info_main">
-          <div class="students-listed-info-div">
-            <%= link_to time_preferences_index_path, class: 'info-row' do %>
-              <div class="info-row-title">Update workout time preferences</div>
-              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
-            <% end %>
-            <%= link_to gym_preferences_path, class: 'info-row' do %>
-              <div class="info-row-title">Update gym location preferences</div>
-              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
-            <% end %>
-            <%= link_to activity_preferences_path, class: 'info-row' do %>
-              <div class="info-row-title">Update activity prefereces</div>
-              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
-            <% end %>
-        </div>
+<div class="container mt-4">
+  <br>
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+      <div class="settings-card">
+        <%= link_to time_preferences_index_path, class: 'info-row' do %>
+          <div class="info-row-title">Update workout time preferences</div>
+          <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
+        <% end %>
+      </div>
+      <div class="settings-card">
+        <%= link_to gym_preferences_path, class: 'info-row' do %>
+          <div class="info-row-title">Update gym location preferences</div>
+          <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
+        <% end %>
+      </div>
+      <div class="settings-card">
+        <%= link_to activity_preferences_path, class: 'info-row' do %>
+          <div class="info-row-title">Update activity preferences</div>
+          <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Instagram Link" %>
+        <% end %>
       </div>
     </div>
   </div>
+</div>
+
+
+<!-- Bootstrap JS and jQuery for collapsible navbar and responsiveness -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+</html>

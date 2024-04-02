@@ -1,0 +1,93 @@
+
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <h1 class="navbar-text mx-auto my-auto profile-name">Workout Partner Preferences</h1>
+  </div>
+</nav>
+<body class="students-text">
+  <div class = "general-div-main">
+    <div class = "general-div-inner">
+    <%= render 'pages/flash' %>
+    <%= form_with(model: @current_student, local: true, method: :patch) do |form| %>
+        <div>
+          <p class = "edit-form-label">Workout partner age preference</p>
+          <p class = "edit-form-label edit-form-subscript">
+            Please provide the age range of students you would like to consider for matchmaking. </p>
+          <p></p>
+        </div>
+
+        <table class="students-edit-info-form">
+          <tr class="students-edit-info-form-row">
+            <th>
+              <div class="edit-form-field">
+                <p class = "edit-form-selector">Minimum age</p>
+                <%= form.select :age_start_pref, 
+                  options_for_select((18..99).map { |age| [age.to_s, age] }, @current_student.age_start_pref), 
+                  {}, 
+                  {required: true} 
+                %>
+              </div>
+            </th>
+          </tr>
+
+          <tr class="students-edit-info-form-row">
+            <th>
+              <div class="edit-form-field">
+                <p class = "edit-form-selector">Maximum age</p>
+                <%= form.select :age_end_pref, 
+                  options_for_select((18..99).map { |age| [age.to_s, age] }, @current_student.age_end_pref), 
+                  {}, 
+                  {required: true} 
+                %>
+              </div>
+            </th>
+          </tr>
+        </table>
+
+        <br>
+        <div class = "simple-linear-divider"></div>
+        <br>
+
+        <div>
+            <p class = "edit-form-label">Workout partner gender prefernce</p>
+            <p class = "edit-form-label edit-form-subscript">
+            Please select from the list below for genders that you would like to consider for matchmaking. </p>
+            <p></p>
+        </div>
+
+
+        <div class="checkbox-container">
+            <div>
+                <%= form.label :gender_pref_female, 'Female' %>
+                <div>
+                    <%= form.check_box :gender_pref_female %>
+                </div>
+            </div>
+            <div>  
+            <%= form.label :gender_pref_male, 'Male' %>
+            <div>
+                <%= form.check_box :gender_pref_male %>
+            </div>
+            </div>
+            <div>
+            <%= form.label :gender_pref_other, 'Other' %>
+            <div>
+                <%= form.check_box :gender_pref_other %>
+            </div>
+            </div>
+        </div>
+        <br>
+        <div class = "profile-creation-button-div">
+          <div class="left">
+            <%= link_to "Back", students_setup_personal_info_path, class: "material-button dark-material-button", role: "button" %>
+          </div>
+          <div class = "right"><%= form.submit "Next", class: "material-button dark-material-button" %></div>
+        </div>
+        <div class = "profile-creation-button-div">
+            <div class="left"> </div>
+            <div class = "right"><%= link_to "Skip for now", students_index_path, class: "material-button dark-material-button", role: "button" %><div>
+        </div>
+      <% end %> 
+    </div>
+  </div>
+</body>

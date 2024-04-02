@@ -20,13 +20,16 @@
 
 :root {
   --primary-text-color: #554838;
+  --primary-bg-color: #F7E9CE;
+  --accent-color: #b68d60;
+  --accent-darkened: #a27850;
 }
 
-body {
-  background-color: #F7E9CE;
+body, html {
+  background-color: #F7E9CE!important;
   margin:0px;
   font-family: 'Roboto', sans-serif;
-
+  overflow-x: hidden;
 }
 
 .top-pad {
@@ -47,6 +50,101 @@ body {
   left: 1%;
 }
 
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(243, 219, 174); /* Example color */
+  margin-bottom: 10px;
+  border-radius: 8px;
+  color: var(--primary-text-color);
+  text-decoration: none;
+  transition: background-color 0.3s, box-shadow 0.2s;
+  -webkit-tap-highlight-color: transparent; /* Prevents the mobile browser from highlighting the button on tap */
+}
+
+
+.info-row-title {
+  font-weight: bold;
+  padding: 1rem;
+  flex-basis: 20%;
+  text-align: left;
+  white-space: nowrap;
+  min-width: 10rem;
+  text-decoration: none;
+}
+
+.info-row-content {
+  padding: 1rem;
+  flex-basis: 60%; /* Adjust as needed to control the width of the content */
+  text-align: left;
+}
+
+.info-row-top-padding {
+  padding-top: 12%;
+}
+
+.info-row:hover {
+  background-color: #f1d39b; /* Darker shade for hover state */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Elevation effect */
+  text-decoration: none!important; /* Removes the underline */
+  color: var(--primary-text-color); /* Keeps the color the same as it was without hover */
+}
+
+.info-row:focus {
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #f1d39b; /* Focus state with outer and inner rings */
+}
+
+.info-row:active {
+  background-color: #ebbd67; /* Even darker shade for active/click state */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Simulate "pressed" effect by reducing elevation */
+}
+
+.info-row:disabled {
+  background-color: #E0E0E0; /* Disabled state color */
+  color: #9E9E9E;
+  cursor: default;
+  box-shadow: none;
+}
+
+
+@media (max-width: 768px) {
+  .navbar-brand {
+    flex-grow: 1; /* Allow back button to use available space */
+    justify-content: start; /* Align back button to the start */
+    font-size: 1rem;
+    padding-right: 0;
+  }
+  .navbar h1 {
+    font-size: 1.2rem; /* Smaller font size on mobile */
+    margin: 0;
+    
+  }
+  .forward-arrow {
+    width: 1rem; /* Smaller arrows on mobile */
+  }
+
+  .navbar span{
+    font-size: 1rem;
+  }
+}
+
+.right-placeholder {
+  font-size: 1rem;
+  margin: 0;
+  color: #f3dbae;
+  flex-grow: 1;
+  justify-content: end;
+  user-select: none;
+  -webkit-user-select: none; 
+  -moz-user-select: none; 
+  -ms-user-select: none;
+}
+
+.hidden-arrow {
+  visibility: hidden;
+}
+
 /* Search Bar/Button, checkboxes styling */
 .btn-primary {
   /* Style the Search button */
@@ -61,6 +159,7 @@ body {
 .search-bar {
   text-align: center;
   margin-bottom: 20px;
+  margin-top: 0.5rem;
 }
 
 #search-input {
@@ -107,9 +206,6 @@ body {
   background-color: #f9f9f9;
 }
 
-.user-info-table tbody tr:hover {
-  background-color: #e5e5e5;
-}
 
 /* Footer styling */
 .footer {
@@ -128,12 +224,12 @@ body {
   margin: 0; /* Removes default margin */
   font-size: 1.0rem; /* Increases the font size */
   line-height: 1.6; /* Adjusts the space between lines */
-  color: rgb(113, 109, 109); /* Sets the text color */
+  color: black; /* Sets the text color */
 }
 
 /* Link styling */
 .footer a {
-  color: #0066cc; /* Color for the link */
+  color: #003e7b; /* Color for the link */
   text-decoration: none; /* No underline */
 }
 
@@ -146,7 +242,7 @@ body {
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   text-align: center;
-  color: tan;
+  color: black;
 }
 
 .landing-logo {
@@ -168,9 +264,9 @@ body {
 .landing-button {
   height: 3rem; /* Increased from 2rem to 3rem */
   margin-top: 1.5rem; /* Increased from 1rem to 1.5rem */
-  border-color: tan;
-  color: tan;
-  background-color: antiquewhite;
+  border-color: black;
+  color: black;
+  background-color: #f3dbae;
   border-radius: 0.25rem;
   font-size: 1.25rem; /* Increase font size for better readability */
   display: block;
@@ -187,7 +283,7 @@ body {
   font-weight: 500;
   text-align: center;
   color: tan;
-  padding-top: 20%;
+  padding-top: 5%;
 }
 
 .social-links {
@@ -229,19 +325,75 @@ body {
   position: relative; /* Required for absolute positioning of the tooltip */
 }
 
-.landing-button:hover,
-.back-btn:hover,
-.students-button:hover {
-  background-color: tan;
-  color: antiquewhite;
-  border-color: #F7E9CE;
-  cursor:pointer;
-  box-shadow: (0, 0,25rem, 0.5rem, rgba(0,0,0,0.26));
-}
 
 /* Add responsiveness to the table */
 @media (max-width: 768px) {
   .students-info-table {
     width: 100%;
   }
+}
+
+
+.nav-link {
+  font-weight: bold;
+  font-size: 16pt; /* 16pt is roughly equivalent to 21px */
+  padding: 0 30px; /* Increase the space around the links */
+  color: var(--primary-text-color); /* Use a CSS variable for the text color */
+}
+
+/* Adjust the navbar padding for better alignment */
+.navbar-nav {
+  align-items: center; /* Centers the links vertically */
+}
+
+
+.navbar-text{
+  color: var(--primary-text-color)!important;
+}
+
+.navbar .container {
+  width: 100%;
+  position: relative;
+}
+
+/* Center the title */
+.navbar h1 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); /* Combine both translations into one line */
+}
+
+
+/* This class is added to an element that comes after the h1 */
+.navbar-brand::after {
+  content: '';
+  display: inline-block;
+  width: 100%;
+}
+
+/* Adjust the back arrow and text to be inline and align at the start */
+.navbar-brand {
+  font-weight: bold;
+  color: var(--primary-text-color)!important;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+/* Use media queries if the navbar-brand should be hidden or styled differently on smaller screens */
+@media (max-width: 768px) {
+  
+  .navbar-brand::after {
+    display: none;
+  }
+}
+
+
+.icon {
+  background: --var(--primary-text-color); /* Or any color you want */
+  -webkit-mask: url('instagram_icon.png') no-repeat center / contain;
+          mask: url('instagram_icon.png') no-repeat center / contain;
 }

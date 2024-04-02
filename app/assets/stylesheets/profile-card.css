@@ -1,0 +1,90 @@
+.card-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));;
+  gap: 1rem;
+  max-width: 100%;
+  padding: 3%;
+  text-decoration: none;
+}
+
+.card-body{
+  display: inline-block;
+  border-radius: 0.5rem;
+  background-color: #F3DBAE;
+  height: 16rem;
+  min-width: 12rem;
+  max-width: 12rem;
+  text-align: center;
+  color: var(--primary-text-color);
+  overflow:hidden;
+  text-overflow: ellipsis;
+}
+
+.card-body h3{
+  font-size: 1.5rem;
+}
+
+
+.card-body-enlarged{
+  min-width: 23rem;
+  height: 28rem;
+}
+
+@media (max-width: 768px) {
+  .card-body-enlarged{
+    min-width: 23rem;
+    height: 30rem;
+  }
+}
+
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-bio {
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
+  text-align: left;
+  left: auto;
+  right: auto;
+  padding-bottom: 0.75rem;
+  color: var(--primary-text-color)
+}
+
+.card-profile-picture-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.card-profile-picture {
+  width: 5.5rem;
+  height: 5.5rem;
+  border-radius: 50%;
+  border: 5px solid #FAFAFA;
+  box-shadow: 0 0 0 5px #e2e2e2;
+  }
+
+.card-profile-picture-enlarged{
+  width: 10rem;
+  height: 10rem;
+  margin-top: 0.5rem;
+  border-radius: 10px;
+}
+
+.actions-holder{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.actions-holder form{
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  width: 50%
+}
