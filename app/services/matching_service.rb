@@ -52,25 +52,62 @@ class MatchingService
   end
 
   def calculate_activity_match_score(current_user, user2)
-    # Retrieve activity preferences for each user
-    current_user_activities = ActivityPreference.where(student_email: current_user.email).pluck(:activity_id)
-    user2_activities = ActivityPreference.where(student_email: user2.email).pluck(:activity_id)
+    # Retrieve activity preferences and experience levels for each user
+    current_user_preferences = ActivityPreference.where(student_email: current_user.email)
+    user2_preferences = ActivityPreference.where(student_email: user2.email)
+
+    # Initialize variables to store common activities and their associated experience levels
+    common_activities = []
+    common_experience_levels = []
+
+    # Iterate through each activity preference of the current user
+    current_user_preferences.each do |preference|
+      # Find the corresponding preference in user2's preferences
+      matching_preference = user2_preferences.find_by(activity_id: preference.activity_id)
+
+      # If a matching preference exists, add the activity and experience level to the common lists
+      if matching_preference
+        common_activities << preference.activity_id
+        common_experience_levels << [preference.experience_level, matching_preference.experience_level]
+      end
+    end
 
     # Calculate the number of common activities
-    common_activities_count = (current_user_activities & user2_activities).count
+    common_activities_count = common_activities.count
 
-    # Weight can be adjsuted based on how import activity preferences are
+    # Weight can be adjusted based on how important activity preferences are
     activity_weight = 0.33
 
     # Calculate match score based on common activities
-    activity_match_score = common_activities_count.to_f / [current_user_activities.count, user2_activities.count].max
+    activity_match_score = common_activities_count.to_f / [current_user_preferences.count, user2_preferences.count].max
 
-    # puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
-    # puts "Activity score: #{activity_match_score * activity_weight}"
-    # puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+    # Factor in experience levels
+    experience_weights = {
+      "Beginner" => 0.5,
+      "Advanced" => 0.8,
+      "Intermediate" => 1.0,
+      "Expert" => 0.8,
+      "Novice" => 0.5
+    }
+
+    # Adjust match score based on experience levels of common activities
+    common_experience_levels.each do |exp_level1, exp_level2|
+      experience_weight1 = experience_weights[exp_level1] || 0.5
+      experience_weight2 = experience_weights[exp_level2] || 0.5
+
+      # Average the experience weights of the two users for each common activity
+      average_experience_weight = (experience_weight1 + experience_weight2) / 2.0
+
+      # Update the activity match score with the weighted experience level
+      activity_match_score += (average_experience_weight - activity_match_score) * activity_weight
+    end
+
+    puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+    puts "Activity score: #{activity_match_score}"
+    puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
 
     # Return the activity match score
-    activity_match_score * activity_weight
+    activity_match_score
   end
 
   def calculate_gym_match_score(current_user, user2)
