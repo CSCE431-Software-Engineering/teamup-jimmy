@@ -82,24 +82,40 @@ class MatchingService
     activity_match_score = common_activities_count.to_f / [current_user_preferences.count, user2_preferences.count].max
 
     # Factor in experience levels
+    experience_scores = []
+
+    # Represent levels as numeric values
     experience_weights = {
-      "Beginner" => 0.5,
-      "Advanced" => 0.8,
-      "Intermediate" => 1.0,
-      "Expert" => 0.8,
-      "Novice" => 0.5
+      "Beginner" => 1.0,
+      "Advanced" => 2.0,
+      "Intermediate" => 3.0,
+      "Expert" => 4.0,
+      "Novice" => 5.0
     }
 
     # Adjust match score based on experience levels of common activities
     common_experience_levels.each do |exp_level1, exp_level2|
-      experience_weight1 = experience_weights[exp_level1] || 0.5
-      experience_weight2 = experience_weights[exp_level2] || 0.5
+      # Calculate the difference in experience levels
+      experience_weight1 = experience_weights[exp_level1] || 1
+      experience_weight2 = experience_weights[exp_level2] || 1
+      experience_difference = (experience_weight1 - experience_weight2).abs
 
-      # Average the experience weights of the two users for each common activity
-      average_experience_weight = (experience_weight1 + experience_weight2) / 2.0
+      # Apply formula to calculate the experience score for the pair of users
+      experience_score = (-1 * experience_difference + 4) / 4.0
 
-      # Update the activity match score with the weighted experience level
-      activity_match_score += (average_experience_weight - activity_match_score) * activity_weight
+      # Add the experience score to the list of scores
+      experience_scores << experience_score
+    end
+
+    # Average the experience scores for all common activities
+    average_experience_score = experience_scores.sum / experience_scores.size.to_f
+
+    # Update the activity match score with the weighted experience score
+    activity_match_score += (average_experience_score - activity_match_score) * activity_weight
+
+    # Check if the activity_match_score is NaN (occurs when there are no common activities -> experience levels)
+    if activity_match_score.nan?
+      activity_match_score = 0
     end
 
     puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
