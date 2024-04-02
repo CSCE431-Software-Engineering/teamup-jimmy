@@ -15,11 +15,15 @@
   min-width: 12rem;
   max-width: 12rem;
   text-align: center;
-  color: black;
-
+  color: var(--primary-text-color);
   overflow:hidden;
   text-overflow: ellipsis;
 }
+
+.card-body h3{
+  font-size: 1.5rem;
+}
+
 
 .card-body-enlarged{
   min-width: 23rem;
@@ -68,6 +72,7 @@
 .card-profile-picture-enlarged{
   width: 10rem;
   height: 10rem;
+  margin-top: 0.5rem;
   border-radius: 10px;
 }
 

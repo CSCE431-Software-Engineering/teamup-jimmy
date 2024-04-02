@@ -15,7 +15,11 @@
       <div class = "profile-picture-and-buttons">
         <div class = "spacer"></div>
         <div class="profile-picture-div">
-          <img class="profile-picture" src="https://i.pinimg.com/736x/d7/1d/1a/d71d1a41b69bbbf2ca2d94b918d86faf.jpg">
+          <% if @current_student.profile_picture_url.present? %>
+            <%= image_tag @current_student.profile_picture_url, class: "profile-picture", alt: "Profile Picture" %>
+          <% else %>
+            <%= image_tag "https://canadabeercup.com/wp-content/uploads/2022/09/generic-profile-picture-1200x1200-1.jpg", class: "profile-picture", alt: "Profile Picture" %>
+          <% end %>
         </div>
         <div class = "settings-link-div">
           <%= link_to image_tag(asset_path("settings_icon.png"), class: "spacer", alt: "Settings link"), students_settings_path %>

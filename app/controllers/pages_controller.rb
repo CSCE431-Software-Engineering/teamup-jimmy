@@ -70,6 +70,15 @@ class PagesController < ApplicationController
   def browse; 
     @query = params[:query]
 
+    # debugging for age filters
+    if params[:age_min].present?
+      puts params[:age_min]
+    end
+
+    if params[:age_max].present?
+      puts params[:age_max]
+    end
+
     if @query.present?
       # Updated to handle checkboxes
       @genders_filter = params[:genders] || []
@@ -95,9 +104,25 @@ class PagesController < ApplicationController
       end
 
       @results = @results.where(is_private: false)
+
+      if params[:age_min].present?
+        min_birthdate = Date.today - params[:age_min].to_i.years
+        # age_conditions << "birthdate <= :min_birthdate"
+        @results = @results.where('birthday <= ?', min_birthdate)
+      end
+      
+      if params[:age_max].present?
+        max_birthdate = Date.today - params[:age_max].to_i.years
+        # age_conditions << "birthdate >= :max_birthdate"
+        @results = @results.where('birthday >= ?', max_birthdate)
+      end
+
     else
       @results = -1
     end
+  end
+
+  def faq
   end
 
 end
