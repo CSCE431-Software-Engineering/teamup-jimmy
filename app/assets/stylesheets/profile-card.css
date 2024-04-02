@@ -20,6 +20,11 @@
   text-overflow: ellipsis;
 }
 
+.card-body h3{
+  font-size: 1.5rem;
+}
+
+
 .card-body-enlarged{
   min-width: 23rem;
   height: 28rem;
@@ -67,6 +72,7 @@
 .card-profile-picture-enlarged{
   width: 10rem;
   height: 10rem;
+  margin-top: 0.5rem;
   border-radius: 10px;
 }
 
