@@ -15,8 +15,7 @@
   min-width: 12rem;
   max-width: 12rem;
   text-align: center;
-  color: black;
-
+  color: var(--primary-text-color);
   overflow:hidden;
   text-overflow: ellipsis;
 }

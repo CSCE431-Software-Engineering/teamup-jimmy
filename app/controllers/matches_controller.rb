@@ -33,12 +33,7 @@ class MatchesController < ApplicationController
     #@existing_matches_A = Match.where(student1_email: @current_student, relationship_enum: 0)
     
     @matched_emails = Student.where(email: @existing_matches_A&.pluck(:student2_email)).or(Student.where(email: @existing_matches_B&.pluck(:student1_email)))  
-    # puts "start"
-    # puts @matched_emails  
-    # # puts @existing_matches_A
-    # # puts @existing_matches_B
-    # puts "end"
-    #@matched_emails = Student.where(email: @existing_matches_A&.pluck(:student1_email))
+   
 
   end
 

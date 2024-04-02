@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag 'navbar', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <title>Jimmy</title>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F3DBAE;">
+    <div class="container">
+      <!-- Back button with an image and text -->
+      <%= link_to students_settings_path, class: "navbar-brand" do %>
+        <%= image_tag('back_arrow.png', alt: 'Back', class: 'img-fluid', style: 'height: 24px;') %>
+        <span class="ml-1">Back</span>
+      <% end %>
+      <h1 class="navbar-text mx-auto my-auto var(--primary-text-color)">Frequently Asked Questions</h1>
+      <%# Centering the title with identical content on the right %>
+      <div class="navbar-brand">
+        <span class="right-placeholder mr-1"> Back </span>
+         <%= image_tag('back_arrow.png', alt: 'Back', class: 'hidden-arrow', style: 'height: 24px;') %>
+      </div>
+    </div>
+  </nav>
+  
+<div class="container mt-4">
+<div class="admin-help-section mt-4">
+<div class="settings-card">
+    <a class="info-row" data-bs-toggle="collapse" href="#herokuDeploymentErrors" role="button" aria-expanded="false" aria-controls="herokuDeploymentErrors">
+    <div class="info-row-title">Can I create an account with a non-TAMU email?</div>
+    </a>
+    <div class="collapse" id="herokuDeploymentErrors">
+    <div class="">
+        Nope, only TAMU emails are allowed! Jimmy is a workout buddy matching up caterred to current students at Texas A&M University. 
+        However, we hope to expand our users to students at other universities as well in the future!
+    </div>
+    </div>
+</div>
+
+<div class="settings-card">
+    <a class="info-row" data-bs-toggle="collapse" href="#databaseMigrationFailures" role="button" aria-expanded="false" aria-controls="databaseMigrationFailures">
+    <div class="info-row-title">Can I delete my account at anytime?</div>
+    </a>
+    <div class="collapse" id="databaseMigrationFailures">
+    <div>
+        Of course you can! If you've found the perfect workout buddy and no longer need Jimmy, or you've decided to quit for other reasons, 
+        you can always wipe your data from our application. However, we highly suggest you to use our user feedback form if we can imporve 
+        your experiencein any way!
+    </div>
+    </div>
+</div>
+
+<div class="settings-card">
+    <a class="info-row" data-bs-toggle="collapse" href="#appCrashingOnStartup" role="button" aria-expanded="false" aria-controls="appCrashingOnStartup">
+    <div class="info-row-title">How am I matched with others?</div>
+    </a>
+    <div class="collapse" id="appCrashingOnStartup">
+    <div>
+        We first filter users using your workout buddy gender and age preferences, then we find those with compatible workout times as you. 
+        Finally, based on your shared activities and their experience levels, a match score is calculated. The users with high match score with you are 
+        then displayed in the 'Match' page for you to connect with them!
+    </div>
+    </div>
+</div>
+
+<div class="settings-card">
+    <a class="info-row" data-bs-toggle="collapse" href="#slowAppPerformance" role="button" aria-expanded="false" aria-controls="slowAppPerformance">
+    <div class="info-row-title">Can I block/unmatch users?</div>
+    </a>
+    <div class="collapse" id="slowAppPerformance">
+    <div>
+        Yes you can! Once you've unmatched with an user, they return to the pool of potential matches to be discovered again in the future. 
+        If you've blocked a user, they're unable to send a match request to you, and you won't see them in your match pool. 
+    </div>
+    </div>
+</div>
+
+<!-- Connectivity Issues with External Services -->
+<div class="settings-card">
+    <a class="info-row" data-bs-toggle="collapse" href="#connectivityIssues" role="button" aria-expanded="false" aria-controls="connectivityIssues">
+    <div class="info-row-title">I don't see my gym on here! Will more gym locations be added in the future?</div>
+    </a>
+    <div class="collapse" id="connectivityIssues">
+    <div>
+        Yes! In future phases of Jimmy, we hope to use Google Maps to help you locate your favoriate gyms!
+    </div>
+</div>
+</div>
+</div>
+</div>
+</body>
