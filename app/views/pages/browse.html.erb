@@ -34,6 +34,15 @@
           </label>
         </div>
 
+        <!-- Fields for age bounds -->
+        <div class="age-filters">
+          <p>Minimum Age:</p>
+          <%= number_field_tag :age_min, params[:age_min], id: 'age-min' %>
+          <br></br>
+          <p>Maximum Age:</p>
+          <%= number_field_tag :age_max, params[:age_max], id: 'age-max' %>
+        </div>
+
         <%= submit_tag "Search", class: "material-button", id: 'search-submit' %>
       <% end %>
     </div>
@@ -42,28 +51,27 @@
         <br><br>
         <div class = "linear-divider"></div>
         <div class = "browse-inner">
-          <%if @results.present? %>
-          <h2>Search Results for "<%= @query %>"</h2>
-          <p> <%= @results.count %> result(s) found </p>  
-          <table class="students-edit-info-form">
-            <tbody>
-              <% @results.each do |student| %>
-                <tr>
-                  <%= link_to student_path(student), class: 'info-row' do %>
-                    <div class = "pfp-name-pair">
-                    <% if student.profile_picture_url.present? %>
-                      <%= image_tag student.profile_picture_url, class: "profile-pic", alt: "Profile Picture" %>
-                    <% else %>
-                      <%= image_tag "https://canadabeercup.com/wp-content/uploads/2022/09/generic-profile-picture-1200x1200-1.jpg", class: "profile-pic", alt: "Profile Picture" %>
+          <% if @results.present? %>
+            <h2>Search Results for "<%= @query %>"</h2>
+            <p><%= @results.count %> result(s) found</p>  
+            <table class="students-edit-info-form">
+              <tbody>
+                <% @results.each do |student| %>
+                  <tr>
+                    <%= link_to student_path(student), class: 'info-row' do %>
+                      <div class="pfp-name-pair">
+                        <% if student.profile_picture_url.present? %>
+                          <%= image_tag student.profile_picture_url, class: "profile-pic", alt: "Profile Picture" %>
+                        <% else %>
+                          <%= image_tag "https://canadabeercup.com/wp-content/uploads/2022/09/generic-profile-picture-1200x1200-1.jpg", class: "profile-pic", alt: "Profile Picture" %>
+                        <% end %>
+                        <div class="info-row-title"><%= student.name %></div>
+                      </div>
                     <% end %>
-                    <div class="info-row-title"><%= student.name %></div>
-
-                    </div>
-                  <% end %>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
           <% else %>
             <p>No results found for "<%= @query %>"</p>
           <% end %>
@@ -71,10 +79,5 @@
       <% end %>
     </div>
   </div>
-
-
-  
-  
-
 </body>
 </html>
