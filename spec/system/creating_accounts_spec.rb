@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 require 'rails_helper'
 require 'date'
@@ -13,7 +14,7 @@ RSpec.describe 'CreatingAccounts', type: :system do
   end
 
   it 'Integrity Case 1 Sunny Day: successful profile creation, with sign-in through Google OAuth2' do
-    visit '/accounts/auth/google_oauth2' 
+    visit '/accounts/auth/google_oauth2'
     visit account_google_oauth2_omniauth_callback_path
     expect(page).to have_content('Account Information')
   end
@@ -23,7 +24,6 @@ RSpec.describe 'CreatingAccounts', type: :system do
     visit '/students/basic'
     expect(page).to have_content('Name')
   end
-  
 
   it 'Unit test 2: navigating back to previous new student page' do
     simulate_google_oauth2_sign_in
@@ -49,7 +49,6 @@ RSpec.describe 'CreatingAccounts', type: :system do
     expect(page).to have_content('Home')
   end
 
-
   it 'Integrity Case 2 Rainy Day 1: preventing empty name' do
     simulate_google_oauth2_sign_in
     visit '/students/basic'
@@ -59,7 +58,6 @@ RSpec.describe 'CreatingAccounts', type: :system do
     click_on 'Next'
     expect(page).to have_content('There was a problem with your input. Please make sure to fill out every field.')
   end
-
 
   it 'Integrity Case 2 Rainy Day 3: preventing empty gender' do
     simulate_google_oauth2_sign_in
@@ -88,5 +86,3 @@ RSpec.describe 'CreatingAccounts', type: :system do
     expect(page).to have_content('There was a problem with your input. Please make sure to fill out every field.')
   end
 end
-
-  
