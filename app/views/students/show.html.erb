@@ -95,8 +95,7 @@
                 const copyButton = document.querySelector('button[data-controller="clipboard"]');
                 if (copyButton) { // Checking if the button exists
                   copyButton.addEventListener('click', () => {
-                    const phoneNumberText = document.getElementById('phoneNumber').textContent;
-                    copyTextToClipboard(phoneNumberText); // Copy the actual phone number
+                    copyTextToClipboard('phoneNumber'); 
                   });
                 } else {
                   console.error('Copy button was not found.'); // Error handling if button isn't found
