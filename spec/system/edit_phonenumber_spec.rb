@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 # spec/features/edit_account_spec.rb
 require 'rails_helper'
 
-RSpec.feature "EditPhoneNumber", type: :feature do
+RSpec.feature 'EditPhoneNumber', type: :feature do
   def simulate_google_oauth2_sign_in
     visit '/accounts/auth/google_oauth2'
     visit account_google_oauth2_omniauth_callback_path
