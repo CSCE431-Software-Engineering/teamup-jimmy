@@ -83,3 +83,38 @@ RSpec.describe 'CreateBrowseQuery', type: :system do
     visit account_google_oauth2_omniauth_callback_path
   end
 end
+
+#   it 'Sunny: Can search for users with no gender filter' do
+#     fill_in 'search-input', with: 'K'
+#     click_button 'Search'
+#     expect(page).to have_content('kb testing')
+#     expect(page).not_to have_content('Barret Wallace')
+#   end
+
+#   it 'Sunny: Can search for male users' do
+#     fill_in 'search-input', with: 'L'
+#     check 'male'
+#     click_button 'Search'
+#     expect(page).to have_content('Firsy Lasy')
+#   end
+
+#   it 'Sunny: Can search for female users' do
+#     fill_in 'search-input', with: 'L'
+#     check 'female'
+#     click_button 'Search'
+#     expect(page).to have_content('Lily Tang')
+#   end
+
+#   it 'Rainy: Displays "No results found" for a search with no matches' do
+#     fill_in 'search-input', with: 'Z'
+#     click_button 'Search'
+#     expect(page).to have_content('No results found for "Z"')
+#   end
+
+#   # Helper methods
+#   def simulate_google_oauth2_sign_in
+#     # Your sign-in simulation logic here
+#     visit '/accounts/auth/google_oauth2'
+#     visit account_google_oauth2_omniauth_callback_path
+#   end
+# end

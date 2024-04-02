@@ -2,6 +2,8 @@
 
 # spec/features/edit_grad_year_spec.rb
 require 'rails_helper'
+# spec/features/edit_grad_year_spec.rb
+require 'rails_helper'
 
 RSpec.feature 'EditGradYear', type: :feature do
   def simulate_google_oauth2_sign_in

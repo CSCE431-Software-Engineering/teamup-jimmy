@@ -24,6 +24,7 @@ RSpec.describe 'CreatingAccounts', type: :system do
     visit '/students/basic'
     expect(page).to have_content('Name')
   end
+  
 
   it 'Unit test 2: navigating back to previous new student page' do
     simulate_google_oauth2_sign_in
