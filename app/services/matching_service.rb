@@ -44,8 +44,14 @@ class MatchingService
     # Calculate match score based on time preferences
     time_match_score = calculate_time_match_score(current_user, user2)
 
-    # Calculate overall match score (weight can be adjusted with extra checks)
-    overall_match_score = (activity_match_score + gym_match_score + time_match_score) / 3.0
+    # Calculate match score based on gender preferences
+    gender_match_score = calculate_gender_match_score(current_user, user2)
+
+    # Calculate match score based on age preferences
+    age_match_score = calculate_age_match_score(current_user, user2)
+
+    # Calculate overall match score (weight can be adjusted within respective calculation functions)
+    overall_match_score = (activity_match_score + gym_match_score + time_match_score + gender_match_score + age_match_score) / 5.0
 
     # Return the overall match score
     overall_match_score
@@ -76,7 +82,7 @@ class MatchingService
     common_activities_count = common_activities.count
 
     # Weight can be adjusted based on how important activity preferences are
-    activity_weight = 0.33
+    activity_weight = 0.15
 
     # Calculate match score based on common activities
     activity_match_score = common_activities_count.to_f / [current_user_preferences.count, user2_preferences.count].max
@@ -118,9 +124,9 @@ class MatchingService
       activity_match_score = 0
     end
 
-    puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
-    puts "Activity score: #{activity_match_score}"
-    puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+    # puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+    # puts "Activity score: #{activity_match_score}"
+    # puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
 
     # Return the activity match score
     activity_match_score
@@ -135,7 +141,7 @@ class MatchingService
     common_gyms_count = (current_user_gyms & user2_gyms).count
 
     # Weight can be adjusted based on importance of gym preferences
-    gym_weight = 0.33
+    gym_weight = 0.075
 
     # Calculate match score absed on common gyms
     gym_match_score = common_gyms_count.to_f / [current_user_gyms.count, user2_gyms.count].max
@@ -188,7 +194,7 @@ class MatchingService
     time_match_score = match_scores.sum / match_scores.size.to_f
 
     # Weight can be adjusted based on importance of time preferences
-    time_weight = 0.33
+    time_weight = 0.175
 
     # puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
     # puts "Time score: #{time_match_score * time_weight}"
@@ -196,6 +202,58 @@ class MatchingService
 
     # Return the overall match score
     time_match_score * time_weight
+  end
+
+  def calculate_gender_match_score(current_user, user2)
+    # Determine number of common matches
+    common_matches_count = 0
+
+    # Check female
+    if current_user.gender_pref_female && user2.gender_pref_female
+      common_matches_count += 1
+    end
+
+    # Check male
+    if current_user.gender_pref_male && user2.gender_pref_male
+      common_matches_count += 1
+    end
+
+    # Check other
+    if current_user.gender_pref_other && user2.gender_pref_other
+      common_matches_count += 1
+    end
+
+    # Calculate score
+    gender_match_score = common_matches_count / 3.0
+
+    # Weight can be adjusted based on how important gender preferences are
+    gender_weight = 0.30
+
+    # puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+    # puts "Gender score: #{gender_match_score * gender_weight}"
+    # puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+
+    # Return the gender match score
+    gender_match_score * gender_weight
+  end
+
+  def calculate_age_match_score(current_user, user2)
+    age_match_score = 0
+
+    # Weight can be adjusted based on how important age preferences are
+    age_weight = 0.30
+
+    # Check if age preference intervals overlap
+    if user2.age_start_pref <= current_user.age_end_pref && current_user.age_start_pref <= user2.age_end_pref
+      age_match_score += 1
+    end
+
+    # puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+    # puts "Age score: #{age_match_score * age_weight}"
+    # puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+
+    # Return age match score
+    age_match_score * age_weight
   end
 
 end
