@@ -13,10 +13,11 @@ class Student < ApplicationRecord
   validates :gender, presence: true, inclusion: { in: %w[Male Female Other] }
   validates :birthday, presence: true
   validates :major, presence: false
+  validates :major, format: { with: /\A[a-zA-Z\s]+\z/, message: "can only contain alphabetic values and spaces" }, allow_blank: true
   validates :is_private, presence: false
-  validates :biography, presence: false
+  validates :biography, presence: false, length: { maximum: 144 }
   validates :age_start_pref, presence: true
-  validates :age_end_pref, presence: true
+  validates :age_end_pref, presence: true, numericality: { greater_than_or_equal_to: :age_start_pref }
   validates :x_url, format: { with: /\A(?:(?:http|https):\/\/)?(?:www\.)?x\.com\/.+\z/, message: "must be a valid X URL" }, allow_blank: true
   validates :instagram_url, format: { with: /\A(?:(?:http|https):\/\/)?(?:www\.)?instagram\.com\/.+\z/, message: "must be a valid Instagram URL" }, allow_blank: true
 
@@ -27,4 +28,6 @@ class Student < ApplicationRecord
   validates_inclusion_of :gender_pref_female, in: [true, false]
   validates_inclusion_of :gender_pref_male, in: [true, false]
   validates_inclusion_of :gender_pref_other, in: [true, false]
+
+  has_one_attached :avatar
 end

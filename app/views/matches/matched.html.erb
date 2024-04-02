@@ -7,27 +7,35 @@
   <title>Jimmy</title>
 </head>
 <body>
-   <nav class="material-header">
-    <div class="material-banner">
-      <%= link_to matches_path,  class: "navbar-link material-back-button" do %>
-        <%= image_tag('back_arrow.png', alt: 'Back', class: 'back-arrow-icon') %> Back
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F3DBAE;">
+    <div class="container">
+      <!-- Back button with an image and text -->
+      <%= link_to pages_home_path, class: "navbar-brand" do %>
+        <%= image_tag('back_arrow.png', alt: 'Back', class: 'img-fluid', style: 'height: 24px;') %>
+        <span class="ml-1">Back</span>
       <% end %>
-      <h1 class="material-title">Matched Users</h1>
-      <span class="material-spacer"></span>
+      <h1 class="navbar-text mx-auto my-auto var(--primary-text-color)">Matches Users</h1>
+      <%# Centering the title with identical content on the right %>
+      <div class="navbar-brand">
+        <span class="right-placeholder mr-1"> Back </span>
+         <%= image_tag('back_arrow.png', alt: 'Back', class: 'hidden-arrow', style: 'height: 24px;') %>
+      </div>
     </div>
   </nav>
 
   <div class="card-container">
     <div class="card-grid">
         <% @matched_emails.each do |student|%>
-          <%= link_to matches_profile_path(id: student.email) do %>
+          <%= link_to student_path(id: student.email) do %>
             <div class="card-body"> 
               <h3> <%= student.name %> </h3>
               <div class="card-profile-picture-div">
-                <img class="card-profile-picture" src="https://i.pinimg.com/736x/d7/1d/1a/d71d1a41b69bbbf2ca2d94b918d86faf.jpg">
+                <% if student.profile_picture_url.present? %>
+                  <%= image_tag student.profile_picture_url, class: "card-profile-picture-enlarged", alt: "Profile Picture" %>
+                <% else %>
+                  <%= image_tag "https://canadabeercup.com/wp-content/uploads/2022/09/generic-profile-picture-1200x1200-1.jpg", class: "card-profile-picture-enlarged", alt: "Profile Picture" %>
+                <% end %>
               </div>
-              <p> Class of <%= student.grad_year%> </p>
-              <p class="card-bio"> <%= student.biography%> </p>
             </div>
           <%end%>
         <%end%>

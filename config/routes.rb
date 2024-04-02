@@ -10,14 +10,14 @@ Rails.application.routes.draw do
   resources :activity_preferences, only: [:index, :destroy, :new]
   resource :time_preferences, only: [:index, :edit, :new, :update]
   resources :gym_preferences, except: :show
-  resources :matches, only: [:index, :pending, :matched, :blocked, :profile]
+  resources :matches, only: [:index, :pending, :matched, :blocked, :profile, :update]
 
   get '/logout', to: 'application#logout'
 
 
   get 'students/basic'
   get 'students/index'
-  get 'students/settings'
+  get 'students/settings', to: "students#settings", as: 'students_settings'
 
   get 'students/personal_info'
   get 'students/edit_name'
@@ -29,6 +29,13 @@ Rails.application.routes.draw do
   get 'students/edit_is_private'
   get 'students/edit_biography'
   get 'students/delete_confirmation'
+  get 'students/setup_personal_info'
+  get 'students/setup_workout_partner_preferences'
+  get 'students/setup_activity_preferences'
+  get 'students/setup_time_preferences'
+
+  post 'students/upload_file', to: 'students#upload_file'
+  post 'students/delete_profile_picture', to: 'students#delete_profile_picture', as: :delete_profile_picture
 
   get 'students/start_matching'
   get '/start_matching', to: 'students#start_matching', as: 'start_matching'
@@ -55,6 +62,7 @@ Rails.application.routes.draw do
   get 'pages/home'
   get 'pages/match'
   get 'pages/profile'
+  get 'pages/faq'
 
   ### paths added for browsig feature ####
   get 'pages/browse'
@@ -66,6 +74,7 @@ Rails.application.routes.draw do
   get 'gym_preferences/edit'
   
   get 'matches/pending'
+  get 'matches/incoming'
   get 'matches/matched'
   get 'matches/blocked'
   get 'matches/profile'
@@ -76,6 +85,12 @@ Rails.application.routes.draw do
     get 'experience', on: :member
     post 'experience', on: :member
   end
+
+  # resources :matches do
+  #   member do
+  #     patch :update_relationship_enum
+  #   end
+  # end
 
 
 

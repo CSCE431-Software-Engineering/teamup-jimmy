@@ -8,20 +8,146 @@
 </head>
 <body>
   <%= render 'pages/navbar' %>
-  <!-- logo -->
-  <!-- intro -->
-  <div class="home-title">
-    <p>You're signed in!</p>
-    <p>Here are your matches.</p>
-  </div>
-  <br/>
-  <div class="matches-container">
-    <% @matches.each do |match| %>
-      <div class="match">
-        <% matched_student = Student.find_by(email: match.student2_email) %>
-        <p>You matched with <%= matched_student.name %>!</p>
+  <div class="container mt-4">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-8 col-lg-6">
+        <!-- Existing content cards -->
+        <div class="admin-help-section mt-4">
+          <h2 class = "profile-name">Welcome <%= @current_student.name %></h2>
+          <br>
+          <div class="settings-card">
+            <%= link_to matches_incoming_path, class: 'info-row' do %>
+              <div class="info-row-title">View list of incoming match requests</div>
+              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Arrow" %>
+            <% end %>  
+          </div>
+
+          <div class="settings-card">
+            <%= link_to matches_pending_path, class: 'info-row' do %>
+              <div class="info-row-title">View list of outgoing match requests</div>
+              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Arrow" %>
+            <% end %> 
+          </div>
+        </div>
+
+        <!-- Conditional Admin Help Section -->
+        <% if @current_student.email == 'davidkebo' || @current_student.email == "kieranbeirne01" %> <!-- Adjust the condition as needed -->
+          <div class="admin-help-section mt-4">
+            <h2>User Feedback</h2>
+            <div class="settings-card">
+              <a class="info-row" href="https://docs.google.com/forms/d/e/1FAIpQLScmDoI0fXT7M05m-qy7CZW01gGXHXhPbusbgQGuS8fJid_t0w/viewform?usp=sharing" target="_blank">
+                <div class="info-row-title">Feedback Form</div>
+              </a>
+            </div>
+
+            <!-- Feedback Responses Link -->
+            <div class="settings-card">
+              <a class="info-row" href="https://docs.google.com/spreadsheets/d/1xQpXkU2hzF4MKrX8Gom_M15j1Ox8XSct_BRpZbDEZbI/edit?usp=sharing" target="_blank">
+                <div class="info-row-title">Feedback Responses</div>
+              </a>
+            </div>
+          </div>
+        
+          <div class="admin-help-section mt-4">
+            <h2>Admin Help Section</h2>
+
+            <!-- Heroku Deployment Errors -->
+          <!-- Heroku Deployment Errors -->
+          <div class="settings-card">
+            <a class="info-row" data-bs-toggle="collapse" href="#herokuDeploymentErrors" role="button" aria-expanded="false" aria-controls="herokuDeploymentErrors">
+              <div class="info-row-title">Heroku Deployment Errors</div>
+            </a>
+            <div class="collapse" id="herokuDeploymentErrors">
+              <div class="">
+                Use <code>heroku logs --tail</code> for error details. Common fixes include setting environment variables, running migrations, and checking the Procfile.
+              </div>
+            </div>
+          </div>
+
+          <!-- Database Migration Failures -->
+          <div class="settings-card">
+            <a class="info-row" data-bs-toggle="collapse" href="#databaseMigrationFailures" role="button" aria-expanded="false" aria-controls="databaseMigrationFailures">
+              <div class="info-row-title">Database Migration Failures</div>
+            </a>
+            <div class="collapse" id="databaseMigrationFailures">
+              <div>
+                Execute <code>heroku run rake db:migrate</code>. If errors occur, consider rolling back with <code>heroku run rake db:rollback</code> and correcting the migration script.
+              </div>
+            </div>
+          </div>
+
+          <!-- Application Crashing on Startup -->
+          <div class="settings-card">
+            <a class="info-row" data-bs-toggle="collapse" href="#appCrashingOnStartup" role="button" aria-expanded="false" aria-controls="appCrashingOnStartup">
+              <div class="info-row-title">Application Crashing on Startup</div>
+            </a>
+            <div class="collapse" id="appCrashingOnStartup">
+              <div>
+                Investigate with <code>heroku logs --tail</code>. Ensure dependencies are met, and the Procfile is correctly configured.
+              </div>
+            </div>
+          </div>
+
+          <!-- Slow Web App Performance -->
+          <div class="settings-card">
+            <a class="info-row" data-bs-toggle="collapse" href="#slowAppPerformance" role="button" aria-expanded="false" aria-controls="slowAppPerformance">
+              <div class="info-row-title">Slow Web App Performance</div>
+            </a>
+            <div class="collapse" id="slowAppPerformance">
+              <div>
+                Review Heroku Dyno metrics and logs. Consider dyno scaling, redeploying the app and check Heroku release logs.
+              </div>
+            </div>
+          </div>
+
+          <!-- Failed Assets Precompilation -->
+          <div class="settings-card">
+            <a class="info-row" data-bs-toggle="collapse" href="#failedAssetsPrecompilation" role="button" aria-expanded="false" aria-controls="failedAssetsPrecompilation">
+              <div class="info-row-title">Failed Assets Precompilation</div>
+            </a>
+            <div class="collapse" id="failedAssetsPrecompilation">
+              <div>
+                Precompile assets with <code>RAILS_ENV=production rake assets:precompile</code>. Ensure <code>config.assets.initialize_on_precompile</code> is false.
+              </div>
+            </div>
+          </div>
+
+          <!-- Connectivity Issues with External Services -->
+          <div class="settings-card">
+            <a class="info-row" data-bs-toggle="collapse" href="#connectivityIssues" role="button" aria-expanded="false" aria-controls="connectivityIssues">
+              <div class="info-row-title">Connectivity Issues with External Services</div>
+            </a>
+            <div class="collapse" id="connectivityIssues">
+              <div>
+                Double-check credentials for external services in Heroku's config vars. Test connectivity through Heroku's console.
+              </div>
+            </div>
+          </div>
+          </div>
+        <% end %>
+        <div class="simple-linear-divider"></div>
+        <h2 class = "profile-name">Your Matches</h2>
+        <div class="card-container">
+          <div class="card-grid">
+            <% @matched_emails.each do |student|%>
+              <%= link_to student_path(id: student.email) do %>
+                <div class="card-body"> 
+                  <h3> <%= student.name %> </h3>
+                  <div class="card-profile-picture-div">
+                    <% if student.profile_picture_url.present? %>
+                      <%= image_tag student.profile_picture_url, class: "card-profile-picture-enlarged", alt: "Profile Picture" %>
+                    <% else %>
+                      <%= image_tag "https://canadabeercup.com/wp-content/uploads/2022/09/generic-profile-picture-1200x1200-1.jpg", class: "card-profile-picture-enlarged", alt: "Profile Picture" %>
+                    <% end %>
+                  </div>
+                </div>
+              <%end%>
+            <%end%>
+          </div>
+        </div>
+
       </div>
-    <% end %>
+    </div>
   </div>
 </body>
 </html>

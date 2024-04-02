@@ -27,6 +27,9 @@
 }
 
 .flash-notice-content{
+  display: flex;
+  justify-content: left;
+  align-items: center;
   width: 100%;
   margin-left: 0%;
   margin-right: 0%;
@@ -34,4 +37,8 @@
   color: #36E873;
   border-radius: 8px;
   padding: 0px 1rem;
+}
+
+.flash-notice-content p, .flash-alert-content p{
+  margin: 1rem 0px;
 }

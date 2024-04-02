@@ -36,7 +36,7 @@ border-radius: 16px;
 .styled-input,
 .styled-select {
 font-family: "Roboto", sans-serif;
-width: calc(100% - 18px);
+width: 100%;
 padding: 8px;
 border: 1px solid #ddd;
 border-radius: 0.25rem;
@@ -59,3 +59,61 @@ box-sizing: border-box;
     max-width: 400px;
     margin: auto;
   }
+
+  #phoneNumber{
+    display: none;
+  }
+  
+  .dark-material-button{
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    max-width: 300px;
+    background-color: var(--accent-color);
+    color: var(--primary-bg-color);
+  }
+
+  .dark-material-button:hover {
+    background-color: var(--accent-darkened);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    color: var(--primary-bg-color) !important;
+}
+
+.profile-creation-button-div {
+    display: flex;
+    justify-content: center;
+}
+
+.profile-creation-button-div div{
+  margin-bottom: 0.5rem;
+  width:48%
+}
+
+.left {
+    margin-right: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.right {
+    margin-left: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.checkbox-container{
+    color: var(--primary-text-color);
+    text-align: left;
+}
+
+.simple-linear-divider{
+    width: 100%;
+    height: 1px;
+    background-color: var(--primary-text-color);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
