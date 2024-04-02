@@ -36,15 +36,6 @@
                   <%= image_tag "https://canadabeercup.com/wp-content/uploads/2022/09/generic-profile-picture-1200x1200-1.jpg", class: "card-profile-picture-enlarged", alt: "Profile Picture" %>
                 <% end %>
               </div>
-              <%
-                if student.grad_year
-                  @major = "Class of #{student.grad_year}"
-                else
-                  @major = ""
-                end
-              %>
-              <p> <%=@major%> </p>
-              <p class="card-bio"> <%= student.biography%> </p>
             </div>
           <%end%>
         <%end%>
