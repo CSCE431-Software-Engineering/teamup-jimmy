@@ -89,10 +89,18 @@
             <!-- Event listener for copy button. -->
             <script type="module">
               import { copyTextToClipboard } from 'clipboard';
-
+              console.log("test"); // Confirming that the script is loading
+            
               document.addEventListener('DOMContentLoaded', () => {
                 const copyButton = document.querySelector('button[data-controller="clipboard"]');
-                copyButton.addEventListener('click', () => copyTextToClipboard('phoneNumber'));
+                if (copyButton) { // Checking if the button exists
+                  copyButton.addEventListener('click', () => {
+                    const phoneNumberText = document.getElementById('phoneNumber').textContent;
+                    copyTextToClipboard(phoneNumberText); // Copy the actual phone number
+                  });
+                } else {
+                  console.error('Copy button was not found.'); // Error handling if button isn't found
+                }
               });
             </script>
           </div>
