@@ -16,7 +16,6 @@
         <span class="ml-1">Back</span>
       <% end %>
       <h1 class="navbar-text mx-auto my-auto var(--primary-text-color)">Profile Settings</h1>
-      <%# Centering the title with identical content on the right %>
       <div class="navbar-brand">
         <span class="right-placeholder mr-1"> Back </span>
          <%= image_tag('back_arrow.png', alt: 'Back', class: 'hidden-arrow', style: 'height: 24px;') %>
@@ -34,13 +33,20 @@
             <% else %>
               <%= image_tag "https://canadabeercup.com/wp-content/uploads/2022/09/generic-profile-picture-1200x1200-1.jpg", class: "img-fluid profile-picture mb-2", alt: "Profile Picture" %>
             <% end %>
-            <%= form_tag({controller: "students", action: "upload_file"}, multipart: true) do %>
-              <%= file_field_tag 'file' %>
-              <%= submit_tag 'Edit Profile Picture' %>
-            <% end %> 
+            <%= form_tag({controller: "students", action: "upload_file"}, multipart: true, id: "upload_form") do %>
+              <label for="file" class="material-button">
+                Replace Picture
+              </label>
+              <%= file_field_tag 'file', onchange: "autoSubmitForm()", id: "file", style: "display: none;" %>
+            <% end %>
+            <script>
+              function autoSubmitForm() {
+                document.getElementById("upload_form").submit();
+              }
+            </script>
             <%= render 'pages/flash' %>
             <% if @current_student.profile_picture_url.present? %>
-              <%= button_to "Delete Profile Picture", delete_profile_picture_path, method: :post, data: { confirm: 'Are you sure you want to delete your profile picture?' }, class: "btn btn-danger mt-2" %>
+              <%= button_to "Delete Picture", delete_profile_picture_path, method: :post, data: { confirm: 'Are you sure you want to delete your profile picture?' }, class: "material-button material-button-ghost" %>
             <% end %>
 
           </div>
@@ -72,6 +78,10 @@
               <div class="info-row-title">Give Feedback</div>
               <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Arrow" %>
             <% end %> 
+            <%= link_to pages_faq_path, class: 'info-row'  do %>
+              <div class="info-row-title">Frequently Asked Questions</div>
+              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Forward Arrow" %>
+            <% end %>
             <%= link_to students_delete_confirmation_path, class: 'info-row'  do %>
               <div class="info-row-title">Delete Account</div>
               <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Forward Arrow" %>

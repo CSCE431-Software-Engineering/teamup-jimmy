@@ -252,7 +252,6 @@ class StudentsController < ApplicationController
     
         # Generate a unique filename
         file_key = SecureRandom.hex + File.extname(uploaded_file.original_filename)
-    
         # Upload the file to S3
         obj = bucket.object(file_key)
         obj.upload_file(uploaded_file.tempfile, content_disposition: 'inline')

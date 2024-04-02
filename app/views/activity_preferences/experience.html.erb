@@ -26,22 +26,29 @@
   </nav>
 
   <% @activity=Activity.find(params[:id])%>
-  <h1 class="workoutpref-landing-title"> Select your experience level for <%=@activity.activity_name%>... </h1>
-  <div class="experience-select-div">
+  <div class="general-div-main">
+    <div class="general-div-inner"> 
+      <p class = "edit-form-label">Select your experience level</p>
+      <p class = "edit-form-label edit-form-subscript">
+        This will help us match you with students who have similar experience levels.  
+      </p>
+      <p></p>
 
-    <%= form_for @new_pref do |form| %>
-      <div class="experience-select-btn">
-        <% @levels.each do |level| %>
-          <div class="radio-label-pair">
-            <%= form.radio_button :experience_level, level, class: "bullet" %>
-            <%= form.label level, level %>
+        <%= form_for @new_pref do |form| %>
+          <div class="experience-select-btn">
+            <% @levels.each do |level| %>
+              <div class="radio-label-pair"bullet>
+                <%= form.radio_button :experience_level, level, class: "bullet" %>
+                <%= form.label level, level, class: "edit-form-label edit-form-subscript", style: "margin-bottom: 0.5rem; margin-left: 0.5rem;" %>
+              </div>
+            <% end %>
           </div>
+          <br>
+          <%= form.hidden_field :activity_id, value: @activity.id %> 
+          <%= form.submit 'Save', class: 'material-button' %>
         <% end %>
-      </div>
-        
-      <%= form.hidden_field :activity_id, value: @activity.id %> 
-      <%= form.submit 'Save', class: 'edit-save-btn' %>
-    <% end %>
+      <br>
+    </div>
   </div>
 
 </body>

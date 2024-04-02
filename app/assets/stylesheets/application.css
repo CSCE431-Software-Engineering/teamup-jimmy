@@ -159,6 +159,7 @@ body, html {
 .search-bar {
   text-align: center;
   margin-bottom: 20px;
+  margin-top: 0.5rem;
 }
 
 #search-input {
@@ -345,11 +346,9 @@ body, html {
   align-items: center; /* Centers the links vertically */
 }
 
-/* You may also want to ensure the navbar brand matches the links */
-.navbar-brand {
-  font-weight: bold;
-  font-size: 16pt;
-  color: var(--primary-text-color);
+
+.navbar-text{
+  color: var(--primary-text-color)!important;
 }
 
 .navbar .container {
@@ -375,6 +374,8 @@ body, html {
 
 /* Adjust the back arrow and text to be inline and align at the start */
 .navbar-brand {
+  font-weight: bold;
+  color: var(--primary-text-color)!important;
   display: flex;
   align-items: center;
   justify-content: flex-start;

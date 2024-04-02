@@ -10,7 +10,6 @@
     body, html {
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
       background-color: #f7e9ce; /* Use the same background color as the rest of your site */
     }
 
@@ -34,11 +33,11 @@
     }
 
     /* Adjust the mobile view */
-    @media (max-width: 576px) {
-      .btn-block {
-        font-size: 0.9rem; /* Slightly smaller font size for very small devices */
-      }
-    }
+    # @media (max-width: 576px) {
+    #   .btn-block {
+    #     font-size: 0.9rem; /* Slightly smaller font size for very small devices */
+    #   }
+    # }
   </style>
 </head>
 <body>
@@ -52,7 +51,11 @@
               <div class="card-body card-body-enlarged"> 
                 <p class = "profile-name"> <%= @featured_user.name %> </p>
                 <div class="card-profile-picture-div">
-                  <img class="card-profile-picture-enlarged" src="https://i.pinimg.com/736x/d7/1d/1a/d71d1a41b69bbbf2ca2d94b918d86faf.jpg">
+                  <% if @featured_user.profile_picture_url.present? %>
+                    <%= image_tag @featured_user.profile_picture_url, class: "card-profile-picture-enlarged", alt: "Profile Picture" %>
+                  <% else %>
+                    <%= image_tag "https://canadabeercup.com/wp-content/uploads/2022/09/generic-profile-picture-1200x1200-1.jpg", class: "card-profile-picture-enlarged", alt: "Profile Picture" %>
+                  <% end %>
                 </div>
                 <br>
                 <% if @featured_user.biography.present? %>
