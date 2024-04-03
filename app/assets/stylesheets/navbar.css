@@ -1,7 +1,6 @@
 .navbar {
     background-color: #f3dbae; /* Slightly darker shade for contrast */
     padding: 0.5rem 1rem; /* Increased padding for more space */
-    height:70px;
     display: flex;
     align-items: center;
     justify-content: center; /* Center the items horizontally */
@@ -31,3 +30,4 @@
   padding-left: 15px!important;
   padding-right: 15px!important;
 }
+
