@@ -92,7 +92,7 @@
 
 
 .bullet{
-    max-width: 2rem;
+    max-width: 2rem!important;
     max-height: 3rem;
     /* margin-bottom: -1px!important;
     margin-top: -2px!important; */
