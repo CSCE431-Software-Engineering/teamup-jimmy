@@ -28,7 +28,7 @@
 body, html {
   background-color: #F7E9CE!important;
   margin:0px;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif!important;
   overflow-x: hidden;
 }
 
@@ -329,6 +329,16 @@ body, html {
   color: var(--primary-text-color)!important;
 }
 
+.nowrap-div {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.styled-back{
+  font-size: 1rem;
+  font-weight: 100;
+}
+
 .navbar .container {
   width: 100%;
   position: relative;
@@ -336,6 +346,9 @@ body, html {
 
 /* Center the title */
 .navbar h1 {
+  white-space: nowrap;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.3rem;;
   position: absolute;
   left: 50%;
   top: 50%;
