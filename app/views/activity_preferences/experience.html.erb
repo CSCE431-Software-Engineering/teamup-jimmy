@@ -37,7 +37,7 @@
         <%= form_for @new_pref do |form| %>
           <div class="experience-select-btn">
             <% @levels.each do |level| %>
-              <div class="radio-label-pair"bullet>
+              <div class="radio-label-pair">
                 <%= form.radio_button :experience_level, level, class: "bullet" %>
                 <%= form.label level, level, class: "edit-form-label edit-form-subscript", style: "margin-bottom: 0.5rem; margin-left: 0.5rem;" %>
               </div>
