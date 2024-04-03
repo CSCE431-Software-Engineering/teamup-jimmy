@@ -86,6 +86,7 @@
             <div class = "actions-holder">
               <%= button_to 'Pass', 
               pages_match_path,
+              method: :get,
               class: "material-button dark-material-button"%>
               <%= button_to 'Match Request', 
               match_path(@match, action_name: 'send_match_request'), 

@@ -28,7 +28,7 @@
 body, html {
   background-color: #F7E9CE!important;
   margin:0px;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif!important;
   overflow-x: hidden;
 }
 
@@ -105,28 +105,6 @@ body, html {
   color: #9E9E9E;
   cursor: default;
   box-shadow: none;
-}
-
-
-@media (max-width: 768px) {
-  .navbar-brand {
-    flex-grow: 1; /* Allow back button to use available space */
-    justify-content: start; /* Align back button to the start */
-    font-size: 1rem;
-    padding-right: 0;
-  }
-  .navbar h1 {
-    font-size: 1.2rem; /* Smaller font size on mobile */
-    margin: 0;
-    
-  }
-  .forward-arrow {
-    width: 1rem; /* Smaller arrows on mobile */
-  }
-
-  .navbar span{
-    font-size: 1rem;
-  }
 }
 
 .right-placeholder {
@@ -351,6 +329,16 @@ body, html {
   color: var(--primary-text-color)!important;
 }
 
+.nowrap-div {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.styled-back{
+  font-size: 1rem;
+  font-weight: 100;
+}
+
 .navbar .container {
   width: 100%;
   position: relative;
@@ -358,6 +346,9 @@ body, html {
 
 /* Center the title */
 .navbar h1 {
+  white-space: nowrap;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.3rem;;
   position: absolute;
   left: 50%;
   top: 50%;

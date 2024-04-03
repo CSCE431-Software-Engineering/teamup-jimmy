@@ -120,6 +120,7 @@
 
 .radio-label-pair{
   display: flex;
+  flex-direction: row;
   flex-wrap: nowrap;
   margin: 1rem 0rem;
 }

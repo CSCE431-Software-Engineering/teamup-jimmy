@@ -1,31 +1,16 @@
 .navbar {
-  background-color: #f3dbae; /* Slightly darker shade for contrast */
-  padding: 0.5rem 1rem; /* Increased padding for more space */
-  height:70px;
-  display: flex;
-  align-items: center;
-  justify-content: center; /* Center the items horizontally */
-  position: sticky;
-  bottom: 0; /* Stick to the bottom of the viewport */
-  z-index: 1000;
-  box-shadow: 0 -2px 4px rgba(0,0,0,0.1); /* Shadow adjusted to appear on the top edge */
-  font-family: 'Helvetica Neue', 'Arial', sans-serif;
-}
-
-/* Adjust the logo to be placed appropriately */
-.navbar-logo {
-  position: absolute;
-  left: 20px; /* Or your preferred spacing */
-  bottom: 20px; /* Position from the bottom */
-}
-
-.navbar-links {
-  display: flex;
-  justify-content: center; /* Centers the links when there is extra space */
-  align-items: center;
-  width: 100%; /* Take up full width to center content within */
-}
-
+    background-color: #f3dbae; /* Slightly darker shade for contrast */
+    padding: 0.5rem 1rem; /* Increased padding for more space */
+    height:70px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the items horizontally */
+    position: sticky;
+    bottom: 0; /* Stick to the bottom of the viewport */
+    z-index: 1000;
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.1); /* Shadow adjusted to appear on the top edge */
+    font-family: "Roboto", sans-serif;
+  }
 .navbar-link {
   text-decoration: none;
   color: var(--primary-text-color); /* Darker color for better readability */
