@@ -31,3 +31,7 @@
   padding-right: 15px!important;
 }
 
+.logout-button{
+  background-color: #f3dbae;
+  border: solid 0px #f3dbae;
+}
