@@ -30,7 +30,7 @@
             <th>
               <div class="edit-form-field">
                 <p class = "edit-form-label">New biography</p>
-                <%= form.text_field :biography, placeholder: @biography_placeholder, class: 'custom-styled-input' %>
+                <%= form.text_area :biography, placeholder: @biography_placeholder, class: 'custom-styled-input', rows: 3, cols:50 %>
               </div>
             </th>
           </tr>

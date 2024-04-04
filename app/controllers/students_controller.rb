@@ -149,7 +149,13 @@ class StudentsController < ApplicationController
       session["redirect_to"] = nil
       redirect_to redirect_path
     else
-      flash[:alert] = "There was a problem updating your account."
+      error = @student.errors.full_messages.first.to_s
+      if error.nil?
+        flash[:alert] = "There was a problem updating your account."
+      else
+        error = error[error.index("*")+1..-1]
+        flash[:alert] = "There was a problem updating your account. #{error}"
+      end
       logger.info "Failed to update Student: #{student_params}"
       logger.info "Errors: #{@student.errors.full_messages}"
       redirect_to request.referer || default_path

@@ -1,5 +1,6 @@
 class UpdateGymAndActivityLists < ActiveRecord::Migration[7.0]
   def change
+    ActivityPreference.delete_all
     Activity.delete_all
     Gym.delete_all
 
