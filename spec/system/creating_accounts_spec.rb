@@ -19,21 +19,21 @@ RSpec.describe 'CreatingAccounts', type: :system do
     expect(page).to have_content('Account Information')
   end
 
-  it 'Unit test 1: check for a name field' do
+  it 'Usability test 1 Sunny Day: check for a name field' do
     simulate_google_oauth2_sign_in
     visit '/students/basic'
     expect(page).to have_content('Name')
   end
   
 
-  it 'Unit test 2: navigating back to previous new student page' do
+  it 'Usability test 2 Rainy Day: navigating back to previous new student page' do
     simulate_google_oauth2_sign_in
     visit '/students/basic'
     click_on 'Next'
     expect(page).to have_content('There was a problem with your input. Please make sure to fill out every field.')
   end
 
-  it 'Unit test 3: check for a gender field' do
+  it 'Usability test 3 Sunny Day: check for a gender field' do
     simulate_google_oauth2_sign_in
     visit '/students/basic'
     expect(page).to have_content('Gender Identification Preference')
