@@ -117,14 +117,21 @@ class StudentsController < ApplicationController
       @account_publicity = "Public account"
     end
 
+    @page_name = 'Personal Info'
+    @back_page_path = students_settings_path
+
     render 'students/personal_info_forms/account_info_settings'
   end
 
   def matching_preferences
+    @page_name = 'Matching Preferences'
+    @back_page_path = students_settings_path
     render 'students/matching_preferences_forms/matching_preferences_settings'
   end
 
   def connect_socials
+    @page_name = 'Link Socials'
+    @back_page_path = students_settings_path
     render 'students/socials_forms/socials_settings'
   end
 
@@ -163,34 +170,50 @@ class StudentsController < ApplicationController
   end
 
   def edit_birthday
+    @page_name = 'Edit Birthday'
+    @back_page_path = students_personal_info_path
     render 'students/personal_info_forms/edit_birthday'
   end
 
   def edit_gender
+    @page_name = "Edit Gender"
+    @back_page_path = students_personal_info_path
     render 'students/personal_info_forms/edit_gender'
   end
 
   def edit_grad_year
+    @page_name = 'Edit Graduation Year'
+    @back_page_path = students_personal_info_path
     render 'students/personal_info_forms/edit_grad_year'
   end
 
   def edit_name
+    @page_name = 'Edit Name'
+    @back_page_path = students_personal_info_path
     render 'students/personal_info_forms/edit_name'
   end
 
   def edit_phone_number
+    @page_name = 'Edit Phone Number'
+    @back_page_path = students_personal_info_path
     render 'students/personal_info_forms/edit_phone_number'
   end
 
   def edit_major
+    @page_name = 'Edit Major'
+    @back_page_path = students_personal_info_path
     render 'students/personal_info_forms/edit_major'
   end
 
   def edit_is_private
+    @page_name = 'Edit Privacy'
+    @back_page_path = students_personal_info_path
     render 'students/personal_info_forms/edit_is_private'
   end
 
   def edit_biography
+    @page_name = 'Edit Biography'
+    @back_page_path = students_personal_info_path
     @biography_placeholder = ""
     if @current_student.biography.nil?
       @biography_placeholder = "Enter your biography"
@@ -201,24 +224,27 @@ class StudentsController < ApplicationController
   end
 
   def edit_gender_pref
+    @page_name = "Gender Preferences"
+    @back_page_path = students_matching_preferences_path
     render 'students/matching_preferences_forms/edit_gender_pref'
   end
 
   def edit_age_pref
+    @page_name = "Age Preferences"
+    @back_page_path = students_matching_preferences_path
     render 'students/matching_preferences_forms/edit_age_pref'
   end
 
   def edit_instagram_url
+    @page_name = "Instagram Link"
     render 'students/socials_forms/edit_instagram_link'
   end
 
   def edit_x_url
+    @page_name = "X Link"
     render 'students/socials_forms/edit_x_link'
   end
 
-  def edit_snap_url
-    render 'students/socials_forms/edit_snapchat_link'
-  end
   
   def start_matching
     # Fetch the current student
