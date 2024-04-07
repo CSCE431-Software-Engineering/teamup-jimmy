@@ -1,33 +1,37 @@
 <nav class="navbar navbar-light" style="background-color: rgb(243, 219, 174);">
-  <div class="container-fluid">
+  <div class="inner_navbar_container container-fluid">
     <!-- Back button with an image and text -->
-    <%= link_to @back_page_path, class: "navbar-brand" do %>
+    <%= link_to @back_page_path, class: "navbar-brand", style: "width: 4rem; display:flex; justify-content: left; margin-right: 0px;" do %>
     <%= image_tag('back_arrow.png', alt: 'Back', class: 'img-fluid', style: 'height: 24px;') %>
-        <span class="ml-1 styled-back">Back</span>
+        <span class="ml-1 styled-back" style="margin-left: 0px!important;">Back</span>
     <% end %>
     <h1 class="navbar-text mx-auto my-auto var(--primary-text-color)"><%= @page_name %></h1>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <% if !(@dont_render_nav) %>
+      <button class="navbar-toggler" style="width: 4rem; margin-left: 0px;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    <% else %>
+      <div style="width: 4rem;"></div>
+    <% end %>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav mx-auto">
         <li class="nav-item">
-          <%= link_to 'Home', pages_home_path, class: "nav-link px-lg-4" %>
+          <%= link_to 'Home', pages_home_path, class: "nav-link px-lg-4", style: "font-weight: 500;" %>
         </li>
         <li class="nav-item">
-          <%= link_to 'Match', pages_match_path, class: "nav-link px-lg-4" %>
+          <%= link_to 'Match', pages_match_path, class: "nav-link px-lg-4", style: "font-weight: 500;" %>
         </li>
         <li class="nav-item">
-          <%= link_to 'Browse', pages_browse_path, class: "nav-link px-lg-4" %>
+          <%= link_to 'Browse', pages_browse_path, class: "nav-link px-lg-4", style: "font-weight: 500;" %>
         </li>
         <li class="nav-item">
-          <%= link_to 'Profile', students_index_path, class: "nav-link px-lg-4" %>
+          <%= link_to 'Profile', students_index_path, class: "nav-link px-lg-4", style: "font-weight: 500;" %>
         </li>
         <li class="nav-item">
-          <%= link_to 'Settings', students_settings_path, class: "nav-link px-lg-4" %>
+          <%= link_to 'Settings', students_settings_path, class: "nav-link px-lg-4", style: "font-weight: 500;" %>
         </li>
         <li class="nav-item">
-          <%= button_to('Logout', logout_path, method: :get, class: "nav-link px-lg-3 logout-button") %>
+          <%= button_to('Logout', logout_path, method: :get, class: "nav-link px-lg-3 logout-button", style: "font-weight: 500;") %>
         </li>
       </ul>
     </div>

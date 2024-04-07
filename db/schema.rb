@@ -98,8 +98,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_04_194747) do
     t.date "birthday"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "provider"
-    t.string "uid"
     t.integer "age_start_pref", default: 18
     t.integer "age_end_pref", default: 99
     t.string "phone_number"

@@ -332,7 +332,16 @@ body, html {
 } */
 .navbar-text{
   color: var(--primary-text-color)!important;
+  font-size: 1.3rem;
+  line-height: 1.3rem;
+  text-decoration: none;
 }
+
+.navbar-text:hover {
+  text-decoration: underline;
+}
+
+
 
 .nowrap-div {
   display: flex;
@@ -382,6 +391,12 @@ body, html {
   
   .navbar-brand::after {
     display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .inner_navbar_container{
+    padding: 0px!important;
   }
 }
 

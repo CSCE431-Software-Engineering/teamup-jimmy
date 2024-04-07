@@ -28,6 +28,10 @@ class StudentsController < ApplicationController
       @default_birthday = stu.birthday
       @default_phone_number = stu.phone_number
     end
+
+    @page_name = "Account Info"
+    @back_page_path = root_path
+    @dont_render_nav = true
     render 'students/account_creation/basic'
   end
 
@@ -38,15 +42,22 @@ class StudentsController < ApplicationController
     @default_grad_year = '' || @current_student.grad_year
     @default_biography = '' || @current_student.biography
     session['redirect_to'] = students_setup_workout_partner_preferences_path
+    @page_name = "Profile Information"
+    @back_page_path = students_basic_path
+    @dont_render_nav = true
     render 'students/account_creation/personal_info'
   end
 
   def setup_workout_partner_preferences
+    puts "test"
     flash[:notice] = ''
     @current_student = Student.find_by(email: session[:student_id])
     session['dont_render_nav'] = true
     session['render_account_creation_nav'] = true
     session['redirect_to'] = activity_preferences_path
+    @page_name = "Workout Partner Preferences"
+    @dont_render_nav = true
+    @back_page_path = students_setup_personal_info_path
     render 'students/account_creation/workout_partner_preferences'
   end
 
@@ -90,6 +101,8 @@ class StudentsController < ApplicationController
   end
 
   def delete_confirmation
+    @page_name = "Delete Account"
+    @back_page_path = students_settings_path
   end
 
   def delete
@@ -136,6 +149,8 @@ class StudentsController < ApplicationController
   end
 
   def workout_preferences
+    @page_name = 'Workout Preferences'
+    @back_page_path = students_settings_path
     render 'students/workoutPref'
   end
 

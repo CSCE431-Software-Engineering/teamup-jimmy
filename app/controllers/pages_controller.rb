@@ -123,6 +123,8 @@ class PagesController < ApplicationController
   end
 
   def faq
+    @page_name = "FAQ"
+    @back_page_path = students_settings_path
   end
 
 end
