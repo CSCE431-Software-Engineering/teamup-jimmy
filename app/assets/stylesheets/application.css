@@ -365,7 +365,7 @@ body, html {
 
 
 @media (min-width: 992px) {
-  .navbar-collapse{
+  .main-navbar{
     margin-right: 6rem;
   }
 }

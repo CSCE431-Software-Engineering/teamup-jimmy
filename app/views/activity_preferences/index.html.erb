@@ -29,7 +29,7 @@
               <td class="edit-form-label edit-form-subscript">
                 <%= activity_name %><%= " (#{exp})" if exp.present? %>
               </td>
-              <td> 
+              <td class = "table-icon"> 
                 <% activity = ActivityPreference.find_by(student_email: @current_student.email, activity_id: (Activity.find_by(activity_name: activity_name)).id)%>
                 <%= form_with(model: activity, url: activity_preference_path(activity), method: :delete) do |form| %>
                   <%= form.button class: "edit-workoutpref-add-btn" do %>
