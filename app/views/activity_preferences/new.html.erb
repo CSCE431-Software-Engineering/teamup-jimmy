@@ -19,9 +19,9 @@
         <h1 class="profile-name">Search For Activities </h1>
         <br>
 
-          <div class="search-bar">
-            <%= text_field_tag :query, params[:query], placeholder: "Soccer", id: 'search-input' %>
-          </div>
+        <div class="search-bar">
+          <%= text_field_tag :query, params[:query], placeholder: "Soccer", id: 'search-input' %>
+        </div>
 
         <script>
           document.addEventListener('turbo:load', function() {
@@ -51,18 +51,7 @@
             });
           });
         </script>
-
-      </div>
-    </div>
-  </div>
-
-  <% if @activities != -1 %>
-  
-    <div class = "linear-divider"></div>
-    <div class="container">
-      <div class="general-div-main">
         <div class="general-div-inner">
-          <h1 class="profile-name">Search Results</h1>
           <br>
           <div class="edit-workoutpref-div">
             <table summary="Added activities" id = "activities_list" class="edit-workoutpref-table">
@@ -77,7 +66,7 @@
                     <td>
                   </tr>
                 <% else %>
-                  <tr data-activity-name="<%= activity.activity_name.downcase %> class = "edit-workout-pref-table-add-tr">
+                  <tr data-activity-name="<%= activity.activity_name.downcase %>" class = "edit-workout-pref-table-add-tr">
                     <td class = "edit-form-label edit-form-subscript"><%=activity.activity_name%></th>
                     <td class = "table-icon"> 
                       <%= button_to(experience_activity_preference_path(activity), method: :get, class: "material-symbols-outlined edit-workoutpref-add-btn") do %>
@@ -90,10 +79,10 @@
             </table>
           </div>
         </div>
-      </div>
       <br>
+      </div>
     </div>
-  <% end %>
+  </div>
 </div>
 
 </body>
