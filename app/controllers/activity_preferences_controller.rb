@@ -23,6 +23,7 @@ class ActivityPreferencesController < ApplicationController
       @back_page_path = students_workout_preferences_path
     end
     @page_name = "Activity Preferences"
+    @activities = Activity.all.order(:activity_name)
   end
 
   def new
@@ -66,7 +67,7 @@ class ActivityPreferencesController < ApplicationController
       @new_pref = ActivityPreference.new(activity_id: @activity.id, student_email: @current_student.email)
 
       @page_name = "Experience Level"
-      @back_page_path = new_activity_preference_path
+      @back_page_path = activity_preferences_path
 
       if session['render_account_creation_nav']
         @dont_render_nav = true
