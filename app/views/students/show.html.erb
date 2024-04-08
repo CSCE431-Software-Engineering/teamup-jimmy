@@ -82,7 +82,7 @@
               class: "material-button"%>
             <% end %>
             <% if @number != -1%>
-              <% if mobile_device? || true%>
+              <% if mobile_device?%>
                 <%= link_to 'Contact via SMS', 
                 "sms:#{@number}?body=Howdy! We've matched on Jimmy, lets work out!", 
                 class: "material-button dark-material-button" %>
