@@ -334,11 +334,7 @@ body, html {
   color: var(--primary-text-color)!important;
   font-size: 1.3rem;
   line-height: 1.3rem;
-  text-decoration: none;
-}
-
-.navbar-text:hover {
-  text-decoration: underline;
+  text-decoration: none!important;
 }
 
 

@@ -26,12 +26,7 @@ class ActivityPreferencesController < ApplicationController
   end
 
   def new
-    query = params[:query]
-    if query.present?
-      @activities = Activity.where("activity_name ILIKE :query", query: "%#{query.downcase}%").order(:activity_name)
-    else
-      @activities = -1
-    end
+    @activities = Activity.all.order(:activity_name)
 
     @page_name = "Add Activity"
     @back_page_path = activity_preferences_path
