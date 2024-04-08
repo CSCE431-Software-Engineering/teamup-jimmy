@@ -19,9 +19,9 @@
     <p class = "edit-form-label edit-form-subscript">
       Your experience level helps us match you with people who are at a similar level.
     </p>
-    <br>
-    <div class="edit-workoutpref-div">
-      <% if @current_activities!=nil %>
+    <% if @current_activities.length != 0 %>
+      <br>
+      <div class="edit-workoutpref-div">
         <table summary="Added activities" class="edit-workoutpref-table">
           <% @current_activities.zip(@exp_levels).each_with_index do |(activity_name, exp), index| %>
             <% row_class = (index == @current_activities.length - 1) ? "edit-workout-pref-table-add-tr" : "edit-workout-pref-table-tr" %>
@@ -40,8 +40,8 @@
             </tr>
           <% end %>
         </table>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
     <br>
     <div class="settings-card">
       <a class="info-row" id = "addNewActivityBar" style="background-color: var(--accent-color); color:white;" data-bs-toggle="collapse" href="#addNewActivity" role="button" aria-expanded="false" aria-controls="addNewActivity">
