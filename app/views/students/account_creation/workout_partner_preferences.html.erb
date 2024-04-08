@@ -1,10 +1,5 @@
-
-<nav class="navbar navbar-expand-lg">
-  <div class="container">
-    <h1 class="navbar-text mx-auto my-auto profile-name">Workout Partner Preferences</h1>
-  </div>
-</nav>
 <body class="students-text">
+  <%= render 'pages/navbar_inner_page' %>
   <div class = "general-div-main">
     <div class = "general-div-inner">
     <%= render 'pages/flash' %>
@@ -79,13 +74,9 @@
         <br>
         <div class = "profile-creation-button-div">
           <div class="left">
-            <%= link_to "Back", students_setup_personal_info_path, class: "material-button dark-material-button", role: "button" %>
+            <%= link_to "Skip for now", students_index_path, class: "material-button dark-material-button", role: "button" %>
           </div>
           <div class = "right"><%= form.submit "Next", class: "material-button dark-material-button" %></div>
-        </div>
-        <div class = "profile-creation-button-div">
-            <div class="left"> </div>
-            <div class = "right"><%= link_to "Skip for now", students_index_path, class: "material-button dark-material-button", role: "button" %><div>
         </div>
       <% end %> 
     </div>

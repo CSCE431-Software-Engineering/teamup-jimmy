@@ -315,7 +315,7 @@ body, html {
 .nav-link {
   font-weight: bold;
   font-size: 16pt; /* 16pt is roughly equivalent to 21px */
-  padding: 0 30px; /* Increase the space around the links */
+  padding: 0.5rem 2rem!important!important; /* Increase the space around the links */;
   color: var(--primary-text-color); /* Use a CSS variable for the text color */
 }
 
@@ -323,11 +323,21 @@ body, html {
 .navbar-nav {
   align-items: center; /* Centers the links vertically */
 }
+/* .navbar-collapse-permanant{
+  background-color: #f3dbae;
+  width:100%;
+  display:flex;
+  flex-direction: row;
 
-
+} */
 .navbar-text{
   color: var(--primary-text-color)!important;
+  font-size: 1.3rem;
+  line-height: 1.3rem;
+  text-decoration: none!important;
 }
+
+
 
 .nowrap-div {
   display: flex;
@@ -349,10 +359,8 @@ body, html {
   white-space: nowrap;
   font-family: 'Roboto', sans-serif;
   font-size: 1.3rem;;
-  position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%); /* Combine both translations into one line */
 }
 
 
@@ -379,6 +387,12 @@ body, html {
   
   .navbar-brand::after {
     display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .inner_navbar_container{
+    padding: 0px!important;
   }
 }
 

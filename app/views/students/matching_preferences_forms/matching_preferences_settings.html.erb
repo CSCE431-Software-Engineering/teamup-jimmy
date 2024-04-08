@@ -9,22 +9,7 @@
   <title>Jimmy</title>
 </head>
 <body style="background-color: rgb(247, 233, 206);">
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F3DBAE;">
-    <div class="container">
-      <!-- Back button with an image and text -->
-      <%= link_to students_settings_path, class: "navbar-brand" do %>
-        <%= image_tag('back_arrow.png', alt: 'Back', class: 'img-fluid', style: 'height: 24px;') %>
-        <span class="ml-1 styled-back">Back</span>
-      <% end %>
-      <h1 class="navbar-text mx-auto my-auto var(--primary-text-color)">Matching Preferences</h1>
-      <%# Centering the title with identical content on the right %>
-      <div class="navbar-brand">
-        <span class="right-placeholder mr-1"> Back </span>
-         <%= image_tag('back_arrow.png', alt: 'Back', class: 'hidden-arrow', style: 'height: 24px;') %>
-      </div>
-    </div>
-  </nav>
-
+  <%= render 'pages/navbar_inner_page' %>
   <br>
   <div class="container mt-4">
     <div class="row justify-content-center">
