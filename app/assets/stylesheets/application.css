@@ -363,6 +363,10 @@ body, html {
   top: 50%;
 }
 
+.navbar-collapse{
+  margin-right:5rem;
+}
+
 
 /* This class is added to an element that comes after the h1 */
 .navbar-brand::after {

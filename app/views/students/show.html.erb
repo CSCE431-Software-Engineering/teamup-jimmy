@@ -81,27 +81,12 @@
               method: :patch,
               class: "material-button"%>
             <% end %>
-            <% if @number != -1%>
-              <%= tag.button "Contact via Phone", data: {controller: "clipboard", action: "clipboard#copy"}, class: "material-button dark-material-button" %>
+            <% if @number != -1 %>
+              <%= link_to 'Unmatch', 
+              "sms:#{@number}?body=Howdy! We've matched on Jimmy, lets work out!", 
+              class: "material-button" %>
             <% end %>
-            <div id="phoneNumber"><%=@number%></div>
 
-            <!-- Event listener for copy button. -->
-            <script type="module">
-              import { copyTextToClipboard } from 'clipboard';
-              console.log("test"); // Confirming that the script is loading
-            
-              document.addEventListener('DOMContentLoaded', () => {
-                const copyButton = document.querySelector('button[data-controller="clipboard"]');
-                if (copyButton) { // Checking if the button exists
-                  copyButton.addEventListener('click', () => {
-                    copyTextToClipboard('phoneNumber'); 
-                  });
-                } else {
-                  console.error('Copy button was not found.'); // Error handling if button isn't found
-                }
-              });
-            </script>
           </div>
           
         </div>
