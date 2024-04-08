@@ -21,24 +21,26 @@
     </p>
     <br>
     <div class="edit-workoutpref-div">
-      <table summary="Added activities" class="edit-workoutpref-table">
-        <% @current_activities.zip(@exp_levels).each_with_index do |(activity_name, exp), index| %>
-          <% row_class = (index == @current_activities.length - 1) ? "edit-workout-pref-table-add-tr" : "edit-workout-pref-table-tr" %>
-          <tr class="<%= row_class %>">
-            <td class="edit-form-label edit-form-subscript">
-              <%= activity_name %><%= " (#{exp})" if exp.present? %>
-            </td>
-            <td> 
-              <% activity = ActivityPreference.find_by(student_email: @current_student.email, activity_id: (Activity.find_by(activity_name: activity_name)).id)%>
-              <%= form_with(model: activity, url: activity_preference_path(activity), method: :delete) do |form| %>
-                <%= form.button class: "edit-workoutpref-add-btn" do %>
-                  <%= image_tag('remove_icon.png', alt: 'Delete', class: 'table-icon') %>
+      <% if @current_activities!=nil %>
+        <table summary="Added activities" class="edit-workoutpref-table">
+          <% @current_activities.zip(@exp_levels).each_with_index do |(activity_name, exp), index| %>
+            <% row_class = (index == @current_activities.length - 1) ? "edit-workout-pref-table-add-tr" : "edit-workout-pref-table-tr" %>
+            <tr class="<%= row_class %>">
+              <td class="edit-form-label edit-form-subscript">
+                <%= activity_name %><%= " (#{exp})" if exp.present? %>
+              </td>
+              <td> 
+                <% activity = ActivityPreference.find_by(student_email: @current_student.email, activity_id: (Activity.find_by(activity_name: activity_name)).id)%>
+                <%= form_with(model: activity, url: activity_preference_path(activity), method: :delete) do |form| %>
+                  <%= form.button class: "edit-workoutpref-add-btn" do %>
+                    <%= image_tag('remove_icon.png', alt: 'Delete', class: 'table-icon') %>
+                  <% end %>
                 <% end %>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </table>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      <% end %>
     </div>
     <br>
     <div class="settings-card">
@@ -120,22 +122,18 @@
             </table>
           </div>
         </div>
-      <br>
-        </div>
       </div>
-    </div>
-
-    <% if @render_account_creation_nav %>
-      <br>
-      <br>
-      <div class = "profile-creation-button-div">
-        <div class="left">
-          <%= link_to "Skip for now", students_index_path, class: "material-button dark-material-button", role: "button" %>
+      <% if @render_account_creation_nav %>
+        <br>
+        <br>
+        <div class = "profile-creation-button-div">
+          <div class="left">
+            <%= link_to "Skip for now", students_index_path, class: "material-button dark-material-button", role: "button" %>
+          </div>
+          <div class = "right"><%= link_to "Next", gym_preferences_path, class: "material-button dark-material-button" %></div>
         </div>
-        <div class = "right"><%= link_to "Next", gym_preferences_path, class: "material-button dark-material-button" %></div>
-      </div>
-    <% end %>
+      <% end %>
     <%= render 'pages/flash' %>
-</div>
+  </div>
 </div>
 </body>
