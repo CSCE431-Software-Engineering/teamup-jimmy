@@ -67,60 +67,65 @@ class PagesController < ApplicationController
     end
   end
 
-  def browse; 
+  def browse
     @query = params[:query]
+  
+    # Check if name condition is present or if any filters are selected
+    if @query.present? || params.values_at(:male, :female, :other, :age_min, :age_max).any?(&:present?)
+      # Handle age filters
+      min_age = params[:age_min].to_i
+      max_age = params[:age_max].to_i
+      min_birthdate = Date.today - min_age.years if min_age.positive?
+      # puts min_birthdate
+      max_birthdate = Date.today - max_age.years if max_age.positive?
+      max_birthdate = max_birthdate - 365 if max_birthdate.present?
 
-    # debugging for age filters
-    if params[:age_min].present?
-      puts params[:age_min]
-    end
-
-    if params[:age_max].present?
-      puts params[:age_max]
-    end
-
-    if @query.present?
-      # Updated to handle checkboxes
-      @genders_filter = params[:genders] || []
-      @genders_filter += ['Male'] if params[:male] == '1'
-      @genders_filter += ['Female'] if params[:female] == '1'
-      @genders_filter += ['Other'] if params[:other] == '1'
-
-      name_condition = @query.present? ? "name ILIKE :query" : nil
-      genders_condition = @genders_filter.present? ? "gender IN (:genders)" : nil
-
-      conditions = [name_condition, genders_condition].compact.join(' AND ')
-      @current_student = Student.find_by(email: session[:student_id])
-
-      @results = Student.where(conditions, query: "%#{@query.downcase}%", genders: @genders_filter)
-      @results = @results.where.not(email: @current_student.email)
-
-      @results.each do |result|
-        match = Match.where(student1_email: @current_student.email, student2_email: result.email).or(Match.where(student1_email: result.email, student2_email: @current_student.email)).first
-        
-        if !(match.nil?) && match.relationship_enum < 0
-          @results = @results.where.not(email: result.email)
-        end
+      # puts max_birthdate
+  
+      # conditions array
+      conditions = []
+  
+      # name condition
+      conditions << "name ILIKE :query" if @query.present?
+  
+      # gender filters 
+      genders_filter = []
+      genders_filter << 'Male' if params[:male] == '1'
+      genders_filter << 'Female' if params[:female] == '1'
+      genders_filter << 'Other' if params[:other] == '1'
+      conditions << "gender IN (:genders)" if genders_filter.present?
+  
+      # age filters 
+      if min_birthdate
+        conditions << "birthday <= :min_birthdate"
       end
 
-      @results = @results.where(is_private: false)
-
-      if params[:age_min].present?
-        min_birthdate = Date.today - params[:age_min].to_i.years
-        # age_conditions << "birthdate <= :min_birthdate"
-        @results = @results.where('birthday <= ?', min_birthdate)
+      if max_birthdate
+        conditions << "birthday >= :max_birthdate"
       end
-      
-      if params[:age_max].present?
-        max_birthdate = Date.today - params[:age_max].to_i.years
-        # age_conditions << "birthdate >= :max_birthdate"
-        @results = @results.where('birthday >= ?', max_birthdate)
-      end
-
+  
+      # combine 
+      condition_str = conditions.join(' AND ')
+  
+      @results = Student.where(condition_str, query: "%#{@query.downcase}%", genders: genders_filter, min_birthdate: min_birthdate, max_birthdate: max_birthdate)
     else
-      @results = -1
+      # If search query is empty and no filters are selected, display all users
+      @results = Student.all
     end
+  
+    # exclude user student and handle private profiles
+    @current_student = Student.find_by(email: session[:student_id])
+    @results = @results.where.not(email: @current_student.email) if @current_student
+    @results = @results.where(is_private: false)
+
+    @results.each do |s|
+      age = (Date.today - s.birthday) / 365.24
+      puts "Student #{s.name}'s age is #{age} years"
+    end
+  
+    # Pagination or any other processing...
   end
+  
 
   def faq
     @page_name = "FAQ"
