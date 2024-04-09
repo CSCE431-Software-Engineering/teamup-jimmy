@@ -7,6 +7,15 @@
   <title>Browse</title>
 </head>
 <body>
+  <script>
+    document.addEventListener('turbo:load', function() {
+      const toggleArrow = document.getElementById('toggle-arrow');
+      document.querySelector('a[data-bs-toggle="collapse"]').addEventListener('click', function() {
+        const isOpen = toggleArrow.src.includes('up_arrow_brown');
+        toggleArrow.src = isOpen ? '<%= asset_path("down_arrow_brown.png") %>' : '<%= asset_path("up_arrow_brown.png") %>';
+      });
+    });
+  </script>
   <%= render 'pages/navbar' %>
   <!-- Search Bar -->
   <div class="browse-main">
@@ -16,31 +25,41 @@
         <div class="search-bar">
           <%= text_field_tag :query, params[:query], placeholder: "Search users by name", id: 'search-input' %>
         </div>
-        <!-- Checkboxes for gender preference -->
-        <div class="gender-filters">
-          <label>
-            <%= check_box_tag :male, '1', params[:male] %>
-            Male
-          </label>
 
-          <label>
-            <%= check_box_tag :female, '1', params[:female] %>
-            Female
-          </label>
+        <a class="info-row" data-bs-toggle="collapse" href="#additionalFilters" role="button" aria-expanded="false" aria-controls="additionalFilters">
+          <div class="info-row-content">Additional Filters</div>
+          <%= image_tag asset_path("down_arrow_brown.png"), id: "toggle-arrow", class: "forward-arrow", alt: "Forward Arrow" %>
+        </a>
 
-          <label>
-            <%= check_box_tag :other, '1', params[:other] %>
-            Other
-          </label>
-        </div>
-
-        <!-- Fields for age bounds -->
-        <div class="age-filters">
-          <p>Minimum Age:</p>
-          <%= number_field_tag :age_min, params[:age_min], id: 'age-min' %>
-          <br></br>
-          <p>Maximum Age:</p>
-          <%= number_field_tag :age_max, params[:age_max], id: 'age-max' %>
+        <div class="collapse" id="additionalFilters">
+          <div>
+            <!-- Checkboxes for gender preference -->
+            <div class="gender-filters">
+              <label>
+                <%= check_box_tag :male, '1', params[:male] %>
+                Male
+              </label>
+    
+              <label>
+                <%= check_box_tag :female, '1', params[:female] %>
+                Female
+              </label>
+    
+              <label>
+                <%= check_box_tag :other, '1', params[:other] %>
+                Other
+              </label>
+            </div>
+    
+            <!-- Fields for age bounds -->
+            <div class="age-filters">
+              <p>Minimum Age:</p>
+              <%= number_field_tag :age_min, params[:age_min], id: 'age-min' %>
+              <br></br>
+              <p>Maximum Age:</p>
+              <%= number_field_tag :age_max, params[:age_max], id: 'age-max' %>
+            </div>
+          </div>
         </div>
 
         <%= submit_tag "Search", class: "material-button", id: 'search-submit' %>
