@@ -335,6 +335,7 @@ body, html {
   font-size: 1.3rem;
   line-height: 1.3rem;
   text-decoration: none!important;
+  display: inline-block
 }
 
 
