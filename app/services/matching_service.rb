@@ -47,8 +47,12 @@ class MatchingService
     # Calculate match score based on gender preferences
     gender_match_score = calculate_gender_match_score(current_user, user2)
 
+    return 0 if gender_match_score == 0 # Overall match score should be 0 if there are no gender matches
+
     # Calculate match score based on age preferences
     age_match_score = calculate_age_match_score(current_user, user2)
+
+    return 0 if age_match_score == 0 # Overall match score should be - if there are no age matches
 
     # Calculate overall match score (weight can be adjusted within respective calculation functions)
     overall_match_score = (activity_match_score + gym_match_score + time_match_score)
@@ -212,23 +216,26 @@ class MatchingService
     # Determine number of common matches
     common_matches_count = 0
 
-    # Check female
-    if current_user.gender_pref_female && user2.gender_pref_female
+    # Check if current user's gender matches the preference of the other user
+    if (current_user.gender == "Female" && user2.gender_pref_female) ||
+       (current_user.gender == "Male" && user2.gender_pref_male) ||
+       (current_user.gender == "Other" && user2.gender_pref_other)
       common_matches_count += 1
     end
 
-    # Check male
-    if current_user.gender_pref_male && user2.gender_pref_male
-      common_matches_count += 1
-    end
-
-    # Check other
-    if current_user.gender_pref_other && user2.gender_pref_other
+    # Check if current user's gender preferences matches the gender of the other user
+    if (user2.gender == "Female" && current_user.gender_pref_female) ||
+       (user.gender == "Male" && current_user.gender_pref_male) ||
+       (user.gender == "Other" && current_user.gender_pref_other)
       common_matches_count += 1
     end
 
     # Calculate score
-    gender_match_score = common_matches_count / 3.0
+    gender_match_score = 0 # Default 0
+
+    if common_matches_count == 2 # If the match is valid on both sides, we have a 100% match for genders
+      gender_match_score = 1
+    end
 
     # Weight can be adjusted based on how important gender preferences are
     gender_weight = 0.30
