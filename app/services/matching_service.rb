@@ -47,8 +47,12 @@ class MatchingService
     # Calculate match score based on gender preferences
     gender_match_score = calculate_gender_match_score(current_user, user2)
 
+    return 0 if gender_match_score == 0 # Overall match score should be 0 if there are no gender matches
+
     # Calculate match score based on age preferences
     age_match_score = calculate_age_match_score(current_user, user2)
+
+    return 0 if age_match_score == 0 # Overall match score should be - if there are no age matches
 
     # Calculate overall match score (weight can be adjusted within respective calculation functions)
     overall_match_score = (activity_match_score + gym_match_score + time_match_score + gender_match_score + age_match_score) / 5.0
