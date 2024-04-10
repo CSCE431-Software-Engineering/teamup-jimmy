@@ -212,23 +212,26 @@ class MatchingService
     # Determine number of common matches
     common_matches_count = 0
 
-    # Check female
-    if current_user.gender_pref_female && user2.gender_pref_female
+    # Check if current user's gender matches the preference of the other user
+    if (current_user.gender == "Female" && user2.gender_pref_female) ||
+       (current_user.gender == "Male" && user2.gender_pref_male) ||
+       (current_user.gender == "Other" && user2.gender_pref_other)
       common_matches_count += 1
     end
 
-    # Check male
-    if current_user.gender_pref_male && user2.gender_pref_male
-      common_matches_count += 1
-    end
-
-    # Check other
-    if current_user.gender_pref_other && user2.gender_pref_other
+    # Check if current user's gender preferences matches the gender of the other user
+    if (user2.gender == "Female" && current_user.gender_pref_female) ||
+       (user.gender == "Male" && current_user.gender_pref_male) ||
+       (user.gender == "Other" && current_user.gender_pref_other)
       common_matches_count += 1
     end
 
     # Calculate score
-    gender_match_score = common_matches_count / 3.0
+    gender_match_score = 0 # Default 0
+
+    if common_matches_count == 2 # If the match is valid on both sides, we have a 100% match for genders
+      gender_match_score = 1
+    end
 
     # Weight can be adjusted based on how important gender preferences are
     gender_weight = 0.30
