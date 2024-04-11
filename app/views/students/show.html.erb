@@ -94,6 +94,7 @@
                   console.log("test"); // Confirming that the script is loading
                 
                   document.addEventListener('DOMContentLoaded', () => {
+                    console.log("test2")
                     const copyButton = document.querySelector('button[data-controller="clipboard"]');
                     if (copyButton) { // Checking if the button exists
                       copyButton.addEventListener('click', () => {
