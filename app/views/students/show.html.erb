@@ -91,14 +91,12 @@
                 <div id="phoneNumber" style="display:none;"><%=@number%></div>
                 <script type="module">
                   import { copyTextToClipboard } from 'clipboard';
-                  console.log("test"); // Confirming that the script is loading
                 
                   document.addEventListener('turbo:load', () => {
                     const copyButton = document.querySelector('button[data-controller="clipboard"]');
                     if (copyButton) { // Checking if the button exists
                       copyButton.addEventListener('click', () => {
                         copyTextToClipboard('phoneNumber'); 
-                    console.log("test2")
 
                       });
                     } else {
