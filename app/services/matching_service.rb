@@ -6,7 +6,7 @@ class MatchingService
   def match_students
     # Retrieve all users
     users = Student.all
-
+    puts "Matching students..."
     # Iterate through all combinations of users
     users.each do |user2|
       next if @current_user == user2 # skip comparing a user with themselves
@@ -47,15 +47,22 @@ class MatchingService
     # Calculate match score based on gender preferences
     gender_match_score = calculate_gender_match_score(current_user, user2)
 
+    return 0 if gender_match_score == 0 # Overall match score should be 0 if there are no gender matches
+
     # Calculate match score based on age preferences
     age_match_score = calculate_age_match_score(current_user, user2)
 
-    # Calculate overall match score (weight can be adjusted within respective calculation functions)
-    overall_match_score = (activity_match_score + gym_match_score + time_match_score + gender_match_score + age_match_score) / 5.0
+    return 0 if age_match_score == 0 # Overall match score should be - if there are no age matches
 
+    # Calculate overall match score (weight can be adjusted within respective calculation functions)
+    overall_match_score = (activity_match_score + gym_match_score + time_match_score)
+
+    if gender_match_score == 0 or age_match_score == 0
+      overall_match_score = 0
+    end
     # Return the overall match score
     overall_match_score
-  end
+  end 
 
   def calculate_activity_match_score(current_user, user2)
     # Retrieve activity preferences and experience levels for each user
@@ -168,14 +175,15 @@ class MatchingService
 
     current_user_times = [current_user_morning, current_user_afternoon, current_user_evening, current_user_night]
     user2_times = [user2_morning, user2_afternoon, user2_evening, user2_night]
-
     # Initialize an array to store match scores for each time slot
     match_scores = []
 
     # Calculate match score for each time slot
     current_user_times.each_with_index do |current_user_time, index|
       user2_time = user2_times[index] || "0000000"
-
+      if current_user_time.nil?
+        current_user_time = "0000000"
+      end
       # Convert time preferences to arrays of 0s and 1s
       current_user_time_array = current_user_time.chars.map(&:to_i)
       user2_time_array = user2_time.chars.map(&:to_i)
@@ -208,23 +216,26 @@ class MatchingService
     # Determine number of common matches
     common_matches_count = 0
 
-    # Check female
-    if current_user.gender_pref_female && user2.gender_pref_female
+    # Check if current user's gender matches the preference of the other user
+    if (current_user.gender == "Female" && user2.gender_pref_female) ||
+       (current_user.gender == "Male" && user2.gender_pref_male) ||
+       (current_user.gender == "Other" && user2.gender_pref_other)
       common_matches_count += 1
     end
 
-    # Check male
-    if current_user.gender_pref_male && user2.gender_pref_male
-      common_matches_count += 1
-    end
-
-    # Check other
-    if current_user.gender_pref_other && user2.gender_pref_other
+    # Check if current user's gender preferences matches the gender of the other user
+    if (user2.gender == "Female" && current_user.gender_pref_female) ||
+       (user.gender == "Male" && current_user.gender_pref_male) ||
+       (user.gender == "Other" && current_user.gender_pref_other)
       common_matches_count += 1
     end
 
     # Calculate score
-    gender_match_score = common_matches_count / 3.0
+    gender_match_score = 0 # Default 0
+
+    if common_matches_count == 2 # If the match is valid on both sides, we have a 100% match for genders
+      gender_match_score = 1
+    end
 
     # Weight can be adjusted based on how important gender preferences are
     gender_weight = 0.30

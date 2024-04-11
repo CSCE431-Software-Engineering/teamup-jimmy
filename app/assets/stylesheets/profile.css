@@ -71,10 +71,11 @@
   margin-bottom: 1rem;
 }
 
-.relationship-controls-container form{
+.relationship-controls-container form{ 
   max-width: 300px;
   width: 100%;
   margin-top: 1rem;
+  text-align: center;
 }
 
 .profile-content-outer{

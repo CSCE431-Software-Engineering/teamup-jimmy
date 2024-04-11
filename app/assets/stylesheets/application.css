@@ -335,6 +335,7 @@ body, html {
   font-size: 1.3rem;
   line-height: 1.3rem;
   text-decoration: none!important;
+  display: inline-block
 }
 
 
@@ -362,6 +363,14 @@ body, html {
   left: 50%;
   top: 50%;
 }
+
+
+@media (min-width: 992px) {
+  .main-navbar{
+    margin-right: 6rem;
+  }
+}
+
 
 
 /* This class is added to an element that comes after the h1 */
