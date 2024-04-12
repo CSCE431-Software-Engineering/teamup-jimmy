@@ -53,9 +53,13 @@ The application can be seen using a browser and navigating to http://localhost:3
 For more information regarding environmental variables that were used for authentication (Google OAuth2) and uploading profile pictures (AWS S3 Buckets), please contact one of the following developers:
 
 Aviral Agarwal (avirala16@tamu.edu)
+
 Kieran Bierne (kieranbeirne01@tamu.edu)
+
 Alexandra Saxton (allie.saxton@tamu.edu)
+
 Lily Tang (yushantang@tamu.edu)
+
 Kawan Ardalan (kawan_ardalan@tamu.edu)
 
 
