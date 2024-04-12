@@ -16,7 +16,7 @@ This code has been run and tested on:
 
 * Docker - Download latest version at https://www.docker.com/products/docker-desktop
 * Heroku CLI - Download latest version at https://devcenter.heroku.com/articles/heroku-cli
-* Git - Downloat latest version at https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+* Git - Download latest version at https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 
 ## Installation ##
 
@@ -27,13 +27,13 @@ Download this code repository by using git:
 
 ## Tests ##
 
-An RSpec test suite is available and can be ran using:
+An RSpec test suite is available and can be run using:
 
   `rspec spec/`
 
 ## Execute Code ##
 
-Run the following code in Powershell if using windows or the terminal using Linux/Mac
+Run the following code in Powershell if using Windows or the terminal using Linux/Mac
 
   `cd teamup-jimmy`
 
@@ -50,16 +50,22 @@ The application can be seen using a browser and navigating to http://localhost:3
 
 ## Environmental Variables/Files ##
 
-N/A yet, coming soon!
+For more information regarding environmental variables that were used for authentication (Google OAuth2) and uploading profile pictures (AWS S3 Buckets), please contact one of the following developers:
+
+Aviral Agarwal (avirala16@tamu.edu)
+Kieran Bierne (kieranbeirne01@tamu.edu)
+Alexandra Saxton (allie.saxton@tamu.edu)
+Lily Tang (yushantang@tamu.edu)
+Kawan Ardalan (kawan_ardalan@tamu.edu)
 
 
 ## Deployment ##
 
 Setup a Heroku account: https://signup.heroku.com/
 
-From the heroku dashboard select `New` -> `Create New Pipline`
+From the Heroku dashboard select `New` -> `Create New Pipeline`
 
-Name the pipeline, and link the respective git repo to the pipline
+Name the pipeline, and link the respective git repo to the pipeline
 
 Our application does not need any extra options, so select `Enable Review Apps` right away
 
@@ -69,28 +75,28 @@ Under staging app, select `Create new app` and link your main branch from your r
 
 --------
 
-To add enviornment variables to enable google oauth2 functionality, head over to the settings tab on the pipeline dashboard
+To add environment variables to enable Google OAuth2 functionality, head over to the settings tab on the pipeline dashboard
 
 Scroll down until `Reveal config vars`
 
-Add both your client id and your secret id, with fields `GOOGLE_OAUTH_CLIENT_ID` and `GOOGLE_OAUTH_CLIENT_SECRET` respectively
+Add both your "client id" and your "client secret", with fields `GOOGLE_OAUTH_CLIENT_ID` and `GOOGLE_OAUTH_CLIENT_SECRET` respectively
 
 Now once your pipeline has built the apps, select `Open app` to open the app
 
 With the staging app, if you would like to move the app to production, click the two up and down arrows and select `Move to production`
 
-And now your application is setup and in production mode!
+And now your application is set up and in production mode!
 
 
 ## CI/CD ##
 
-For continuous development, we set up Heroku to automatically deploy our apps when their respective github branches are updated.
+For continuous development, we set up Heroku to automatically deploy our apps when their respective GitHub branches are updated.
 
   `Review app: test branch`
 
   `Production app: main branch`
 
-For continuous integration, we set up a Github action to run our specs, security checks, linter, etc. after every push or pull-request. This allows us to automatically ensure that our code is working as intended.
+For continuous integration, we set up a Github action to run our specs, security checks, linter, etc. after every push or pull request. This allows us to automatically ensure that our code is working as intended.
 
 ## References ##
 
@@ -104,7 +110,7 @@ Use heroku logs --tail for error details. Common fixes include setting environme
 Database Migration Failures
 Solution: Execute heroku run rake db:migrate. If errors occur, consider rolling back with heroku run rake db:rollback and correcting the migration script.
 Application Crashing on Startup
-Solution: Investigate with heroku logs --tail. Ensure dependencies are met, and the Procfile is correctly configured.
+Solution: Investigate with Heroku logs --tail. Ensure dependencies are met, and the Procfile is correctly configured.
 
 Slow Web App Performance
 Solution: Review Heroku Dyno metrics and logs. Optimize database queries, consider dyno scaling, and use caching strategies.
