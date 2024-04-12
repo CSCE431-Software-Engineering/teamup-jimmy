@@ -10,7 +10,7 @@ class GymPreferencesController < ApplicationController
     
     @render_account_creation_nav = session['render_account_creation_nav']
     if @render_account_creation_nav
-      @back_page_path = nil
+      @back_page_path = activity_preferences_path
       @dont_render_nav = true
     else
       @back_page_path = students_workout_preferences_path
