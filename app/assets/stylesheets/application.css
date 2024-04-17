@@ -28,6 +28,7 @@
 body, html {
   background-color: #F7E9CE!important;
   margin:0px;
+  margin-bottom: 2.5rem;
   font-family: 'Roboto', sans-serif!important;
   overflow-x: hidden;
 }
@@ -189,8 +190,8 @@ body, html {
 .footer {
   background-color: #f3dbae; /* Choose a background color that fits your design */
   text-align: center;
-  padding: 20px 0; /* Increase padding to give more space */
-  position: absolute; /* Change to 'fixed' if you want it to stay at the bottom of the screen */
+  padding: 5px 0; /* Increase padding to give more space */
+  position:fixed; /* Change to 'fixed' if you want it to stay at the bottom of the screen */
   left: 0;
   bottom: 0;
   width: 100%;
