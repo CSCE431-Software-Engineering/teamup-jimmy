@@ -225,8 +225,8 @@ class MatchingService
 
     # Check if current user's gender preferences matches the gender of the other user
     if (user2.gender == "Female" && current_user.gender_pref_female) ||
-       (user.gender == "Male" && current_user.gender_pref_male) ||
-       (user.gender == "Other" && current_user.gender_pref_other)
+       (user2.gender == "Male" && current_user.gender_pref_male) ||
+       (user2.gender == "Other" && current_user.gender_pref_other)
       common_matches_count += 1
     end
 
