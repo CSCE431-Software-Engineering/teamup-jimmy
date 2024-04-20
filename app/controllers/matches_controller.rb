@@ -86,6 +86,7 @@ class MatchesController < ApplicationController
     if action_name == 'send_match_request'
       if @match.student1_email == student_email && @match.relationship_enum == 0
         @match.relationship_enum = 1
+        UserMailer.match_request_notification(student_email, @match.student2_email).deliver_now
       elsif @match.student2_email == student_email && @match.relationship_enum == 0
         @match.relationship_enum = 2
       end
