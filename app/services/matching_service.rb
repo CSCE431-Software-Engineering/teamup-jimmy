@@ -245,14 +245,31 @@ class MatchingService
   end
 
   def calculate_age_match_score(current_user, user2)
-    age_match_score = 0
+    # Determine number of common matches
+    common_matches_count = 0
 
     # Weight can be adjusted based on how important age preferences are
     age_weight = 0.30
 
-    # Check if age preference intervals overlap
-    if user2.age_start_pref <= current_user.age_end_pref && current_user.age_start_pref <= user2.age_end_pref
-      age_match_score += 1
+    # Calculate ages of the two users from their birthdays
+    current_age = calculate_birthday_age(current_user)
+    other_age = calculate_birthday_age(user2)
+
+    # Check if current user's age falls in other user's preference range
+    if current_age >= user2.age_start_pref && current_age <= user2.age_end_pref
+      common_matches_count += 1
+    end
+
+    # Check if other user's age falls in current user's preference range
+    if other_age >= current_user.age_start_pref && other_age <= current_user.age_end_pref
+      common_matches_count += 1
+    end
+
+    # Calculate score
+    age_match_score = 0 # Default 0
+
+    if common_matches_count == 2 # If the match is valid on both sides, we have a 100% match for ages
+      age_match_score = 1
     end
 
     # puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
