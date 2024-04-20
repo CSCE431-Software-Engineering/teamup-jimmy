@@ -2,14 +2,11 @@
 class UserMailer < ApplicationMailer
     default from: 'teamupjimmy@gmail.com'
   
-    def match_notification(user, match_user)
-      @user = user
-      @match_user = match_user
-
-      user_email = format_email(@user.email)
-      match_user_email = format_email(@match_user.email)
-  
-      mail(to: user_email, subject: 'You have a new match on Jimmy!')
+    def match_notification(user, match)
+        user_email = format_email(user)
+        match_user_email = format_email(match)
+    
+        mail(to: match_user_email, subject: 'You have a new match on Jimmy!')
     end
 
     def match_request_notification(user, match)

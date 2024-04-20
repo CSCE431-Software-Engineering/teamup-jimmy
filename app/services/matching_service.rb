@@ -25,12 +25,6 @@ class MatchingService
         puts "match score for #{match.student1_email} and #{match.student2_email} is #{match.match_score}"
         puts "################################################################"
         match.save # This line saves the match to the database, assuming that's the intended behavior
-        # In the match_students method within the MatchingService class
-        if match.save
-          UserMailer.match_notification(user2, @current_user).deliver_now
-          puts "yello! i matched"
-        end
-
         
       rescue => e
         puts "Error creating match: #{e.message}"
