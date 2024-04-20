@@ -31,7 +31,7 @@
         </div>
 
         <!-- Conditional Admin Help Section -->
-        <% if @current_student.email == 'davidkebo' || @current_student.email == "kieranbeirne01" %> <!-- Adjust the condition as needed -->
+        <% if @current_student.email == 'davidkebo' || @current_student.email == "kieranbeirne01" || @current_student.email == "florencia.mangini" %> <!-- Adjust the condition as needed -->
           <div class="admin-help-section mt-4">
             <h2>User Feedback</h2>
             <div class="settings-card">
@@ -135,21 +135,11 @@
                   <h3> <%= student.name %> </h3>
                   <div class="card-profile-picture-div">
                     <% if student.profile_picture_url.present? %>
-                      <%= image_tag student.profile_picture_url, class: "card-profile-picture", alt: "Profile Picture" %>
+                      <%= image_tag student.profile_picture_url, class: "card-profile-picture-enlarged", alt: "Profile Picture" %>
                     <% else %>
-                      <%= image_tag "https://canadabeercup.com/wp-content/uploads/2022/09/generic-profile-picture-1200x1200-1.jpg", class: "card-profile-picture", alt: "Profile Picture" %>
+                      <%= image_tag "https://canadabeercup.com/wp-content/uploads/2022/09/generic-profile-picture-1200x1200-1.jpg", class: "card-profile-picture-enlarged", alt: "Profile Picture" %>
                     <% end %>
                   </div>
-                  <%
-                    if student.grad_year
-                      @major = "Class of #{student.grad_year}"
-                    else
-                      @major = ""
-                    end
-                  %>
-                  <p> <%=@major%> </p>
-    
-                  <p class="card-bio"> <%= student.biography%> </p>
                 </div>
               <%end%>
             <%end%>
@@ -159,5 +149,7 @@
       </div>
     </div>
   </div>
+  <br>
 </body>
+<%= render 'landing/footer' %>
 </html>

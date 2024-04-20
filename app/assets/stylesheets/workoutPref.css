@@ -16,9 +16,6 @@
   justify-content: center;
   font-family: "Roboto", sans-serif;
   width: 100%;  
-  max-height: 25rem;
-  overflow-y: auto;
-  overflow-x: auto;
 }
 
 .edit-workoutpref-table{
@@ -120,6 +117,7 @@
 
 .radio-label-pair{
   display: flex;
+  flex-direction: row;
   flex-wrap: nowrap;
   margin: 1rem 0rem;
 }

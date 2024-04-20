@@ -3,17 +3,31 @@ class TimePreferencesController < ApplicationController
   before_action :time_table, only: [:index, :edit]
   def index
     @time_preference = TimePreference.find_by(student_email: session[:student_id])
-    @render_account_creation_nav = session['render_account_creation_nav']
-    puts @render_account_creation_nav
+    @dont_render_back = session['render_account_creation_nav']
+    @dont_render_nav = session['render_account_creation_nav']
+    @page_name = "Time Preferences"
+    if session['render_account_creation_nav']
+      @back_page_path = gym_preferences_path
+    else
+      @back_page_path = students_workout_preferences_path
+    end
   end
 
   def new
+    puts "A"
   end
 
   def edit
+    puts "B"
+    initialize_time_variables()
+    time_table()
+    @dont_render_nav = session['render_account_creation_nav'];
+    @page_name = "Edit Time Preferences"
+    @back_page_path = time_preferences_index_path
   end
 
   def update
+    puts "C"
     # Find or initialize the TimePreference record
     @time_preference = TimePreference.find_or_initialize_by(student_email: session[:student_id])
     
@@ -47,15 +61,7 @@ class TimePreferencesController < ApplicationController
     time_table()
   end
 
-  def new
-  end
 
-  def edit
-    initialize_time_variables()
-    time_table()
-  end
-
-  private
 
   def iterate_over_times(times_string)
     times_string.chars.map { |char| char == '1' ? 'done' : '' }

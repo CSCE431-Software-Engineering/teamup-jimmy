@@ -28,6 +28,10 @@ class StudentsController < ApplicationController
       @default_birthday = stu.birthday
       @default_phone_number = stu.phone_number
     end
+
+    @page_name = "Account Info"
+    @back_page_path = root_path
+    @dont_render_nav = true
     render 'students/account_creation/basic'
   end
 
@@ -38,15 +42,22 @@ class StudentsController < ApplicationController
     @default_grad_year = '' || @current_student.grad_year
     @default_biography = '' || @current_student.biography
     session['redirect_to'] = students_setup_workout_partner_preferences_path
+    @page_name = "Profile Information"
+    @back_page_path = students_basic_path
+    @dont_render_nav = true
     render 'students/account_creation/personal_info'
   end
 
   def setup_workout_partner_preferences
+    puts "test"
     flash[:notice] = ''
     @current_student = Student.find_by(email: session[:student_id])
     session['dont_render_nav'] = true
     session['render_account_creation_nav'] = true
     session['redirect_to'] = activity_preferences_path
+    @page_name = "Workout Partner Preferences"
+    @dont_render_nav = true
+    @back_page_path = students_setup_personal_info_path
     render 'students/account_creation/workout_partner_preferences'
   end
 
@@ -90,6 +101,8 @@ class StudentsController < ApplicationController
   end
 
   def delete_confirmation
+    @page_name = "Delete Account"
+    @back_page_path = students_settings_path
   end
 
   def delete
@@ -117,18 +130,27 @@ class StudentsController < ApplicationController
       @account_publicity = "Public account"
     end
 
+    @page_name = 'Personal Info'
+    @back_page_path = students_settings_path
+
     render 'students/personal_info_forms/account_info_settings'
   end
 
   def matching_preferences
+    @page_name = 'Matching Preferences'
+    @back_page_path = students_settings_path
     render 'students/matching_preferences_forms/matching_preferences_settings'
   end
 
   def connect_socials
+    @page_name = 'Link Socials'
+    @back_page_path = students_settings_path
     render 'students/socials_forms/socials_settings'
   end
 
   def workout_preferences
+    @page_name = 'Workout Preferences'
+    @back_page_path = students_settings_path
     render 'students/workoutPref'
   end
 
@@ -149,7 +171,13 @@ class StudentsController < ApplicationController
       session["redirect_to"] = nil
       redirect_to redirect_path
     else
-      flash[:alert] = "There was a problem updating your account."
+      error = @student.errors.full_messages.first.to_s
+      if error.nil?
+        flash[:alert] = "There was a problem updating your account."
+      else
+        error = error[error.index("*")+1..-1]
+        flash[:alert] = "There was a problem updating your account. #{error}"
+      end
       logger.info "Failed to update Student: #{student_params}"
       logger.info "Errors: #{@student.errors.full_messages}"
       redirect_to request.referer || default_path
@@ -157,34 +185,50 @@ class StudentsController < ApplicationController
   end
 
   def edit_birthday
+    @page_name = 'Edit Birthday'
+    @back_page_path = students_personal_info_path
     render 'students/personal_info_forms/edit_birthday'
   end
 
   def edit_gender
+    @page_name = "Edit Gender"
+    @back_page_path = students_personal_info_path
     render 'students/personal_info_forms/edit_gender'
   end
 
   def edit_grad_year
+    @page_name = 'Edit Graduation Year'
+    @back_page_path = students_personal_info_path
     render 'students/personal_info_forms/edit_grad_year'
   end
 
   def edit_name
+    @page_name = 'Edit Name'
+    @back_page_path = students_personal_info_path
     render 'students/personal_info_forms/edit_name'
   end
 
   def edit_phone_number
+    @page_name = 'Edit Phone Number'
+    @back_page_path = students_personal_info_path
     render 'students/personal_info_forms/edit_phone_number'
   end
 
   def edit_major
+    @page_name = 'Edit Major'
+    @back_page_path = students_personal_info_path
     render 'students/personal_info_forms/edit_major'
   end
 
   def edit_is_private
+    @page_name = 'Edit Privacy'
+    @back_page_path = students_personal_info_path
     render 'students/personal_info_forms/edit_is_private'
   end
 
   def edit_biography
+    @page_name = 'Edit Biography'
+    @back_page_path = students_personal_info_path
     @biography_placeholder = ""
     if @current_student.biography.nil?
       @biography_placeholder = "Enter your biography"
@@ -195,24 +239,27 @@ class StudentsController < ApplicationController
   end
 
   def edit_gender_pref
+    @page_name = "Gender Preferences"
+    @back_page_path = students_matching_preferences_path
     render 'students/matching_preferences_forms/edit_gender_pref'
   end
 
   def edit_age_pref
+    @page_name = "Age Preferences"
+    @back_page_path = students_matching_preferences_path
     render 'students/matching_preferences_forms/edit_age_pref'
   end
 
   def edit_instagram_url
+    @page_name = "Instagram Link"
     render 'students/socials_forms/edit_instagram_link'
   end
 
   def edit_x_url
+    @page_name = "X Link"
     render 'students/socials_forms/edit_x_link'
   end
 
-  def edit_snap_url
-    render 'students/socials_forms/edit_snapchat_link'
-  end
   
   def start_matching
     # Fetch the current student

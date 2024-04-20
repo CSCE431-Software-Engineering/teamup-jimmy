@@ -7,21 +7,7 @@
   <title>Jimmy</title>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F3DBAE;">
-    <div class="container">
-      <!-- Back button with an image and text -->
-      <%= link_to pages_home_path, class: "navbar-brand" do %>
-        <%= image_tag('back_arrow.png', alt: 'Back', class: 'img-fluid', style: 'height: 24px;') %>
-        <span class="ml-1">Back</span>
-      <% end %>
-      <h1 class="navbar-text mx-auto my-auto var(--primary-text-color)">Matched Users</h1>
-      <%# Centering the title with identical content on the right %>
-      <div class="navbar-brand">
-        <span class="right-placeholder mr-1"> Back </span>
-         <%= image_tag('back_arrow.png', alt: 'Back', class: 'hidden-arrow', style: 'height: 24px;') %>
-      </div>
-    </div>
-  </nav>
+  <%= render 'pages/navbar_inner_page' %>
 
   <div class="card-container">
     <div class="card-grid">
@@ -31,21 +17,11 @@
               <h3> <%= student.name %> </h3>
               <div class="card-profile-picture-div">
                 <% if student.profile_picture_url.present? %>
-                  <%= image_tag student.profile_picture_url, class: "card-profile-picture", alt: "Profile Picture" %>
+                  <%= image_tag student.profile_picture_url, class: "card-profile-picture-enlarged", alt: "Profile Picture" %>
                 <% else %>
-                  <%= image_tag "https://canadabeercup.com/wp-content/uploads/2022/09/generic-profile-picture-1200x1200-1.jpg", class: "card-profile-picture", alt: "Profile Picture" %>
+                  <%= image_tag "https://canadabeercup.com/wp-content/uploads/2022/09/generic-profile-picture-1200x1200-1.jpg", class: "card-profile-picture-enlarged", alt: "Profile Picture" %>
                 <% end %>
               </div>
-              <%
-                if student.grad_year
-                  @major = "Class of #{student.grad_year}"
-                else
-                  @major = ""
-                end
-              %>
-              <p> <%=@major%> </p>
-
-              <p class="card-bio"> <%= student.biography%> </p>
             </div>
           <%end%>
         <%end%>

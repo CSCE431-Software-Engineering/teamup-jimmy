@@ -8,22 +8,7 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F3DBAE;">
-    <div class="container">
-      <% if !(@render_account_creation_nav) %>
-        <%= link_to students_workout_preferences_path, class: "navbar-brand" do %>
-          <%= image_tag('back_arrow.png', alt: 'Back', class: 'img-fluid', style: 'height: 24px;') %>
-          <span class="ml-1">Back</span>
-        <% end %>
-      <% end %>
-      <h1 class="navbar-text mx-auto my-auto var(--primary-text-color)">Activity Preferences</h1>
-      <%# Centering the title with identical content on the right %>
-      <div class="navbar-brand">
-        <span class="right-placeholder mr-1"> Back </span>
-         <%= image_tag('back_arrow.png', alt: 'Back', class: 'hidden-arrow', style: 'height: 24px;') %>
-      </div>
-    </div>
-  </nav>
+  <%= render 'pages/navbar_inner_page' %>
 
   <div class = "general-div-main">
   <div class = "general-div-inner">
@@ -34,45 +19,125 @@
     <p class = "edit-form-label edit-form-subscript">
       Your experience level helps us match you with people who are at a similar level.
     </p>
-    <br>
-    <div class="edit-workoutpref-div">
-      <table summary="Added activities" class="edit-workoutpref-table">
-        <% @current_activities.zip(@exp_levels).each do |activity_name, exp| %>
-          <tr class = "edit-workout-pref-table-tr">
-            <td class = "edit-form-label edit-form-subscript"><%= activity_name%>   (<%= exp %>)</td>
-            <td> 
-              <% activity = ActivityPreference.find_by(student_email: @current_student.email, activity_id: (Activity.find_by(activity_name: activity_name)).id)%>
-              <%= form_with(model: activity, url: activity_preference_path(activity), method: :delete) do |form| %>
-                <%= form.button class: "edit-workoutpref-add-btn" do %>
-                  <%= image_tag('remove_icon.png', alt: 'Delete', class: 'table-icon') %>
+    <% if @current_activities.length != 0 %>
+      <br>
+      <div class="edit-workoutpref-div">
+        <table summary="Added activities" class="edit-workoutpref-table">
+          <% @current_activities.zip(@exp_levels).each_with_index do |(activity_name, exp), index| %>
+            <% row_class = (index == @current_activities.length - 1) ? "edit-workout-pref-table-add-tr" : "edit-workout-pref-table-tr" %>
+            <tr class="<%= row_class %>">
+              <td class="edit-form-label edit-form-subscript">
+                <%= activity_name %><%= " (#{exp})" if exp.present? %>
+              </td>
+              <td class = "table-icon"> 
+                <% activity = ActivityPreference.find_by(student_email: @current_student.email, activity_id: (Activity.find_by(activity_name: activity_name)).id)%>
+                <%= form_with(model: activity, url: activity_preference_path(activity), method: :delete) do |form| %>
+                  <%= form.button class: "edit-workoutpref-add-btn" do %>
+                    <%= image_tag('remove_icon.png', alt: 'Delete', class: 'table-icon') %>
+                  <% end %>
                 <% end %>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-
-        <tr class = "edit-workout-pref-table-add-tr">
-        <td class = "edit-form-label edit-form-subscript"> Add Activity </td>
-        <td class = "table-icon"> <%= render(partial:'add', locals:{c: "activity_preferences", a: "new"}) %> </td>
-        </tr>
-    </table>
-    </div>
-
-    <% if @render_account_creation_nav %>
-      <br>
-      <br>
-      <div class = "profile-creation-button-div">
-        <div class="left">
-          <%= link_to "Back", students_setup_workout_partner_preferences_path, class: "material-button dark-material-button", role: "button" %>
-        </div>
-        <div class = "right"><%= link_to "Next", gym_preferences_path, class: "material-button dark-material-button" %></div>
-      </div>
-      <div class = "profile-creation-button-div">
-        <div class="left"> </div>
-        <div class = "right"><%= link_to "Skip for now", students_index_path, class: "material-button dark-material-button", role: "button" %></div>
+              </td>
+            </tr>
+          <% end %>
+        </table>
       </div>
     <% end %>
+    <br>
+    <div class="settings-card">
+      <a class="info-row" id = "addNewActivityBar" style="background-color: var(--accent-color); color:white;" data-bs-toggle="collapse" href="#addNewActivity" role="button" aria-expanded="false" aria-controls="addNewActivity">
+        <div class="info-row-title">Add a new activity</div>
+        <%= image_tag asset_path("down_arrow.png"), id: "toggle-arrow", class: "forward-arrow", alt: "Forward Arrow" %>
+      </a>
+      <div class="collapse" id="addNewActivity">
+        <h1 class="profile-name">Search For Activities </h1>
+        <div class="search-bar">
+          <%= text_field_tag :query, params[:query], placeholder: "Soccer", id: 'search-input' %>
+        </div>
+
+        <script>
+          document.addEventListener('turbo:load', function() {
+            const searchInput = document.getElementById('search-input');
+            const activityRows = document.querySelectorAll('#activities_list tr[data-activity-name]');
+            const toggleArrow = document.getElementById('toggle-arrow');
+            const addNewActivity = document.getElementById('addNewActivityBar');
+            
+            document.querySelector('a[data-bs-toggle="collapse"]').addEventListener('click', function() {
+              console.log("test")
+
+              const isOpen = toggleArrow.src.includes('up_arrow');
+              toggleArrow.src = isOpen ? '<%= asset_path("down_arrow.png") %>' : '<%= asset_path("up_arrow.png") %>';
+              
+              setTimeout(() => {
+                addNewActivity.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }, 350); // Adjust the timeout duration to match your collapse animation duration
+            });
+
+            searchInput.addEventListener('input', function() {
+              const searchQuery = searchInput.value.toLowerCase();
+
+              var lastRow = null;
+              activityRows.forEach(function(row) {
+                // Retrieve the activity name from the data-activity-name attribute
+                const activityName = row.getAttribute('data-activity-name').toLowerCase();
+                row.classList.remove('edit-workout-pref-table-add-tr');
+                row.classList.remove('edit-workout-pref-table-tr');
+                row.classList.add('edit-workout-pref-table-tr');
+                if (activityName.includes(searchQuery)) {
+                  row.style.display = ''; // Show the row if it matches
+                  lastRow = row;
+                } else {
+                  row.style.display = 'none'; // Hide the row if it doesn't match
+                }
+              });
+
+              lastRow.classList.remove('edit-workout-pref-table-tr');
+              lastRow.classList.add('edit-workout-pref-table-add-tr');
+            });
+          });
+        </script>
+        <div class="general-div-inner">
+          <div class="edit-workoutpref-div">
+            <table summary="Added activities" id = "activities_list" class="edit-workoutpref-table">
+              <% @activities.each do |activity|%>
+                <% if activity != @activities.last %>
+                  <tr data-activity-name="<%= activity.activity_name.downcase %>" class = "edit-workout-pref-table-tr">
+                    <td class = "edit-form-label edit-form-subscript"><%=activity.activity_name%></td>
+                    <td class = "table-icon"> 
+                      <%= button_to(experience_activity_preference_path(activity), method: :get, class: "material-symbols-outlined edit-workoutpref-add-btn") do %>
+                        <%= image_tag asset_path("add_icon.png"), class: "table-icon", alt: "Add item" %>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% else %>
+                  <tr data-activity-name="<%= activity.activity_name.downcase %>" class = "edit-workout-pref-table-add-tr">
+                    <td class = "edit-form-label edit-form-subscript"><%=activity.activity_name%></td>
+                    <td class = "table-icon"> 
+                      <%= button_to(experience_activity_preference_path(activity), method: :get, class: "material-symbols-outlined edit-workoutpref-add-btn") do %>
+                        <%= image_tag asset_path("add_icon.png"), class: "table-icon", alt: "Add item" %>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              <%end%>
+            </table>
+          </div>
+        </div>
+      </div>
+      <% if @render_account_creation_nav %>
+        <br>
+        <br>
+        <div class = "profile-creation-button-div">
+          <div class="left">
+            <%= link_to "Skip for now", students_index_path, class: "material-button dark-material-button", role: "button" %>
+          </div>
+          <div class = "right"><%= link_to "Next", gym_preferences_path, class: "material-button dark-material-button" %></div>
+        </div>
+      <% end %>
     <%= render 'pages/flash' %>
+  </div>
 </div>
-</div>
+<br>
+<br>
 </body>
+<%= render 'landing/footer' %>
+</html>

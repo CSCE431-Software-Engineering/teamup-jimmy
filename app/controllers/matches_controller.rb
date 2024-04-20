@@ -9,6 +9,9 @@ class MatchesController < ApplicationController
     @pending_requests_B = Match.where(student2_email: @current_student, relationship_enum: 1)
     
     @pending_emails = Student.where(email: @pending_requests_A.pluck(:student2_email)).or(Student.where(email: @pending_requests_B.pluck(:student1_email)))
+  
+    @page_name = "Incoming Requests"
+    @back_page_path = pages_home_path
   end
 
   def pending
@@ -18,7 +21,8 @@ class MatchesController < ApplicationController
     @pending_requests_B = Match.where(student2_email: @current_student, relationship_enum: 2)
     
     @pending_emails = Student.where(email: @pending_requests_A.pluck(:student2_email)).or(Student.where(email: @pending_requests_B.pluck(:student1_email)))    
-
+    @page_name = "Pending Requests"
+    @back_page_path = pages_home_path
   end
 
   def show
@@ -34,7 +38,8 @@ class MatchesController < ApplicationController
     
     @matched_emails = Student.where(email: @existing_matches_A&.pluck(:student2_email)).or(Student.where(email: @existing_matches_B&.pluck(:student1_email)))  
    
-
+    @page_name = "Your Matches"
+    @back_page_path = pages_home_path
   end
 
   def blocked
@@ -47,6 +52,8 @@ class MatchesController < ApplicationController
     
     @blocked_emails = Student.where(email: @existing_blocks_A.pluck(:student2_email)).or(Student.where(email: @existing_blocks_B.pluck(:student1_email))).or(Student.where(email: @existing_blocks_C.pluck(:student1_email))).or(Student.where(email: @existing_blocks_D.pluck(:student1_email)))    
     
+    @page_name = "Blocked Users"
+    @back_page_path = students_settings_path
   end
 
   def update

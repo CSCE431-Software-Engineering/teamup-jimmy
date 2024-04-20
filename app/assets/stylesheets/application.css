@@ -28,7 +28,8 @@
 body, html {
   background-color: #F7E9CE!important;
   margin:0px;
-  font-family: 'Roboto', sans-serif;
+  margin-bottom: 2.5rem;
+  font-family: 'Roboto', sans-serif!important;
   overflow-x: hidden;
 }
 
@@ -105,28 +106,6 @@ body, html {
   color: #9E9E9E;
   cursor: default;
   box-shadow: none;
-}
-
-
-@media (max-width: 768px) {
-  .navbar-brand {
-    flex-grow: 1; /* Allow back button to use available space */
-    justify-content: start; /* Align back button to the start */
-    font-size: 1rem;
-    padding-right: 0;
-  }
-  .navbar h1 {
-    font-size: 1.2rem; /* Smaller font size on mobile */
-    margin: 0;
-    
-  }
-  .forward-arrow {
-    width: 1rem; /* Smaller arrows on mobile */
-  }
-
-  .navbar span{
-    font-size: 1rem;
-  }
 }
 
 .right-placeholder {
@@ -211,8 +190,8 @@ body, html {
 .footer {
   background-color: #f3dbae; /* Choose a background color that fits your design */
   text-align: center;
-  padding: 20px 0; /* Increase padding to give more space */
-  position: absolute; /* Change to 'fixed' if you want it to stay at the bottom of the screen */
+  padding: 5px 0; /* Increase padding to give more space */
+  position:fixed; /* Change to 'fixed' if you want it to stay at the bottom of the screen */
   left: 0;
   bottom: 0;
   width: 100%;
@@ -337,7 +316,7 @@ body, html {
 .nav-link {
   font-weight: bold;
   font-size: 16pt; /* 16pt is roughly equivalent to 21px */
-  padding: 0 30px; /* Increase the space around the links */
+  padding: 0.5rem 2rem!important!important; /* Increase the space around the links */;
   color: var(--primary-text-color); /* Use a CSS variable for the text color */
 }
 
@@ -345,10 +324,31 @@ body, html {
 .navbar-nav {
   align-items: center; /* Centers the links vertically */
 }
+/* .navbar-collapse-permanant{
+  background-color: #f3dbae;
+  width:100%;
+  display:flex;
+  flex-direction: row;
 
-
+} */
 .navbar-text{
   color: var(--primary-text-color)!important;
+  font-size: 1.3rem;
+  line-height: 1.3rem;
+  text-decoration: none!important;
+  display: inline-block
+}
+
+
+
+.nowrap-div {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.styled-back{
+  font-size: 1rem;
+  font-weight: 100;
 }
 
 .navbar .container {
@@ -358,11 +358,20 @@ body, html {
 
 /* Center the title */
 .navbar h1 {
-  position: absolute;
+  white-space: nowrap;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.3rem;;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%); /* Combine both translations into one line */
 }
+
+
+@media (min-width: 992px) {
+  .main-navbar{
+    margin-right: 6rem;
+  }
+}
+
 
 
 /* This class is added to an element that comes after the h1 */
@@ -388,6 +397,12 @@ body, html {
   
   .navbar-brand::after {
     display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .inner_navbar_container{
+    padding: 0px!important;
   }
 }
 

@@ -82,19 +82,30 @@
               class: "material-button"%>
             <% end %>
             <% if @number != -1%>
-              <%= tag.button "Contact via Phone", data: {controller: "clipboard", action: "clipboard#copy"}, class: "material-button dark-material-button" %>
+              <% if mobile_device?%>
+                <%= link_to 'Contact via SMS', 
+                "sms:#{@number}?body=Howdy! We've matched on Jimmy, lets work out!", 
+                class: "material-button dark-material-button" %>
+              <% else %>
+                <%= tag.button "Contact via SMS", data: {controller: "clipboard", action: "clipboard#copy"}, class: "material-button dark-material-button" %>
+                <div id="phoneNumber" style="display:none;"><%=@number%></div>
+                <script type="module">
+                  import { copyTextToClipboard } from 'clipboard';
+                
+                  document.addEventListener('turbo:load', () => {
+                    const copyButton = document.querySelector('button[data-controller="clipboard"]');
+                    if (copyButton) { // Checking if the button exists
+                      copyButton.addEventListener('click', () => {
+                        copyTextToClipboard('phoneNumber'); 
+
+                      });
+                    } else {
+                      console.error('Copy button was not found.'); // Error handling if button isn't found
+                    }
+                  });
+                </script>
+              <% end %>
             <% end %>
-            <div id="phoneNumber"><%=@number%></div>
-
-            <!-- Event listener for copy button. -->
-            <script type="module">
-              import { copyTextToClipboard } from 'clipboard';
-
-              document.addEventListener('DOMContentLoaded', () => {
-                const copyButton = document.querySelector('button[data-controller="clipboard"]');
-                copyButton.addEventListener('click', () => copyTextToClipboard('phoneNumber'));
-              });
-            </script>
           </div>
           
         </div>
@@ -135,10 +146,10 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  
 
-  <!-- below could be links too -->
-  <!-- the onclick part should be a function in the controller to determine
-  where the user is taken to after log in -->
 </body>
+<br>
+<br>
+<br>
+<%= render 'landing/footer' %>
 </html>

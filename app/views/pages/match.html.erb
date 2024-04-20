@@ -12,32 +12,6 @@
       padding: 0;
       background-color: #f7e9ce; /* Use the same background color as the rest of your site */
     }
-
-    /* Use Bootstrap's button classes for guaranteed mobile responsiveness */
-    .btn-block {
-      display: block;
-      width: 60%;
-      padding: 0.75rem 1rem; /* Bootstrap's default padding for buttons */
-      font-size: 1rem; /* Bootstrap's default font size for buttons */
-      border-radius: 0.25rem; /* Bootstrap's default border radius for buttons */
-      margin-bottom: 0.5rem; /* Add some bottom margin for spacing */
-      color: #495057; /* Text color for buttons */
-      background-color: #ffffff; /* Background color for buttons */
-      border: 1px solid #ddd; /* Border color for buttons */
-      font-weight:bold;
-    }
-
-    .btn-block:hover, .btn-block:active {
-      color: #495057; /* Text color for buttons when hovered/active */
-      border-color: #dae0e5; /* Slightly darker border color for buttons when hovered/active */
-    }
-
-    /* Adjust the mobile view */
-    # @media (max-width: 576px) {
-    #   .btn-block {
-    #     font-size: 0.9rem; /* Slightly smaller font size for very small devices */
-    #   }
-    # }
   </style>
 </head>
 <body>
@@ -86,6 +60,7 @@
             <div class = "actions-holder">
               <%= button_to 'Pass', 
               pages_match_path,
+              method: :get,
               class: "material-button dark-material-button"%>
               <%= button_to 'Match Request', 
               match_path(@match, action_name: 'send_match_request'), 
@@ -108,5 +83,11 @@
       </div>
     <% end %>
   </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 </body>
+<%= render 'landing/footer' %>
 </html>

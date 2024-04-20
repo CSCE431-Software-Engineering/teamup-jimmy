@@ -5,12 +5,14 @@ class Account < ApplicationRecord
 
   def self.from_google(email:, full_name:, uid:, avatar_url:)
     account = find_or_initialize_by(email: email)
+    account.update(uid: uid, full_name: full_name, avatar_url: avatar_url) unless account.persisted?
+    account
 
-    if email =~ /@tamu.edu\z/
-      account.update(uid: uid, full_name: full_name, avatar_url: avatar_url) unless account.persisted?
-      account
-    else
-      nil
-    end
+    # if email =~ /@tamu.edu\z/
+    #   account.update(uid: uid, full_name: full_name, avatar_url: avatar_url) unless account.persisted?
+    #   account
+    # else
+    #   nil
+    # end
   end
 end

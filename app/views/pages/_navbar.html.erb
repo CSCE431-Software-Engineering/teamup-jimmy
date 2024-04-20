@@ -6,25 +6,25 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <div class="collapse navbar-collapse main-navbar" id="navbarNavDropdown">
       <ul class="navbar-nav mx-auto">
         <li class="nav-item">
-          <%= link_to 'Home', pages_home_path, class: "nav-link px-lg-4" %>
+          <%= link_to 'Home', pages_home_path, class: "navbar-text px-lg-4" %>
         </li>
         <li class="nav-item">
-          <%= link_to 'Match', pages_match_path, class: "nav-link px-lg-4" %>
+          <%= link_to 'Match', pages_match_path, class: "navbar-text px-lg-4" %>
         </li>
         <li class="nav-item">
-          <%= link_to 'Browse', pages_browse_path, class: "nav-link px-lg-4" %>
+          <%= link_to 'Browse', pages_browse_path, class: "navbar-text px-lg-4" %>
         </li>
         <li class="nav-item">
-          <%= link_to 'Profile', students_index_path, class: "nav-link px-lg-4" %>
+          <%= link_to 'Profile', students_index_path, class: "navbar-text px-lg-4" %>
         </li>
         <li class="nav-item">
-          <%= link_to 'Settings', students_settings_path, class: "nav-link px-lg-4" %>
+          <%= link_to 'Settings', students_settings_path, class: "navbar-text px-lg-4" %>
         </li>
         <li class="nav-item">
-          <%= link_to 'Logout', logout_path, class: "nav-link px-lg-3" %>
+          <%= button_to('Logout', logout_path, method: :get, class: "navbar-text px-lg-3 logout-button") %>
         </li>
       </ul>
     </div>
