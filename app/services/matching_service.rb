@@ -1,3 +1,5 @@
+require 'date'
+
 class MatchingService
   def initialize(current_user)
     @current_user = current_user
@@ -281,12 +283,25 @@ class MatchingService
   end
 
   def calculate_birthday_age(user)
+    # Get birthdays as Date objects
     birth_date = Date.strptime(user.birthday, "%Y-%m-%d")
     current_date = Date.today
 
+    # Calculate age
     age = current_date.year - birth_date.year
-    age -= 1 if current_date < birth_date + age.years
+    
+    # Check for same month/day for exact age calculation
+    if current_date.mon < birth_date.mon
+      age -= 1
+    elsif current_date.mday < birth_date.mday
+      age -= 1
+    end
 
+    # puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+    # puts "Age of user #{user.name}: #{age} years old"
+    # puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+
+    # Return age
     age
   end
 end
