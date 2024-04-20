@@ -1,3 +1,5 @@
+require 'date'
+
 class MatchingService
   def initialize(current_user)
     @current_user = current_user
@@ -55,11 +57,13 @@ class MatchingService
     return 0 if age_match_score == 0 # Overall match score should be - if there are no age matches
 
     # Calculate overall match score (weight can be adjusted within respective calculation functions)
-    overall_match_score = (activity_match_score + gym_match_score + time_match_score)
+    overall_match_score = (activity_match_score + gym_match_score + time_match_score + gender_match_score + age_match_score) / 5.0
 
+    # Priority checks that should automatically nullify a match if not met
     if gender_match_score == 0 or age_match_score == 0
       overall_match_score = 0
     end
+
     # Return the overall match score
     overall_match_score
   end 
@@ -249,14 +253,31 @@ class MatchingService
   end
 
   def calculate_age_match_score(current_user, user2)
-    age_match_score = 0
+    # Determine number of common matches
+    common_matches_count = 0
 
     # Weight can be adjusted based on how important age preferences are
     age_weight = 0.30
 
-    # Check if age preference intervals overlap
-    if user2.age_start_pref <= current_user.age_end_pref && current_user.age_start_pref <= user2.age_end_pref
-      age_match_score += 1
+    # Calculate ages of the two users from their birthdays
+    current_age = calculate_birthday_age(current_user)
+    other_age = calculate_birthday_age(user2)
+
+    # Check if current user's age falls in other user's preference range
+    if current_age >= user2.age_start_pref && current_age <= user2.age_end_pref
+      common_matches_count += 1
+    end
+
+    # Check if other user's age falls in current user's preference range
+    if other_age >= current_user.age_start_pref && other_age <= current_user.age_end_pref
+      common_matches_count += 1
+    end
+
+    # Calculate score
+    age_match_score = 0 # Default 0
+
+    if common_matches_count == 2 # If the match is valid on both sides, we have a 100% match for ages
+      age_match_score = 1
     end
 
     # puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
@@ -267,4 +288,26 @@ class MatchingService
     age_match_score * age_weight
   end
 
+  def calculate_birthday_age(user)
+    # Get birthdays as Date objects
+    birth_date = Date.strptime(user.birthday, "%Y-%m-%d")
+    current_date = Date.today
+
+    # Calculate age
+    age = current_date.year - birth_date.year
+    
+    # Check for same month/day for exact age calculation
+    if current_date.mon < birth_date.mon
+      age -= 1
+    elsif current_date.mday < birth_date.mday
+      age -= 1
+    end
+
+    # puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+    # puts "Age of user #{user.name}: #{age} years old"
+    # puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+
+    # Return age
+    age
+  end
 end
