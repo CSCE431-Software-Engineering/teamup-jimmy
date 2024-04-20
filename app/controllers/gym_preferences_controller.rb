@@ -7,7 +7,17 @@ class GymPreferencesController < ApplicationController
     @current_gyms = GymPreference.where(student_email: @current_student.email)
     @current_gyms_id = @current_gyms.pluck(:gym_id)
     @gyms = Gym.where(id: @current_gyms_id)
+    
     @render_account_creation_nav = session['render_account_creation_nav']
+    if @render_account_creation_nav
+      @back_page_path = activity_preferences_path
+      @dont_render_nav = true
+    else
+      @back_page_path = students_workout_preferences_path
+    end
+
+    @page_name = "Gym Preferences"
+    
 
   end
 
@@ -15,6 +25,14 @@ class GymPreferencesController < ApplicationController
     @current_student = Student.find_by(email: session[:student_id])
     @gyms = Gym.all
     @new_gym = GymPreference.new()
+
+    # render navigation bar
+    render_account_creation_nav = session['render_account_creation_nav']
+    if render_account_creation_nav
+      @dont_render_nav = true
+    end
+    @back_page_path = gym_preferences_path
+    @page_name = "Gym Preferences"
   end
 
   def update

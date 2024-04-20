@@ -9,21 +9,7 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #F3DBAE;">
-    <div class="container">
-      
-      <%= link_to activity_preferences_path, class: "navbar-brand" do %>
-        <%= image_tag('back_arrow.png', alt: 'Back', class: 'img-fluid', style: 'height: 24px;') %>
-        <span class="ml-1">Back</span>
-      <% end %>
-      <h1 class="navbar-text mx-auto my-auto var(--primary-text-color)">Add Activity</h1>
-      <%# Centering the title with identical content on the right %>
-      <div class="navbar-brand">
-        <span class="right-placeholder mr-1"> Back </span>
-         <%= image_tag('back_arrow.png', alt: 'Back', class: 'hidden-arrow', style: 'height: 24px;') %>
-      </div>
-    </div>
-  </nav>
+  <%= render 'pages/navbar_inner_page' %>
 
   <div class="container">
     <div class="general-div-main">
@@ -33,31 +19,45 @@
         <h1 class="profile-name">Search For Activities </h1>
         <br>
 
-        <%= form_tag(new_activity_preference_path, method: :get, id: 'search-form', remote: true) do %>
-          <div class="search-bar">
-            <%= text_field_tag :query, params[:query], placeholder: "Soccer", id: 'search-input' %>
-          </div>
-          <%= submit_tag "Search", class: "material-button", id: 'search-submit' %>
-        <% end %>
+        <div class="search-bar">
+          <%= text_field_tag :query, params[:query], placeholder: "Soccer", id: 'search-input' %>
+        </div>
 
-      </div>
-    </div>
-  </div>
+        <script>
+          document.addEventListener('turbo:load', function() {
+            const searchInput = document.getElementById('search-input');
+            const activityRows = document.querySelectorAll('#activities_list tr[data-activity-name]');
 
-  <% if @activities != -1 %>
-  
-    <div class = "linear-divider"></div>
+            searchInput.addEventListener('input', function() {
+              const searchQuery = searchInput.value.toLowerCase();
 
-    <div class="container">
-      <div class="general-div-main">
+              var lastRow = null;
+              activityRows.forEach(function(row) {
+                // Retrieve the activity name from the data-activity-name attribute
+                const activityName = row.getAttribute('data-activity-name').toLowerCase();
+                row.classList.remove('edit-workout-pref-table-add-tr');
+                row.classList.remove('edit-workout-pref-table-tr');
+                row.classList.add('edit-workout-pref-table-tr');
+                if (activityName.includes(searchQuery)) {
+                  row.style.display = ''; // Show the row if it matches
+                  lastRow = row;
+                } else {
+                  row.style.display = 'none'; // Hide the row if it doesn't match
+                }
+              });
+
+              lastRow.classList.remove('edit-workout-pref-table-tr');
+              lastRow.classList.add('edit-workout-pref-table-add-tr');
+            });
+          });
+        </script>
         <div class="general-div-inner">
-          <h1 class="profile-name">Search Results</h1>
           <br>
           <div class="edit-workoutpref-div">
-            <table summary="Added activities" class="edit-workoutpref-table">
+            <table summary="Added activities" id = "activities_list" class="edit-workoutpref-table">
               <% @activities.each do |activity|%>
-                <% if activity == @activities.last %>
-                  <tr class = "edit-workout-pref-table-add-tr">
+                <% if activity != @activities.last %>
+                  <tr data-activity-name="<%= activity.activity_name.downcase %>" class = "edit-workout-pref-table-tr">
                     <td class = "edit-form-label edit-form-subscript"><%=activity.activity_name%></th>
                     <td class = "table-icon"> 
                       <%= button_to(experience_activity_preference_path(activity), method: :get, class: "material-symbols-outlined edit-workoutpref-add-btn") do %>
@@ -66,7 +66,7 @@
                     <td>
                   </tr>
                 <% else %>
-                  <tr class = "edit-workout-pref-table-tr">
+                  <tr data-activity-name="<%= activity.activity_name.downcase %>" class = "edit-workout-pref-table-add-tr">
                     <td class = "edit-form-label edit-form-subscript"><%=activity.activity_name%></th>
                     <td class = "table-icon"> 
                       <%= button_to(experience_activity_preference_path(activity), method: :get, class: "material-symbols-outlined edit-workoutpref-add-btn") do %>
@@ -75,15 +75,16 @@
                     <td>
                   </tr>
                 <% end %>
-                
               <%end%>
             </table>
           </div>
         </div>
-      </div>
       <br>
+      </div>
     </div>
-  <% end %>
+  </div>
 </div>
 
 </body>
+<%= render 'landing/footer' %>
+</html>

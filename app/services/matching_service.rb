@@ -8,7 +8,7 @@ class MatchingService
   def match_students
     # Retrieve all users
     users = Student.all
-
+    puts "Matching students..."
     # Iterate through all combinations of users
     users.each do |user2|
       next if @current_user == user2 # skip comparing a user with themselves
@@ -59,9 +59,14 @@ class MatchingService
     # Calculate overall match score (weight can be adjusted within respective calculation functions)
     overall_match_score = (activity_match_score + gym_match_score + time_match_score + gender_match_score + age_match_score) / 5.0
 
+    # Priority checks that should automatically nullify a match if not met
+    if gender_match_score == 0 or age_match_score == 0
+      overall_match_score = 0
+    end
+
     # Return the overall match score
     overall_match_score
-  end
+  end 
 
   def calculate_activity_match_score(current_user, user2)
     # Retrieve activity preferences and experience levels for each user
@@ -174,14 +179,15 @@ class MatchingService
 
     current_user_times = [current_user_morning, current_user_afternoon, current_user_evening, current_user_night]
     user2_times = [user2_morning, user2_afternoon, user2_evening, user2_night]
-
     # Initialize an array to store match scores for each time slot
     match_scores = []
 
     # Calculate match score for each time slot
     current_user_times.each_with_index do |current_user_time, index|
       user2_time = user2_times[index] || "0000000"
-
+      if current_user_time.nil?
+        current_user_time = "0000000"
+      end
       # Convert time preferences to arrays of 0s and 1s
       current_user_time_array = current_user_time.chars.map(&:to_i)
       user2_time_array = user2_time.chars.map(&:to_i)

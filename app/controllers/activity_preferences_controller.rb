@@ -15,14 +15,25 @@ class ActivityPreferencesController < ApplicationController
     @current_activities.each do |name|
       @exp_levels << ActivityPreference.find_by(student_email: @current_student.email, activity_id: Activity.where(activity_name: name).pluck(:id)).experience_level
     end
+
+    if @render_account_creation_nav
+      @back_page_path = students_setup_workout_partner_preferences_path
+      @dont_render_nav = true
+    else
+      @back_page_path = students_workout_preferences_path
+    end
+    @page_name = "Activity Preferences"
+    @activities = Activity.all.order(:activity_name)
   end
 
   def new
-    query = params[:query]
-    if query.present?
-      @activities = Activity.where("activity_name ILIKE :query", query: "%#{query.downcase}%").order(:activity_name)
-    else
-      @activities = -1
+    @activities = Activity.all.order(:activity_name)
+
+    @page_name = "Add Activity"
+    @back_page_path = activity_preferences_path
+
+    if session['render_account_creation_nav']
+      @dont_render_nav = true
     end
   end
 
@@ -54,6 +65,13 @@ class ActivityPreferencesController < ApplicationController
   
       # Use the :create action to handle form submission
       @new_pref = ActivityPreference.new(activity_id: @activity.id, student_email: @current_student.email)
+
+      @page_name = "Experience Level"
+      @back_page_path = activity_preferences_path
+
+      if session['render_account_creation_nav']
+        @dont_render_nav = true
+      end
   end
 
   def update
