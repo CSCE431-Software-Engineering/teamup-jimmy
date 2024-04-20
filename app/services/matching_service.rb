@@ -34,8 +34,6 @@ class MatchingService
     end
   end
 
-  private
-
   def calculate_match_score(current_user, user2)
     # Calculate match score based on activity preferences
     activity_match_score = calculate_activity_match_score(current_user, user2)
@@ -289,25 +287,18 @@ class MatchingService
   end
 
   def calculate_birthday_age(user)
-    # Get birthdays as Date objects
-    birth_date = Date.strptime(user.birthday, "%Y-%m-%d")
+    # Assuming user.birthday is already a Date object
+    birth_date = user.birthday
     current_date = Date.today
-
-    # Calculate age
+  
+    # Calculate age based on the difference in years
     age = current_date.year - birth_date.year
-    
-    # Check for same month/day for exact age calculation
-    if current_date.mon < birth_date.mon
-      age -= 1
-    elsif current_date.mday < birth_date.mday
+  
+    # Adjust for cases where the current date is before the birthday in the current year
+    if current_date.month < birth_date.month || (current_date.month == birth_date.month && current_date.day < birth_date.day)
       age -= 1
     end
-
-    # puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
-    # puts "Age of user #{user.name}: #{age} years old"
-    # puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
-
-    # Return age
+  
     age
-  end
+  end  
 end
