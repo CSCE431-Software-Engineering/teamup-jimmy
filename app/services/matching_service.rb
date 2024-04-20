@@ -250,11 +250,6 @@ class MatchingService
     # Weight can be adjusted based on how important age preferences are
     age_weight = 0.30
 
-    # Check if age preference intervals overlap
-    if user2.age_start_pref <= current_user.age_end_pref && current_user.age_start_pref <= user2.age_end_pref
-      age_match_score += 1
-    end
-
     # puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
     # puts "Age score: #{age_match_score * age_weight}"
     # puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
@@ -263,4 +258,13 @@ class MatchingService
     age_match_score * age_weight
   end
 
+  def calculate_birthday_age(user)
+    birth_date = Date.strptime(user.birthday, "%Y-%m-%d")
+    current_date = Date.today
+
+    age = current_date.year - birth_date.year
+    age -= 1 if current_date < birth_date + age.years
+
+    age
+  end
 end
