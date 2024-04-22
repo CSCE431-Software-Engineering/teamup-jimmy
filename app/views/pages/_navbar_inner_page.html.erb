@@ -16,7 +16,11 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav mx-auto">
         <li class="nav-item">
-          <%= link_to 'Home', pages_home_path, class: "nav-link px-lg-4", style: "font-weight: 500;" %>
+          <%if @has_incoming_requests %>
+            <%= link_to 'Home', pages_home_path, class: "nav-link navbar-entry px-lg-4 has-notification has-notification-navbar", style: "font-weight: 500;" %>
+          <% else %>
+            <%= link_to 'Home', pages_home_path, class: "nav-link px-lg-4", style: "font-weight: 500;" %>
+          <% end %>
         </li>
         <li class="nav-item">
           <%= link_to 'Match', pages_match_path, class: "nav-link px-lg-4", style: "font-weight: 500;" %>

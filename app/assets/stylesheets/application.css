@@ -336,7 +336,11 @@ body, html {
   font-size: 1.3rem;
   line-height: 1.3rem;
   text-decoration: none!important;
-  display: inline-block
+  display: inline-block;
+}
+
+.navbar-entry{
+  position: relative;
 }
 
 
@@ -411,4 +415,26 @@ body, html {
   background: --var(--primary-text-color); /* Or any color you want */
   -webkit-mask: url('instagram_icon.png') no-repeat center / contain;
           mask: url('instagram_icon.png') no-repeat center / contain;
+}
+
+.settings-card{
+  position:relative;
+}
+
+.has-notification::after {
+  content: ""; /* Required property for generated content */
+  position: absolute; /* Positioning relative to the nearest positioned ancestor */
+  top: 0;
+  right: 0;
+  width: 1rem; /* Size of the dot */
+  height: 1rem; /* Size of the dot */
+  background-color: blue; /* Color of the dot */
+  border-radius: 50%; /* Makes the dot circular */
+  transform: translate(50%, -50%); /* Center the dot on the top right corner */
+}
+
+.has-notification-navbar::after{
+  transform:translate(-80%, -10%);
+  width: 0.75rem;
+  height: 0.75rem;
 }

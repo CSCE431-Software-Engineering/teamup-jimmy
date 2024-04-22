@@ -9,6 +9,9 @@ class PagesController < ApplicationController
     @existing_matches_B = Match.where(student2_email: @current_student, relationship_enum: 3)
     
     @matched_emails = Student.where(email: @existing_matches_A&.pluck(:student2_email)).or(Student.where(email: @existing_matches_B&.pluck(:student1_email)))  
+
+    @has_incoming_requests = Match.where(student2_email: @current_student.email, relationship_enum: 1).or(Match.where(student1_email: @current_student.email, relationship_enum: 2)).length > 0
+    
   end
 
   def match 
@@ -46,6 +49,10 @@ class PagesController < ApplicationController
     @match = nil
     # get next match
     if match_queue.length > 0
+      
+      if session[:match_queue_index] >= match_queue.length
+        session[:match_queue_index] = 0
+      end
       potential_match = match_queue[session[:match_queue_index]]
       @match = potential_match
       if @current_student.email == potential_match["student1_email"]
@@ -59,9 +66,6 @@ class PagesController < ApplicationController
       @incoming_request = (potential_match["relationship_enum"]) > 0
       session[:match_queue_index] += 1
 
-      if session[:match_queue_index] >= match_queue.length
-        session[:match_queue_index] = 0
-      end
     else
       @match = nil
     end
@@ -117,6 +121,14 @@ class PagesController < ApplicationController
     @current_student = Student.find_by(email: session[:student_id])
     @results = @results.where.not(email: @current_student.email) if @current_student
     @results = @results.where(is_private: false)
+    for student in @results
+      match = Match.where(student1_email: @current_student.email, student2_email: student.email).or(Match.where(student1_email: student.email, student2_email: @current_student.email)).first
+      if match
+        if match.relationship_enum < 0
+          @results = @results.where.not(email: student.email)
+        end
+      end
+    end
 
     @results.each do |s|
       age = (Date.today - s.birthday) / 365.24
