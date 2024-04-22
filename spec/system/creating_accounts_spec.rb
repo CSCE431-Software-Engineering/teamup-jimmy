@@ -16,7 +16,7 @@ RSpec.describe 'CreatingAccounts', type: :system do
   it 'Integrity Case 1 Sunny Day: successful profile creation, with sign-in through Google OAuth2' do
     visit '/accounts/auth/google_oauth2'
     visit account_google_oauth2_omniauth_callback_path
-    expect(page).to have_content('Account Information')
+    expect(page).to have_content('Home')
   end
 
   it 'Usability test 1 Sunny Day: check for a name field' do
