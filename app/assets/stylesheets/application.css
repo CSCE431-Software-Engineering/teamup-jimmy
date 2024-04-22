@@ -438,3 +438,20 @@ body, html {
   width: 0.75rem;
   height: 0.75rem;
 }
+
+.incoming-match-banner {
+  padding: 0.3rem;
+  content: "New Match!";
+  position: absolute;
+  top: -2%;
+  right: 49%;
+  background-color: var(--accent-color);
+  border-radius: 0.25rem;
+  color: var(--primary-bg-color);
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(-5deg);
+  text-wrap: nowrap;
+}

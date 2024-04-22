@@ -22,7 +22,12 @@
         <div class="col-12 col-md-8 col-lg-6">
           <div class="card-container">
             <%= link_to student_path(id: @featured_user.email) do %>
+              <% if @incoming_request %> 
+                <div class="card-body card-body-enlarged" style="border: 5px solid var(--accent-darkened)">
+                  <div class="incoming-match-banner">Incoming Match Request!</div>
+              <% else %>
               <div class="card-body card-body-enlarged"> 
+              <% end %>
                 <p class = "profile-name"> <%= @featured_user.name %> </p>
                 <div class="card-profile-picture-div">
                   <% if @featured_user.profile_picture_url.present? %>
