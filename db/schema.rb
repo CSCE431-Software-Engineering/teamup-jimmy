@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_04_194747) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_22_193933) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -98,6 +98,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_04_194747) do
     t.date "birthday"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "provider"
+    t.string "uid"
     t.integer "age_start_pref", default: 18
     t.integer "age_end_pref", default: 99
     t.string "phone_number"
@@ -112,6 +114,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_04_194747) do
     t.boolean "gender_pref_male", default: true, null: false
     t.boolean "gender_pref_female", default: true, null: false
     t.boolean "gender_pref_other", default: true, null: false
+    t.boolean "receives_match_emails", default: true
   end
 
   create_table "time_preferences", force: :cascade do |t|

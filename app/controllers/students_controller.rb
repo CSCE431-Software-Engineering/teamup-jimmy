@@ -2,7 +2,7 @@
 
 class StudentsController < ApplicationController
 
-  before_action :set_current_student, only: [:index, :set_profile_args, :delete_confirmation, :delete, :destroy, :edit_gender_pref, :edit_age_pref, :personal_info, :edit_name, :edit_birthday, :edit_gender, :edit_grad_year, :edit_is_private, :edit_phone_number, :edit_major, :edit_biography, :matching_preferences, :edit_instagram_url, :edit_snap_url, :edit_x_url, :connect_socials, :workout_preferences, :update, :upload_file, :delete_profile_picture]
+  before_action :set_current_student, only: [:index, :edit_receives_match_emails, :set_profile_args, :delete_confirmation, :delete, :destroy, :edit_gender_pref, :edit_age_pref, :personal_info, :edit_name, :edit_birthday, :edit_gender, :edit_grad_year, :edit_is_private, :edit_phone_number, :edit_major, :edit_biography, :matching_preferences, :edit_instagram_url, :edit_snap_url, :edit_x_url, :connect_socials, :workout_preferences, :update, :upload_file, :delete_profile_picture]
   skip_before_action :set_initialization_false, only: [:new, :basic, :setup_personal_info, :setup_workout_partner_preferences, :setup_activity_preferences, :setup_gym_preferences, :setup_time_preferences, :create, :delete, :destroy, :update, :show, :set_profile_args, :set_current_student]
 
   
@@ -261,12 +261,20 @@ class StudentsController < ApplicationController
 
   def edit_instagram_url
     @page_name = "Instagram Link"
+    @back_page_path = students_connect_socials_path
     render 'students/socials_forms/edit_instagram_link'
   end
 
   def edit_x_url
     @page_name = "X Link"
+    @back_page_path = students_connect_socials_path
     render 'students/socials_forms/edit_x_link'
+  end
+
+  def edit_receives_match_emails
+    @page_name = "Email Preferences"
+    @back_page_path = students_settings_path
+    render 'students/edit_receives_match_emails'
   end
 
   
@@ -429,6 +437,6 @@ class StudentsController < ApplicationController
   end
 
   def student_params
-    params.require(:student).permit(:name, :email, :gender, :birthday, :phone_number, :major, :is_private, :grad_year, :biography, :instagram_url, :x_url, :snap_url, :gender_pref_female, :gender_pref_male, :gender_pref_other, :age_start_pref, :age_end_pref)
+    params.require(:student).permit(:name, :email, :gender, :birthday, :phone_number, :major, :is_private, :grad_year, :biography, :instagram_url, :x_url, :snap_url, :gender_pref_female, :gender_pref_male, :gender_pref_other, :age_start_pref, :age_end_pref, :receives_match_emails)
   end
 end

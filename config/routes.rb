@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   get 'students/setup_workout_partner_preferences'
   get 'students/setup_activity_preferences'
   get 'students/setup_time_preferences'
+  get 'students/edit_receives_match_emails'
 
   post 'students/upload_file', to: 'students#upload_file'
   post 'students/delete_profile_picture', to: 'students#delete_profile_picture', as: :delete_profile_picture

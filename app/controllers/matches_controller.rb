@@ -86,9 +86,18 @@ class MatchesController < ApplicationController
     if action_name == 'send_match_request'
       if @match.student1_email == student_email && @match.relationship_enum == 0
         @match.relationship_enum = 1
-        UserMailer.match_request_notification(student_email, @match.student2_email).deliver_now
+        student2 = Student.find_by(email: @match.student2_email)
+        if student2.receives_match_emails
+          UserMailer.match_request_notification(@match.student1_email, @match.student2_email).deliver_now
+          puts student2.receives_match_emails
+        end
       elsif @match.student2_email == student_email && @match.relationship_enum == 0
         @match.relationship_enum = 2
+        student1 = Student.find_by(email: @match.student1_email)
+        if student1.receives_match_emails
+          puts student1.receives_match_emails
+          UserMailer.match_request_notification(@match.student2_email, @match.student1_email).deliver_now
+        end
       end
     end
     if action_name == 'cancel_match_request'
@@ -99,12 +108,20 @@ class MatchesController < ApplicationController
       end
     end
     if action_name == 'accept_match_request'
-      if @match.student1_email == student_email && @match.relationship_enum == 2
-        UserMailer.match_notification(student_email, @match.student2_email).deliver_now
+      if @match.student1_email == student_email && @match.relationship_enum == 2 
         @match.relationship_enum = 3
+        student2 = Student.find_by(email: @match.student2_email)
+        if student2.receives_match_emails
+          UserMailer.match_notification(@match.student1_email, @match.student2_email).deliver_now
+        end
       elsif @match.student2_email == student_email && @match.relationship_enum == 1
+        student1 = Student.find_by(email: @match.student1_email)
+        if student1.receives_match_emails
+          UserMailer.match_notification(@match.student2_email, @match.student1_email).deliver_now
+        end
         @match.relationship_enum = 3
       end
+
     end
     if action_name == 'reject_match_request'
       if @match.student1_email == student_email && @match.relationship_enum == 2

@@ -20,6 +20,7 @@ class Student < ApplicationRecord
   validates :age_end_pref, presence: true, numericality: { greater_than_or_equal_to: :age_start_pref }
   validates :x_url, format: { with: /\A(?:(?:http|https):\/\/)?(?:www\.)?x\.com\/.+\z/, message: "*Input must be a valid X URL." }, allow_blank: true
   validates :instagram_url, format: { with: /\A(?:(?:http|https):\/\/)?(?:www\.)?instagram\.com\/.+\z/, message: "*Input must be a valid Instagram URL." }, allow_blank: true
+  validates :receives_match_emails, inclusion: { in: [true, false] }
 
   validates :phone_number, format: { with: /\A\d{10}\z/, message: "*Phone number must be exactly 10 digits long." }, allow_blank: true
   validates :grad_year, format: { with: /\A\d{4}\z/, message: "*Graduation year must be a four-digit number." }, allow_blank: true
