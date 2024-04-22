@@ -84,7 +84,16 @@ class StudentsController < ApplicationController
     if Student.find_by(email: @student.email) || @student.save
       redirect_to students_setup_personal_info_path
     else
-      flash[:alert] = 'There was a problem with your input. Please make sure to fill out every field.'
+      error = @student.errors.full_messages.first.to_s
+      if error.nil?
+        flash[:alert] = "There was a problem creating your account."
+      else
+        if error.include? "*"
+          error = error[error.index("*")+1..-1]
+        end
+          flash[:alert] = "There was a problem creating your account. #{error}"
+
+      end
       redirect_to(action: 'basic')
     end
   end
