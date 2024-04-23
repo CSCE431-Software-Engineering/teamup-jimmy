@@ -317,7 +317,7 @@ body, html {
   font-weight: bold;
   font-size: 16pt; /* 16pt is roughly equivalent to 21px */
   padding: 0.5rem 2rem!important!important; /* Increase the space around the links */;
-  color: var(--primary-text-color); /* Use a CSS variable for the text color */
+  color: var(--primary-text-color)!important; /* Use a CSS variable for the text color */
 }
 
 /* Adjust the navbar padding for better alignment */
@@ -434,7 +434,7 @@ body, html {
 }
 
 .has-notification-navbar::after{
-  transform:translate(-80%, -10%);
+  transform:translate(100%, -70%);
   width: 0.75rem;
   height: 0.75rem;
 }
