@@ -341,6 +341,11 @@ body, html {
 
 .navbar-entry{
   position: relative;
+  display: inline-block;
+}
+
+.navbar-entry{
+  position: relative;
 }
 
 
