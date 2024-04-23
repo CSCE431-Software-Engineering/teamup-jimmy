@@ -16,10 +16,14 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav mx-auto">
         <li class="nav-item">
-          <%if @has_incoming_requests %>
-            <%= link_to 'Home', pages_home_path, class: "nav-link navbar-entry px-lg-4 has-notification has-notification-navbar", style: "font-weight: 500;" %>
+          <% if @has_incoming_requests %>
+            <%= link_to pages_home_path, class: "navbar-text px-lg-4" do %>
+              <p style="margin-bottom:0px; position:relative;"class="has-notification has-notification-navbar" class = >Home</p>
+            <% end %>
           <% else %>
-            <%= link_to 'Home', pages_home_path, class: "nav-link px-lg-4", style: "font-weight: 500;" %>
+            <%= link_to pages_home_path, class: "navbar-text px-lg-4" do %>
+              <p style="margin-bottom:0px">Home</p>
+            <% end %>
           <% end %>
         </li>
         <li class="nav-item">
