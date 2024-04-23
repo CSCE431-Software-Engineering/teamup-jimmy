@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jimmy</title>
+</head>
+<body>
+  <%= render 'pages/navbar_inner_page' %>
+  <div class="general-div-main">
+    <div class="general-div-inner"> 
+
+      <%= form_with(model: @current_student, local: true, method: :patch) do |form| %>
+        <div class="privacy-form">
+          <p class = "edit-form-label">Recieve an email notification for new match requests</p>
+          <p class = "edit-form-label edit-form-subscript">
+            Would you like to receive an email notification when you receive a new match request?   
+          </p>
+          <p></p>
+          <div>
+           <%= form.radio_button :receives_match_emails, "true", id: 'receives_match_emails', class: "bullet" %>
+           <%= form.label :receives_match_emails, "<strong>Yes</strong>".html_safe, value: "true" %>
+           <br>
+          </div>
+          <div>
+            <%= form.radio_button :receives_match_emails, "false", id: 'receives_match_emails', class: "bullet" %>
+            <%= form.label :receives_match_emails, "<strong>No</strong>".html_safe, value: "false" %>
+            <br>
+          </div>
+        </div>
+        <div class="submit-button-container">
+          <%= form.submit "Save", class: "material-button" %>
+        </div>
+      <% end %>  
+      <%= render 'pages/flash' %>
+    </div>
+  </div>    
+
+  </body>
+  <%= render 'landing/footer' %>
+</html>

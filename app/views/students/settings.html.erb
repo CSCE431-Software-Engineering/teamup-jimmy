@@ -57,6 +57,10 @@
               <div class="info-row-title">Link Socials</div>
               <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Forward Arrow" %>
             <% end %>
+            <%= link_to students_edit_receives_match_emails_path, class: 'info-row'  do %>
+              <div class="info-row-title">Update Email Preferences</div>
+              <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Forward Arrow" %>
+            <% end %>
             <%= link_to matches_blocked_path, class: 'info-row' do %>
               <div class="info-row-title">Blocked Users</div>
               <%= image_tag asset_path("forward_arrow.png"), class: "forward-arrow", alt: "Arrow" %>

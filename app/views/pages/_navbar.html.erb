@@ -9,7 +9,11 @@
     <div class="collapse navbar-collapse main-navbar" id="navbarNavDropdown">
       <ul class="navbar-nav mx-auto">
         <li class="nav-item">
-          <%= link_to 'Home', pages_home_path, class: "navbar-text px-lg-4" %>
+          <% if @has_incoming_requests %>
+            <%= link_to 'Home', pages_home_path, class: "navbar-text navbar-entry px-lg-4 has-notification has-notification-navbar" %>
+          <% else %>
+            <%= link_to 'Home', pages_home_path, class: "navbar-text px-lg-4" %>
+          <% end %>
         </li>
         <li class="nav-item">
           <%= link_to 'Match', pages_match_path, class: "navbar-text px-lg-4" %>
