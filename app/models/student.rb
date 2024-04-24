@@ -8,8 +8,8 @@ class Student < ApplicationRecord
   has_many :time_preferences
   has_many :matches, foreign_key: 'student1_id'
   has_many :reverse_matches, class_name: 'Match', foreign_key: 'student2_id'
-  validates :email, presence: true
-  validates :name, presence: true, format: { with: /\A[a-zA-Z\s]+\z/, message: "*Name can only contain alphabetic values and spaces." }, length: { maximum: 50, message: "*Name must be less than 50 characters." }
+  validates :email, presence: { message: "*Email can't be blank." }
+  validates :name, presence: { message: "*Name can't be blank." }, format: { with: /\A[a-zA-Z\s]+\z/, message: "*Name can only contain alphabetic values and spaces." }, length: { maximum: 50, message: "*Name must be less than 50 characters." }
   validates :gender, presence: true, inclusion: { in: %w[Male Female Other] }
   validates :birthday, presence: true, format: { with: /\A\d{4}-\d{2}-\d{2}\z/, message: "*Birthday must be in the format YYYY-MM-DD." }
   validates :major, presence: false
